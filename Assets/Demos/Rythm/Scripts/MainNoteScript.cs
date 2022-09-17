@@ -5,13 +5,11 @@ using UnityEngine;
 public class MainNoteScript : MonoBehaviour
 {
 
-    private float BPM = 1;
-    public GameObject Note;
+    public float BPM;
     // Start is called before the first frame update
     void OnMouseDown()
     {
-        transform.position = transform.position + new Vector3(0, 2, 0);
-        Instantiate(Note);
+        Destroy(gameObject);
     }
 
     void Start()
