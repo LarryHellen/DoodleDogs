@@ -6,18 +6,13 @@ using TMPro;
 public class MainNoteScript : MonoBehaviour
 {
 
-
     public float BPM;
-    public TextMeshPro DaScore;
-
-    private int PlayerScore = 0;
 
     void OnMouseDown()
     {
-        PlayerScore++;
         Destroy(gameObject);
+        TextSetScript.Score++;
     }
-
 
     void Start()
     {
@@ -27,16 +22,13 @@ public class MainNoteScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        DaScore.SetText(PlayerScore.ToString());
-
         if (gameObject.tag != "Parent")
         {
             transform.position = transform.position - new Vector3(0, BPM, 0);
         }
         if (transform.position[1] < -6)
         {
-            PlayerScore = 0;
+            TextSetScript.Score = 0;
             Destroy(gameObject);
         }
        

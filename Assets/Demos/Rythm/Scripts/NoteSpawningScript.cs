@@ -59,20 +59,20 @@ public class NoteSpawningScript : MonoBehaviour
         FullNoteList.Add(NoteList4);
     }
 
-        void Update()
+    void Update()
+    {
+        if (period > TimeBetweenNotes)
         {
-            if (period > TimeBetweenNotes)
+            for (int i = 0; i < 4; i++)
             {
-                for (int i = 0; i < 4; i++)
+                if (FullNoteList[i][SecondsPast] == true)
                 {
-                    if (FullNoteList[i][SecondsPast] == true)
-                    {
-                        Instantiate(Note, new Vector3((2 * i) - 3, 6, 0), Quaternion.identity);
-                    }
+                   Instantiate(Note, new Vector3((2 * i) - 3, 6, 0), Quaternion.identity);
                 }
-                SecondsPast++;
-                period = 0;
             }
-            period += UnityEngine.Time.deltaTime;
+            SecondsPast++;
+            period = 0;
         }
+        period += UnityEngine.Time.deltaTime;
+    }
 }
