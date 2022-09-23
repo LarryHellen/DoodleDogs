@@ -67,7 +67,21 @@ public class NoteSpawningScript : MonoBehaviour
             {
                 if (FullNoteList[i][SecondsPast] == true)
                 {
-                   Instantiate(Note, new Vector3((2 * i) - 3, 6, 0), Quaternion.identity);
+
+                    GameObject ANote = (GameObject) Instantiate(Note, new Vector3((1 * i) - 1.5f, 6, 0), Quaternion.identity);
+
+                    if (i != 3)
+                    {
+                        ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "TAP";
+                    }
+                    else
+                    {
+                        ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "HOLD";
+                        ANote.transform.localScale = new Vector3(1f, 3f, 0.1f);
+                        var cubeRenderer = ANote.GetComponent<Renderer>();
+                        cubeRenderer.material.SetColor("_Color", Color.blue);
+                    }
+                    
                 }
             }
             SecondsPast++;
