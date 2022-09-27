@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Parent
+  - MovyOne
+  - Gray Dot
+  - Green Dot
+  - Indigo Dot
+  - Pink Dot
+  - Purple Dot
+  - Red Dot
+  - Teal Dot
+  - Yellow Dot
   layers:
   - Default
   - TransparentFX
@@ -11,7 +21,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - PostProcessing
   - 
   - 
   - 
