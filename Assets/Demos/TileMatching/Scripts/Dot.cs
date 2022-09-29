@@ -88,6 +88,8 @@ public class Dot : MonoBehaviour
                 board.DestroyMatches();
             }
             otherDot = null;
+        } else{
+            board.currentState = GameState.move;
         }
     }
 
