@@ -73,7 +73,7 @@ public class NoteSpawningScript : MonoBehaviour
             foreach (List<string> IntervalSet in AllNoteCodeList)
             {
 
-                Debug.Log("From : " + IntervalSet[0] + " To : " + IntervalSet[2] + " At an interval of : " + IntervalSet[1]);
+                //Debug.Log("From : " + IntervalSet[0] + " To : " + IntervalSet[2] + " At an interval of : " + IntervalSet[1]);
 
 
 
@@ -99,7 +99,6 @@ public class NoteSpawningScript : MonoBehaviour
 
     void Start()
     {
-
 
         TapNoteList1 = ReadEasyProgramNoteList(TapEasyProgramNoteListOne);
         TapNoteList2 = ReadEasyProgramNoteList(TapEasyProgramNoteListTwo);
@@ -137,12 +136,12 @@ public class NoteSpawningScript : MonoBehaviour
 
                     if (i <= 3) //TAP NOTE
                     {
-                        GameObject ANote = (GameObject)Instantiate(Note, new Vector3((1f * i) - 1.5f, 6, 0), Quaternion.identity);
+                        GameObject ANote = (GameObject)Instantiate(Note, new Vector3((1f * i) - 1.5f, 8, 0), Quaternion.identity);
                         ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "TAP";
                     }
                     else //HOLD NOTE
                     {
-                        GameObject ANote = (GameObject)Instantiate(Note, new Vector3(((1f * i)%4) - 1.5f, 6, 0), Quaternion.identity); // ERROR: NOTES PROBABLY SPAWNING IN WRONG LANE PLS FIX (PROB ONE LANE OVER)
+                        GameObject ANote = (GameObject)Instantiate(Note, new Vector3(((1f * i)%4) - 1.5f, 8, 0), Quaternion.identity);
                         ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "HOLD";
                         ANote.transform.localScale = new Vector3(1f, 3f, 0.1f);
                         var cubeRenderer = ANote.GetComponent<Renderer>();
