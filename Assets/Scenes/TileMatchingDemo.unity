@@ -395,11 +395,7 @@ MonoBehaviour:
   currentState: 1
   width: 7
   height: 7
-<<<<<<< Updated upstream
   offSet: 20
-=======
-  offSet: 60
->>>>>>> Stashed changes
   tilePrefab: {fileID: 7959817331513740722, guid: 6c329e1d3fae74f5ab2b6b712d7c9a05, type: 3}
   dots:
   - {fileID: 5314154141030968369, guid: 18612b5a6b1b04757a022e686247414a, type: 3}
