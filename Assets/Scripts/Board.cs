@@ -15,7 +15,6 @@ public class Board : MonoBehaviour
     public int offSet;
     public GameObject tilePrefab;
     public GameObject[] dots;
-    private BackgroundTile[,] allTiles;
     public GameObject[,] allDots;
     private FindMatches findMatches;
     [HideInInspector]
@@ -27,7 +26,6 @@ public class Board : MonoBehaviour
     void Start()
     {
         findMatches = FindObjectOfType<FindMatches>();
-        allTiles = new BackgroundTile[width,height];
         allDots = new GameObject[width,height];
         counterHolder = FindObjectOfType<CounterHolder>();
         SetUp();
