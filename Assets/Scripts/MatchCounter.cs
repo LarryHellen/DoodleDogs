@@ -30,6 +30,7 @@ public class MatchCounter : MonoBehaviour
         if(currentMatches > neededMatches){
             currentMatches = neededMatches;
         }
+        UpdateText();
     }
 
 }

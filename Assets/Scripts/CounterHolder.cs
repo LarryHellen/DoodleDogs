@@ -5,7 +5,6 @@ using UnityEngine;
 public class CounterHolder : MonoBehaviour
 {
     public GameObject counterPrefab;
-    private Board board;
     public GameObject[] counterArray;
     public float distanceBetweenCounters;
     private Vector3 tempPos;
@@ -15,10 +14,10 @@ public class CounterHolder : MonoBehaviour
     {
         tempPos = gameObject.transform.position;
 
-        addCounter(tempPos,2,"bread");
-        addCounter(tempPos,1,"butter");
-        addCounter(tempPos,3,"ham");
-        addCounter(tempPos,3,"cheese");
+        counterArray[0] = addCounter(tempPos,10,"Yellow Dot");
+        counterArray[1] = addCounter(tempPos,10,"Teal Dot");
+        counterArray[2] = addCounter(tempPos,10,"Red Dot");
+        counterArray[3] = addCounter(tempPos,10,"Purple Dot");
         
     }
 
@@ -27,6 +26,15 @@ public class CounterHolder : MonoBehaviour
         tempCounter.GetComponent<MatchCounter>().Create(num,type);
         tempPos.y -= distanceBetweenCounters;
         return tempCounter;
+    }
+
+    public void addMatch(string type, int numberToAdd){
+        foreach(GameObject counter in counterArray){
+            MatchCounter mc = counter.GetComponent<MatchCounter>();
+            if(mc.matchType == type){
+                mc.IncreaseMatches(numberToAdd);
+            }
+        }
     }
     
 }

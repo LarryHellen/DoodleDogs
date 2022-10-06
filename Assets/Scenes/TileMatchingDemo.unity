@@ -406,10 +406,7 @@ MonoBehaviour:
   - {fileID: 4778269608197391363, guid: 435874e7b301542f9bd646a48dcc8bf5, type: 3}
   - {fileID: 3412728916961720799, guid: 2582097659c2d4d028da57691160e60c, type: 3}
   - {fileID: 3453417378576964532, guid: b94dbfab050b946e3a3dbb3815731d9f, type: 3}
-  - {fileID: 547034125872617183, guid: fe75eeba17d524399bf1d89de5d6f2cd, type: 3}
-  - {fileID: 4120630742601172108, guid: 7cdf034d2b3ba4943bddb3f4a1ff19ab, type: 3}
-  - {fileID: 6225760814708844140, guid: 83f5abec71c78472ca433ddb426bfcc2, type: 3}
-  - {fileID: 4259486500347398455, guid: cc597d24f3a744e6eb5a25249cef8fbf, type: 3}
+  counterHolder: {fileID: 0}
 --- !u!58 &609255650
 CircleCollider2D:
   m_ObjectHideFlags: 0

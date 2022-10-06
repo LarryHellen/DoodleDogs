@@ -150,7 +150,7 @@ public class Dot : MonoBehaviour
         StartCoroutine(CheckMoveCo());
     }
 
-    void FindMatches(){
+    /*void FindMatches(){
         if(column > 0 && column < board.width - 1){
             GameObject leftDot1 = board.allDots[column - 1, row];
             GameObject rightDot1 = board.allDots[column + 1, row];
@@ -174,5 +174,5 @@ public class Dot : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 }

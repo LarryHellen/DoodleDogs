@@ -18,6 +18,8 @@ public class Board : MonoBehaviour
     private BackgroundTile[,] allTiles;
     public GameObject[,] allDots;
     private FindMatches findMatches;
+    [HideInInspector]
+    public CounterHolder counterHolder;
 
     
 
@@ -27,6 +29,7 @@ public class Board : MonoBehaviour
         findMatches = FindObjectOfType<FindMatches>();
         allTiles = new BackgroundTile[width,height];
         allDots = new GameObject[width,height];
+        counterHolder = FindObjectOfType<CounterHolder>();
         SetUp();
     }
 
