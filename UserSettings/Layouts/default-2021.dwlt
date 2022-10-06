@@ -350,6 +350,7 @@ MonoBehaviour:
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 0}
     m_SearchString: 
+>>>>>>> Stashed changes
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -859,6 +860,7 @@ MonoBehaviour:
     m_Text: Game
     m_Image: {fileID: -6423792434712278376, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
+>>>>>>> Stashed changes
   m_Pos:
     serializedVersion: 2
     x: 507
@@ -951,10 +953,11 @@ MonoBehaviour:
     m_Text: Console
     m_Image: {fileID: -4327648978806127646, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
+>>>>>>> Stashed changes
   m_Pos:
     serializedVersion: 2
-    x: 2249
-    y: 726.5
+    x: 264
+    y: 580
     width: 920
     height: 250
   m_ViewDataDictionary: {fileID: 0}

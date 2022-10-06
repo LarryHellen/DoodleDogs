@@ -8,6 +8,7 @@ public class NoteSpawningScript : MonoBehaviour
     private static int SongListLength; //Song Length in Quarters of a Second
     public int RealSongListLength;
 
+
     //Tap Note Lists Stuff
 
     public List<bool> TapNoteList1 = new List<bool>();

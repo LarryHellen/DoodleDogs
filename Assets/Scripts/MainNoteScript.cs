@@ -15,10 +15,6 @@ public class MainNoteScript : MonoBehaviour
 
     private bool BeingClicked;
 
-    private float Timer = 0.0f;
-
-    private float LastTime = 0.0f;
-
     void OnMouseDown()
     {
         BeingClicked = true;
@@ -45,32 +41,25 @@ public class MainNoteScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Timer += Time.deltaTime;
-
-        if (Timer - LastTime > .001)
+        if (Input.GetMouseButton(0))
         {
-            if (Input.GetMouseButton(0))
+            if (NOTE_TYPE == "HOLD" && BeingClicked == true)
             {
-                if (NOTE_TYPE == "HOLD" && BeingClicked == true)
-                {
-                    HoldTime++;
-                }
+                HoldTime++;
             }
+        }
 
-            transform.position = transform.position - new Vector3(0, BPM, 0);
+        transform.position = transform.position - new Vector3(0, BPM, 0);
 
-            if (transform.position[1] < -5.5)
-            {
-                TextSetScript.Score = 0;
-                Destroy(gameObject);
-            }
-            else if (HoldTimeNeeded <= HoldTime)
-            {
-                Destroy(gameObject);
-                TextSetScript.Score++;
-            }
-
-            LastTime = Timer;
+        if (transform.position[1] < -5.5)
+        {
+            TextSetScript.Score = 0;
+            Destroy(gameObject);
+        }
+        else if (HoldTimeNeeded <= HoldTime)
+        {
+            Destroy(gameObject);
+            TextSetScript.Score++;
         }
     }
 }
