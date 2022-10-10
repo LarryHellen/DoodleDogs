@@ -5,16 +5,23 @@ using UnityEngine;
 public class IfIveBeenClicked : MonoBehaviour
 {
 
-    private static int x, y;
+    public int type = 0;
+    public bool HasChanged = true;
+    
+    
+    public SpriteRenderer currentTileSprite;
+    public Sprite x;
+    public Sprite o;
 
-    public static int type = 0;
 
-    private void OnMouseDown()
+    void OnMouseDown()
     {
+
         if (TicTacToeRunner.turnCounter % 2 == 0)
         {
             type = 1;
             TicTacToeRunner.turnCounter++;
+            HasChanged = false;
         }
     }
 
@@ -26,6 +33,19 @@ public class IfIveBeenClicked : MonoBehaviour
 
     void Update()
     {
-        //if "type" a certain num, set texture to a certain something
+        if (HasChanged == false)
+        {
+
+            if (type == 1)
+            {
+                currentTileSprite.sprite = x;
+            }
+            else if (type == 2)
+            {
+                currentTileSprite.sprite = o;  
+            }
+
+            HasChanged = true;
+        }
     }
 }

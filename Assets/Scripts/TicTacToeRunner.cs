@@ -32,7 +32,8 @@ public class TicTacToeRunner : MonoBehaviour
     {
         if (turnCounter % 2 == 1)
         {
-            //board[1][2].GetComponent<IfIveBeenClicked>().type = "2"; ERROR HERE
+            board[1][2].GetComponent<IfIveBeenClicked>().type = 2;
+            board[1][2].GetComponent<IfIveBeenClicked>().HasChanged = false;
             turnCounter++;
         }
 
