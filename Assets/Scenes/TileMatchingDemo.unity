@@ -341,7 +341,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counterPrefab: {fileID: 4892495908398133049, guid: 5c0bef7d56da846cfaf63a5539a1e8ba, type: 3}
-  counterArray: []
+  counterArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   distanceBetweenCounters: 50
 --- !u!1 &609255647
 GameObject:
