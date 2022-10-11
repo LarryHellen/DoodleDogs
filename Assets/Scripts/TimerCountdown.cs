@@ -5,7 +5,7 @@ using UnityEngine;
 public class TimerCountdown : MonoBehaviour
 {
     public int Seconds;
-    private int DEGREES_TO_ROTATE = 360;
+    public int DEGREES_TO_ROTATE = 360;
     private float DegreesRotated = 0;
     private float DeltaTimeVsTotalTime;
 

@@ -13,15 +13,22 @@ public class IfIveBeenClicked : MonoBehaviour
     public Sprite x;
     public Sprite o;
 
-
     void OnMouseDown()
     {
-
-        if (TicTacToeRunner.turnCounter % 2 == 0)
+        if (type == 0)
         {
-            type = 1;
-            TicTacToeRunner.turnCounter++;
-            HasChanged = false;
+            if (TicTacToeRunner.turnCounter % 2 == 0)
+            {
+                type = 1;
+                TicTacToeRunner.turnCounter++;
+                HasChanged = false;
+
+            }else if (TicTacToeRunner.turnCounter % 2 == 1)
+            {
+                type = 2;
+                TicTacToeRunner.turnCounter++;
+                HasChanged = false;
+            }
         }
     }
 
