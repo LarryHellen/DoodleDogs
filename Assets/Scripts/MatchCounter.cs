@@ -9,11 +9,13 @@ public class MatchCounter : MonoBehaviour
     private int neededMatches;
     public string matchType;
     private TextMeshProUGUI textField;
+    public bool full;
 
 
     // Start is called before the first frame update
     public void Create(int neededMatches, string matchType)
     {
+        full = false;
         currentMatches = 0;
         this.neededMatches = neededMatches;
         this.matchType = matchType;
@@ -29,6 +31,7 @@ public class MatchCounter : MonoBehaviour
         currentMatches += numberToAdd;
         if(currentMatches > neededMatches){
             currentMatches = neededMatches;
+            full = true;
         }
         UpdateText();
     }
