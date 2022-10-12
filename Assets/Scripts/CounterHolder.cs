@@ -26,7 +26,7 @@ public class CounterHolder : MonoBehaviour
     }
 
     public void SetUp(){
-        counterArray[0] = addCounter(tempPos,10,"Green Dot");
+        counterArray[0] = addCounter(tempPos,10,"Bread Dot");
         counterArray[1] = addCounter(tempPos,10,"Teal Dot");
         counterArray[2] = addCounter(tempPos,10,"Red Dot");
         counterArray[3] = addCounter(tempPos,10,"Pink Dot");

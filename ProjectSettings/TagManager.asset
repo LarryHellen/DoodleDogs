@@ -14,6 +14,7 @@ TagManager:
   - Red Dot
   - Teal Dot
   - Yellow Dot
+  - Bread Dot
   layers:
   - Default
   - TransparentFX
