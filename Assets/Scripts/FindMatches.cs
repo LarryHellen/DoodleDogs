@@ -71,7 +71,9 @@ public class FindMatches : MonoBehaviour
 
     private void matchDot(GameObject selectedDot){
         currentMatches.Add(selectedDot);
-        board.counterHolder.addMatch(selectedDot.tag,1);
+        if(board.currentState == GameState.wait){
+            board.counterHolder.addMatch(selectedDot.tag,1);
+        }
     }
 
 }

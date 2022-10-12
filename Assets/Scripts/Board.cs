@@ -4,7 +4,9 @@ using UnityEngine;
 
 public enum GameState{
     wait,
-    move
+    move,
+    win,
+    lose
 }
 public class Board : MonoBehaviour
 {
@@ -17,8 +19,11 @@ public class Board : MonoBehaviour
     public GameObject[] dots;
     public GameObject[,] allDots;
     private FindMatches findMatches;
+    private TimerCountdown timerCountdown;
     [HideInInspector]
     public CounterHolder counterHolder;
+    public GameObject victoryScreen;
+    public GameObject defeatScreen;
 
     
 
@@ -26,6 +31,7 @@ public class Board : MonoBehaviour
     void Start()
     {
         findMatches = FindObjectOfType<FindMatches>();
+        timerCountdown = FindObjectOfType<TimerCountdown>();
         allDots = new GameObject[width,height];
         counterHolder = FindObjectOfType<CounterHolder>();
         SetUp();
@@ -36,9 +42,9 @@ public class Board : MonoBehaviour
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){
                 Vector2 tempPosition = new Vector2(i,j + offSet);
-                GameObject backgroundTile = Instantiate(tilePrefab, tempPosition, Quaternion.identity) as GameObject;
-                backgroundTile.transform.parent = this.transform;
-                backgroundTile.name = "( " + i + ", " + j + " )";
+                // GameObject backgroundTile = Instantiate(tilePrefab, tempPosition, Quaternion.identity) as GameObject;
+                // backgroundTile.transform.parent = this.transform;
+                // backgroundTile.name = "( " + i + ", " + j + " )";
                 int dotToUse = Random.Range(0, dots.Length);
 
                 int maxIterations = 0;
@@ -146,6 +152,39 @@ public class Board : MonoBehaviour
         return false;
     }
 
+    public void endGame(){
+        if(currentState != GameState.win && currentState != GameState.lose){
+            if(counterHolder.metAllGoals()){
+                winGame();
+            } else{
+                loseGame();
+            }
+        }
+    }
+
+    private void winGame(){
+        currentState = GameState.win;
+        victoryScreen.SetActive(true);
+        Debug.Log("you won");
+    }
+
+    private void loseGame(){
+        currentState = GameState.lose;
+        defeatScreen.SetActive(true);
+        Debug.Log("you lose");
+    }
+
+    public void ResetGame(){
+        foreach(GameObject dot in allDots){
+            Destroy(dot);
+        }
+        counterHolder.Reset();
+        timerCountdown.Reset();
+        defeatScreen.SetActive(false);
+        currentState = GameState.move;
+        SetUp();
+    }
+
     private IEnumerator FillBoardCo(){
         RefillBoard();
         yield return new WaitForSeconds(.5f);
@@ -156,5 +195,8 @@ public class Board : MonoBehaviour
         }
         yield return new WaitForSeconds(.5f);
         currentState = GameState.move;
+        if(counterHolder.metAllGoals()){
+            endGame();
+        }
     }
 }
