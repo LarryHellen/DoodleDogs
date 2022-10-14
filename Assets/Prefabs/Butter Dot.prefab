@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: -396453259656643628}
   - component: {fileID: -1477747346431422308}
   m_Layer: 0
-  m_Name: Teal Dot
-  m_TagString: Teal Dot
+  m_Name: Butter Dot
+  m_TagString: Butter Dot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 166ad522808e24f9f8b18804397b0989, type: 3}
-  m_Color: {r: 0.098039225, g: 0.5411765, b: 0.5803922, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 1b53151b36445474a8c63e947a8446eb, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -100,10 +100,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   column: 0
   row: 0
+  previousColumn: 0
+  previousRow: 0
   targetX: 0
   targetY: 0
   isMatched: 0
   swipeAngle: 0
+  swipeResist: 1
 --- !u!58 &-1477747346431422308
 CircleCollider2D:
   m_ObjectHideFlags: 0

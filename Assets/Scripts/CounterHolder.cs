@@ -14,7 +14,6 @@ public class CounterHolder : MonoBehaviour
     void Start()
     {
         board = FindObjectOfType<Board>();
-        tempPos = gameObject.transform.position;
         SetUp();
     }
 
@@ -26,10 +25,11 @@ public class CounterHolder : MonoBehaviour
     }
 
     public void SetUp(){
+        tempPos = gameObject.transform.position;
         counterArray[0] = addCounter(tempPos,10,"Bread Dot");
-        counterArray[1] = addCounter(tempPos,10,"Teal Dot");
-        counterArray[2] = addCounter(tempPos,10,"Red Dot");
-        counterArray[3] = addCounter(tempPos,10,"Pink Dot");
+        counterArray[1] = addCounter(tempPos,10,"Butter Dot");
+        counterArray[2] = addCounter(tempPos,10,"Cheese Dot");
+        counterArray[3] = addCounter(tempPos,10,"Ham Dot");
     }
 
     GameObject addCounter(Vector3 pos, int num, string type){
