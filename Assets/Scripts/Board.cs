@@ -89,10 +89,13 @@ public class Board : MonoBehaviour
     }
 
     private void DestroyMatchesAt(int column, int row){
-        if(allDots[column,row].GetComponent<Dot>().isMatched){
-            findMatches.currentMatches.Remove(allDots[column,row]);
-            Destroy(allDots[column,row]);
-            allDots[column,row] = null;
+        if(currentState != GameState.win && currentState != GameState.lose){
+            if(allDots[column,row].GetComponent<Dot>().isMatched){
+                counterHolder.addMatch(allDots[column,row].tag,1);
+                findMatches.currentMatches.Remove(allDots[column,row]);
+                Destroy(allDots[column,row]);
+                allDots[column,row] = null;
+            }
         }
     }
 

@@ -569,6 +569,7 @@ GameObject:
   - component: {fileID: 728101794}
   - component: {fileID: 728101796}
   - component: {fileID: 728101795}
+  - component: {fileID: 728101797}
   m_Layer: 5
   m_Name: DefeatScreen
   m_TagString: Untagged
@@ -636,6 +637,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728101793}
   m_CullTransparentMesh: 1
+--- !u!114 &728101797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728101793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0664f2fb6de004d9c83b77ee5725159f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateName: lose
 --- !u!1 &764717961
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,7 +866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f415fe63cb9334f27b2cb65e20ab99e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Seconds: 45
+  Seconds: 15
   DEGREES_TO_ROTATE: 180
   movingAllowed: 0
 --- !u!212 &980290493
@@ -918,6 +932,7 @@ GameObject:
   - component: {fileID: 1079109438}
   - component: {fileID: 1079109440}
   - component: {fileID: 1079109439}
+  - component: {fileID: 1079109441}
   m_Layer: 5
   m_Name: VictoryScreen
   m_TagString: Untagged
@@ -984,6 +999,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1079109437}
   m_CullTransparentMesh: 1
+--- !u!114 &1079109441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079109437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0664f2fb6de004d9c83b77ee5725159f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateName: win
 --- !u!1 &1110039562
 GameObject:
   m_ObjectHideFlags: 0

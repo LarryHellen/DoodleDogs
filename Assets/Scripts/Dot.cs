@@ -38,39 +38,41 @@ public class Dot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if(isMatched){
-            SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
-            mySprite.color = new Color (1f,1f,1f,.2f);
-        }
+        if(board.currentState != GameState.win && board.currentState != GameState.lose)
+        {
+            if(isMatched){
+                SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
+                mySprite.color = new Color (1f,1f,1f,.2f);
+            }
 
-        targetX = column;
-        targetY = row;
-        if(Mathf.Abs(targetX - transform.position.x) > .1){
-            //Move towards target
-            tempPosition = new Vector2(targetX,transform.position.y);
-            transform.position = Vector2.Lerp(transform.position, tempPosition, .4f);
-            if(board.allDots[column,row] != this.gameObject){
-                board.allDots[column,row] = this.gameObject;
+            targetX = column;
+            targetY = row;
+            if(Mathf.Abs(targetX - transform.position.x) > .1){
+                //Move towards target
+                tempPosition = new Vector2(targetX,transform.position.y);
+                transform.position = Vector2.Lerp(transform.position, tempPosition, .4f);
+                if(board.allDots[column,row] != this.gameObject){
+                    board.allDots[column,row] = this.gameObject;
+                }
+                findMatches.FindAllMatches();
+            }else{
+                //Directly set the position
+                tempPosition = new Vector2(targetX,transform.position.y);
+                transform.position = tempPosition;
             }
-            findMatches.FindAllMatches();
-        }else{
-            //Directly set the position
-            tempPosition = new Vector2(targetX,transform.position.y);
-            transform.position = tempPosition;
-        }
-        if(Mathf.Abs(targetY - transform.position.y) > .1){
-            //Move towards target
-            tempPosition = new Vector2(transform.position.x,targetY);
-            transform.position = Vector2.Lerp(transform.position, tempPosition, .4f);
-            if(board.allDots[column,row] != this.gameObject){
-                board.allDots[column,row] = this.gameObject;
+            if(Mathf.Abs(targetY - transform.position.y) > .1){
+                //Move towards target
+                tempPosition = new Vector2(transform.position.x,targetY);
+                transform.position = Vector2.Lerp(transform.position, tempPosition, .4f);
+                if(board.allDots[column,row] != this.gameObject){
+                    board.allDots[column,row] = this.gameObject;
+                }
+                findMatches.FindAllMatches();
+            }else{
+                //Directly set the position
+                tempPosition = new Vector2(transform.position.x,targetY);
+                transform.position = tempPosition;
             }
-            findMatches.FindAllMatches();
-        }else{
-            //Directly set the position
-            tempPosition = new Vector2(transform.position.x,targetY);
-            transform.position = tempPosition;
         }
     }
 
