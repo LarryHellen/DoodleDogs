@@ -15,19 +15,25 @@ public class IfIveBeenClicked : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (type == 0)
+        if (TicTacToeRunner.runGame)
         {
-            if (TicTacToeRunner.turnCounter % 2 == 0)
+            if (type == 0)
             {
-                type = 1;
-                TicTacToeRunner.turnCounter++;
-                HasChanged = false;
+                if (TicTacToeRunner.turnCounter % 2 == 0)
+                {
+                    type = 1;
+                    TicTacToeRunner.turnCounter++;
+                    HasChanged = false;
+                    //Debug.Log(TicTacToeRunner.turnCounter);
 
-            }else if (TicTacToeRunner.turnCounter % 2 == 1)
-            {
-                type = 2;
-                TicTacToeRunner.turnCounter++;
-                HasChanged = false;
+                }
+                else if (TicTacToeRunner.turnCounter % 2 == 1)
+                {
+                    type = 2;
+                    TicTacToeRunner.turnCounter++;
+                    HasChanged = false;
+                    //Debug.Log(TicTacToeRunner.turnCounter);
+                }
             }
         }
     }
@@ -49,10 +55,10 @@ public class IfIveBeenClicked : MonoBehaviour
             }
             else if (type == 2)
             {
-                currentTileSprite.sprite = o;  
+                currentTileSprite.sprite = o;
             }
 
             HasChanged = true;
-        }
+            }
     }
 }
