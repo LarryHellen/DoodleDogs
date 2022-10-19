@@ -6,6 +6,9 @@ public class TicTacToeRunner : MonoBehaviour
 {
     public GameObject tile;
 
+    public GameObject VictoryScreen, DefeatScreen;
+    
+
 
     private List<List<int>> rP = new List<List<int>>()
     {
@@ -26,6 +29,20 @@ public class TicTacToeRunner : MonoBehaviour
     public static int turnCounter = 0;
 
     public static bool runGame = true;
+
+
+
+
+    void OnWin()
+    {
+        VictoryScreen.SetActive(true);
+    }
+
+    void OnLose()
+    {
+        DefeatScreen.SetActive(true);
+    }
+
 
 
     void DebugLogBoard()
@@ -109,19 +126,19 @@ public class TicTacToeRunner : MonoBehaviour
             Debug.Log("Tie");
             runGame = false;
             DebugLogBoard();
-            Retry();
+            OnLose();
         } else if (XHasWon == true)
         {
             Debug.Log("X has acheived a victorious status");
             runGame = false;
             DebugLogBoard();
-            Retry();
+            OnWin();
         } else if (OHasWon == true)
         {
             Debug.Log("O has won the day");
             runGame = false;
             DebugLogBoard();
-            Retry();
+            OnLose();
         }
         else
         {
@@ -151,6 +168,11 @@ public class TicTacToeRunner : MonoBehaviour
 
     public void Retry()
     {
+        Debug.Log("yoyoyoyo");
+
+        VictoryScreen.SetActive(false);
+        DefeatScreen.SetActive(false);
+
         turnCounter = 0;
 
         for (int i = 0; i < 3; i++)
