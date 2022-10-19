@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6974965757228919457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6974965757228919459}
+  - component: {fileID: 6974965757228919458}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6974965757228919459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6974965757228919457}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6974965757228919458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6974965757228919457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9c3a6ff684794ffba5a2df023d58402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Deny
+    clip: {fileID: 8300000, guid: 3f7800b5cb87046f185a4d815acb8986, type: 3}
+    volume: 0
+    pitch: 0
+    source: {fileID: 0}
+  - name: TileSpawn
+    clip: {fileID: 8300000, guid: f983bab573bf34806b48713f738ef477, type: 3}
+    volume: 0
+    pitch: 0
+    source: {fileID: 0}
+  - name: MatchSuccess
+    clip: {fileID: 8300000, guid: 3c9ce71abd4794b24a1667a5d2c9c051, type: 3}
+    volume: 0
+    pitch: 0
+    source: {fileID: 0}
+  - name: FlipPage
+    clip: {fileID: 8300000, guid: 32bb120a2e80e4639afc43a00cc527f9, type: 3}
+    volume: 0
+    pitch: 0
+    source: {fileID: 0}
