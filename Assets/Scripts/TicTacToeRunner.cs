@@ -43,7 +43,7 @@ public class TicTacToeRunner : MonoBehaviour
         }
     }
 
-    void WinDetection()
+    void WinDetection() // NEEDS DEBUGGING MAYBE IDK
     {
         bool XHasWon = false, OHasWon = false;
 
@@ -108,14 +108,20 @@ public class TicTacToeRunner : MonoBehaviour
         {
             Debug.Log("Tie");
             runGame = false;
+            DebugLogBoard();
+            Retry();
         } else if (XHasWon == true)
         {
             Debug.Log("X has acheived a victorious status");
             runGame = false;
+            DebugLogBoard();
+            Retry();
         } else if (OHasWon == true)
         {
             Debug.Log("O has won the day");
             runGame = false;
+            DebugLogBoard();
+            Retry();
         }
         else
         {
@@ -136,29 +142,26 @@ public class TicTacToeRunner : MonoBehaviour
             {
                 Debug.Log("Tie");
                 runGame = false;
+                DebugLogBoard();
+                Retry();
             }
         }
 
     }
 
-    public List<List<GameObject>> Retry()
+    public void Retry()
     {
-        List<List<GameObject>> board = new List<List<GameObject>>();
+        turnCounter = 0;
 
         for (int i = 0; i < 3; i++)
         {
-            List<GameObject> row = new List<GameObject>();
-
             for (int j = 0; j < 3; j++)
             {
-                GameObject Tile = Instantiate(tile, new Vector3(j, -i, 0), Quaternion.identity);
-                row.Add(Tile);
+                board[i][j].GetComponent<IfIveBeenClicked>().type = 0;
             }
-
-            board.Add(row);
         }
 
-        return board;
+        runGame = true;
     }
 
     private bool hasRotated = false;
@@ -168,7 +171,18 @@ public class TicTacToeRunner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        board = Retry();
+        for (int i = 0; i < 3; i++)
+        {
+            List<GameObject> row = new List<GameObject>();
+
+            for (int j = 0; j < 3; j++)
+            {
+                GameObject Tile = Instantiate(tile, new Vector3(j+0.2f*j, -i - 0.2f * i, 0), Quaternion.identity);
+                row.Add(Tile);
+            }
+
+            board.Add(row);
+        }
     }
 
     // Update is called once per frame
@@ -203,26 +217,7 @@ public class TicTacToeRunner : MonoBehaviour
                  hasRotated = false;
 
 
-
                 /*
-                Debug.Log("-------------");
-
-                aLine = "";
-
-                foreach (List<GameObject> tmp in board)
-                {
-                    aLine = "";
-                    foreach (GameObject tmp1 in tmp)
-                    {
-                        aLine += tmp1.GetComponent<IfIveBeenClicked>().type.ToString() + " ";
-                    }
-                    Debug.Log(aLine);
-                }
-                */
-
-                /*
-                 * 
-                 * 
                 GameObject temp = board[0][0];
                 board[0][0] = board[1][0];
 
@@ -245,26 +240,29 @@ public class TicTacToeRunner : MonoBehaviour
 
                     for (int j = 0; j < 3; j++)
                     {
-                        board[i][j].transform.position = new Vector3(j, -i, 0);
+                        board[i][j].transform.position = new Vector3(j+0.2f*j, -i - 0.2f * i, 0);
                     }
 
                 }
 
                 //DebugLogBoard();
             }
-
-            if (turnCounter % 2 == 1)
+            if (runGame == true)
             {
-                hasRotated = true;
-                if (turnCounter >= 9)
+                if (turnCounter % 2 == 1)
                 {
-                    //DebugLogBoard();
+                    hasRotated = true;
+                    if (turnCounter >= 9)
+                    {
+                        //DebugLogBoard();
+                        WinDetection();
+                    }
+
+                }
+                else
+                {
                     WinDetection();
                 }
-
-            }else
-            {
-                WinDetection();
             }
 
             /*

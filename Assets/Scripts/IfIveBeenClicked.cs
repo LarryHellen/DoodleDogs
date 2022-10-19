@@ -12,6 +12,7 @@ public class IfIveBeenClicked : MonoBehaviour
     public SpriteRenderer currentTileSprite;
     public Sprite x;
     public Sprite o;
+    public Sprite square;
 
     void OnMouseDown()
     {
@@ -46,6 +47,11 @@ public class IfIveBeenClicked : MonoBehaviour
 
     void Update()
     {
+        if (type == 0)
+        {
+            currentTileSprite.sprite = square;
+        }
+
         if (HasChanged == false)
         {
 
