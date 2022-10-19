@@ -15,6 +15,9 @@ TagManager:
   - Teal Dot
   - Yellow Dot
   - Bread Dot
+  - Ham Dot
+  - Cheese Dot
+  - Butter Dot
   layers:
   - Default
   - TransparentFX
