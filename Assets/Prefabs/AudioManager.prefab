@@ -47,21 +47,26 @@ MonoBehaviour:
   sounds:
   - name: Deny
     clip: {fileID: 8300000, guid: 3f7800b5cb87046f185a4d815acb8986, type: 3}
-    volume: 0
-    pitch: 0
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
   - name: TileSpawn
     clip: {fileID: 8300000, guid: f983bab573bf34806b48713f738ef477, type: 3}
-    volume: 0
-    pitch: 0
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
   - name: MatchSuccess
     clip: {fileID: 8300000, guid: 3c9ce71abd4794b24a1667a5d2c9c051, type: 3}
-    volume: 0
-    pitch: 0
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
   - name: FlipPage
     clip: {fileID: 8300000, guid: 32bb120a2e80e4639afc43a00cc527f9, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Theme
+    clip: {fileID: 8300000, guid: 783d7625d7d0d4a90a327ef899896dad, type: 3}
     volume: 1
     pitch: 0
     source: {fileID: 0}

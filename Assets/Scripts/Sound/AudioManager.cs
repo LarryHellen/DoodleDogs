@@ -1,4 +1,3 @@
-
 using UnityEngine.Audio;
 using UnityEngine;
 using System;
@@ -6,6 +5,10 @@ using System;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
+
+    void Start(){
+        //Play("Theme");
+    }
 
     private void Awake()
     {
