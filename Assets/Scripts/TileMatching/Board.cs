@@ -14,7 +14,10 @@ public class Board : MonoBehaviour
     public GameState currentState = GameState.move;
     public int width;
     public int height;
-    public int offSet;
+    public float xSpawn;
+    public float ySpawn;
+    public float xDistance;
+    public float yDistance;
     public GameObject tilePrefab;
     public GameObject[] dots;
     public GameObject[,] allDots;
@@ -41,25 +44,7 @@ public class Board : MonoBehaviour
     private void SetUp(){
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){
-                Vector2 tempPosition = new Vector2(i,j + offSet);
-                // GameObject backgroundTile = Instantiate(tilePrefab, tempPosition, Quaternion.identity) as GameObject;
-                // backgroundTile.transform.parent = this.transform;
-                // backgroundTile.name = "( " + i + ", " + j + " )";
-                int dotToUse = Random.Range(0, dots.Length);
-
-                int maxIterations = 0;
-                while(MatchesAt(i,j,dots[dotToUse]) && maxIterations < 100){
-                    dotToUse = Random.Range(0,dots.Length); 
-                    maxIterations++;
-                }
-                maxIterations = 0;
-
-                GameObject dot = Instantiate(dots[dotToUse],tempPosition,Quaternion.identity);
-                dot.GetComponent<Dot>().row = j;
-                dot.GetComponent<Dot>().column = i;
-                dot.transform.parent = this.transform;
-                dot.name = "( " + i + ", " + j + " )";
-                allDots[i,j] = dot;
+                SpawnDot(j,i,true);
             }
         }
     }
@@ -131,12 +116,7 @@ public class Board : MonoBehaviour
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){
                 if(allDots[i,j] == null){
-                    Vector2 tempPosition = new Vector2(i,j + offSet);
-                    int dotToUse = Random.Range(0,dots.Length);
-                    GameObject piece = Instantiate(dots[dotToUse],tempPosition,Quaternion.identity);
-                    allDots[i,j] = piece;
-                    piece.GetComponent<Dot>().row = j;
-                    piece.GetComponent<Dot>().column = i;
+                    SpawnDot(j,i,false);
                 }
             }
         }
@@ -201,5 +181,28 @@ public class Board : MonoBehaviour
         if(counterHolder.metAllGoals()){
             endGame();
         }
+    }
+
+    private void SpawnDot(int row, int col, bool noMatches){
+        float xPos = col * xDistance + xSpawn;
+        float yPos = row * yDistance + ySpawn;
+        Vector2 tempPosition = new Vector2(xPos,yPos);
+
+        int dotToUse = Random.Range(0,dots.Length);
+
+        if(noMatches){
+            int maxIterations = 0;
+            while(MatchesAt(col,row,dots[dotToUse]) && maxIterations < 100){
+                dotToUse = Random.Range(0,dots.Length);
+                maxIterations++;
+            }
+        }
+
+        GameObject piece = Instantiate(dots[dotToUse],tempPosition,Quaternion.identity);
+        allDots[col,row] = piece;
+        piece.GetComponent<Dot>().row = row;
+        piece.GetComponent<Dot>().column = col;
+        piece.transform.parent = this.transform;
+        piece.name = col + ", " + row;
     }
 }

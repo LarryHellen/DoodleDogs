@@ -2970,7 +2970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cutscenes: {fileID: 2111810913}
-  nextMinigame: TileMatchingDemo
+  nextMinigame: TileMatching
 --- !u!1 &1252696362
 GameObject:
   m_ObjectHideFlags: 0

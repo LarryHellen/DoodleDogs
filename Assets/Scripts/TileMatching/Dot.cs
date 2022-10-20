@@ -9,8 +9,8 @@ public class Dot : MonoBehaviour
     public int previousColumn;
     public int previousRow;
     private Board board;
-    public int targetX;
-    public int targetY;
+    public float targetX;
+    public float targetY;
     public bool isMatched = false;
 
     private FindMatches findMatches;
@@ -45,8 +45,8 @@ public class Dot : MonoBehaviour
                 mySprite.color = new Color (1f,1f,1f,.2f);
             }
 
-            targetX = column;
-            targetY = row;
+            targetX = column * board.xDistance + board.xSpawn;
+            targetY = row * board.yDistance + board.ySpawn;
             if(Mathf.Abs(targetX - transform.position.x) > .1){
                 //Move towards target
                 tempPosition = new Vector2(targetX,transform.position.y);
