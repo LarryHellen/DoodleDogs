@@ -62,6 +62,6 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: FlipPage
     clip: {fileID: 8300000, guid: 32bb120a2e80e4639afc43a00cc527f9, type: 3}
-    volume: 0
+    volume: 1
     pitch: 0
     source: {fileID: 0}

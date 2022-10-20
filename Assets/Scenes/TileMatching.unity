@@ -635,7 +635,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  distanceBetweenCounters: 50
+  distanceBetweenCounters: 0.5
 --- !u!1 &609255647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,7 +1121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f415fe63cb9334f27b2cb65e20ab99e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Seconds: 5
+  Seconds: 45
   DEGREES_TO_ROTATE: 180
   movingAllowed: 0
 --- !u!212 &980290493

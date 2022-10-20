@@ -15,6 +15,7 @@ public class CutsceneManager : MonoBehaviour
 
     private void ChangeScene()
     {
+        FindObjectOfType<AudioManager>().Play("FlipPage");
         cutsceneList[sceneNumber - 1].SetActive(false);
         cutsceneList[sceneNumber].SetActive(true);
     }
@@ -37,7 +38,6 @@ public class CutsceneManager : MonoBehaviour
 
     void Start()
     {
-
         foreach (Transform child in cutscenes.transform)
         {
             cutsceneList.Add(child.gameObject);

@@ -76,6 +76,7 @@ public class Board : MonoBehaviour
     private void DestroyMatchesAt(int column, int row){
         if(currentState != GameState.win && currentState != GameState.lose){
             if(allDots[column,row].GetComponent<Dot>().isMatched){
+                FindObjectOfType<AudioManager>().Play("MatchSuccess");
                 counterHolder.addMatch(allDots[column,row].tag,1);
                 findMatches.currentMatches.Remove(allDots[column,row]);
                 Destroy(allDots[column,row]);
@@ -184,6 +185,7 @@ public class Board : MonoBehaviour
     }
 
     private void SpawnDot(int row, int col, bool noMatches){
+        FindObjectOfType<AudioManager>().Play("TileSpawn");
         float xPos = col * xDistance + xSpawn;
         float yPos = row * yDistance + ySpawn;
         Vector2 tempPosition = new Vector2(xPos,yPos);

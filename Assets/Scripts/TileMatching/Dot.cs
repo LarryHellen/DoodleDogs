@@ -84,6 +84,7 @@ public class Dot : MonoBehaviour
                 otherDot.GetComponent<Dot>().column = column;
                 row = previousRow;
                 column = previousColumn;
+                FindObjectOfType<AudioManager>().Play("Deny");
                 yield return new WaitForSeconds(.5f);
                 board.currentState = GameState.move;
             } else{
