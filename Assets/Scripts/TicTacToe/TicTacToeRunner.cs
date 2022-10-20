@@ -30,7 +30,7 @@ public class TicTacToeRunner : MonoBehaviour
 
     public static bool runGame = true;
 
-
+    public bool unfair;
 
 
     void OnWin()
@@ -123,21 +123,21 @@ public class TicTacToeRunner : MonoBehaviour
 
         if (XHasWon == true && OHasWon == true)
         {
-            Debug.Log("Tie");
+            //Debug.Log("Tie");
             runGame = false;
-            DebugLogBoard();
+            //DebugLogBoard();
             OnLose();
         } else if (XHasWon == true)
         {
-            Debug.Log("X has acheived a victorious status");
+            //Debug.Log("X has acheived a victorious status");
             runGame = false;
-            DebugLogBoard();
+            //DebugLogBoard();
             OnWin();
         } else if (OHasWon == true)
         {
-            Debug.Log("O has won the day");
+            //Debug.Log("O has won the day");
             runGame = false;
-            DebugLogBoard();
+            //DebugLogBoard();
             OnLose();
         }
         else
@@ -157,10 +157,10 @@ public class TicTacToeRunner : MonoBehaviour
 
             if (deadBoard == 0)
             {
-                Debug.Log("Tie");
+                //Debug.Log("Tie");
                 runGame = false;
-                DebugLogBoard();
-                Retry();
+                //DebugLogBoard();
+                OnLose();
             }
         }
 
@@ -168,7 +168,7 @@ public class TicTacToeRunner : MonoBehaviour
 
     public void Retry()
     {
-        Debug.Log("yoyoyoyo");
+        //Debug.Log("yoyoyoyo");
 
         VictoryScreen.SetActive(false);
         DefeatScreen.SetActive(false);
@@ -273,6 +273,12 @@ public class TicTacToeRunner : MonoBehaviour
             {
                 if (turnCounter % 2 == 1)
                 {
+                    if (unfair == true)
+                    {
+                        //DebugLogBoard();
+                        WinDetection();
+                    }
+
                     hasRotated = true;
                     if (turnCounter >= 9)
                     {
