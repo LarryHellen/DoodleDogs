@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class MatchCounter : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class MatchCounter : MonoBehaviour
     public string matchType;
     private TextMeshProUGUI textField;
     public bool full;
+    public GameObject iconObject;
+    public Sprite[] iconSprites;
 
 
     // Start is called before the first frame update
@@ -20,11 +23,22 @@ public class MatchCounter : MonoBehaviour
         this.neededMatches = neededMatches;
         this.matchType = matchType;
         textField = gameObject.GetComponent<TextMeshProUGUI>();
+
+        if(matchType == "Bread Dot"){
+            iconObject.GetComponent<Image>().sprite = iconSprites[2];
+        } else if (matchType == "Butter Dot"){
+            iconObject.GetComponent<Image>().sprite = iconSprites[1];
+        } else if (matchType == "Cheese Dot"){
+            iconObject.GetComponent<Image>().sprite = iconSprites[3];
+        } else if (matchType == "Ham Dot"){
+            iconObject.GetComponent<Image>().sprite = iconSprites[0];
+        }
+
         UpdateText();
     }
 
     public void UpdateText(){
-        textField.text = matchType + " Matches: " + currentMatches + "/" + neededMatches;
+        textField.text = "" + currentMatches + "/" + neededMatches;
     }
 
     public void IncreaseMatches(int numberToAdd){

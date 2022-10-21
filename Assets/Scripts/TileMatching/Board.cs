@@ -175,6 +175,7 @@ public class Board : MonoBehaviour
 
         while(MatchesOnBoard()){
             yield return new WaitForSeconds(.5f);
+            findMatches.FindAllMatches();
             DestroyMatches();
         }
         yield return new WaitForSeconds(.5f);
@@ -204,7 +205,9 @@ public class Board : MonoBehaviour
         allDots[col,row] = piece;
         piece.GetComponent<Dot>().row = row;
         piece.GetComponent<Dot>().column = col;
-        piece.transform.parent = this.transform;
+        //piece.transform.parent = this.transform;
+        piece.transform.SetParent(FindObjectOfType<Canvas>().transform,false);
+        piece.transform.position = tempPosition;
         piece.name = col + ", " + row;
     }
 }

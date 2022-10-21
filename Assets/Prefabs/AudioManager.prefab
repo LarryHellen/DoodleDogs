@@ -65,8 +65,8 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
-  - name: Theme
+  - name: AfghanMusicBackground
     clip: {fileID: 8300000, guid: 783d7625d7d0d4a90a327ef899896dad, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
     source: {fileID: 0}

@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
     public Sound[] sounds;
 
     void Start(){
-        //Play("Theme");
+        
     }
 
     private void Awake()
@@ -21,6 +21,8 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
 
         }
+
+        Play("AfghanMusicBackground");
     }
 
     public void Play (string name)

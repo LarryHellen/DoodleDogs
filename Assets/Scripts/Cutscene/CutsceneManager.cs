@@ -12,6 +12,9 @@ public class CutsceneManager : MonoBehaviour
     private List<GameObject> cutsceneList = new List<GameObject>();
     private int sceneNumber = 0;
 
+    public GameObject firstGameplayScene;
+    public GameObject secondGameplayScene;
+
 
     private void ChangeScene()
     {
@@ -25,13 +28,20 @@ public class CutsceneManager : MonoBehaviour
     {
         
         sceneNumber++;
-        if (sceneNumber < cutscenes.transform.childCount)
+        if(sceneNumber == cutsceneList.IndexOf(firstGameplayScene)){
+            PlayerPrefs.SetInt("played",1);
+            SceneManager.LoadScene(nextMinigame);
+        } else if(sceneNumber == cutsceneList.IndexOf(secondGameplayScene)){
+            PlayerPrefs.SetInt("played",2);
+            SceneManager.LoadScene(nextMinigame);
+        }
+        else if (sceneNumber < cutscenes.transform.childCount)
         {
             ChangeScene();
         }
         else
         {
-            SceneManager.LoadScene(nextMinigame);
+            SceneManager.LoadScene("Chapter2");
         }
 
     }
@@ -43,10 +53,23 @@ public class CutsceneManager : MonoBehaviour
             cutsceneList.Add(child.gameObject);
         }
 
-        for (int i = 1; i < cutscenes.transform.childCount; i++)
+        int start = 0;
+
+        if(PlayerPrefs.HasKey("played")){
+            if(PlayerPrefs.GetInt("played") == 1){
+                start = cutsceneList.IndexOf(firstGameplayScene) + 1;
+            } else if (PlayerPrefs.GetInt("played") == 2){
+                start = cutsceneList.IndexOf(secondGameplayScene) + 1;
+            }
+        }
+
+        for (int i = 0; i < cutscenes.transform.childCount; i++)
         {
             cutsceneList[i].SetActive(false);
         }
+
+        sceneNumber = start;
+        cutsceneList[start].SetActive(true);
 
     }
 }

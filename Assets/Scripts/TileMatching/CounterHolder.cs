@@ -6,7 +6,8 @@ public class CounterHolder : MonoBehaviour
 {
     public GameObject counterPrefab;
     public GameObject[] counterArray;
-    public float distanceBetweenCounters;
+    public float yDistance;
+    public float xDistance;
     private Vector3 tempPos;
     private Board board;
 
@@ -35,7 +36,8 @@ public class CounterHolder : MonoBehaviour
     GameObject addCounter(Vector3 pos, int num, string type){
         GameObject tempCounter = Instantiate(counterPrefab,pos,Quaternion.identity,gameObject.transform);
         tempCounter.GetComponent<MatchCounter>().Create(num,type);
-        tempPos.y -= distanceBetweenCounters;
+        tempPos.y += yDistance;
+        tempPos.x += xDistance;
         return tempCounter;
     }
 

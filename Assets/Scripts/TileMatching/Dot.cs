@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Dot : MonoBehaviour
 {
@@ -41,8 +42,10 @@ public class Dot : MonoBehaviour
         if(board.currentState != GameState.win && board.currentState != GameState.lose)
         {
             if(isMatched){
-                SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
-                mySprite.color = new Color (1f,1f,1f,.2f);
+                // SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
+                // mySprite.color = new Color (1f,1f,1f,.2f);
+                Image myImage = GetComponent<Image>();
+                myImage.GetComponent<Image>().color = new Color (1f,1f,1f,.2f);
             }
 
             targetX = column * board.xDistance + board.xSpawn;
