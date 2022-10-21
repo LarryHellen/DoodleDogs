@@ -7,8 +7,16 @@ public class TicTacToeRunner : MonoBehaviour
     public GameObject tile;
 
     public GameObject VictoryScreen, DefeatScreen;
-    
 
+    //Rotation Animation Stuffation
+
+    public float rotationSpeed = 1f;
+
+    private float startTime;
+
+    private float lengthOfTravel;
+
+    //End
 
     private List<List<int>> rP = new List<List<int>>()
     {
@@ -199,7 +207,7 @@ public class TicTacToeRunner : MonoBehaviour
 
             for (int j = 0; j < 3; j++)
             {
-                GameObject Tile = Instantiate(tile, new Vector3(j+0.2f*j, -i - 0.2f * i, 0), Quaternion.identity);
+                GameObject Tile = Instantiate(tile, new Vector3(j+0.2f*j, -i - 0.2f * i), Quaternion.identity);
                 row.Add(Tile);
             }
 
@@ -212,6 +220,9 @@ public class TicTacToeRunner : MonoBehaviour
     {
         if (runGame == true)
         {
+
+
+            //EACH THING NEEDS TO MOVE ALL THE TIME, SET ITS MOVE POSITIONS AND CHANGE THEM CONSTANTLY BUT WHEN GOAL REACHED SET BOTH TO THE SAME?
 
             
             //Make tiles rotate every 2 turns only once using "hasRotated" and "rotationPattern"
@@ -262,7 +273,48 @@ public class TicTacToeRunner : MonoBehaviour
 
                     for (int j = 0; j < 3; j++)
                     {
-                        board[i][j].transform.position = new Vector3(j+0.2f*j, -i - 0.2f * i, 0);
+
+                        Vector3 tmpPos = new Vector3(j + 0.2f * j, -i - 0.2f * i);
+
+                        lengthOfTravel = Vector3.Distance(board[i][j].transform.position, tmpPos);
+
+                        Debug.Log(lengthOfTravel);
+
+
+                        startTime = Time.time;
+
+                        float distanceTraveled = 0;
+
+                        float distCovered = (Time.time - startTime) * rotationSpeed;
+
+                        float fractionOfJourney = distCovered / lengthOfTravel;
+
+
+                        for (int k = 0; k < 10; k++) //Time.time doesn't change throughout this whole loop because its on the same frame
+                        {
+                            distCovered = (Time.time - startTime) * rotationSpeed;
+
+                            Debug.Log("Distance Covered = " + distCovered);
+
+                            fractionOfJourney = distCovered / lengthOfTravel;
+
+                            Debug.Log("Distance Traveled = " + distanceTraveled);
+
+                            distanceTraveled += fractionOfJourney;
+
+                            board[i][j].transform.position = Vector3.Lerp(board[i][j].transform.position, tmpPos, fractionOfJourney);
+                        }
+
+                        
+
+
+                        //board[i][j].transform.position = new Vector3(j+0.2f*j, -i - 0.2f * i, 0); <- ORIG CODE
+
+
+                        //STUFF FROM TILE MATCHING GAME "DOTS" SCRIPT
+
+                        //tempPosition = new Vector2(transform.position.x, targetY);
+                        //transform.position = Vector2.Lerp(transform.position, tempPosition, .4f);
                     }
 
                 }
