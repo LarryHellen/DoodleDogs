@@ -8,15 +8,7 @@ public class TicTacToeRunner : MonoBehaviour
 
     public GameObject VictoryScreen, DefeatScreen;
 
-    //Rotation Animation Stuffation
 
-    public float rotationSpeed = 1f;
-
-    private float startTime;
-
-    private float lengthOfTravel;
-
-    //End
 
     private List<List<int>> rP = new List<List<int>>()
     {
@@ -68,7 +60,7 @@ public class TicTacToeRunner : MonoBehaviour
         }
     }
 
-    void WinDetection() // NEEDS DEBUGGING MAYBE IDK
+    void WinDetection()
     {
         bool XHasWon = false, OHasWon = false;
 
@@ -194,7 +186,7 @@ public class TicTacToeRunner : MonoBehaviour
         runGame = true;
     }
 
-    private bool hasRotated = false;
+    public static bool hasRotated = false;
 
     private GameObject tmp1, tmp2;
 
@@ -247,7 +239,7 @@ public class TicTacToeRunner : MonoBehaviour
 
 
 
-                 hasRotated = false;
+                 
 
 
                 /*
@@ -274,38 +266,12 @@ public class TicTacToeRunner : MonoBehaviour
                     for (int j = 0; j < 3; j++)
                     {
 
+                        //Change this to what it says on ur phone Cai (Sincerly, Past Cai)
+
                         Vector3 tmpPos = new Vector3(j + 0.2f * j, -i - 0.2f * i);
 
-                        lengthOfTravel = Vector3.Distance(board[i][j].transform.position, tmpPos);
-
-                        Debug.Log(lengthOfTravel);
-
-
-                        startTime = Time.time;
-
-                        float distanceTraveled = 0;
-
-                        float distCovered = (Time.time - startTime) * rotationSpeed;
-
-                        float fractionOfJourney = distCovered / lengthOfTravel;
-
-
-                        for (int k = 0; k < 10; k++) //Time.time doesn't change throughout this whole loop because its on the same frame
-                        {
-                            distCovered = (Time.time - startTime) * rotationSpeed;
-
-                            Debug.Log("Distance Covered = " + distCovered);
-
-                            fractionOfJourney = distCovered / lengthOfTravel;
-
-                            Debug.Log("Distance Traveled = " + distanceTraveled);
-
-                            distanceTraveled += fractionOfJourney;
-
-                            board[i][j].transform.position = Vector3.Lerp(board[i][j].transform.position, tmpPos, fractionOfJourney);
-                        }
-
-                        
+                        board[i][j].GetComponent<IfIveBeenClicked>().rotationBool = true;
+                        board[i][j].GetComponent<IfIveBeenClicked>().tmpPos = tmpPos;
 
 
                         //board[i][j].transform.position = new Vector3(j+0.2f*j, -i - 0.2f * i, 0); <- ORIG CODE
@@ -316,10 +282,10 @@ public class TicTacToeRunner : MonoBehaviour
                         //tempPosition = new Vector2(transform.position.x, targetY);
                         //transform.position = Vector2.Lerp(transform.position, tempPosition, .4f);
                     }
-
                 }
 
-                //DebugLogBoard();
+                hasRotated = false;
+                
             }
             if (runGame == true)
             {
