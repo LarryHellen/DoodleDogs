@@ -170,15 +170,18 @@ public class Board : MonoBehaviour
     }
 
     private IEnumerator FillBoardCo(){
-        RefillBoard();
-        yield return new WaitForSeconds(.5f);
-
-        while(MatchesOnBoard()){
+        do{
+            RefillBoard();
             yield return new WaitForSeconds(.5f);
             findMatches.FindAllMatches();
-            DestroyMatches();
-        }
-        yield return new WaitForSeconds(.5f);
+            while(MatchesOnBoard()){
+                DestroyMatches();
+                findMatches.FindAllMatches();
+                yield return new WaitForSeconds(.5f);
+            }
+            //Debug.Log(findMatches.currentMatches.Count);
+            yield return new WaitForSeconds(.2f);
+        } while(findMatches.currentMatches.Count != 0);
         currentState = GameState.move;
         if(counterHolder.metAllGoals()){
             endGame();

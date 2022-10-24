@@ -46,6 +46,7 @@ public class Dot : MonoBehaviour
                 // mySprite.color = new Color (1f,1f,1f,.2f);
                 Image myImage = GetComponent<Image>();
                 myImage.GetComponent<Image>().color = new Color (1f,1f,1f,.2f);
+                //board.DestroyMatches();
             }
 
             targetX = column * board.xDistance + board.xSpawn;
