@@ -10,6 +10,7 @@ public class CounterHolder : MonoBehaviour
     public float xDistance;
     private Vector3 tempPos;
     private Board board;
+    public int goals;
 
     // Start is called before the first frame update
     void Start()
@@ -27,10 +28,18 @@ public class CounterHolder : MonoBehaviour
 
     public void SetUp(){
         tempPos = gameObject.transform.position;
-        counterArray[0] = addCounter(tempPos,10,"Bread Dot");
-        counterArray[1] = addCounter(tempPos,10,"Butter Dot");
-        counterArray[2] = addCounter(tempPos,10,"Cheese Dot");
-        counterArray[3] = addCounter(tempPos,10,"Ham Dot");
+        counterArray[0] = addCounter(tempPos,goals,"Bread Dot");
+        counterArray[1] = addCounter(tempPos,goals,"Butter Dot");
+        counterArray[2] = addCounter(tempPos,goals,"Cheese Dot");
+        counterArray[3] = addCounter(tempPos,goals,"Ham Dot");
+    }
+
+    public void Update()
+    {
+        if (metAllGoals())
+        {
+            board.winGame();
+        }
     }
 
     GameObject addCounter(Vector3 pos, int num, string type){

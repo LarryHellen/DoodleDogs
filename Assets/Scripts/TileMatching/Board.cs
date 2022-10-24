@@ -146,7 +146,7 @@ public class Board : MonoBehaviour
         }
     }
 
-    private void winGame(){
+    public void winGame(){
         currentState = GameState.win;
         victoryScreen.SetActive(true);
         Debug.Log("you won");
@@ -189,29 +189,35 @@ public class Board : MonoBehaviour
     }
 
     private void SpawnDot(int row, int col, bool noMatches){
-        FindObjectOfType<AudioManager>().Play("TileSpawn");
-        float xPos = col * xDistance + xSpawn;
-        float yPos = row * yDistance + ySpawn;
-        Vector2 tempPosition = new Vector2(xPos,yPos);
+        if (allDots[col, row] == null)
+        {
+            FindObjectOfType<AudioManager>().Play("TileSpawn");
+            float xPos = col * xDistance + xSpawn;
+            float yPos = row * yDistance + ySpawn;
+            Vector2 tempPosition = new Vector2(xPos, yPos);
 
-        int dotToUse = Random.Range(0,dots.Length);
+            int dotToUse = Random.Range(0, dots.Length);
 
-        if(noMatches){
-            int maxIterations = 0;
-            while(MatchesAt(col,row,dots[dotToUse]) && maxIterations < 100){
-                dotToUse = Random.Range(0,dots.Length);
-                maxIterations++;
+            if (noMatches)
+            {
+                int maxIterations = 0;
+                while (MatchesAt(col, row, dots[dotToUse]) && maxIterations < 100)
+                {
+                    dotToUse = Random.Range(0, dots.Length);
+                    maxIterations++;
+                }
             }
-        }
 
-        GameObject piece = Instantiate(dots[dotToUse],tempPosition,Quaternion.identity);
-        allDots[col,row] = piece;
-        piece.GetComponent<Dot>().row = row;
-        piece.GetComponent<Dot>().column = col;
-        //piece.transform.parent = this.transform;
-        piece.transform.SetParent(FindObjectOfType<Canvas>().transform,false);
-        piece.transform.position = tempPosition;
-        piece.name = col + ", " + row;
-        piece.transform.SetParent(FindObjectOfType<Board>().transform,true);
+            GameObject piece = Instantiate(dots[dotToUse], tempPosition, Quaternion.identity);
+            allDots[col, row] = piece;
+            piece.GetComponent<Dot>().row = row;
+            piece.GetComponent<Dot>().column = col;
+            //piece.transform.parent = this.transform;
+            piece.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+            piece.transform.position = tempPosition;
+            piece.name = col + ", " + row;
+            piece.transform.SetParent(FindObjectOfType<Board>().transform, true);
+            Debug.Log("" + xPos + " " + yPos + " " + piece.name);
+        }
     }
 }
