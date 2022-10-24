@@ -8,6 +8,8 @@ public class TicTacToeRunner : MonoBehaviour
 
     public GameObject VictoryScreen, DefeatScreen;
 
+    public bool toTwistOrNotToTwist;
+
 
 
     private List<List<int>> rP = new List<List<int>>()
@@ -264,7 +266,7 @@ public class TicTacToeRunner : MonoBehaviour
             //Iterate through "rotationPattern" and set and change temp1 and temp2
             //Hard code start change of board[1][0] -> board[0][0]
 
-            if (turnCounter % 2 == 0 && hasRotated == true)
+            if (turnCounter % 2 == 0 && hasRotated == true && toTwistOrNotToTwist == true)
             {
 
                 tmp2 = board[rP[0][0]][rP[0][1]];

@@ -307,6 +307,7 @@ MonoBehaviour:
   tile: {fileID: 7440941462246150313, guid: 4a479941cdcf945eaa4abb977e112826, type: 3}
   VictoryScreen: {fileID: 1271644154}
   DefeatScreen: {fileID: 1962922123}
+  toTwistOrNotToTwist: 1
   unfair: 1
 --- !u!4 &175947105
 Transform:
