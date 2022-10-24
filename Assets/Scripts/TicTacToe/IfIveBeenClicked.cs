@@ -18,7 +18,7 @@ public class IfIveBeenClicked : MonoBehaviour
 
 
     private float totalDistance;
-    private float timeToTake = 10f;
+    public float timeToTake;
     private bool smoothMent = false;
     private float timeFraction;
     private float distanceBetween;
