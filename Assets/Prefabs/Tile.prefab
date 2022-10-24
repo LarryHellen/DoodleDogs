@@ -74,9 +74,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   HasChanged: 1
+  rotationBool: 0
+  tmpPos: {x: 0, y: 0, z: 0}
   currentTileSprite: {fileID: 5054148679697375868}
   x: {fileID: 21300000, guid: 214655ca17b5443c18b72ccff714217a, type: 3}
   o: {fileID: 21300000, guid: 9d3ce1ad5dedc4ae89a19d16f93618cd, type: 3}
+  square: {fileID: 0}
+  timeToTake: 10
 --- !u!1 &7817522559132968588
 GameObject:
   m_ObjectHideFlags: 0

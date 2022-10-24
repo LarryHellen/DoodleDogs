@@ -8,7 +8,9 @@ public class TicTacToeRunner : MonoBehaviour
 
     public GameObject VictoryScreen, DefeatScreen;
 
+    public bool toTwistOrNotToTwist;
 
+    public float distanceBetweenTiles = 0.2f;
 
     private List<List<int>> rP = new List<List<int>>()
     {
@@ -31,6 +33,10 @@ public class TicTacToeRunner : MonoBehaviour
     public static bool runGame = true;
 
     public bool unfair;
+
+
+    private bool XHasWon;
+    private bool OHasWon;
 
 
     void OnWin()
@@ -62,7 +68,8 @@ public class TicTacToeRunner : MonoBehaviour
 
     void WinDetection()
     {
-        bool XHasWon = false, OHasWon = false;
+        bool XHasWon = false;
+        bool OHasWon = false;
 
         for (int i = 0; i < 3; i++)
         {
@@ -199,7 +206,7 @@ public class TicTacToeRunner : MonoBehaviour
 
             for (int j = 0; j < 3; j++)
             {
-                GameObject Tile = Instantiate(tile, new Vector3(j+0.2f*j, -i - 0.2f * i), Quaternion.identity);
+                GameObject Tile = Instantiate(tile, new Vector3(j+ distanceBetweenTiles * j, -i - distanceBetweenTiles * i), Quaternion.identity);
                 row.Add(Tile);
             }
 
@@ -210,9 +217,47 @@ public class TicTacToeRunner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
+
+        ####### AI CODE WILL GO HERE ######
+
+        if (turnCounter % 2 == 1)
+        {
+            board[1][2].GetComponent<IfIveBeenClicked>().type = 2;
+            board[1][2].GetComponent<IfIveBeenClicked>().HasChanged = false;
+            turnCounter++;
+        }
+
+        */
+
+
         if (runGame == true)
         {
+            if (turnCounter % 2 == 1)
+            {
+                if (unfair == true)
+                {
+                    //DebugLogBoard();
+                    WinDetection();
+                }
 
+                hasRotated = true;
+                if (turnCounter >= 9)
+                {
+                    //DebugLogBoard();
+                    WinDetection();
+                }
+
+            }
+            else
+            {
+                WinDetection();
+            }
+        }
+
+
+        if (runGame == true)
+        {
 
             //EACH THING NEEDS TO MOVE ALL THE TIME, SET ITS MOVE POSITIONS AND CHANGE THEM CONSTANTLY BUT WHEN GOAL REACHED SET BOTH TO THE SAME?
 
@@ -221,7 +266,7 @@ public class TicTacToeRunner : MonoBehaviour
             //Iterate through "rotationPattern" and set and change temp1 and temp2
             //Hard code start change of board[1][0] -> board[0][0]
 
-            if (turnCounter % 2 == 0 && hasRotated == true)
+            if (turnCounter % 2 == 0 && hasRotated == true && toTwistOrNotToTwist == true)
             {
 
                 tmp2 = board[rP[0][0]][rP[0][1]];
@@ -259,16 +304,14 @@ public class TicTacToeRunner : MonoBehaviour
                 temp = board[2][2];
                 board[2][2] = temp2;
                 */
-
+                
                 for (int i = 0; i < 3; i++)
                 {
 
                     for (int j = 0; j < 3; j++)
                     {
 
-                        //Change this to what it says on ur phone Cai (Sincerly, Past Cai)
-
-                        Vector3 tmpPos = new Vector3(j + 0.2f * j, -i - 0.2f * i);
+                        Vector3 tmpPos = new Vector3(j + distanceBetweenTiles * j, -i - distanceBetweenTiles * i);
 
                         board[i][j].GetComponent<IfIveBeenClicked>().rotationBool = true;
                         board[i][j].GetComponent<IfIveBeenClicked>().tmpPos = tmpPos;
@@ -286,48 +329,7 @@ public class TicTacToeRunner : MonoBehaviour
 
                 hasRotated = false;
                 
-            }
-            if (runGame == true)
-            {
-                if (turnCounter % 2 == 1)
-                {
-                    if (unfair == true)
-                    {
-                        //DebugLogBoard();
-                        WinDetection();
-                    }
-
-                    hasRotated = true;
-                    if (turnCounter >= 9)
-                    {
-                        //DebugLogBoard();
-                        WinDetection();
-                    }
-
-                }
-                else
-                {
-                    WinDetection();
-                }
-            }
-
-            /*
-
-            ####### AI CODE WILL GO HERE ######
-
-            if (turnCounter % 2 == 1)
-            {
-                board[1][2].GetComponent<IfIveBeenClicked>().type = 2;
-                board[1][2].GetComponent<IfIveBeenClicked>().HasChanged = false;
-                turnCounter++;
-            }
-
-            */
-
-
-
-            //Win Detection Here
-            
+            } 
         }
     }
 }
