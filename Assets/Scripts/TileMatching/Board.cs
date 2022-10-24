@@ -209,5 +209,6 @@ public class Board : MonoBehaviour
         piece.transform.SetParent(FindObjectOfType<Canvas>().transform,false);
         piece.transform.position = tempPosition;
         piece.name = col + ", " + row;
+        piece.transform.SetParent(FindObjectOfType<Board>().transform,true);
     }
 }
