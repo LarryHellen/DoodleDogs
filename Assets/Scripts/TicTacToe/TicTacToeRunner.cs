@@ -33,6 +33,10 @@ public class TicTacToeRunner : MonoBehaviour
     public bool unfair;
 
 
+    private bool XHasWon;
+    private bool OHasWon;
+
+
     void OnWin()
     {
         VictoryScreen.SetActive(true);
@@ -62,7 +66,8 @@ public class TicTacToeRunner : MonoBehaviour
 
     void WinDetection()
     {
-        bool XHasWon = false, OHasWon = false;
+        bool XHasWon = false;
+        bool OHasWon = false;
 
         for (int i = 0; i < 3; i++)
         {
@@ -210,9 +215,47 @@ public class TicTacToeRunner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
+
+        ####### AI CODE WILL GO HERE ######
+
+        if (turnCounter % 2 == 1)
+        {
+            board[1][2].GetComponent<IfIveBeenClicked>().type = 2;
+            board[1][2].GetComponent<IfIveBeenClicked>().HasChanged = false;
+            turnCounter++;
+        }
+
+        */
+
+
         if (runGame == true)
         {
+            if (turnCounter % 2 == 1)
+            {
+                if (unfair == true)
+                {
+                    //DebugLogBoard();
+                    WinDetection();
+                }
 
+                hasRotated = true;
+                if (turnCounter >= 9)
+                {
+                    //DebugLogBoard();
+                    WinDetection();
+                }
+
+            }
+            else
+            {
+                WinDetection();
+            }
+        }
+
+
+        if (runGame == true)
+        {
 
             //EACH THING NEEDS TO MOVE ALL THE TIME, SET ITS MOVE POSITIONS AND CHANGE THEM CONSTANTLY BUT WHEN GOAL REACHED SET BOTH TO THE SAME?
 
@@ -259,14 +302,12 @@ public class TicTacToeRunner : MonoBehaviour
                 temp = board[2][2];
                 board[2][2] = temp2;
                 */
-
+                
                 for (int i = 0; i < 3; i++)
                 {
 
                     for (int j = 0; j < 3; j++)
                     {
-
-                        //Change this to what it says on ur phone Cai (Sincerly, Past Cai)
 
                         Vector3 tmpPos = new Vector3(j + 0.2f * j, -i - 0.2f * i);
 
@@ -286,48 +327,7 @@ public class TicTacToeRunner : MonoBehaviour
 
                 hasRotated = false;
                 
-            }
-            if (runGame == true)
-            {
-                if (turnCounter % 2 == 1)
-                {
-                    if (unfair == true)
-                    {
-                        //DebugLogBoard();
-                        WinDetection();
-                    }
-
-                    hasRotated = true;
-                    if (turnCounter >= 9)
-                    {
-                        //DebugLogBoard();
-                        WinDetection();
-                    }
-
-                }
-                else
-                {
-                    WinDetection();
-                }
-            }
-
-            /*
-
-            ####### AI CODE WILL GO HERE ######
-
-            if (turnCounter % 2 == 1)
-            {
-                board[1][2].GetComponent<IfIveBeenClicked>().type = 2;
-                board[1][2].GetComponent<IfIveBeenClicked>().HasChanged = false;
-                turnCounter++;
-            }
-
-            */
-
-
-
-            //Win Detection Here
-            
+            } 
         }
     }
 }

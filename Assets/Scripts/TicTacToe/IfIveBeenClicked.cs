@@ -70,9 +70,10 @@ public class IfIveBeenClicked : MonoBehaviour
 
         if (smoothMent == true)
         {
+            
             timeFraction = Time.deltaTime / timeToTake;
 
-           // Debug.Log("Time to Take = " + timeToTake + " / Delta Time = " + Time.deltaTime);
+            // Debug.Log("Time to Take = " + timeToTake + " / Delta Time = " + Time.deltaTime);
 
             //Debug.Log("Time Fraction = " + timeFraction);
 
@@ -86,8 +87,8 @@ public class IfIveBeenClicked : MonoBehaviour
             {
                 smoothMent = false;
             }
+            
         }
-        
 
             
 
