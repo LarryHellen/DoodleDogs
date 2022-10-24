@@ -10,7 +10,7 @@ public class TicTacToeRunner : MonoBehaviour
 
     public bool toTwistOrNotToTwist;
 
-
+    public float distanceBetweenTiles = 0.2f;
 
     private List<List<int>> rP = new List<List<int>>()
     {
@@ -206,7 +206,7 @@ public class TicTacToeRunner : MonoBehaviour
 
             for (int j = 0; j < 3; j++)
             {
-                GameObject Tile = Instantiate(tile, new Vector3(j+0.2f*j, -i - 0.2f * i), Quaternion.identity);
+                GameObject Tile = Instantiate(tile, new Vector3(j+ distanceBetweenTiles * j, -i - distanceBetweenTiles * i), Quaternion.identity);
                 row.Add(Tile);
             }
 
@@ -311,7 +311,7 @@ public class TicTacToeRunner : MonoBehaviour
                     for (int j = 0; j < 3; j++)
                     {
 
-                        Vector3 tmpPos = new Vector3(j + 0.2f * j, -i - 0.2f * i);
+                        Vector3 tmpPos = new Vector3(j + distanceBetweenTiles * j, -i - distanceBetweenTiles * i);
 
                         board[i][j].GetComponent<IfIveBeenClicked>().rotationBool = true;
                         board[i][j].GetComponent<IfIveBeenClicked>().tmpPos = tmpPos;
