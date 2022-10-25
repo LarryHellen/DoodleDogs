@@ -180,7 +180,7 @@ public class Board : MonoBehaviour
                 yield return new WaitForSeconds(.5f);
             }
             //Debug.Log(findMatches.currentMatches.Count);
-            yield return new WaitForSeconds(.2f);
+            yield return new WaitForSeconds(.3f);
         } while(findMatches.currentMatches.Count != 0);
         currentState = GameState.move;
         if(counterHolder.metAllGoals()){
