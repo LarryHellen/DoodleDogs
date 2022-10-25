@@ -26,6 +26,7 @@ public class TicTacToeRunner : MonoBehaviour
 
     };
 
+    public static bool twoPlayer = true;
 
     private List<List<GameObject>> board = new List<List<GameObject>>();
     public static int turnCounter = 0;
@@ -37,6 +38,9 @@ public class TicTacToeRunner : MonoBehaviour
 
     private bool XHasWon;
     private bool OHasWon;
+
+
+    private List<int> aiCoordsToPlaceOAt;
 
 
     void OnWin()
@@ -66,7 +70,7 @@ public class TicTacToeRunner : MonoBehaviour
         }
     }
 
-    void WinDetection()
+    int WinDetection(List<List<GameObject>> board, bool realCheck)
     {
         bool XHasWon = false;
         bool OHasWon = false;
@@ -130,22 +134,45 @@ public class TicTacToeRunner : MonoBehaviour
 
         if (XHasWon == true && OHasWon == true)
         {
-            //Debug.Log("Tie");
-            runGame = false;
-            //DebugLogBoard();
-            OnLose();
-        } else if (XHasWon == true)
+            if (realCheck == true)
+            {
+                //Debug.Log("Tie");
+                runGame = false;
+                //DebugLogBoard();
+                OnLose();
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        else if (XHasWon == true)
         {
-            //Debug.Log("X has acheived a victorious status");
-            runGame = false;
-            //DebugLogBoard();
-            OnWin();
-        } else if (OHasWon == true)
+            if (realCheck == true)
+            {
+                //Debug.Log("X has acheived a victorious status");
+                runGame = false;
+                //DebugLogBoard();
+                OnWin();
+            }
+            else
+            {
+                return 1;
+            }
+        }
+        else if (OHasWon == true)
         {
-            //Debug.Log("O has won the day");
-            runGame = false;
-            //DebugLogBoard();
-            OnLose();
+            if (realCheck == true)
+            {
+                //Debug.Log("O has won the day");
+                runGame = false;
+                //DebugLogBoard();
+                OnLose();
+            }
+            else
+            {
+                return 2;
+            }
         }
         else
         {
@@ -164,13 +191,21 @@ public class TicTacToeRunner : MonoBehaviour
 
             if (deadBoard == 0)
             {
-                //Debug.Log("Tie");
-                runGame = false;
-                //DebugLogBoard();
-                OnLose();
+                if (realCheck == true)
+                {
+                    //Debug.Log("Tie");
+                    runGame = false;
+                    //DebugLogBoard();
+                    OnLose();
+                }
+                else
+                {
+                    return 0;
+                }
             }
         }
 
+        return 0;
     }
 
     public void Retry()
@@ -192,6 +227,138 @@ public class TicTacToeRunner : MonoBehaviour
 
         runGame = true;
     }
+
+
+
+    public List<int> ticTacToeAI(List<List<GameObject>> board)
+    {
+
+        int gameResult;
+
+        List<int> coordsToPlaceO = new List<int>();
+
+        List<List<GameObject>> anotherBoard = new List<List<GameObject>>();
+
+        foreach (List<GameObject> gameObjectLists in board)
+        {
+            List<GameObject> tmpList = new List<GameObject>();
+
+            foreach (GameObject aGameObject in gameObjectLists)
+            {
+                tmpList.Add(aGameObject);
+            }
+
+            anotherBoard.Add(tmpList);
+        }
+
+        List<List<int>> corners = new List<List<int>>()
+        {
+            new List<int>() { 0, 0 },
+            new List<int>() { 0, 2 },
+            new List<int>() { 2, 2 },
+            new List<int>() { 2, 0 }
+        };
+
+
+
+        tmp2 = anotherBoard[rP[0][0]][rP[0][1]];
+
+        for (int i = 0; i < 8; i++)
+        {
+            //Debug.Log(i);
+
+            tmp1 = anotherBoard[rP[i + 1][0]][rP[i + 1][1]];
+
+            anotherBoard[rP[i + 1][0]][rP[i + 1][1]] = tmp2;
+
+            tmp2 = tmp1;
+        }
+
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                if (anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type == 0)
+                {
+                    anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type = 1;
+
+                    gameResult = WinDetection(anotherBoard, false);
+
+                    if (gameResult == 1)
+                    {
+                        coordsToPlaceO.Add(i);
+                        coordsToPlaceO.Add(j);
+
+                        return coordsToPlaceO;
+                    }
+
+                    anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type = 0;
+
+                }
+            }
+        }
+
+
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                if (anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type == 0)
+                {
+                    anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type = 2;
+
+                    gameResult = WinDetection(anotherBoard, false);
+
+                    if (gameResult == 2)
+                    {
+                        coordsToPlaceO.Add(i);
+                        coordsToPlaceO.Add(j);
+
+                        return coordsToPlaceO;
+                    }
+
+                    anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type = 0;
+
+                }
+            }
+        }
+
+
+
+
+        //Random.Range(0, waves.Count)
+        Debug.Log("Atleast we got here");
+
+        /*
+
+        bool checking = true;
+        while (checking == true)
+        {
+            coordsToPlaceO = corners[Random.Range(0, corners.Count)];
+            if (board[coordsToPlaceO[0]][coordsToPlaceO[1]].GetComponent<IfIveBeenClicked>().type != 0)
+            {
+                checking = false;
+            }
+        }
+
+
+        Debug.Log("Cant believe we got past that while loop");
+        */
+
+        coordsToPlaceO.Add(1);
+        coordsToPlaceO.Add(1);
+
+        return coordsToPlaceO;
+    }
+
+
+
+
+
+
+
 
     public static bool hasRotated = false;
 
@@ -217,18 +384,28 @@ public class TicTacToeRunner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
 
-        ####### AI CODE WILL GO HERE ######
-
-        if (turnCounter % 2 == 1)
+        if (turnCounter % 2 == 1 && twoPlayer == false)
         {
-            board[1][2].GetComponent<IfIveBeenClicked>().type = 2;
-            board[1][2].GetComponent<IfIveBeenClicked>().HasChanged = false;
+            DebugLogBoard();
+
+            Debug.Log("^ Before-----After v");
+
+
+            aiCoordsToPlaceOAt = ticTacToeAI(board);
+
+            
+
+            board[aiCoordsToPlaceOAt[0]][aiCoordsToPlaceOAt[1]].GetComponent<IfIveBeenClicked>().type = 2;
+            board[aiCoordsToPlaceOAt[0]][aiCoordsToPlaceOAt[1]].GetComponent<IfIveBeenClicked>().HasChanged = false;
+
             turnCounter++;
+
+            DebugLogBoard();
+
+            Debug.Log(turnCounter);
         }
 
-        */
 
 
         if (runGame == true)
@@ -238,20 +415,20 @@ public class TicTacToeRunner : MonoBehaviour
                 if (unfair == true)
                 {
                     //DebugLogBoard();
-                    WinDetection();
+                    WinDetection(board,true);
                 }
 
                 hasRotated = true;
                 if (turnCounter >= 9)
                 {
                     //DebugLogBoard();
-                    WinDetection();
+                    WinDetection(board,true);
                 }
 
             }
             else
             {
-                WinDetection();
+                WinDetection(board,true);
             }
         }
 

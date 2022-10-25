@@ -37,7 +37,7 @@ public class IfIveBeenClicked : MonoBehaviour
                     //Debug.Log(TicTacToeRunner.turnCounter);
 
                 }
-                else if (TicTacToeRunner.turnCounter % 2 == 1)
+                else if (TicTacToeRunner.turnCounter % 2 == 1 && TicTacToeRunner.twoPlayer == true)
                 {
                     type = 2;
                     TicTacToeRunner.turnCounter++;
