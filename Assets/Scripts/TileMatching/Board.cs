@@ -27,6 +27,7 @@ public class Board : MonoBehaviour
     public CounterHolder counterHolder;
     public GameObject victoryScreen;
     public GameObject defeatScreen;
+    private int coCount;
 
     
 
@@ -169,20 +170,26 @@ public class Board : MonoBehaviour
         SetUp();
     }
 
-    private IEnumerator FillBoardCo(){
-        do{
+    private IEnumerator FillBoardCo() {
+        coCount++;
+        do {
             RefillBoard();
             yield return new WaitForSeconds(.5f);
             findMatches.FindAllMatches();
-            while(MatchesOnBoard()){
+            while (MatchesOnBoard()) {
                 DestroyMatches();
                 findMatches.FindAllMatches();
                 yield return new WaitForSeconds(.5f);
             }
             //Debug.Log(findMatches.currentMatches.Count);
             yield return new WaitForSeconds(.3f);
-        } while(findMatches.currentMatches.Count != 0);
-        currentState = GameState.move;
+        } while (findMatches.currentMatches.Count != 0);
+        coCount--;
+        if (coCount == 0)
+        {
+            currentState = GameState.move;
+        }
+        
         if(counterHolder.metAllGoals()){
             endGame();
         }
