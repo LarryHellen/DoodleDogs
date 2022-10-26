@@ -26,7 +26,7 @@ public class TicTacToeRunner : MonoBehaviour
 
     };
 
-    public static bool twoPlayer = true;
+    public static bool twoPlayer = false;
 
     private List<List<GameObject>> board = new List<List<GameObject>>();
     public static int turnCounter = 0;
@@ -70,16 +70,16 @@ public class TicTacToeRunner : MonoBehaviour
         }
     }
 
-    int WinDetection(List<List<GameObject>> board, bool realCheck)
+    int WinDetection(List<List<GameObject>> aBoard, bool realCheck)
     {
         bool XHasWon = false;
         bool OHasWon = false;
 
         for (int i = 0; i < 3; i++)
         {
-            if (board[0][i].GetComponent<IfIveBeenClicked>().type == board[1][i].GetComponent<IfIveBeenClicked>().type && board[1][i].GetComponent<IfIveBeenClicked>().type == board[2][i].GetComponent<IfIveBeenClicked>().type && board[0][i].GetComponent<IfIveBeenClicked>().type != 0)
+            if (aBoard[0][i].GetComponent<IfIveBeenClicked>().type == aBoard[1][i].GetComponent<IfIveBeenClicked>().type && aBoard[1][i].GetComponent<IfIveBeenClicked>().type == aBoard[2][i].GetComponent<IfIveBeenClicked>().type && aBoard[0][i].GetComponent<IfIveBeenClicked>().type != 0)
             {
-                if (board[0][i].GetComponent<IfIveBeenClicked>().type == 1)
+                if (aBoard[0][i].GetComponent<IfIveBeenClicked>().type == 1)
                 {
                     XHasWon = true;
                     //Debug.Log(i);
@@ -95,9 +95,9 @@ public class TicTacToeRunner : MonoBehaviour
                 }
             }
 
-            if (board[i][0].GetComponent<IfIveBeenClicked>().type == board[i][1].GetComponent<IfIveBeenClicked>().type && board[i][1].GetComponent<IfIveBeenClicked>().type == board[i][2].GetComponent<IfIveBeenClicked>().type && board[i][0].GetComponent<IfIveBeenClicked>().type != 0)
+            if (aBoard[i][0].GetComponent<IfIveBeenClicked>().type == aBoard[i][1].GetComponent<IfIveBeenClicked>().type && aBoard[i][1].GetComponent<IfIveBeenClicked>().type == aBoard[i][2].GetComponent<IfIveBeenClicked>().type && aBoard[i][0].GetComponent<IfIveBeenClicked>().type != 0)
             {
-                if (board[i][0].GetComponent<IfIveBeenClicked>().type == 1)
+                if (aBoard[i][0].GetComponent<IfIveBeenClicked>().type == 1)
                 {
                     XHasWon = true;
                     //Debug.Log(i);
@@ -115,9 +115,9 @@ public class TicTacToeRunner : MonoBehaviour
 
         }
 
-        if (board[0][0].GetComponent<IfIveBeenClicked>().type == board[1][1].GetComponent<IfIveBeenClicked>().type && board[1][1].GetComponent<IfIveBeenClicked>().type == board[2][2].GetComponent<IfIveBeenClicked>().type && board[1][1].GetComponent<IfIveBeenClicked>().type != 0 || board[0][2].GetComponent<IfIveBeenClicked>().type == board[1][1].GetComponent<IfIveBeenClicked>().type && board[1][1].GetComponent<IfIveBeenClicked>().type == board[2][0].GetComponent<IfIveBeenClicked>().type && board[1][1].GetComponent<IfIveBeenClicked>().type != 0)
+        if (aBoard[0][0].GetComponent<IfIveBeenClicked>().type == aBoard[1][1].GetComponent<IfIveBeenClicked>().type && aBoard[1][1].GetComponent<IfIveBeenClicked>().type == aBoard[2][2].GetComponent<IfIveBeenClicked>().type && aBoard[1][1].GetComponent<IfIveBeenClicked>().type != 0 || aBoard[0][2].GetComponent<IfIveBeenClicked>().type == aBoard[1][1].GetComponent<IfIveBeenClicked>().type && aBoard[1][1].GetComponent<IfIveBeenClicked>().type == aBoard[2][0].GetComponent<IfIveBeenClicked>().type && aBoard[1][1].GetComponent<IfIveBeenClicked>().type != 0)
         {
-            if (board[1][1].GetComponent<IfIveBeenClicked>().type == 1)
+            if (aBoard[1][1].GetComponent<IfIveBeenClicked>().type == 1)
             {
                 XHasWon = true;
                 //Debug.Log("3 - X");
@@ -138,7 +138,7 @@ public class TicTacToeRunner : MonoBehaviour
             {
                 //Debug.Log("Tie");
                 runGame = false;
-                //DebugLogBoard();
+                DebugLogBoard();
                 OnLose();
             }
             else
@@ -152,7 +152,7 @@ public class TicTacToeRunner : MonoBehaviour
             {
                 //Debug.Log("X has acheived a victorious status");
                 runGame = false;
-                //DebugLogBoard();
+                DebugLogBoard();
                 OnWin();
             }
             else
@@ -166,7 +166,7 @@ public class TicTacToeRunner : MonoBehaviour
             {
                 //Debug.Log("O has won the day");
                 runGame = false;
-                //DebugLogBoard();
+                DebugLogBoard();
                 OnLose();
             }
             else
@@ -178,7 +178,7 @@ public class TicTacToeRunner : MonoBehaviour
         {
             int deadBoard = 0;
 
-            foreach (List<GameObject> boardLine in board)
+            foreach (List<GameObject> boardLine in aBoard)
             {
                 foreach (GameObject boardStuff in boardLine)
                 {
@@ -195,7 +195,7 @@ public class TicTacToeRunner : MonoBehaviour
                 {
                     //Debug.Log("Tie");
                     runGame = false;
-                    //DebugLogBoard();
+                    DebugLogBoard();
                     OnLose();
                 }
                 else
@@ -230,7 +230,7 @@ public class TicTacToeRunner : MonoBehaviour
 
 
 
-    public List<int> ticTacToeAI(List<List<GameObject>> board)
+    public List<int> ticTacToeAI(List<List<GameObject>> aBoard)
     {
 
         int gameResult;
@@ -239,7 +239,9 @@ public class TicTacToeRunner : MonoBehaviour
 
         List<List<GameObject>> anotherBoard = new List<List<GameObject>>();
 
-        foreach (List<GameObject> gameObjectLists in board)
+
+
+        foreach (List<GameObject> gameObjectLists in aBoard)
         {
             List<GameObject> tmpList = new List<GameObject>();
 
@@ -250,6 +252,9 @@ public class TicTacToeRunner : MonoBehaviour
 
             anotherBoard.Add(tmpList);
         }
+
+
+
 
         List<List<int>> corners = new List<List<int>>()
         {
@@ -275,11 +280,17 @@ public class TicTacToeRunner : MonoBehaviour
         }
 
 
+
+        //Disconnect between places an O can be placed and how it checks it
+
+        //Reconnect the disconnect by moving back the position in the rotated board, "anotherBoard" when placing | Something to do with rP[i+j-1][0] and rP[i+j-1][1]
+
+
         for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < 3; j++)
             {
-                if (anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type == 0)
+                if (aBoard[i][j].GetComponent<IfIveBeenClicked>().type == 0)
                 {
                     anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type = 1;
 
@@ -305,7 +316,7 @@ public class TicTacToeRunner : MonoBehaviour
         {
             for (int j = 0; j < 3; j++)
             {
-                if (anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type == 0)
+                if (aBoard[i][j].GetComponent<IfIveBeenClicked>().type == 0)
                 {
                     anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type = 2;
 
@@ -331,24 +342,24 @@ public class TicTacToeRunner : MonoBehaviour
         //Random.Range(0, waves.Count)
         Debug.Log("Atleast we got here");
 
-        /*
+        List<List<int>> anotherTmpList = new List<List<int>>();
 
-        bool checking = true;
-        while (checking == true)
+        foreach (List<int> coords in corners)
         {
-            coordsToPlaceO = corners[Random.Range(0, corners.Count)];
-            if (board[coordsToPlaceO[0]][coordsToPlaceO[1]].GetComponent<IfIveBeenClicked>().type != 0)
+            if (board[coords[0]][coords[1]].GetComponent<IfIveBeenClicked>().type == 0)
             {
-                checking = false;
+                anotherTmpList.Add(coords);
             }
         }
 
+        coordsToPlaceO = anotherTmpList[Random.Range(0, anotherTmpList.Count)];
 
-        Debug.Log("Cant believe we got past that while loop");
-        */
 
-        coordsToPlaceO.Add(1);
-        coordsToPlaceO.Add(1);
+        Debug.Log("Cant believe we got past that foreach loop");
+        
+
+        //coordsToPlaceO.Add(1);
+        //coordsToPlaceO.Add(1);
 
         return coordsToPlaceO;
     }
@@ -360,7 +371,7 @@ public class TicTacToeRunner : MonoBehaviour
 
 
 
-    public static bool hasRotated = false;
+    public static bool currentlyRotating = false;
 
     private GameObject tmp1, tmp2;
 
@@ -385,7 +396,33 @@ public class TicTacToeRunner : MonoBehaviour
     void Update()
     {
 
-        if (turnCounter % 2 == 1 && twoPlayer == false)
+        if (runGame == true)
+        {
+            if (turnCounter % 2 == 1)
+            {
+                if (unfair == true)
+                {
+                    //DebugLogBoard();
+                    WinDetection(board, true);
+                }
+
+                currentlyRotating = true;
+
+                if (turnCounter >= 9)
+                {
+                    //DebugLogBoard();
+                    WinDetection(board, true);
+                }
+
+            }
+            else
+            {
+                WinDetection(board, true);
+            }
+        }
+
+
+        if (turnCounter % 2 == 1 && twoPlayer == false && runGame == true)
         {
             DebugLogBoard();
 
@@ -408,29 +445,7 @@ public class TicTacToeRunner : MonoBehaviour
 
 
 
-        if (runGame == true)
-        {
-            if (turnCounter % 2 == 1)
-            {
-                if (unfair == true)
-                {
-                    //DebugLogBoard();
-                    WinDetection(board,true);
-                }
 
-                hasRotated = true;
-                if (turnCounter >= 9)
-                {
-                    //DebugLogBoard();
-                    WinDetection(board,true);
-                }
-
-            }
-            else
-            {
-                WinDetection(board,true);
-            }
-        }
 
 
         if (runGame == true)
@@ -439,12 +454,14 @@ public class TicTacToeRunner : MonoBehaviour
             //EACH THING NEEDS TO MOVE ALL THE TIME, SET ITS MOVE POSITIONS AND CHANGE THEM CONSTANTLY BUT WHEN GOAL REACHED SET BOTH TO THE SAME?
 
             
-            //Make tiles rotate every 2 turns only once using "hasRotated" and "rotationPattern"
+            //Make tiles rotate every 2 turns only once using "currentlyRotating" and "rotationPattern"
             //Iterate through "rotationPattern" and set and change temp1 and temp2
             //Hard code start change of board[1][0] -> board[0][0]
 
-            if (turnCounter % 2 == 0 && hasRotated == true && toTwistOrNotToTwist == true)
+            if (turnCounter % 2 == 0 && currentlyRotating == true && toTwistOrNotToTwist == true)
             {
+
+                Debug.Log("Its rotatin time");
 
                 tmp2 = board[rP[0][0]][rP[0][1]];
 
@@ -504,8 +521,11 @@ public class TicTacToeRunner : MonoBehaviour
                     }
                 }
 
-                hasRotated = false;
-                
+                currentlyRotating = false;
+
+                DebugLogBoard();
+
+                Debug.Log("----------------");
             } 
         }
     }
