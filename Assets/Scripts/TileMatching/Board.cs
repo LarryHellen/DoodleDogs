@@ -27,6 +27,7 @@ public class Board : MonoBehaviour
     public CounterHolder counterHolder;
     public GameObject victoryScreen;
     public GameObject defeatScreen;
+    public GameObject francois;
     private int coCount;
 
     
@@ -150,12 +151,14 @@ public class Board : MonoBehaviour
     public void winGame(){
         currentState = GameState.win;
         victoryScreen.SetActive(true);
+        francois.SetActive(false);
         Debug.Log("you won");
     }
 
     private void loseGame(){
         currentState = GameState.lose;
         defeatScreen.SetActive(true);
+        francois.SetActive(false);
         Debug.Log("you lose");
     }
 
@@ -166,6 +169,7 @@ public class Board : MonoBehaviour
         counterHolder.Reset();
         timerCountdown.Reset();
         defeatScreen.SetActive(false);
+        francois.SetActive(true);
         currentState = GameState.move;
         SetUp();
     }

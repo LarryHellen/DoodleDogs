@@ -2544,6 +2544,7 @@ MonoBehaviour:
   counterHolder: {fileID: 364654310}
   victoryScreen: {fileID: 1079109437}
   defeatScreen: {fileID: 728101793}
+  francois: {fileID: 718146748}
 --- !u!1001 &6974965756729763972
 PrefabInstance:
   m_ObjectHideFlags: 0
