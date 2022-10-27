@@ -247,7 +247,9 @@ public class TicTacToeRunner : MonoBehaviour
 
             foreach (GameObject aGameObject in gameObjectLists)
             {
-                tmpList.Add(aGameObject);
+                GameObject Tile = Instantiate(tile, new Vector3(100, 100, 0), Quaternion.identity);
+                Tile.GetComponent<IfIveBeenClicked>().type = aGameObject.GetComponent<IfIveBeenClicked>().type;
+                tmpList.Add(Tile);
             }
 
             anotherBoard.Add(tmpList);
@@ -340,7 +342,7 @@ public class TicTacToeRunner : MonoBehaviour
 
 
         //Random.Range(0, waves.Count)
-        Debug.Log("Atleast we got here");
+        //Debug.Log("Atleast we got here");
 
         List<List<int>> anotherTmpList = new List<List<int>>();
 
@@ -355,7 +357,7 @@ public class TicTacToeRunner : MonoBehaviour
         coordsToPlaceO = anotherTmpList[Random.Range(0, anotherTmpList.Count)];
 
 
-        Debug.Log("Cant believe we got past that foreach loop");
+        //Debug.Log("Cant believe we got past that foreach loop");
         
 
         //coordsToPlaceO.Add(1);
@@ -461,7 +463,7 @@ public class TicTacToeRunner : MonoBehaviour
             if (turnCounter % 2 == 0 && currentlyRotating == true && toTwistOrNotToTwist == true)
             {
 
-                Debug.Log("Its rotatin time");
+               // Debug.Log("Its rotatin time");
 
                 tmp2 = board[rP[0][0]][rP[0][1]];
 
