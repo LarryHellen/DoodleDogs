@@ -55,11 +55,11 @@ public class TicTacToeRunner : MonoBehaviour
 
 
 
-    void DebugLogBoard()
+    void DebugLogBoard(List<List<GameObject>> theBoard)
     {
         string aLine = "";
 
-        foreach (List<GameObject> tmp in board)
+        foreach (List<GameObject> tmp in theBoard)
         {
             aLine = "";
             foreach (GameObject tmp1 in tmp)
@@ -138,7 +138,7 @@ public class TicTacToeRunner : MonoBehaviour
             {
                 //Debug.Log("Tie");
                 runGame = false;
-                DebugLogBoard();
+                DebugLogBoard(board);
                 OnLose();
             }
             else
@@ -152,7 +152,7 @@ public class TicTacToeRunner : MonoBehaviour
             {
                 //Debug.Log("X has acheived a victorious status");
                 runGame = false;
-                DebugLogBoard();
+                DebugLogBoard(board);
                 OnWin();
             }
             else
@@ -166,7 +166,7 @@ public class TicTacToeRunner : MonoBehaviour
             {
                 //Debug.Log("O has won the day");
                 runGame = false;
-                DebugLogBoard();
+                DebugLogBoard(board);
                 OnLose();
             }
             else
@@ -195,7 +195,7 @@ public class TicTacToeRunner : MonoBehaviour
                 {
                     //Debug.Log("Tie");
                     runGame = false;
-                    DebugLogBoard();
+                    DebugLogBoard(board);
                     OnLose();
                 }
                 else
@@ -280,69 +280,100 @@ public class TicTacToeRunner : MonoBehaviour
 
             tmp2 = tmp1;
         }
+        Debug.Log("vvvvvvvvvvvvvvvvv");
+
+        DebugLogBoard(anotherBoard);
+
+        Debug.Log("^^^^^^^^^^^^^^^^");
 
 
 
         //Disconnect between places an O can be placed and how it checks it
 
         //Reconnect the disconnect by moving back the position in the rotated board, "anotherBoard" when placing | Something to do with rP[i+j-1][0] and rP[i+j-1][1]
+        int index = 0;
+        int before;
 
 
-        for (int i = 0; i < 3; i++)
+
+
+
+        for (int num = 1; num < 3; num++)
         {
-            for (int j = 0; j < 3; j++)
+            Debug.Log("Placing " + num + "s rn");
+
+            for (int i = 0; i < 3; i++)
             {
-                if (aBoard[i][j].GetComponent<IfIveBeenClicked>().type == 0)
+                for (int j = 0; j < 3; j++)
                 {
-                    anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type = 1;
 
-                    gameResult = WinDetection(anotherBoard, false);
-
-                    if (gameResult == 1)
+                    if (aBoard[i][j].GetComponent<IfIveBeenClicked>().type == 0) //Board is getting perma-changed bc there is a disconnect between this position and this position on the rotated board
                     {
-                        coordsToPlaceO.Add(i);
-                        coordsToPlaceO.Add(j);
 
-                        return coordsToPlaceO;
-                    }
+                        List<int> anotherAnotherTmpList = new List<int>() { i, j };
 
-                    anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type = 0;
+
+                        for (int k = 0; k < 7; k++)
+                        {
+                            if (rP[k][0] == anotherAnotherTmpList[0] && rP[k][1] == anotherAnotherTmpList[1])
+                            {
+                                index = k;
+                                break;
+                            }
+                        }
+
+
+
+                        if (index == 0)
+                        {
+                            before = anotherBoard[rP[7][0]][rP[7][1]].GetComponent<IfIveBeenClicked>().type;
+                            anotherBoard[rP[7][0]][rP[7][1]].GetComponent<IfIveBeenClicked>().type = num;
+                        }
+                        else
+                        {
+                            before = anotherBoard[rP[index - 1][0]][rP[index - 1][1]].GetComponent<IfIveBeenClicked>().type;
+                            anotherBoard[rP[index - 1][0]][rP[index - 1][1]].GetComponent<IfIveBeenClicked>().type = num;
+                        }
+
+                        Debug.Log("[[[[[[[[[[[[[[[[[[[[");
+                        DebugLogBoard(anotherBoard);
+                        Debug.Log("[[[[[[[[[[[[[[[[[[[[");
+
+
+                        gameResult = WinDetection(anotherBoard, false);
+
+                        if (gameResult == num)
+                        {
+                            Debug.Log("Found an " + num + "win with " + i + "," + j);
+
+
+                            coordsToPlaceO = new List<int>() { rP[index - 1][0], rP[index - 1][1] };
+
+
+                            return coordsToPlaceO;
+                        }
+
+                        if (index == 0)
+                        {
+                            anotherBoard[rP[7][0]][rP[7][1]].GetComponent<IfIveBeenClicked>().type = before;
+                        }
+                        else
+                        {
+                            anotherBoard[rP[index - 1][0]][rP[index - 1][1]].GetComponent<IfIveBeenClicked>().type = before;
+                        }
 
                 }
             }
         }
+    }
 
 
-
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                if (aBoard[i][j].GetComponent<IfIveBeenClicked>().type == 0)
-                {
-                    anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type = 2;
-
-                    gameResult = WinDetection(anotherBoard, false);
-
-                    if (gameResult == 2)
-                    {
-                        coordsToPlaceO.Add(i);
-                        coordsToPlaceO.Add(j);
-
-                        return coordsToPlaceO;
-                    }
-
-                    anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type = 0;
-
-                }
-            }
-        }
 
 
 
 
         //Random.Range(0, waves.Count)
-        //Debug.Log("Atleast we got here");
+        Debug.Log("Didn't find any wins so I'm winging it");
 
         List<List<int>> anotherTmpList = new List<List<int>>();
 
@@ -358,7 +389,14 @@ public class TicTacToeRunner : MonoBehaviour
 
 
         //Debug.Log("Cant believe we got past that foreach loop");
-        
+
+        foreach (List<GameObject> gameObjectLists in anotherBoard)
+        {
+            foreach (GameObject aGameObject in gameObjectLists)
+            {
+                Destroy(aGameObject);
+            }
+        }
 
         //coordsToPlaceO.Add(1);
         //coordsToPlaceO.Add(1);
@@ -426,9 +464,9 @@ public class TicTacToeRunner : MonoBehaviour
 
         if (turnCounter % 2 == 1 && twoPlayer == false && runGame == true)
         {
-            DebugLogBoard();
+            //DebugLogBoard(board);
 
-            Debug.Log("^ Before-----After v");
+            //Debug.Log("^ Before-----After v");
 
 
             aiCoordsToPlaceOAt = ticTacToeAI(board);
@@ -438,11 +476,13 @@ public class TicTacToeRunner : MonoBehaviour
             board[aiCoordsToPlaceOAt[0]][aiCoordsToPlaceOAt[1]].GetComponent<IfIveBeenClicked>().type = 2;
             board[aiCoordsToPlaceOAt[0]][aiCoordsToPlaceOAt[1]].GetComponent<IfIveBeenClicked>().HasChanged = false;
 
+            WinDetection(board, true);
+
             turnCounter++;
 
-            DebugLogBoard();
+            //DebugLogBoard(board);
 
-            Debug.Log(turnCounter);
+            //Debug.Log(turnCounter);
         }
 
 
@@ -525,7 +565,7 @@ public class TicTacToeRunner : MonoBehaviour
 
                 currentlyRotating = false;
 
-                DebugLogBoard();
+                DebugLogBoard(board);
 
                 Debug.Log("----------------");
             } 
