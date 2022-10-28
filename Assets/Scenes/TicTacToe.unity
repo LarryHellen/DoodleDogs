@@ -308,6 +308,7 @@ MonoBehaviour:
   VictoryScreen: {fileID: 1271644154}
   DefeatScreen: {fileID: 1962922123}
   toTwistOrNotToTwist: 1
+  distanceBetweenTiles: 0.2
   unfair: 1
 --- !u!4 &175947105
 Transform:
