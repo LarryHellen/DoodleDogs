@@ -314,6 +314,10 @@ public class TicTacToeRunner : MonoBehaviour
 
         int index = -1;
 
+        //
+        // WINS NOT BEING DETECTED WHEN THEY SHOULD
+        //
+
         for (int num = 2; num > 0; num--)
         { //LOOPING THROUGH BOTH Xs AND Os - TWISTED
 
