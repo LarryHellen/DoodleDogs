@@ -243,6 +243,126 @@ public class TicTacToeRunner : MonoBehaviour
     public List<int> ticTacToeAI(List<List<GameObject>> aBoard)
     {
 
+        List<int> coordsToPlaceO = new List<int>();
+
+        List<List<GameObject>> anotherBoard = new List<List<GameObject>>();
+
+
+
+        foreach (List<GameObject> gameObjectLists in aBoard) //CREATING DUPLICATE OF CURRENT BOARD
+        {
+            List<GameObject> tmpList = new List<GameObject>();
+
+            foreach (GameObject aGameObject in gameObjectLists)
+            {
+                GameObject Tile = Instantiate(tile, new Vector3(100, 100, 0), Quaternion.identity);
+                Tile.GetComponent<IfIveBeenClicked>().type = aGameObject.GetComponent<IfIveBeenClicked>().type;
+                tmpList.Add(Tile);
+            }
+
+            anotherBoard.Add(tmpList);
+        } //CREATING DUPLICATE OF CURRENT BOARD END
+
+        int gameResult;
+
+        for (int num = 2; num > 0; num--){ //LOOPING THROUGH BOTH Xs AND Os - NORMAL
+            Debug.Log(num);
+        
+            //LOOPING THROUGH EVERY POSSIBLE BOARD POSITION
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type == 0)
+                    {
+                        anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type = num;
+
+                        gameResult = WinDetection(anotherBoard, false);
+
+                        
+
+                        if (gameResult == num)
+                        {
+                            Debug.Log("-------");
+                            DebugLogBoard(anotherBoard);
+                            Debug.Log("-------");
+                            DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
+                            return new List<int>() {i, j};
+                        }
+
+                        anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type = 0;
+                    }
+                }
+            }
+        } //LOOPING THROUGH BOTH Xs and Os END - NORMAL
+
+
+
+        //ROTATING BOARD
+        tmp2 = anotherBoard[rP[0][0]][rP[0][1]];
+
+        for (int i = 0; i < 8; i++)
+        {
+            tmp1 = anotherBoard[rP[i + 1][0]][rP[i + 1][1]];
+
+            anotherBoard[rP[i + 1][0]][rP[i + 1][1]] = tmp2;
+
+            tmp2 = tmp1;
+        }
+        //ROTATING BOARD END
+
+
+        int index = -1;
+
+        for (int num = 2; num > 0; num--)
+        { //LOOPING THROUGH BOTH Xs AND Os - TWISTED
+
+            //LOOPING THROUGH EVERY POSSIBLE BOARD POSITION
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    for (int k = 0; k < 7; k++) //FINDING WHAT INDEX THIS (i,j) POSITION IS IN the "rP" list
+                    {
+                        if (rP[k][0] == i && rP[k][1] == j)
+                        {
+                            index = k;
+                            break;
+                        }
+                    } //END OF THAT
+
+
+
+                    if (board[i][j].GetComponent<IfIveBeenClicked>().type == 0)
+                    {
+                        anotherBoard[rP[index + 1][0]][rP[index + 1][1]].GetComponent<IfIveBeenClicked>().type = num; //CHECK ROTATED POSITION OF CURRENT INDEX
+
+                        gameResult = WinDetection(anotherBoard, false);
+
+                        if (gameResult == num)
+                        {
+                            DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
+                            return new List<int>() { i, j };
+                        }
+
+                        anotherBoard[rP[index + 1][0]][rP[index + 1][1]].GetComponent<IfIveBeenClicked>().type = 0;
+                    }
+                }
+            }
+        } //LOOPING THROUGH BOTH Xs and Os TWISTED - NORMAL
+
+
+
+
+
+
+
+        //ERROR IS CAUSED BY NO WINS BEING DETECTING AND AN EMPTY COORDINATE LIST BEING RETURNED AS A RESULT
+
+
+
+
+        /*
         int gameResult;
 
         List <int> coordsToPlaceO = new List<int>();
@@ -304,7 +424,7 @@ public class TicTacToeRunner : MonoBehaviour
         //Disconnect between places an O can be placed and how it checks it
 
         //Reconnect the disconnect by moving back the position in the rotated board, "anotherBoard" when placing | Something to do with rP[i+j-1][0] and rP[i+j-1][1]
-        int index = 0;
+        int index = -1;
         int before;
 
 
@@ -339,10 +459,10 @@ public class TicTacToeRunner : MonoBehaviour
 
 
 
-                        if (index == 0)
+                        if (index == -1)
                         {
-                            before = anotherBoard[rP[0][0]][rP[0][1]].GetComponent<IfIveBeenClicked>().type;
-                            anotherBoard[rP[0][0]][rP[0][1]].GetComponent<IfIveBeenClicked>().type = num;
+                            before = anotherBoard[1][1].GetComponent<IfIveBeenClicked>().type;
+                            anotherBoard[1][1].GetComponent<IfIveBeenClicked>().type = num;
                         }
                         else
                         {
@@ -382,6 +502,24 @@ public class TicTacToeRunner : MonoBehaviour
                                     return coordsToPlaceO;
                                 }
                             }
+                            else if (index == -1)
+                            {
+                                Debug.Log("Found an " + num + "win with " + 1 + "," + 1);
+
+
+                                coordsToPlaceO = new List<int>() { 1, 1 };
+
+                                if (board[coordsToPlaceO[0]][coordsToPlaceO[1]].GetComponent<IfIveBeenClicked>().type != 0)
+                                {
+                                    coordsToPlaceO = new List<int>();
+                                }
+                                else
+                                {
+                                    DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
+
+                                    return coordsToPlaceO;
+                                }
+                            }
                             else
                             {
                                 
@@ -407,6 +545,10 @@ public class TicTacToeRunner : MonoBehaviour
                         {
                             anotherBoard[rP[0][0]][rP[0][1]].GetComponent<IfIveBeenClicked>().type = before;
                         }
+                        else if (index == -1)
+                        {
+                            anotherBoard[1][1].GetComponent<IfIveBeenClicked>().type = before;
+                        }
                         else
                         {
                             anotherBoard[rP[index][0]][rP[index][1]].GetComponent<IfIveBeenClicked>().type = before;
@@ -419,22 +561,30 @@ public class TicTacToeRunner : MonoBehaviour
 
 
 
-        DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
+        
 
 
         //Random.Range(0, waves.Count)
-        if (turnCounter == 1)
+        if (turnCounter == 1 && board[1][1].GetComponent<IfIveBeenClicked>().type == 0)
         {
+            return new List<int>() {1, 1};
+
+
+
+
+
+            
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    if (board[i][j].GetComponent<IfIveBeenClicked>().type == 1)
+                    if (anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type == 1)
                     {
-                        if (i == 0 && j == 0)
+                        if (i == 0 && j == 1)
                         {
                             coordsToPlaceO.Add(rP[7][0]);
                             coordsToPlaceO.Add(rP[7][1]);
+                            DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
                             return coordsToPlaceO;
                         }
                         else
@@ -444,60 +594,63 @@ public class TicTacToeRunner : MonoBehaviour
                                 if (rP[k][0] == i && rP[k][1] == j)
                                 {
                                     index = k;
+                                    Debug.Log(index);
                                     break;
                                 }
                             }
 
-                            coordsToPlaceO.Add(rP[index - 1][0]);
-                            coordsToPlaceO.Add(rP[index - 1][1]);
+                            coordsToPlaceO.Add(rP[index - 2][0]);
+                            coordsToPlaceO.Add(rP[index - 2][1]);
+                            DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
                             return coordsToPlaceO;
                         }
                     }
                 }
             }
+            
         }
-        else
+
+
+        Debug.Log("Didn't find any wins so I'm winging it");
+
+
+        List<List<int>> anotherTmpList = new List<List<int>>();
+
+        foreach (List<int> coords in corners)
         {
-
-            Debug.Log("Didn't find any wins so I'm winging it");
-
-
-            List<List<int>> anotherTmpList = new List<List<int>>();
-
-            foreach (List<int> coords in corners)
+            if (board[coords[0]][coords[1]].GetComponent<IfIveBeenClicked>().type == 0)
             {
-                if (board[coords[0]][coords[1]].GetComponent<IfIveBeenClicked>().type == 0)
-                {
-                    anotherTmpList.Add(coords);
-                }
+                anotherTmpList.Add(coords);
             }
+        }
 
-            if (anotherTmpList.Count != 0)
+        if (anotherTmpList.Count != 0)
+        {
+            coordsToPlaceO = anotherTmpList[Random.Range(0, anotherTmpList.Count)];
+        }
+
+
+        //IF NO CORNERS LEFT RANDOMLY SELECT A REMAINING TILE
+        if (coordsToPlaceO.Count == 0)
+        {
+            for (int i = 0; i < 3; i++)
             {
-                coordsToPlaceO = anotherTmpList[Random.Range(0, anotherTmpList.Count)];
-            }
-
-
-            //IF NO CORNERS LEFT RANDOMLY SELECT A REMAINING TILE
-            if (coordsToPlaceO.Count == 0)
-            {
-                for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
                 {
-                    for (int j = 0; j < 3; j++)
+                    if (board[i][j].GetComponent<IfIveBeenClicked>().type == 0)
                     {
-                        if (board[i][j].GetComponent<IfIveBeenClicked>().type == 0)
-                        {
-                            coordsToPlaceO.Add(i);
-                            coordsToPlaceO.Add(j);
-                            return coordsToPlaceO;
-                        }
+                        coordsToPlaceO.Add(i);
+                        coordsToPlaceO.Add(j);
+                        DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
+                        return coordsToPlaceO;
                     }
                 }
             }
         }
+        */
 
 
-
+        DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
         return coordsToPlaceO; //Never used?
     }
 
@@ -542,19 +695,6 @@ public class TicTacToeRunner : MonoBehaviour
                     //DebugLogBoard();
                     WinDetection(board, true);
                 }
-
-                currentlyRotating = true;
-
-                if (turnCounter >= 9)
-                {
-                    //DebugLogBoard();
-                    WinDetection(board, true);
-                }
-
-            }
-            else
-            {
-                WinDetection(board, true);
             }
         }
 
@@ -568,10 +708,10 @@ public class TicTacToeRunner : MonoBehaviour
 
             aiCoordsToPlaceOAt = ticTacToeAI(board);
 
-            
 
             board[aiCoordsToPlaceOAt[0]][aiCoordsToPlaceOAt[1]].GetComponent<IfIveBeenClicked>().type = 2;
             board[aiCoordsToPlaceOAt[0]][aiCoordsToPlaceOAt[1]].GetComponent<IfIveBeenClicked>().HasChanged = false;
+            currentlyRotating = true;
 
             WinDetection(board, true);
 
@@ -583,6 +723,7 @@ public class TicTacToeRunner : MonoBehaviour
         }
 
 
+     
 
 
 
