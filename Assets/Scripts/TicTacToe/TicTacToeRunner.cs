@@ -337,7 +337,7 @@ public class TicTacToeRunner : MonoBehaviour
 
                         if (board[i][j].GetComponent<IfIveBeenClicked>().type == 0)
                         {
-                            anotherBoard[rP[index + 1][0]][rP[index + 1][1]].GetComponent<IfIveBeenClicked>().type = num; //CHECK ROTATED POSITION OF CURRENT INDEX
+                            anotherBoard[rP[index + 1][0]][rP[index + 1][1]].GetComponent<IfIveBeenClicked>().type = num; //PLACING AT THE ROTATED POSITION OF CURRENT INDEX TO CHECK IT
 
                             gameResult = WinDetection(anotherBoard, false);
 
@@ -352,22 +352,18 @@ public class TicTacToeRunner : MonoBehaviour
                     }
                 }
             }
-        } //LOOPING THROUGH BOTH Xs and Os TWISTED - NORMAL
+        } //LOOPING THROUGH BOTH Xs and Os END - TWISTED
 
 
 
 
-
-
-
-        //ERROR IS CAUSED BY NO WINS BEING DETECTING AND AN EMPTY COORDINATE LIST BEING RETURNED AS A RESULT
-
-        if (turnCounter == 1 && anotherBoard[1][1].GetComponent<IfIveBeenClicked>().type == 0)
+        //IN THE CASE NO WINS ARE FOUND ->
+        if (turnCounter == 1 && anotherBoard[1][1].GetComponent<IfIveBeenClicked>().type == 0) //GO MIDDLE IF YOU CAN
         {
             DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
             return new List<int>() { 1, 1 };
         }
-        else if (turnCounter == 1)
+        else if (turnCounter == 1) //IF MIDDLE IS NOT AVAIBLE, FOLLOW 1 ROTAION BEHIND THE LAST X
         {
             for (int i = 0; i < 3; i++)
             {
@@ -390,7 +386,7 @@ public class TicTacToeRunner : MonoBehaviour
                 }
             }
         }
-        else
+        else //IF ITS NOT THE FIRST TURN, FIND THE MOST OPTIMAL O PLACEMENT WHERE THERE ARE NO Xs IN THE SAME ROW OR COLUMN
         {
             HashSet<int> xSet = new HashSet<int>();
             HashSet<int> ySet = new HashSet<int>();
