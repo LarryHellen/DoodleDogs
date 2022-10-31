@@ -322,30 +322,33 @@ public class TicTacToeRunner : MonoBehaviour
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    for (int k = 0; k < 7; k++) //FINDING WHAT INDEX THIS (i,j) POSITION IS IN the "rP" list
+                    if (i != 1 && j != 1)
                     {
-                        if (rP[k][0] == i && rP[k][1] == j)
+                        for (int k = 0; k < 7; k++) //FINDING WHAT INDEX THIS (i,j) POSITION IS IN the "rP" list
                         {
-                            index = k;
-                            break;
-                        }
-                    } //END OF THAT
+                            if (rP[k][0] == i && rP[k][1] == j)
+                            {
+                                index = k;
+                                break;
+                            }
+                        } //END OF THAT
 
 
 
-                    if (board[i][j].GetComponent<IfIveBeenClicked>().type == 0)
-                    {
-                        anotherBoard[rP[index + 1][0]][rP[index + 1][1]].GetComponent<IfIveBeenClicked>().type = num; //CHECK ROTATED POSITION OF CURRENT INDEX
-
-                        gameResult = WinDetection(anotherBoard, false);
-
-                        if (gameResult == num)
+                        if (board[i][j].GetComponent<IfIveBeenClicked>().type == 0)
                         {
-                            DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
-                            return new List<int>() { i, j };
-                        }
+                            anotherBoard[rP[index + 1][0]][rP[index + 1][1]].GetComponent<IfIveBeenClicked>().type = num; //CHECK ROTATED POSITION OF CURRENT INDEX
 
-                        anotherBoard[rP[index + 1][0]][rP[index + 1][1]].GetComponent<IfIveBeenClicked>().type = 0;
+                            gameResult = WinDetection(anotherBoard, false);
+
+                            if (gameResult == num)
+                            {
+                                DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
+                                return new List<int>() { i, j };
+                            }
+
+                            anotherBoard[rP[index + 1][0]][rP[index + 1][1]].GetComponent<IfIveBeenClicked>().type = 0;
+                        }
                     }
                 }
             }
@@ -358,6 +361,74 @@ public class TicTacToeRunner : MonoBehaviour
 
 
         //ERROR IS CAUSED BY NO WINS BEING DETECTING AND AN EMPTY COORDINATE LIST BEING RETURNED AS A RESULT
+
+        if (turnCounter == 1 && anotherBoard[1][1].GetComponent<IfIveBeenClicked>().type == 0)
+        {
+            DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
+            return new List<int>() { 1, 1 };
+        }
+        else if (turnCounter == 1)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (board[i][j].GetComponent<IfIveBeenClicked>().type == 1)
+                    {
+                        for (int k = 0; k < 7; k++) //FINDING WHAT INDEX THIS (i,j) POSITION IS IN the "rP" list
+                        {
+                            if (rP[k][0] == i && rP[k][1] == j)
+                            {
+                                index = k;
+                                break;
+                            }
+                        } //END OF THAT
+
+                        DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
+                        return new List<int>() { rP[index-1][0], rP[index - 1][1] };
+                    }
+                }
+            }
+        }
+        else
+        {
+            HashSet<int> xSet = new HashSet<int>();
+            HashSet<int> ySet = new HashSet<int>();
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type == 1)
+                    {
+                        xSet.Add(i);
+                        ySet.Add(j);
+                    }
+                }
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j <3; j++)
+                {
+                    if (!xSet.Contains(i) && !ySet.Contains(j) && board[i][j].GetComponent<IfIveBeenClicked>().type == 0)
+                    {
+                        for (int k = 0; k < 7; k++) //FINDING WHAT INDEX THIS (i,j) POSITION IS IN the "rP" list
+                        {
+                            if (rP[k][0] == i && rP[k][1] == j)
+                            {
+                                index = k;
+                                break;
+                            }
+                        } //END OF THAT
+
+
+                        DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
+                        return new List<int>() { rP[index - 1][0], rP[index - 1][1] };
+                    }
+                }
+            }
+        }
 
 
 
