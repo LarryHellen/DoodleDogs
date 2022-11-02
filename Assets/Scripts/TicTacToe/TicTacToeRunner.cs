@@ -299,6 +299,7 @@ public class TicTacToeRunner : MonoBehaviour
 
         for (int num = 2; num > 0; num--)
         { //LOOPING THROUGH BOTH Xs AND Os - TWISTED
+            Debug.Log("Placing " + num + "s rn");
 
             //LOOPING THROUGH EVERY POSSIBLE BOARD POSITION
             for (int i = 0; i < 3; i++)
@@ -334,6 +335,7 @@ public class TicTacToeRunner : MonoBehaviour
                         if (gameResult == num)
                         {
                             Debug.Log("I found a " + num + "win so I'm going in - TWISTED");
+                            Debug.Log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;");
                             DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
                             return new List<int>() { i, j };
                         }
@@ -455,7 +457,7 @@ public class TicTacToeRunner : MonoBehaviour
 
 
         //IN THE CASE NO WINS ARE FOUND ->
-        if (turnCounter == 1 && anotherBoard[1][1].GetComponent<IfIveBeenClicked>().type == 0) //GO MIDDLE IF YOU CAN
+        if (turnCounter == 3 && anotherBoard[1][1].GetComponent<IfIveBeenClicked>().type == 0) //GO MIDDLE IF YOU CAN
         {
             DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
             return new List<int>() { 1, 1 };
