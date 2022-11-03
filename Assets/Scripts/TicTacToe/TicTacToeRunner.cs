@@ -6,7 +6,7 @@ public class TicTacToeRunner : MonoBehaviour
 {
     public GameObject tile;
 
-    public GameObject VictoryScreen, DefeatScreen;
+    public GameObject VictoryScreen, DefeatScreen, TieScreen;
 
     public bool toTwistOrNotToTwist;
 
@@ -51,6 +51,11 @@ public class TicTacToeRunner : MonoBehaviour
     void OnLose()
     {
         DefeatScreen.SetActive(true);
+    }
+
+    void OnTie()
+    {
+        TieScreen.SetActive(true);
     }
 
 
@@ -139,7 +144,7 @@ public class TicTacToeRunner : MonoBehaviour
                 //Debug.Log("Tie");
                 runGame = false;
                 DebugLogBoard(board);
-                OnLose();
+                OnTie();
             }
             else
             {
@@ -196,7 +201,7 @@ public class TicTacToeRunner : MonoBehaviour
                     //Debug.Log("Tie");
                     runGame = false;
                     DebugLogBoard(board);
-                    OnLose();
+                    OnTie();
                 }
                 else
                 {
@@ -214,6 +219,7 @@ public class TicTacToeRunner : MonoBehaviour
 
         VictoryScreen.SetActive(false);
         DefeatScreen.SetActive(false);
+        TieScreen.SetActive(false);
 
         turnCounter = 0;
 
@@ -470,6 +476,11 @@ public class TicTacToeRunner : MonoBehaviour
                 {
                     if (board[i][j].GetComponent<IfIveBeenClicked>().type == 1)
                     {
+                        if (i == 1 && j == 0)
+                        {
+                            return new List<int>() { rP[6][0], rP[6][1] };
+                        }
+
                         for (int k = 0; k < 7; k++) //FINDING WHAT INDEX THIS (i,j) POSITION IS IN the "rP" list
                         {
                             if (rP[k][0] == i && rP[k][1] == j)
@@ -478,6 +489,8 @@ public class TicTacToeRunner : MonoBehaviour
                                 break;
                             }
                         } //END OF THAT
+
+                        
 
                         DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
                         Debug.Log(index);
@@ -620,8 +633,16 @@ public class TicTacToeRunner : MonoBehaviour
             aiCoordsToPlaceOAt = ticTacToeAI(board);
 
 
+
+
+
             board[aiCoordsToPlaceOAt[0]][aiCoordsToPlaceOAt[1]].GetComponent<IfIveBeenClicked>().type = 2;
             board[aiCoordsToPlaceOAt[0]][aiCoordsToPlaceOAt[1]].GetComponent<IfIveBeenClicked>().HasChanged = false;
+
+
+            //OVER THE SPAN OF A COUPLE SECONDS, ANIMATE THE PLACING OF THE PIECE AT THE POSITION
+
+
             currentlyRotating = true;
 
             if (unfair == true)
