@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4259486500347398454}
   - component: {fileID: 1146730922831105822}
   - component: {fileID: 3376200451836489346}
+  - component: {fileID: 2489281744895706378}
   m_Layer: 0
   m_Name: Bread Dot
   m_TagString: Bread Dot
@@ -98,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eb775b5845714d2a985525656e1b265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ActivateSettings: {fileID: 2489281744895706378}
   column: 0
   row: 0
   previousColumn: 0
@@ -123,3 +125,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
+--- !u!114 &2489281744895706378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4259486500347398455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7742f6584db48e68c9cf7abd842b30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settingsMenu: {fileID: 5604740481062617916, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}

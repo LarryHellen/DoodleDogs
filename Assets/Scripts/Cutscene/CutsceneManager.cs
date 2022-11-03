@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class CutsceneManager : MonoBehaviour
 {
-
+    public GameObject settingsMenu;
     private GameObject cutscenes;
     public GameObject firstChapter;
     public GameObject secondChapter;
@@ -31,28 +31,37 @@ public class CutsceneManager : MonoBehaviour
 
     private void OnMouseDown()
     {
-        
-        sceneNumber++;
-        if(sceneNumber == cutsceneList.IndexOf(firstGameplayScene) && cutscenes == firstChapter){
-            PlayerPrefs.SetInt("played",1);
-            SceneManager.LoadScene(tileMatching);
-        } else if(sceneNumber == cutsceneList.IndexOf(secondGameplayScene) && cutscenes == firstChapter){
-            PlayerPrefs.SetInt("played",2);
-            SceneManager.LoadScene(tileMatching);
-        } else if(sceneNumber == cutsceneList.IndexOf(thirdGameplayScene) && cutscenes == secondChapter){
-            PlayerPrefs.SetInt("played",4);
-            SceneManager.LoadScene(ticTacToe);
-        } else if(sceneNumber == cutsceneList.IndexOf(fourthGameplayScene) && cutscenes == secondChapter){
-            PlayerPrefs.SetInt("played",5);
-            SceneManager.LoadScene(ticTacToe);
-        }
-        else if (sceneNumber < cutscenes.transform.childCount)
+        if (!settingsMenu.activeSelf)
         {
-            ChangeScene();
-        }
-        else
-        {
-            SceneManager.LoadScene("Chapter2");
+            sceneNumber++;
+            if (sceneNumber == cutsceneList.IndexOf(firstGameplayScene) && cutscenes == firstChapter)
+            {
+                PlayerPrefs.SetInt("played", 1);
+                SceneManager.LoadScene(tileMatching);
+            }
+            else if (sceneNumber == cutsceneList.IndexOf(secondGameplayScene) && cutscenes == firstChapter)
+            {
+                PlayerPrefs.SetInt("played", 2);
+                SceneManager.LoadScene(tileMatching);
+            }
+            else if (sceneNumber == cutsceneList.IndexOf(thirdGameplayScene) && cutscenes == secondChapter)
+            {
+                PlayerPrefs.SetInt("played", 4);
+                SceneManager.LoadScene(ticTacToe);
+            }
+            else if (sceneNumber == cutsceneList.IndexOf(fourthGameplayScene) && cutscenes == secondChapter)
+            {
+                PlayerPrefs.SetInt("played", 5);
+                SceneManager.LoadScene(ticTacToe);
+            }
+            else if (sceneNumber < cutscenes.transform.childCount)
+            {
+                ChangeScene();
+            }
+            else
+            {
+                SceneManager.LoadScene("Chapter2");
+            }
         }
 
     }
