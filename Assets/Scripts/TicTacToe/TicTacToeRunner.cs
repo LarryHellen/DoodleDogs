@@ -143,7 +143,7 @@ public class TicTacToeRunner : MonoBehaviour
             }
             else
             {
-                return 0;
+                return 2;
             }
         }
         else if (XHasWon == true)
@@ -263,6 +263,11 @@ public class TicTacToeRunner : MonoBehaviour
             anotherBoard.Add(tmpList);
         } //CREATING DUPLICATE OF CURRENT BOARD END
 
+        DebugLogBoard(anotherBoard);
+
+        Debug.Log("==============");
+
+
         int gameResult;
 
         //ROTATING BOARD
@@ -279,49 +284,70 @@ public class TicTacToeRunner : MonoBehaviour
         //ROTATING BOARD END
 
 
-        int index = -1;
 
+
+        DebugLogBoard(anotherBoard);
+
+        Debug.Log("+++++++++++++");
+
+
+
+
+
+        int index = -1;
+        int before;
 
         for (int num = 2; num > 0; num--)
         { //LOOPING THROUGH BOTH Xs AND Os - TWISTED
+            Debug.Log("Placing " + num + "s rn");
 
             //LOOPING THROUGH EVERY POSSIBLE BOARD POSITION
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    if (i != 1 && j != 1)
+                    for (int k = 0; k < 7; k++) //FINDING WHAT INDEX THIS (i,j) POSITION IS IN the "rP" list
                     {
-                        for (int k = 0; k < 7; k++) //FINDING WHAT INDEX THIS (i,j) POSITION IS IN the "rP" list
+                        if (rP[k][0] == i && rP[k][1] == j)
                         {
-                            if (rP[k][0] == i && rP[k][1] == j)
-                            {
-                                index = k;
-                                break;
-                            }
-                        } //END OF THAT
-
-
-
-                        if (board[i][j].GetComponent<IfIveBeenClicked>().type == 0)
-                        {
-                            anotherBoard[rP[index + 1][0]][rP[index + 1][1]].GetComponent<IfIveBeenClicked>().type = num; //PLACING AT THE ROTATED POSITION OF CURRENT INDEX TO CHECK IT
-
-                            gameResult = WinDetection(anotherBoard, false);
-
-                            if (gameResult == num)
-                            {
-                                Debug.Log("I found a " + num + "win so I'm going in - TWISTED");
-                                DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
-                                return new List<int>() { i, j };
-                            }
-
-                            anotherBoard[rP[index + 1][0]][rP[index + 1][1]].GetComponent<IfIveBeenClicked>().type = 0;
+                            index = k;
+                            break;
                         }
+                    } //END OF THAT
+
+
+
+                    if (board[i][j].GetComponent<IfIveBeenClicked>().type == 0)
+                    {
+                        before = anotherBoard[rP[index + 1][0]][rP[index + 1][1]].GetComponent<IfIveBeenClicked>().type;
+                        anotherBoard[rP[index + 1][0]][rP[index + 1][1]].GetComponent<IfIveBeenClicked>().type = num; //PLACING AT THE ROTATED POSITION OF CURRENT INDEX TO CHECK IT
+
+                        gameResult = WinDetection(anotherBoard, false);
+
+
+                        Debug.Log(",.,.,.,.,.,.,.");
+
+                        DebugLogBoard(anotherBoard);
+
+                        Debug.Log(",.,.,.,.,.,.,.");
+
+
+                        if (gameResult == num)
+                        {
+                            Debug.Log("I found a " + num + "win so I'm going in - TWISTED");
+                            Debug.Log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;");
+                            DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
+                            return new List<int>() { i, j };
+                        }
+
+                        anotherBoard[rP[index + 1][0]][rP[index + 1][1]].GetComponent<IfIveBeenClicked>().type = before; //THIS MIGHT CAUSE AN ERROR WHERE O REPLACES AN X TO WIN THE GAME
                     }
                 }
             }
         } //LOOPING THROUGH BOTH Xs and Os END - TWISTED
+
+
+
 
         DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
 
@@ -348,7 +374,7 @@ public class TicTacToeRunner : MonoBehaviour
             //Debug.Log(num);
 
             //LOOPING THROUGH EVERY POSSIBLE BOARD POSITION
-            if (unfair != true && num == 1)
+            if (unfair == true)
             {
                 for (int i = 0; i < 3; i++)
                 {
@@ -431,7 +457,7 @@ public class TicTacToeRunner : MonoBehaviour
 
 
         //IN THE CASE NO WINS ARE FOUND ->
-        if (turnCounter == 1 && anotherBoard[1][1].GetComponent<IfIveBeenClicked>().type == 0) //GO MIDDLE IF YOU CAN
+        if (turnCounter == 3 && anotherBoard[1][1].GetComponent<IfIveBeenClicked>().type == 0) //GO MIDDLE IF YOU CAN
         {
             DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
             return new List<int>() { 1, 1 };
@@ -536,11 +562,6 @@ public class TicTacToeRunner : MonoBehaviour
         DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
         return coordsToPlaceO; //Never used?
     }
-
-
-
-
-
 
 
 
