@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eb775b5845714d2a985525656e1b265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ActivateSettings: {fileID: 0}
   column: 0
   row: 0
   previousColumn: 0
@@ -113,5 +114,5 @@ MonoBehaviour:
   targetX: 0
   targetY: 0
   isMatched: 0
-  swipeAngle: 2
-  swipeResist: 1
+  swipeAngle: 0
+  swipeResist: 2
