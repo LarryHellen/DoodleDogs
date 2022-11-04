@@ -14,14 +14,13 @@ public class Dot : MonoBehaviour
     public float targetX;
     public float targetY;
     public bool isMatched = false;
-
     private FindMatches findMatches;
     private GameObject otherDot;
     private Vector2 firstTouchPosition;
     private Vector2 finalTouchPosition;
     private Vector2 tempPosition;
     public float swipeAngle = 0;
-    public float swipeResist = 1f;
+    public float swipeResist;
 
     // Start is called before the first frame update
     void Start()
