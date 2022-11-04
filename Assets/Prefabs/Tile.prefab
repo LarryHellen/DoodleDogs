@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7440941462246150312}
   - component: {fileID: 7440941462246150318}
   - component: {fileID: 7440941462246150319}
+  - component: {fileID: 1011958479297806452}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -72,6 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7122229001727460b82efd436652844a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ActivateSettings: {fileID: 1011958479297806452}
   type: 0
   HasChanged: 1
   rotationBool: 0
@@ -81,6 +83,19 @@ MonoBehaviour:
   o: {fileID: 21300000, guid: 9d3ce1ad5dedc4ae89a19d16f93618cd, type: 3}
   square: {fileID: 0}
   timeToTake: 10
+--- !u!114 &1011958479297806452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7440941462246150313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7742f6584db48e68c9cf7abd842b30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settingsMenu: {fileID: 5604740481062617916, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
 --- !u!1 &7817522559132968588
 GameObject:
   m_ObjectHideFlags: 0

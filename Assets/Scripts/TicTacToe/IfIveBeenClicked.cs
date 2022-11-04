@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class IfIveBeenClicked : MonoBehaviour
 {
+    public ActivateSettings ActivateSettings;
 
     public int type = 0;
     public bool HasChanged = true;
@@ -25,7 +26,7 @@ public class IfIveBeenClicked : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (TicTacToeRunner.runGame)
+        if (TicTacToeRunner.runGame && ActivateSettings.gameRunning)
         {
             if (type == 0)
             {

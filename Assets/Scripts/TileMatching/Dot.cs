@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Dot : MonoBehaviour
 {
+    public ActivateSettings ActivateSettings;
     public int column;
     public int row;
     public int previousColumn;
@@ -26,13 +27,14 @@ public class Dot : MonoBehaviour
     {
         board = FindObjectOfType<Board>();
         findMatches = FindObjectOfType<FindMatches>();
+        ActivateSettings = FindObjectOfType<ActivateSettings>();
         //targetX = (int)transform.position.x;
         //targetY = (int)transform.position.y;
         //row = targetY;
         //column = targetX;
         //previousRow = row;
         //previousColumn = column;
-        
+
     }
 
     // Update is called once per frame
@@ -100,16 +102,24 @@ public class Dot : MonoBehaviour
     }
 
     private void OnMouseDown(){
-        if(board.currentState == GameState.move){
-            firstTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (ActivateSettings.gameRunning == true)
+        { 
+            if (board.currentState == GameState.move)
+            {
+                firstTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            }
+            
         }
     }
 
     private void OnMouseUp(){
-        if(board.currentState == GameState.move){
-            finalTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log(Mathf.Abs(finalTouchPosition.y - firstTouchPosition.y) + ", " + Mathf.Abs(finalTouchPosition.x - firstTouchPosition.x));
-            CalculateAngle();
+        if (ActivateSettings.gameRunning == true)
+        {
+            if (board.currentState == GameState.move)
+            {
+                finalTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                CalculateAngle();
+            }
         }
     }
 
