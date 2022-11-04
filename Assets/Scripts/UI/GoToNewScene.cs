@@ -11,7 +11,7 @@ public class GoToNewScene : MonoBehaviour
     public void GoToScene()
     {
         if(reset){
-            PlayerPrefs.DeleteAll();
+            PlayerPrefs.SetInt("played",0);
         }
         SceneManager.LoadScene(scene);
     }

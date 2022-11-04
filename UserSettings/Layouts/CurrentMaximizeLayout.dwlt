@@ -19,8 +19,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 30
-    width: 1470
-    height: 756
+    width: 2240
+    height: 1055
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
@@ -721,7 +721,7 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/Prefabs
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: /Users/larryhellen/Documents/Unity Projects/DoodleDogs
+  m_LastProjectPath: /Users/studentdsa/Documents/DoodleDogs
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
