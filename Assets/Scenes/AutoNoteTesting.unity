@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 1223259864}
   - component: {fileID: 1223259865}
   - component: {fileID: 1223259866}
+  - component: {fileID: 1223259867}
   m_Layer: 0
   m_Name: NoteLayerOuter
   m_TagString: Untagged
@@ -247,7 +248,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1223259863}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c90e56bd8f16d4ba99d95fc6e266b268, type: 3}
   m_Name: 
@@ -870,6 +871,86 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1223259867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223259863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa538b74a7994f449bb0017ea3aaf65b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  samples:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  BPM: 240
+  avgRangeAroundIntenseFrequencies: 4
+  percentHigherThanCloseAvg: 200
 --- !u!1 &1452034801
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,8 +1339,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1223259865}
-        m_TargetAssemblyTypeName: NoteLayerOuter, Assembly-CSharp
+      - m_Target: {fileID: 1223259867}
+        m_TargetAssemblyTypeName: OtherNoteLayerTesting, Assembly-CSharp
         m_MethodName: Pause
         m_Mode: 1
         m_Arguments:
