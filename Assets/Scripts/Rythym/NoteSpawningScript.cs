@@ -37,10 +37,11 @@ public class NoteSpawningScript : MonoBehaviour
     //Other Stuff
 
     public GameObject Note;
-    public float TimeBetweenNotes;
+    public float BPM;
+    private float timeBetweenNotes;
 
-    private List<List<bool>> FullNoteList = new List<List<bool>>();
-    private int SecondsPast = 0;
+    private List<List<int>> FullNoteList = new List<List<int>>();
+    private int intervalsPast = 1;
     private float period = 0;
 
 
@@ -99,7 +100,8 @@ public class NoteSpawningScript : MonoBehaviour
 
     void Start()
     {
-
+        timeBetweenNotes = 60 / BPM;
+        /*
         TapNoteList1 = ReadEasyProgramNoteList(TapEasyProgramNoteListOne);
         TapNoteList2 = ReadEasyProgramNoteList(TapEasyProgramNoteListTwo);
         TapNoteList3 = ReadEasyProgramNoteList(TapEasyProgramNoteListThree);
@@ -121,18 +123,323 @@ public class NoteSpawningScript : MonoBehaviour
         FullNoteList.Add(HoldNoteList2);
         FullNoteList.Add(HoldNoteList3);
         FullNoteList.Add(HoldNoteList4);
+
+        private List<List<int>> rP = new List<List<int>>()
+        {
+            new List<int>(){0,0},
+            new List<int>(){0,1},
+            new List<int>(){0,2},
+            new List<int>(){1,2},
+            new List<int>(){2,2},
+            new List<int>(){2,1},
+            new List<int>(){2,0},
+            new List<int>(){1,0},
+            new List<int>(){0,0}
+
+        };
+        */
+
+
+
+        FullNoteList = new List<List<int>>() 
+        {   
+            new List<int>() {1,0,1,0},
+            new List<int>() {0,0,0,1},
+            new List<int>() {0,0,0,1},
+            new List<int>() {0,0,1,1},
+            new List<int>() {0,0,0,1},
+            new List<int>() {0,0,1,0},
+            new List<int>() {0,0,1,1},
+            new List<int>() {0,0,1,1},
+            new List<int>() {0,0,0,1},
+            new List<int>() {0,0,1,1},
+            new List<int>() {0,0,0,1},
+            new List<int>() {1,0,1,1},
+            new List<int>() {0,0,0,1},
+            new List<int>() {0,0,1,1},
+            new List<int>() {0,0,0,1},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,1,1,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,1,0,1},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,1,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,1,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,1,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,1,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,1,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {1,1,0,0},
+            new List<int>() {0,1,0,0},
+            new List<int>() {0,0,0,0},
+            new List<int>() {0,0,0,0}
+            };
     }
 
     void Update()
     {
-        if (period > TimeBetweenNotes)
+        if (period > timeBetweenNotes)
         {
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 4; i++)
             {
-                if (FullNoteList[i][SecondsPast] == true)
-                {
 
-                     //Hold Notes Will Appear Offscreen needs fix
+                //print(intervalsPast);
+
+                if (FullNoteList[intervalsPast][i] == 1f)
+                {
 
                     if (i <= 3) //TAP NOTE
                     {
@@ -150,7 +457,7 @@ public class NoteSpawningScript : MonoBehaviour
                     
                 }
             }
-            SecondsPast++;
+            intervalsPast++;
             period = 0;
         }
         period += UnityEngine.Time.deltaTime;

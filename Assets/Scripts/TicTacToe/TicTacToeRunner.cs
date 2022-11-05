@@ -12,6 +12,8 @@ public class TicTacToeRunner : MonoBehaviour
 
     public float distanceBetweenTiles = 0.2f;
 
+    private List<List<GameObject>> beforeBoard = new List<List<GameObject>>();
+
     private List<List<int>> rP = new List<List<int>>()
     {
         new List<int>(){0,0},
@@ -25,6 +27,15 @@ public class TicTacToeRunner : MonoBehaviour
         new List<int>(){0,0}
 
     };
+
+
+    private List<List<int>> corners = new List<List<int>>()
+     {
+         new List<int>() { 0, 0 },
+         new List<int>() { 0, 2 },
+         new List<int>() { 2, 2 },
+         new List<int>() { 2, 0 }
+     };
 
     public static bool twoPlayer = false;
 
@@ -75,10 +86,51 @@ public class TicTacToeRunner : MonoBehaviour
         }
     }
 
-    int WinDetection(List<List<GameObject>> aBoard, bool realCheck)
+    int TestingRotatedBoard(List<List<GameObject>> aBoard)
+    {
+        int aGameResult;
+
+        List<List<GameObject>> anotherBoard = new List<List<GameObject>>();
+
+        foreach (List<GameObject> gameObjectLists in aBoard) //CREATING DUPLICATE OF CURRENT BOARD
+        {
+            List<GameObject> tmpList = new List<GameObject>();
+
+            foreach (GameObject aGameObject in gameObjectLists)
+            {
+                GameObject Tile = Instantiate(tile, new Vector3(100, 100, 0), Quaternion.identity);
+                Tile.GetComponent<IfIveBeenClicked>().type = aGameObject.GetComponent<IfIveBeenClicked>().type;
+                tmpList.Add(Tile);
+            }
+
+            anotherBoard.Add(tmpList);
+        } //CREATING DUPLICATE OF CURRENT BOARD END
+
+        //ROTATING BOARD
+        tmp2 = anotherBoard[rP[0][0]][rP[0][1]];
+
+        for (int i = 0; i < 8; i++)
+        {
+            tmp1 = anotherBoard[rP[i + 1][0]][rP[i + 1][1]];
+
+            anotherBoard[rP[i + 1][0]][rP[i + 1][1]] = tmp2;
+
+            tmp2 = tmp1;
+        }
+        //ROTATING BOARD END
+
+        aGameResult = WinDetection(anotherBoard, false, true);
+
+        DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
+
+        return aGameResult;
+    }
+
+    int WinDetection(List<List<GameObject>> aBoard, bool realCheck, bool simple = false)
     {
         bool XHasWon = false;
         bool OHasWon = false;
+        int gameResult;
 
         for (int i = 0; i < 3; i++)
         {
@@ -162,7 +214,11 @@ public class TicTacToeRunner : MonoBehaviour
             }
             else
             {
-                return 1;
+                if (simple == true)
+                {
+                    gameResult = TestingRotatedBoard(board);
+                    return gameResult;
+                }
             }
         }
         else if (OHasWon == true)
@@ -463,7 +519,7 @@ public class TicTacToeRunner : MonoBehaviour
 
 
         //IN THE CASE NO WINS ARE FOUND ->
-        if (turnCounter == 3 && anotherBoard[1][1].GetComponent<IfIveBeenClicked>().type == 0) //GO MIDDLE IF YOU CAN
+        if (turnCounter == 1 && anotherBoard[1][1].GetComponent<IfIveBeenClicked>().type == 0) //GO MIDDLE IF YOU CAN
         {
             DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
             return new List<int>() { 1, 1 };
@@ -494,40 +550,44 @@ public class TicTacToeRunner : MonoBehaviour
 
                         DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
                         Debug.Log(index);
-                        if (index != 0)
+                        if (index > 2)
                         {
-                            return new List<int>() { rP[index - 1][0], rP[index - 1][1] };
+                            return new List<int>() { rP[index - 3][0], rP[index - 3][1] };
                         }
-                        else
+                        else if (index == 2)
                         {
                             return new List<int>() { rP[7][0], rP[7][1] };
+                        }
+                        else if (index == 1)
+                        {
+                            return new List<int>() { rP[6][0], rP[6][1] };
+                        }
+                        else if (index == 0)
+                        {
+                            return new List<int>() { rP[5][0], rP[5][1] };
                         }
                     }
                 }
             }
         }
-        else //IF ITS NOT THE FIRST TURN, FIND THE MOST OPTIMAL O PLACEMENT WHERE THERE ARE NO Xs IN THE SAME ROW OR COLUMN
+        else 
         {
-            HashSet<int> xSet = new HashSet<int>();
-            HashSet<int> ySet = new HashSet<int>();
+
+            //OPTIMAL POSITION FINDER NEEDS TO BE REMADE JUST FOLLOW 2nd X PLACEMENT
+
+            Debug.Log("Optimal Position?");
+
+            DebugLogBoard(board);
+
+            Debug.Log("[[[[[[[[[[[[[[[[]]]]]]]]]]]]");
+
+            DebugLogBoard(beforeBoard);
 
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    if (anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type == 1)
-                    {
-                        xSet.Add(i);
-                        ySet.Add(j);
-                    }
-                }
-            }
-
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j <3; j++)
-                {
-                    if (!xSet.Contains(i) && !ySet.Contains(j) && board[i][j].GetComponent<IfIveBeenClicked>().type == 0)
+                    if (beforeBoard[i][j] != board[i][j])
                     {
                         for (int k = 0; k < 7; k++) //FINDING WHAT INDEX THIS (i,j) POSITION IS IN the "rP" list
                         {
@@ -538,21 +598,23 @@ public class TicTacToeRunner : MonoBehaviour
                             }
                         } //END OF THAT
 
-                        Debug.Log("Going some optimal spot");
-                        DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
-                        Debug.Log(index);
-                        if (index != 0)
+                        Debug.Log("Found difference");
+
+                        if (index > 1)
                         {
-                            return new List<int>() { rP[index - 1][0], rP[index - 1][1] };
+                            return new List<int>() { rP[index - 2][0], rP[index - 2][1] };
                         }
-                        else
+                        else if(index == 1)
                         {
                             return new List<int>() { rP[7][0], rP[7][1] };
+                        }
+                        else if (index == 0)
+                        {
+                            return new List<int>() { rP[6][0], rP[6][1] };
                         }
                     }
                 }
             }
-
 
             //IF NO OPTIMAL POSITIONS CAN BE FOUND USING ANY OF THE ABOVE METHODS USE THIS ->
 
@@ -677,20 +739,37 @@ public class TicTacToeRunner : MonoBehaviour
             if (turnCounter % 2 == 0 && currentlyRotating == true && toTwistOrNotToTwist == true)
             {
 
-               // Debug.Log("Its rotatin time");
 
                 tmp2 = board[rP[0][0]][rP[0][1]];
 
-                 for (int i = 0; i < 8; i++)
-                 {
-                     //Debug.Log(i);
+                for (int i = 0; i < 8; i++)
+                {
+                    //Debug.Log(i);
 
-                     tmp1 = board[rP[i + 1][0]][rP[i + 1][1]];
+                    tmp1 = board[rP[i + 1][0]][rP[i + 1][1]];
 
-                     board[rP[i + 1][0]][rP[i + 1][1]] = tmp2;
+                    board[rP[i + 1][0]][rP[i + 1][1]] = tmp2;
 
-                     tmp2 = tmp1;
-                 }
+                    tmp2 = tmp1;
+                }
+
+                DeleteAllTheThingsInThisListOfListOfGameObjects(beforeBoard);
+                beforeBoard = new List<List<GameObject>>();
+
+                foreach (List<GameObject> gameObjectLists in board) //CREATING DUPLICATE OF CURRENT BOARD
+                {
+                    List<GameObject> tmpList = new List<GameObject>();
+
+                    foreach (GameObject aGameObject in gameObjectLists)
+                    {
+                        GameObject Tile = Instantiate(tile, new Vector3(100, 100, 0), Quaternion.identity);
+                        Tile.GetComponent<IfIveBeenClicked>().type = aGameObject.GetComponent<IfIveBeenClicked>().type;
+                        tmpList.Add(Tile);
+                    }
+
+                    beforeBoard.Add(tmpList);
+                } //CREATING DUPLICATE OF CURRENT BOARD END
+
 
 
                 //EXAMPLE OF WHAT THE ABOVE FOR LOOP DOES ->
@@ -712,7 +791,7 @@ public class TicTacToeRunner : MonoBehaviour
                 temp = board[2][2];
                 board[2][2] = temp2;
                 */
-                
+
                 for (int i = 0; i < 3; i++)
                 {
 

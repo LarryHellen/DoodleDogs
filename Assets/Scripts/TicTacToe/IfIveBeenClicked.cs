@@ -42,6 +42,7 @@ public class IfIveBeenClicked : MonoBehaviour
                 {
                     type = 2;
                     TicTacToeRunner.turnCounter++;
+                    TicTacToeRunner.currentlyRotating = true;
                     HasChanged = false;
                     //Debug.Log(TicTacToeRunner.turnCounter);
                 }

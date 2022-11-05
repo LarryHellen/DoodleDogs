@@ -616,7 +616,7 @@ MonoBehaviour:
   HoldEasyProgramNoteListThree: None
   HoldEasyProgramNoteListFour: 5 9 100
   Note: {fileID: 7526589102234127627, guid: df0fabbe858944ab29115dd80ba5e25a, type: 3}
-  TimeBetweenNotes: 0.25
+  BPM: 240
 --- !u!4 &1487876251
 Transform:
   m_ObjectHideFlags: 0
@@ -642,7 +642,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 46cfbd79970944c0caf7f1df454aa751, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 783d7625d7d0d4a90a327ef899896dad, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
