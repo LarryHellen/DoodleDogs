@@ -883,6 +883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa538b74a7994f449bb0017ea3aaf65b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sampleSize: 64
   samples:
   - 0
   - 0
@@ -950,7 +951,9 @@ MonoBehaviour:
   - 0
   BPM: 240
   avgRangeAroundIntenseFrequencies: 4
-  percentHigherThanCloseAvg: 200
+  percentHigherThanCloseAvg: 300
+  maximumFreq: 64
+  allDaKeys: 
 --- !u!1 &1452034801
 GameObject:
   m_ObjectHideFlags: 0
