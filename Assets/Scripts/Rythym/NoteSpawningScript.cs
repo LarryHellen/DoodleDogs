@@ -41,9 +41,10 @@ public class NoteSpawningScript : MonoBehaviour
     public float BPM;
     private float timeBetweenNotes;
 
-    private List<List<int>> FullNoteList = new List<List<int>>();
+    public static List<List<int>> FullNoteList = new List<List<int>>();
     private int intervalsPast = 0;
-    private float period = 0;
+    private float period;
+    public float delay;
 
 
 
@@ -101,8 +102,7 @@ public class NoteSpawningScript : MonoBehaviour
 
     void Start()
     {
-        AudioSource audioSource = GetComponent<AudioSource>();
-        audioSource.PlayDelayed(.0f);
+        period = delay;
 
         timeBetweenNotes = 60 / BPM;
         /*
@@ -142,89 +142,6 @@ public class NoteSpawningScript : MonoBehaviour
 
         };
         */
-
-
-
-        FullNoteList = new List<List<int>>()
-{new List<int>() {1,0,0,0},
-new List<int>() {1,1,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {1,1,1,1},
-new List<int>() {1,0,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {1,1,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {1,1,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {1,1,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {0,0,0,0},
-new List<int>() {0,0,0,1},
-new List<int>() {1,1,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {0,1,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {0,1,0,0},
-new List<int>() {0,0,0,0},
-new List<int>() {1,1,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {0,1,0,0},
-new List<int>() {0,0,0,0},
-new List<int>() {0,0,0,0},
-new List<int>() {0,0,0,0},
-new List<int>() {0,0,1,0},
-new List<int>() {0,1,0,0},
-new List<int>() {1,0,1,0},
-new List<int>() {0,0,1,0},
-new List<int>() {1,0,1,0},
-new List<int>() {1,0,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {0,0,0,0},
-new List<int>() {0,0,0,0},
-new List<int>() {0,0,0,0},
-new List<int>() {0,0,0,0},
-new List<int>() {1,0,1,0},
-new List<int>() {1,0,1,0},
-new List<int>() {1,0,0,0},
-new List<int>() {1,0,1,0},
-new List<int>() {0,0,1,0},
-new List<int>() {0,0,0,0},
-new List<int>() {0,0,1,0},
-new List<int>() {0,0,0,0},
-new List<int>() {0,0,0,0},
-new List<int>() {1,0,1,0},
-new List<int>() {0,0,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {0,0,0,0},
-new List<int>() {0,0,1,0},
-new List<int>() {0,1,0,0},
-new List<int>() {1,0,1,0},
-new List<int>() {1,0,1,0},
-new List<int>() {1,0,1,0},
-new List<int>() {1,1,0,0},
-new List<int>() {1,0,1,0},
-new List<int>() {0,0,0,0},
-new List<int>() {1,0,1,0},
-new List<int>() {0,0,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {1,0,1,0},
-new List<int>() {1,0,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {0,0,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {1,0,0,0},
-new List<int>() {0,0,0,0},
-};
-
-
     }
 
     void Update()
@@ -235,7 +152,6 @@ new List<int>() {0,0,0,0},
             {
 
                 //print(intervalsPast);
-
                 if (FullNoteList[intervalsPast][i] == 1f)
                 {
 

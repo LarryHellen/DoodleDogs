@@ -54,7 +54,7 @@ public class OtherNoteLayerTesting : MonoBehaviour
 
             if (period > interval)
             {
-                fullNoteList.Add(patternONotes);
+                NoteSpawningScript.FullNoteList.Add(patternONotes);
                 period = 0;
             }
             period += UnityEngine.Time.deltaTime;
