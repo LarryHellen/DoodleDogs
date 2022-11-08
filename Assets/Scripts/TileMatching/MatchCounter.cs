@@ -43,7 +43,7 @@ public class MatchCounter : MonoBehaviour
 
     public void IncreaseMatches(int numberToAdd){
         currentMatches += numberToAdd;
-        if(currentMatches > neededMatches){
+        if(currentMatches >= neededMatches){
             currentMatches = neededMatches;
             full = true;
         }
