@@ -78,6 +78,18 @@ public class Dot : MonoBehaviour
                 tempPosition = new Vector2(transform.position.x,targetY);
                 transform.position = tempPosition;
             }
+
+            if(board.currentState == GameState.move){
+                for(int i = 0; i < board.width; i++){
+                    for(int j = 0; j < board.height; j++){
+                        if(board.allDots[i,j] != gameObject && board.allDots[i,j].GetComponent<Dot>().column == column && board.allDots[i,j].GetComponent<Dot>().row == row){
+                            Debug.LogWarning("Two dots merged, deleting one");
+                            Destroy(gameObject);
+                            board.StartFillBoardCoroutine();
+                        }
+                    }
+                }
+            }
         }
     }
 

@@ -149,17 +149,21 @@ public class Board : MonoBehaviour
     }
 
     public void winGame(){
+        if(currentState != GameState.win && currentState != GameState.lose){
         currentState = GameState.win;
         victoryScreen.SetActive(true);
         francois.SetActive(false);
         Debug.Log("you won");
+        }
     }
 
     private void loseGame(){
+        if(currentState != GameState.win && currentState != GameState.lose){
         currentState = GameState.lose;
         defeatScreen.SetActive(true);
         francois.SetActive(false);
         Debug.Log("you lose");
+        }
     }
 
     public void ResetGame(){
@@ -197,6 +201,10 @@ public class Board : MonoBehaviour
         if(counterHolder.metAllGoals()){
             endGame();
         }
+    }
+
+    public void StartFillBoardCoroutine(){
+        StartCoroutine(FillBoardCo());
     }
 
     private void SpawnDot(int row, int col, bool noMatches){
