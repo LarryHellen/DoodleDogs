@@ -602,15 +602,24 @@ public class TicTacToeRunner : MonoBehaviour
 
                         if (index > 1)
                         {
-                            return new List<int>() { rP[index - 2][0], rP[index - 2][1] };
+                            if (board[rP[index - 2][0]][ rP[index - 2][1]].GetComponent<IfIveBeenClicked>().type == 0)
+                            {
+                                return new List<int>() { rP[index - 2][0], rP[index - 2][1] };
+                            }
                         }
                         else if(index == 1)
                         {
-                            return new List<int>() { rP[7][0], rP[7][1] };
+                            if (board[rP[7][0]][rP[7][1]].GetComponent<IfIveBeenClicked>().type == 0)
+                            {
+                                return new List<int>() { rP[7][0], rP[7][1] };
+                            }
                         }
                         else if (index == 0)
                         {
-                            return new List<int>() { rP[6][0], rP[6][1] };
+                            if (board[rP[6][0]][rP[6][1]].GetComponent<IfIveBeenClicked>().type == 0)
+                            {
+                                return new List<int>() { rP[6][0], rP[6][1] };
+                            }
                         }
                     }
                 }
