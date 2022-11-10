@@ -54,7 +54,7 @@ public class IfIveBeenClicked : MonoBehaviour
 
     void Start()
     {
-        tttr = FindObjectOfType<TicTacToeRunner>();
+        //tttr = FindObjectOfType<TicTacToeRunner>();
     }
 
 
@@ -118,8 +118,8 @@ public class IfIveBeenClicked : MonoBehaviour
     }
 
     private IEnumerator pauseGame(float secondsToPause){
-        tttr.pauseState = true;
+        TicTacToeRunner.runGame = false;
         yield return new WaitForSeconds(secondsToPause);
-        tttr.pauseState = false;
+        TicTacToeRunner.runGame = true;
     }
 }

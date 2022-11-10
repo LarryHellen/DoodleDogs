@@ -11,7 +11,6 @@ public class TicTacToeRunner : MonoBehaviour
     public bool toTwistOrNotToTwist;
 
     public float distanceBetweenTiles = 0.2f;
-    public bool pauseState;
 
     private List<List<GameObject>> beforeBoard = new List<List<GameObject>>();
 
@@ -674,64 +673,43 @@ public class TicTacToeRunner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(pauseState == false){
 
-            if (runGame == true)
+        if (turnCounter % 2 == 1 && twoPlayer == false && runGame == true)
+        {
+            //DebugLogBoard(board);
+
+            //Debug.Log("^ Before-----After v");
+
+
+            aiCoordsToPlaceOAt = ticTacToeAI(board);
+
+
+
+
+
+            board[aiCoordsToPlaceOAt[0]][aiCoordsToPlaceOAt[1]].GetComponent<IfIveBeenClicked>().type = 2;
+            board[aiCoordsToPlaceOAt[0]][aiCoordsToPlaceOAt[1]].GetComponent<IfIveBeenClicked>().HasChanged = false;
+
+            StartCoroutine(pauseGame(.5f));
+
+
+            //OVER THE SPAN OF A COUPLE SECONDS, ANIMATE THE PLACING OF THE PIECE AT THE POSITION
+
+
+            currentlyRotating = true;
+
+            if (unfair == true)
             {
-                if (turnCounter % 2 == 1)
-                {
-                    if (unfair == true)
-                    {
-                        //DebugLogBoard();
-                        WinDetection(board, true);
-                    }else if (turnCounter >= 9)
-                    {
-                        WinDetection(board, true);
-                    }
-                }
-                else
-                {
-                    WinDetection(board, true);
-                }
+                WinDetection(board, true);
             }
-
-
-            if (turnCounter % 2 == 1 && twoPlayer == false && runGame == true)
-            {
-                //DebugLogBoard(board);
-
-                //Debug.Log("^ Before-----After v");
-
-
-                aiCoordsToPlaceOAt = ticTacToeAI(board);
-
-
-
-
-
-                board[aiCoordsToPlaceOAt[0]][aiCoordsToPlaceOAt[1]].GetComponent<IfIveBeenClicked>().type = 2;
-                board[aiCoordsToPlaceOAt[0]][aiCoordsToPlaceOAt[1]].GetComponent<IfIveBeenClicked>().HasChanged = false;
-
-                StartCoroutine(pauseGame(.5f));
-
-
-                //OVER THE SPAN OF A COUPLE SECONDS, ANIMATE THE PLACING OF THE PIECE AT THE POSITION
-
-
-                currentlyRotating = true;
-
-                if (unfair == true)
-                {
-                    WinDetection(board, true);
-                }
                 
 
-                turnCounter++;
+            turnCounter++;
 
-                //DebugLogBoard(board);
+            //DebugLogBoard(board);
 
-                //Debug.Log(turnCounter);
-            }
+            //Debug.Log(turnCounter);
+        }
 
 
         
@@ -739,110 +717,130 @@ public class TicTacToeRunner : MonoBehaviour
 
 
 
-            if (runGame == true && pauseState == false)
-            {
+        if (runGame == true)
+        {
 
-                //EACH THING NEEDS TO MOVE ALL THE TIME, SET ITS MOVE POSITIONS AND CHANGE THEM CONSTANTLY BUT WHEN GOAL REACHED SET BOTH TO THE SAME?
+            //EACH THING NEEDS TO MOVE ALL THE TIME, SET ITS MOVE POSITIONS AND CHANGE THEM CONSTANTLY BUT WHEN GOAL REACHED SET BOTH TO THE SAME?
 
                 
-                //Make tiles rotate every 2 turns only once using "currentlyRotating" and "rotationPattern"
-                //Iterate through "rotationPattern" and set and change temp1 and temp2
-                //Hard code start change of board[1][0] -> board[0][0]
+            //Make tiles rotate every 2 turns only once using "currentlyRotating" and "rotationPattern"
+            //Iterate through "rotationPattern" and set and change temp1 and temp2
+            //Hard code start change of board[1][0] -> board[0][0]
 
-                if (turnCounter % 2 == 0 && currentlyRotating == true && toTwistOrNotToTwist == true)
+            if (turnCounter % 2 == 0 && currentlyRotating == true && toTwistOrNotToTwist == true)
+            {
+                tmp2 = board[rP[0][0]][rP[0][1]];
+
+                for (int i = 0; i < 8; i++)
+                {
+                    //Debug.Log(i);
+
+                    tmp1 = board[rP[i + 1][0]][rP[i + 1][1]];
+
+                    board[rP[i + 1][0]][rP[i + 1][1]] = tmp2;
+
+                    tmp2 = tmp1;
+                }
+
+                DeleteAllTheThingsInThisListOfListOfGameObjects(beforeBoard);
+                beforeBoard = new List<List<GameObject>>();
+
+                foreach (List<GameObject> gameObjectLists in board) //CREATING DUPLICATE OF CURRENT BOARD
+                {
+                    List<GameObject> tmpList = new List<GameObject>();
+
+                    foreach (GameObject aGameObject in gameObjectLists)
+                    {
+                        GameObject Tile = Instantiate(tile, new Vector3(100, 100, 0), Quaternion.identity);
+                        Tile.GetComponent<IfIveBeenClicked>().type = aGameObject.GetComponent<IfIveBeenClicked>().type;
+                        tmpList.Add(Tile);
+                    }
+
+                    beforeBoard.Add(tmpList);
+                } //CREATING DUPLICATE OF CURRENT BOARD END
+
+
+
+                //EXAMPLE OF WHAT THE ABOVE FOR LOOP DOES ->
+
+                /*
+                GameObject temp = board[0][0];
+                board[0][0] = board[1][0];
+
+                GameObject temp2 = board[0][1];
+                board[0][1] = temp;
+
+
+                temp = board[0][2];
+                board[0][2] = temp2;
+
+                temp2 = board[1][2];
+                board[1][2] = temp;
+
+                temp = board[2][2];
+                board[2][2] = temp2;
+                */
+
+                for (int i = 0; i < 3; i++)
                 {
 
-
-                    tmp2 = board[rP[0][0]][rP[0][1]];
-
-                    for (int i = 0; i < 8; i++)
+                    for (int j = 0; j < 3; j++)
                     {
-                        //Debug.Log(i);
 
-                        tmp1 = board[rP[i + 1][0]][rP[i + 1][1]];
+                        Vector3 tmpPos = new Vector3(j + distanceBetweenTiles * j, -i - distanceBetweenTiles * i);
 
-                        board[rP[i + 1][0]][rP[i + 1][1]] = tmp2;
+                        board[i][j].GetComponent<IfIveBeenClicked>().rotationBool = true;
+                        board[i][j].GetComponent<IfIveBeenClicked>().tmpPos = tmpPos;
 
-                        tmp2 = tmp1;
+
+                        //board[i][j].transform.position = new Vector3(j+0.2f*j, -i - 0.2f * i, 0); <- ORIG CODE
+
+
+                        //STUFF FROM TILE MATCHING GAME "DOTS" SCRIPT
+
+                        //tempPosition = new Vector2(transform.position.x, targetY);
+                        //transform.position = Vector2.Lerp(transform.position, tempPosition, .4f);
                     }
+                }
 
-                    DeleteAllTheThingsInThisListOfListOfGameObjects(beforeBoard);
-                    beforeBoard = new List<List<GameObject>>();
+                currentlyRotating = false;
 
-                    foreach (List<GameObject> gameObjectLists in board) //CREATING DUPLICATE OF CURRENT BOARD
-                    {
-                        List<GameObject> tmpList = new List<GameObject>();
+                DebugLogBoard(board);
 
-                        foreach (GameObject aGameObject in gameObjectLists)
-                        {
-                            GameObject Tile = Instantiate(tile, new Vector3(100, 100, 0), Quaternion.identity);
-                            Tile.GetComponent<IfIveBeenClicked>().type = aGameObject.GetComponent<IfIveBeenClicked>().type;
-                            tmpList.Add(Tile);
-                        }
-
-                        beforeBoard.Add(tmpList);
-                    } //CREATING DUPLICATE OF CURRENT BOARD END
+                Debug.Log("----------------");
+            } 
+        }
 
 
-
-                    //EXAMPLE OF WHAT THE ABOVE FOR LOOP DOES ->
-
-                    /*
-                    GameObject temp = board[0][0];
-                    board[0][0] = board[1][0];
-
-                    GameObject temp2 = board[0][1];
-                    board[0][1] = temp;
-
-
-                    temp = board[0][2];
-                    board[0][2] = temp2;
-
-                    temp2 = board[1][2];
-                    board[1][2] = temp;
-
-                    temp = board[2][2];
-                    board[2][2] = temp2;
-                    */
-
-                    for (int i = 0; i < 3; i++)
-                    {
-
-                        for (int j = 0; j < 3; j++)
-                        {
-
-                            Vector3 tmpPos = new Vector3(j + distanceBetweenTiles * j, -i - distanceBetweenTiles * i);
-
-                            board[i][j].GetComponent<IfIveBeenClicked>().rotationBool = true;
-                            board[i][j].GetComponent<IfIveBeenClicked>().tmpPos = tmpPos;
-
-
-                            //board[i][j].transform.position = new Vector3(j+0.2f*j, -i - 0.2f * i, 0); <- ORIG CODE
-
-
-                            //STUFF FROM TILE MATCHING GAME "DOTS" SCRIPT
-
-                            //tempPosition = new Vector2(transform.position.x, targetY);
-                            //transform.position = Vector2.Lerp(transform.position, tempPosition, .4f);
-                        }
-                    }
-
-                    currentlyRotating = false;
-
-                    DebugLogBoard(board);
-
-                    Debug.Log("----------------");
-                } 
+        if (runGame == true)
+        {
+            if (turnCounter % 2 == 1)
+            {
+                if (unfair == true)
+                {
+                    //DebugLogBoard();
+                    WinDetection(board, true);
+                }
+                else if (turnCounter >= 9)
+                {
+                    WinDetection(board, true);
+                }
+            }
+            else
+            {
+                WinDetection(board, true);
             }
         }
+
     }
 
     //StartCoroutine(pauseGame(.2f));
     private IEnumerator pauseGame(float secondsToPause){
-        pauseState = true;
+        runGame = false;
         yield return new WaitForSeconds(secondsToPause);
-        pauseState = false;
+        runGame = true;
     }
+
 }
 
 
