@@ -712,6 +712,8 @@ public class TicTacToeRunner : MonoBehaviour
                 board[aiCoordsToPlaceOAt[0]][aiCoordsToPlaceOAt[1]].GetComponent<IfIveBeenClicked>().type = 2;
                 board[aiCoordsToPlaceOAt[0]][aiCoordsToPlaceOAt[1]].GetComponent<IfIveBeenClicked>().HasChanged = false;
 
+                StartCoroutine(pauseGame(.5f));
+
 
                 //OVER THE SPAN OF A COUPLE SECONDS, ANIMATE THE PLACING OF THE PIECE AT THE POSITION
 
@@ -737,7 +739,7 @@ public class TicTacToeRunner : MonoBehaviour
 
 
 
-            if (runGame == true)
+            if (runGame == true && pauseState == false)
             {
 
                 //EACH THING NEEDS TO MOVE ALL THE TIME, SET ITS MOVE POSITIONS AND CHANGE THEM CONSTANTLY BUT WHEN GOAL REACHED SET BOTH TO THE SAME?

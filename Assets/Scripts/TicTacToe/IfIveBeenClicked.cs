@@ -37,7 +37,7 @@ public class IfIveBeenClicked : MonoBehaviour
                     TicTacToeRunner.turnCounter++;
                     HasChanged = false;
                     //Debug.Log(TicTacToeRunner.turnCounter);
-                    StartCoroutine(pauseGame(.2f));
+                    StartCoroutine(pauseGame(.5f));
 
                 }
                 else if (TicTacToeRunner.turnCounter % 2 == 1 && TicTacToeRunner.twoPlayer == true)
