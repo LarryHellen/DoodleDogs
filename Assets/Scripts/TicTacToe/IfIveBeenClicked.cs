@@ -23,6 +23,7 @@ public class IfIveBeenClicked : MonoBehaviour
     private bool smoothMent = false;
     private float timeFraction;
     private float distanceBetween;
+    private TicTacToeRunner tttr;
 
     void OnMouseDown()
     {
@@ -36,6 +37,7 @@ public class IfIveBeenClicked : MonoBehaviour
                     TicTacToeRunner.turnCounter++;
                     HasChanged = false;
                     //Debug.Log(TicTacToeRunner.turnCounter);
+                    StartCoroutine(pauseGame(.2f));
 
                 }
                 else if (TicTacToeRunner.turnCounter % 2 == 1 && TicTacToeRunner.twoPlayer == true)
@@ -52,7 +54,7 @@ public class IfIveBeenClicked : MonoBehaviour
 
     void Start()
     {
-        
+        tttr = FindObjectOfType<TicTacToeRunner>();
     }
 
 
@@ -112,6 +114,12 @@ public class IfIveBeenClicked : MonoBehaviour
             }
 
             HasChanged = true;
-            }
+        }
+    }
+
+    private IEnumerator pauseGame(float secondsToPause){
+        tttr.pauseState = true;
+        yield return new WaitForSeconds(secondsToPause);
+        tttr.pauseState = false;
     }
 }
