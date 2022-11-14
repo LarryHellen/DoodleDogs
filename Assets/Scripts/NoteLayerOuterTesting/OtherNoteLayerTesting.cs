@@ -37,7 +37,7 @@ public class OtherNoteLayerTesting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float[] samples = new float[sampleSize];
+        samples = new float[sampleSize];
 
         interval = 60 / BPM;
 
