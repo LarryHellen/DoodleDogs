@@ -14,6 +14,9 @@ public class TicTacToeRunner : MonoBehaviour
 
     private List<List<GameObject>> beforeBoard = new List<List<GameObject>>();
 
+    public float xBoardOffset;
+    public float yBoardOffset;
+
     private List<List<int>> rP = new List<List<int>>()
     {
         new List<int>(){0,0},
@@ -546,7 +549,7 @@ public class TicTacToeRunner : MonoBehaviour
                             }
                         } //END OF THAT
 
-                        
+
 
                         DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
                         Debug.Log(index);
@@ -570,7 +573,7 @@ public class TicTacToeRunner : MonoBehaviour
                 }
             }
         }
-        else 
+        else
         {
 
             //OPTIMAL POSITION FINDER NEEDS TO BE REMADE JUST FOLLOW 2nd X PLACEMENT
@@ -602,12 +605,12 @@ public class TicTacToeRunner : MonoBehaviour
 
                         if (index > 1)
                         {
-                            if (board[rP[index - 2][0]][ rP[index - 2][1]].GetComponent<IfIveBeenClicked>().type == 0)
+                            if (board[rP[index - 2][0]][rP[index - 2][1]].GetComponent<IfIveBeenClicked>().type == 0)
                             {
                                 return new List<int>() { rP[index - 2][0], rP[index - 2][1] };
                             }
                         }
-                        else if(index == 1)
+                        else if (index == 1)
                         {
                             if (board[rP[7][0]][rP[7][1]].GetComponent<IfIveBeenClicked>().type == 0)
                             {
@@ -629,6 +632,9 @@ public class TicTacToeRunner : MonoBehaviour
 
             Debug.Log("Going a random spot");
 
+
+            bool any0s = false;
+
             //FIND ANY TILE LEFT OPEN AND PLACE THERE
             for (int i = 0; i < 3; i++)
             {
@@ -636,10 +642,19 @@ public class TicTacToeRunner : MonoBehaviour
                 {
                     if (board[i][j].GetComponent<IfIveBeenClicked>().type == 0)
                     {
+                        any0s = true;
                         DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
+                        print(i + " and " + j);
                         return new List<int>() { i, j };
                     }
                 }
+            }
+
+            if (any0s == false)
+            {
+                WinDetection(board, true);
+                print("This thingy rn");
+                return new List<int>() { 0, 100 };
             }
         }
 
@@ -662,7 +677,7 @@ public class TicTacToeRunner : MonoBehaviour
 
             for (int j = 0; j < 3; j++)
             {
-                GameObject Tile = Instantiate(tile, new Vector3(j+ distanceBetweenTiles * j, -i - distanceBetweenTiles * i), Quaternion.identity);
+                GameObject Tile = Instantiate(tile, new Vector3((j + distanceBetweenTiles * j)-xBoardOffset, (-i - distanceBetweenTiles * i)-yBoardOffset), Quaternion.identity);
                 row.Add(Tile);
             }
 
@@ -683,28 +698,31 @@ public class TicTacToeRunner : MonoBehaviour
 
             aiCoordsToPlaceOAt = ticTacToeAI(board);
 
-
-
-
-
-            board[aiCoordsToPlaceOAt[0]][aiCoordsToPlaceOAt[1]].GetComponent<IfIveBeenClicked>().type = 2;
-            board[aiCoordsToPlaceOAt[0]][aiCoordsToPlaceOAt[1]].GetComponent<IfIveBeenClicked>().HasChanged = false;
-
-            StartCoroutine(pauseGame(.5f));
-
-
-            //OVER THE SPAN OF A COUPLE SECONDS, ANIMATE THE PLACING OF THE PIECE AT THE POSITION
-
-
-            currentlyRotating = true;
-
-            if (unfair == true)
+            if (aiCoordsToPlaceOAt[1] != 100)
             {
-                WinDetection(board, true);
-            }
-                
+                board[aiCoordsToPlaceOAt[0]][aiCoordsToPlaceOAt[1]].GetComponent<IfIveBeenClicked>().type = 2;
+                board[aiCoordsToPlaceOAt[0]][aiCoordsToPlaceOAt[1]].GetComponent<IfIveBeenClicked>().HasChanged = false;
 
-            turnCounter++;
+                StartCoroutine(pauseGame(.5f));
+
+
+                //OVER THE SPAN OF A COUPLE SECONDS, ANIMATE THE PLACING OF THE PIECE AT THE POSITION
+
+
+                currentlyRotating = true;
+
+                if (unfair == true)
+                {
+                    WinDetection(board, true);
+                }
+
+
+                turnCounter++;
+            }
+
+
+
+
 
             //DebugLogBoard(board);
 
@@ -787,7 +805,7 @@ public class TicTacToeRunner : MonoBehaviour
                     for (int j = 0; j < 3; j++)
                     {
 
-                        Vector3 tmpPos = new Vector3(j + distanceBetweenTiles * j, -i - distanceBetweenTiles * i);
+                        Vector3 tmpPos = new Vector3((j + distanceBetweenTiles * j) - xBoardOffset, (-i - distanceBetweenTiles * i) - yBoardOffset);
 
                         board[i][j].GetComponent<IfIveBeenClicked>().rotationBool = true;
                         board[i][j].GetComponent<IfIveBeenClicked>().tmpPos = tmpPos;
