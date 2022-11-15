@@ -60,7 +60,7 @@ public class MainNoteScript : MonoBehaviour
 
         }
 
-        if (transform.position[1] < -5.5)
+        if (transform.position[1] < -4)
             {
                 TextSetScript.Score = 0;
                 Destroy(gameObject);
