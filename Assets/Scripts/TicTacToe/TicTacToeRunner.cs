@@ -607,6 +607,7 @@ public class TicTacToeRunner : MonoBehaviour
                         {
                             if (board[rP[index - 2][0]][rP[index - 2][1]].GetComponent<IfIveBeenClicked>().type == 0)
                             {
+                                DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
                                 return new List<int>() { rP[index - 2][0], rP[index - 2][1] };
                             }
                         }
@@ -614,6 +615,7 @@ public class TicTacToeRunner : MonoBehaviour
                         {
                             if (board[rP[7][0]][rP[7][1]].GetComponent<IfIveBeenClicked>().type == 0)
                             {
+                                DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
                                 return new List<int>() { rP[7][0], rP[7][1] };
                             }
                         }
@@ -621,6 +623,7 @@ public class TicTacToeRunner : MonoBehaviour
                         {
                             if (board[rP[6][0]][rP[6][1]].GetComponent<IfIveBeenClicked>().type == 0)
                             {
+                                DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
                                 return new List<int>() { rP[6][0], rP[6][1] };
                             }
                         }
@@ -654,6 +657,7 @@ public class TicTacToeRunner : MonoBehaviour
             {
                 WinDetection(board, true);
                 print("This thingy rn");
+                DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
                 return new List<int>() { 0, 100 };
             }
         }
