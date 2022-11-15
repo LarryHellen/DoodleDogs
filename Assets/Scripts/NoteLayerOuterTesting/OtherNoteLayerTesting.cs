@@ -13,7 +13,7 @@ public class OtherNoteLayerTesting : MonoBehaviour
 
     public int sampleSize = 64;
 
-    public float[] samples = new float[64];
+    private float[] samples = new float[64];
 
     public float BPM;
     private float interval;
@@ -26,11 +26,9 @@ public class OtherNoteLayerTesting : MonoBehaviour
 
     private bool running = true;
 
-    public int avgRangeAroundIntenseFrequencies;
-
     public int percentHigherThanCloseAvg;
 
-    public double maximumFreq;
+    private double maximumFreq;
 
     public List<int> allDaKeys;
 
@@ -40,6 +38,8 @@ public class OtherNoteLayerTesting : MonoBehaviour
         samples = new float[sampleSize];
 
         interval = 60 / BPM;
+
+        maximumFreq = sampleSize;
 
         _audioSource = GetComponent<AudioSource>();
     }
@@ -101,7 +101,7 @@ public class OtherNoteLayerTesting : MonoBehaviour
         print("------------------");
     }
 
-    
+
 
     List<int> GetSpectrumAudioSource()
     {
@@ -141,7 +141,7 @@ public class OtherNoteLayerTesting : MonoBehaviour
 
         for (int i = 0; i < maximumFreq; i++)
         {
-            int index = (int) Math.Floor(allDaKeys[allDaKeys.Count - i - 1] / (maximumFreq/4));
+            int index = (int)Math.Floor(allDaKeys[allDaKeys.Count - i - 1] / (maximumFreq / 4));
             LANES[index].Add(allDaKeys[allDaKeys.Count - i - 1]);
         }
 
@@ -164,73 +164,4 @@ public class OtherNoteLayerTesting : MonoBehaviour
 
         return thisTimeAround;
     }
-
-
-        //BELOW HAS THE RIGHT IDEA BUT DOES NOT REALLY WORK
-
-        /*
-        List<int> top4Intesities = new List<int>() { allDaKeys[allDaKeys.Count - 1], allDaKeys[allDaKeys.Count - 2], allDaKeys[allDaKeys.Count - 3], allDaKeys[allDaKeys.Count - 4] }; //Keys of the Top 4 intensities
-
-        ShowAll(top4Intesities);
-
-        int theIndex = 0;
-
-        foreach (int elementPosition in top4Intesities)
-        {
-            float total = 0;
-
-            for (int j = 0; j < avgRangeAroundIntenseFrequencies; j++)
-            {
-                try
-                {
-                    total += samples[elementPosition + j + 1];
-                }
-                catch
-                {
-                    //Just skip it lol
-                }
-                
-            }
-
-            for (int j = 0; j < avgRangeAroundIntenseFrequencies; j++)
-            {
-                try
-                {
-                    total += samples[elementPosition - j - 1];
-                }
-                catch
-                {
-                    //Skipping it again
-                }
-            }
-
-            float avg = total / (avgRangeAroundIntenseFrequencies*2);
-
-            if (samples[elementPosition] > avg * ((100 + percentHigherThanCloseAvg) / 100))
-            {
-
-                double someNum = elementPosition / (4/maximumFreq);
-
-                int indextoplace = (int) Math.Floor(someNum);
-                try
-                {
-                    thisTimeAround[indextoplace] = 1;
-                }
-                catch
-                {
-                    print("Too big so putting last");
-                    thisTimeAround[3] = 1;
-                }
-                
-            }
-
-
-            theIndex++;
-        }
-
-        //avg intensities close to it to see if its an anomaly if so put a 1 in that lane
-
-        return thisTimeAround;
-        */
 }
-

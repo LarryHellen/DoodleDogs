@@ -21,10 +21,10 @@ public class FourAudioNoteSpawner : MonoBehaviour
     //Make 4 vars for 4 audio spectrum datas
     public int sampleSize = 64;
 
-    public float[] samples1 = new float[64];
-    public float[] samples2 = new float[64];
-    public float[] samples3 = new float[64];
-    public float[] samples4 = new float[64];
+    private float[] samples1 = new float[64];
+    private float[] samples2 = new float[64];
+    private float[] samples3 = new float[64];
+    private float[] samples4 = new float[64];
 
     public float BPM;
     private float interval;
