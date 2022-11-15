@@ -537,6 +537,7 @@ public class TicTacToeRunner : MonoBehaviour
                     {
                         if (i == 1 && j == 0)
                         {
+                            DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
                             return new List<int>() { rP[6][0], rP[6][1] };
                         }
 
