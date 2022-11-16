@@ -59,16 +59,19 @@ public class TicTacToeRunner : MonoBehaviour
 
     void OnWin()
     {
+        FindObjectOfType<AudioManager>().Play("Scratch");
         VictoryScreen.SetActive(true);
     }
 
     void OnLose()
     {
+        FindObjectOfType<AudioManager>().Play("DefeatScreen");
         DefeatScreen.SetActive(true);
     }
 
     void OnTie()
     {
+        FindObjectOfType<AudioManager>().Play("DefeatScreen");
         TieScreen.SetActive(true);
     }
 
@@ -676,6 +679,7 @@ public class TicTacToeRunner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        FindObjectOfType<AudioManager>().Play("GoldenDoodleMusicBackground");
         for (int i = 0; i < 3; i++)
         {
             List<GameObject> row = new List<GameObject>();
@@ -707,6 +711,8 @@ public class TicTacToeRunner : MonoBehaviour
             {
                 board[aiCoordsToPlaceOAt[0]][aiCoordsToPlaceOAt[1]].GetComponent<IfIveBeenClicked>().type = 2;
                 board[aiCoordsToPlaceOAt[0]][aiCoordsToPlaceOAt[1]].GetComponent<IfIveBeenClicked>().HasChanged = false;
+
+                FindObjectOfType<AudioManager>().Play("PlaceSock");
 
                 StartCoroutine(pauseGame(.5f));
 
