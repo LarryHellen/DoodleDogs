@@ -148,18 +148,18 @@ public class NoteSpawningScript : MonoBehaviour
     {
         if (period > timeBetweenNotes)
         {
-            for (int i = 0; i < 4; i++)
-            {
-
+            //print("NOTE SPAWNING SCRIPT STUFF " + FourAudioNoteSpawner.patternONotes[0] + FourAudioNoteSpawner.patternONotes[1] + FourAudioNoteSpawner.patternONotes[2] + FourAudioNoteSpawner.patternONotes[3]);
+            for (int i = 0; i < 4; i++) {
+                print(i);
                 //print(intervalsPast);
-                if (FullNoteList[intervalsPast][i] == 1f)
+                if (FourAudioNoteSpawner.FullNoteList[intervalsPast][i] == 1)
                 {
+                    print(i);
 
-                    if (i <= 3) //TAP NOTE
-                    {
-                        GameObject ANote = (GameObject)Instantiate(Note, new Vector3((1f * i) - 1.5f, 8, 0), Quaternion.identity);
-                        ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "TAP";
-                    }
+                    GameObject ANote = Instantiate(Note, new Vector3(i, 8, 0), Quaternion.identity); 
+                    ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "TAP";
+
+                    /*
                     else //HOLD NOTE
                     {
                         GameObject ANote = (GameObject)Instantiate(Note, new Vector3(((1f * i)%4) - 1.5f, 8, 0), Quaternion.identity);
@@ -168,6 +168,7 @@ public class NoteSpawningScript : MonoBehaviour
                         var cubeRenderer = ANote.GetComponent<Renderer>();
                         cubeRenderer.material.SetColor("_Color", Color.blue);
                     }
+                    */
                     
                 }
             }
