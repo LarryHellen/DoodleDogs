@@ -2006,10 +2006,10 @@ PrefabInstance:
     - target: {fileID: 6974965757228919458, guid: 2864a291c6639407c92fa2e79720b896, type: 3}
       propertyPath: sounds.Array.data[2].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 32bb120a2e80e4639afc43a00cc527f9, type: 3}
+      objectReference: {fileID: 8300000, guid: 404cf0e69f91249f5b8acd3e5ee8b5fd, type: 3}
     - target: {fileID: 6974965757228919458, guid: 2864a291c6639407c92fa2e79720b896, type: 3}
       propertyPath: sounds.Array.data[2].name
-      value: FlipPage
+      value: Scratch
       objectReference: {fileID: 0}
     - target: {fileID: 6974965757228919458, guid: 2864a291c6639407c92fa2e79720b896, type: 3}
       propertyPath: sounds.Array.data[3].clip

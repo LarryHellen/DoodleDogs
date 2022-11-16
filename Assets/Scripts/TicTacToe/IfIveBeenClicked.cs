@@ -36,6 +36,7 @@ public class IfIveBeenClicked : MonoBehaviour
                     type = 1;
                     TicTacToeRunner.turnCounter++;
                     HasChanged = false;
+                    FindObjectOfType<AudioManager>().Play("PlaceBall");
                     //Debug.Log(TicTacToeRunner.turnCounter);
                     StartCoroutine(pauseGame(.5f));
 
