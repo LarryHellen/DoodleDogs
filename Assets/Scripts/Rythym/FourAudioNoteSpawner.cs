@@ -52,6 +52,11 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
     public static List<List<int>> FullNoteList = new List<List<int>>();
 
+    public float distanceBetween;
+
+    public float noteOffset;
+
+    public float spawnHeight;
 
 
 
@@ -113,8 +118,8 @@ public class FourAudioNoteSpawner : MonoBehaviour
                     //print(intervalsPast);
                     if (FullNoteList[intervalsPast][i] == 1)
                     {
-
-                        GameObject ANote = Instantiate(Note, new Vector3(i - 1.5f, 8, 0), Quaternion.identity);
+                        GameObject ANote = Instantiate(Note, new Vector3(distanceBetween * i - noteOffset, spawnHeight, 0), Quaternion.identity);
+                        ANote.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
                         ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "TAP";
                     }
                 }
