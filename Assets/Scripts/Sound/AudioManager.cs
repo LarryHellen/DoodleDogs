@@ -1,10 +1,13 @@
 using UnityEngine.Audio;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
+    [SerializeField] Slider volumeSliderMusic;
+    [SerializeField] Slider volumeSliderSFX;
 
     void Start(){
         
@@ -22,6 +25,8 @@ public class AudioManager : MonoBehaviour
 
         }
 
+        
+
         //Play("AfghanMusicBackground");
     }
 
@@ -29,5 +34,20 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         s.source.Play();
+    }
+
+    private void Update()
+    {
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            if (sounds[i].isSong)
+            {
+                sounds[i].source.volume = volumeSliderMusic.value;
+            }
+            else
+            {
+                sounds[i].source.volume = volumeSliderSFX.value;
+            }
+        }
     }
 }
