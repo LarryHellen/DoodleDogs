@@ -1121,6 +1121,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 84566290}
     m_Modifications:
+    - target: {fileID: 398643043300474684, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028722962139761062, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4452236275780484158, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5604740480557697556, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
       propertyPath: m_Type
       value: 0
@@ -1219,6 +1231,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5604740481062617916, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7489426936028950947, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -351,7 +351,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8609900397290918131}
   - component: {fileID: 7489426936028950947}
-  - component: {fileID: 1028722962139761062}
   m_Layer: 5
   m_Name: Volume (SFX)
   m_TagString: Untagged
@@ -432,33 +431,7 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1028722962139761062}
-        m_TargetAssemblyTypeName: SoundManagerMusic, Assembly-CSharp
-        m_MethodName: ChangeVolume
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1028722962139761062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4364808822154392925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a11e9674213c40519a0c63a9534dd3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AudioSource: {fileID: 0}
-  volumeSliderMusic: {fileID: 7489426936028950947}
+      m_Calls: []
 --- !u!1 &5182202623506509833
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,7 +818,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4075468645091854150}
   - component: {fileID: 4452236275780484158}
-  - component: {fileID: 398643043300474684}
   m_Layer: 5
   m_Name: Volume (Music)
   m_TagString: Untagged
@@ -926,33 +898,7 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 398643043300474684}
-        m_TargetAssemblyTypeName: SoundManagerMusic, Assembly-CSharp
-        m_MethodName: ChangeVolume
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &398643043300474684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7269186911866847258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a11e9674213c40519a0c63a9534dd3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AudioSource: {fileID: 0}
-  volumeSliderMusic: {fileID: 4452236275780484158}
+      m_Calls: []
 --- !u!1 &7803081576905825921
 GameObject:
   m_ObjectHideFlags: 0
