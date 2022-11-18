@@ -99,10 +99,10 @@ public class IfIveBeenClicked : MonoBehaviour
 
             
 
-        if (type == 0)
-        {
-            currentTileSprite.sprite = square;
-        }
+        // if (type == 0)
+        // {
+        //     currentTileSprite.sprite = square;
+        // }
 
         if (HasChanged == false)
         {
@@ -117,6 +117,12 @@ public class IfIveBeenClicked : MonoBehaviour
             }
 
             HasChanged = true;
+        }
+
+        if(type != 0){
+            Color tempColor = currentTileSprite.color;
+            tempColor.a = 255f;
+            currentTileSprite.color = tempColor;
         }
     }
 
