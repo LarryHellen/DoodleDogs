@@ -689,8 +689,14 @@ public class TicTacToeRunner : MonoBehaviour
 
             for (int j = 0; j < 3; j++)
             {
-                GameObject Tile = Instantiate(tile, new Vector3((j + distanceBetweenTiles * j)-xBoardOffset, (-i - distanceBetweenTiles * i)-yBoardOffset), Quaternion.identity);
+                GameObject Tile = Instantiate(tile);
+                Vector3 tmpPos = new Vector3((j + distanceBetweenTiles * j) - xBoardOffset, (-i - distanceBetweenTiles * i) - yBoardOffset);
                 Tile.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+
+                Tile.GetComponent<IfIveBeenClicked>().rotationBool = true;
+                Tile.GetComponent<IfIveBeenClicked>().tmpPos = tmpPos;
+                
+
                 row.Add(Tile);
             }
 
@@ -785,6 +791,7 @@ public class TicTacToeRunner : MonoBehaviour
                     foreach (GameObject aGameObject in gameObjectLists)
                     {
                         GameObject Tile = Instantiate(tile, new Vector3(100, 100, 0), Quaternion.identity);
+                        Tile.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
                         Tile.GetComponent<IfIveBeenClicked>().type = aGameObject.GetComponent<IfIveBeenClicked>().type;
                         tmpList.Add(Tile);
                     }
@@ -880,6 +887,17 @@ public class TicTacToeRunner : MonoBehaviour
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 //OLD AI CODE
 
 
@@ -898,7 +916,6 @@ public class TicTacToeRunner : MonoBehaviour
 
          foreach (GameObject aGameObject in gameObjectLists)
          {
-             GameObject Tile = Instantiate(tile, new Vector3(100, 100, 0), Quaternion.identity);
              Tile.GetComponent<IfIveBeenClicked>().type = aGameObject.GetComponent<IfIveBeenClicked>().type;
              tmpList.Add(Tile);
          }
