@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b6ba452fd754899ad43aad1c3ffd95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tile: {fileID: 7440941462246150313, guid: 4a479941cdcf945eaa4abb977e112826, type: 3}
+  tile: {fileID: 4052168045919117037, guid: 73c86b2a75d554a9ababac18e5438eaa, type: 3}
   VictoryScreen: {fileID: 1271644154}
   DefeatScreen: {fileID: 1962922123}
   TieScreen: {fileID: 1794357979}

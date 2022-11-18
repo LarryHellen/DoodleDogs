@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class IfIveBeenClicked : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class IfIveBeenClicked : MonoBehaviour
     public Vector3 tmpPos;
 
 
-    public SpriteRenderer currentTileSprite;
+    public Image currentTileSprite;
     public Sprite x;
     public Sprite o;
     public Sprite square;
@@ -27,6 +28,7 @@ public class IfIveBeenClicked : MonoBehaviour
 
     void OnMouseDown()
     {
+        
         if (TicTacToeRunner.runGame && ActivateSettings.gameRunning)
         {
             if (type == 0)
