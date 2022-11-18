@@ -11,6 +11,7 @@ public class FindMatches : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        FindObjectOfType<AudioManager>().Play("AfghanMusicBackground");
         board = FindObjectOfType<Board>();
     }
 

@@ -8,9 +8,13 @@ using System.Linq;
 
 public class FourAudioNoteSpawner : MonoBehaviour
 {
+    public GameObject Note;
+
     List<AudioSource> audioSourceList = new List<AudioSource>();
 
     List<float[]> sampleList = new List<float[]>();
+
+    List<int> percentHigherList = new List<int>();
 
     //Make 4 vars for 4 audios
     public AudioSource audioSource1;
@@ -21,19 +25,45 @@ public class FourAudioNoteSpawner : MonoBehaviour
     //Make 4 vars for 4 audio spectrum datas
     public int sampleSize = 64;
 
-    private float[] samples1 = new float[64];
-    private float[] samples2 = new float[64];
-    private float[] samples3 = new float[64];
-    private float[] samples4 = new float[64];
-
     public float BPM;
     private float interval;
     private float period = 0;
     private bool running = true;
-    public int percentHigherThanCloseAvg;
+    private int intervalsPast = 0;
+
+    public int percentHigherThanCloseAvg1;
+    public int percentHigherThanCloseAvg2;
+    public int percentHigherThanCloseAvg3;
+    public int percentHigherThanCloseAvg4;
+
+    public float minimumMaxFreq;
+
+
+    public float[] samples1 = new float[64];
+    public float[] samples2 = new float[64];
+    public float[] samples3 = new float[64];
+    public float[] samples4 = new float[64];
+
+
+
+    public static List<int> patternONotes = new List<int>();
+
+
+
+    public static List<List<int>> FullNoteList = new List<List<int>>();
+
+    public float distanceBetween;
+
+    public float noteOffset;
+
+    public float spawnHeight;
+
+
 
     void Start()
     {
+        interval = 60 / BPM;
+
         samples1 = new float[sampleSize];
         samples2 = new float[sampleSize];
         samples3 = new float[sampleSize];
@@ -54,6 +84,15 @@ public class FourAudioNoteSpawner : MonoBehaviour
             samples3,
             samples4
         };
+
+
+        percentHigherList = new List<int>()
+        {
+            percentHigherThanCloseAvg1,
+            percentHigherThanCloseAvg2,
+            percentHigherThanCloseAvg3,
+            percentHigherThanCloseAvg4
+        };
     }
 
 
@@ -61,15 +100,34 @@ public class FourAudioNoteSpawner : MonoBehaviour
     {
         if (running)
         {
-            List<int> patternONotes = GetSpectrumAudioSource();
+            
 
             if (period > interval)
             {
-                NoteSpawningScript.FullNoteList.Add(patternONotes);
+                patternONotes = GetSpectrumAudioSource();
+                //print(patternONotes[0] + " " + patternONotes[1] + " " + patternONotes[2] + " " + patternONotes[3]);
+                FullNoteList.Add(patternONotes);
+                //print("FULL NOTE STUFF" + FullNoteList[intervalsPast][0] + " " + FullNoteList[intervalsPast][1] + " " + FullNoteList[intervalsPast][2] + " " + FullNoteList[intervalsPast][3]);
+
+
+
+
+                for (int i = 0; i < 4; i++)
+                {
+                    print(i);
+                    //print(intervalsPast);
+                    if (FullNoteList[intervalsPast][i] == 1)
+                    {
+                        GameObject ANote = Instantiate(Note, new Vector3(distanceBetween * i - noteOffset, spawnHeight, 0), Quaternion.identity);
+                        ANote.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+                        ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "TAP";
+                    }
+                }
+
                 period = 0;
+                intervalsPast++;
             }
             period += UnityEngine.Time.deltaTime;
-
         }
     }
 
@@ -82,21 +140,23 @@ public class FourAudioNoteSpawner : MonoBehaviour
         {
             audioSourceList[i].GetSpectrumData(sampleList[i], 0, FFTWindow.Blackman);
 
-            if (IsMaxIntensityGreaterThanAvg(sampleList[i]))
+            if (IsMaxIntensityGreaterThanAvg(sampleList[i], i))
             {
+                //print(i);
                 thisTimeAround[i] = 1;
             }
         }
 
+        //print(thisTimeAround[0] + " " + thisTimeAround[1] + " " + thisTimeAround[2] + " " + thisTimeAround[3]);
         return thisTimeAround;
     }
 
-    bool IsMaxIntensityGreaterThanAvg(float[] samples)
+    bool IsMaxIntensityGreaterThanAvg(float[] samples, int lane)
     {
         float maxFreq = samples.Max();
         float avg = FindAvg(samples);
 
-        if (maxFreq > avg * ((100 + percentHigherThanCloseAvg) / 100))
+        if (maxFreq > avg * ((100 + percentHigherList[lane]) / 100) && maxFreq > minimumMaxFreq)
         {
             return true;
         }

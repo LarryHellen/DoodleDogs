@@ -17,6 +17,8 @@ public class MainNoteScript : MonoBehaviour
 
     private float Timer, LastTime = 0;
 
+    public float noteGoneAtThisValue;
+
     void OnMouseDown()
     {
         BeingClicked = true;
@@ -60,7 +62,7 @@ public class MainNoteScript : MonoBehaviour
 
         }
 
-        if (transform.position[1] < -4)
+        if (transform.position[1] < noteGoneAtThisValue)
             {
                 TextSetScript.Score = 0;
                 Destroy(gameObject);
