@@ -790,7 +790,7 @@ public class TicTacToeRunner : MonoBehaviour
 
                     foreach (GameObject aGameObject in gameObjectLists)
                     {
-                        GameObject Tile = Instantiate(tile, new Vector3(100, 100, 0), Quaternion.identity);
+                        GameObject Tile = Instantiate(tile, new Vector3(10000, 10000, 0), Quaternion.identity);
                         Tile.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
                         Tile.GetComponent<IfIveBeenClicked>().type = aGameObject.GetComponent<IfIveBeenClicked>().type;
                         tmpList.Add(Tile);

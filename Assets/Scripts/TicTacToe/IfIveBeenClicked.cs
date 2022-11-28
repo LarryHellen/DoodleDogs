@@ -26,6 +26,9 @@ public class IfIveBeenClicked : MonoBehaviour
     private float distanceBetween;
     private TicTacToeRunner tttr;
 
+    private Vector2 X_size;
+    private Vector2 O_size;
+
     void OnMouseDown()
     {
         
@@ -58,6 +61,8 @@ public class IfIveBeenClicked : MonoBehaviour
     void Start()
     {
         //tttr = FindObjectOfType<TicTacToeRunner>();
+        X_size = x.rect.size;
+        O_size = o.rect.size;
     }
 
 
@@ -106,13 +111,22 @@ public class IfIveBeenClicked : MonoBehaviour
 
         if (HasChanged == false)
         {
+            //Get Image Size
+            //Change rect transform
+
+            var rectTransform = GetComponent<RectTransform>();
 
             if (type == 1)
             {
+                rectTransform.sizeDelta = new Vector2(X_size[0], X_size[1]);
+
+
                 currentTileSprite.sprite = x;
             }
             else if (type == 2)
             {
+                rectTransform.sizeDelta = new Vector2(O_size[0], O_size[1]);
+
                 currentTileSprite.sprite = o;
             }
 
