@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Chapter2.unity
     guid: 5601409440b6b4d0c92632f07f2ee958
+  - enabled: 1
+    path: Assets/Scenes/TicTacToe.unity
+    guid: ac0a883e2757a4eb2b7c3c038ed52c1d
+  - enabled: 1
+    path: Assets/Scenes/RythymDemo.unity
+    guid: ad2fb26b4f7bd4dfca3a0ac310ff4332
   m_configObjects: {}

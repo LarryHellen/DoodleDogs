@@ -6870,7 +6870,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &734557418
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11179,14 +11179,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsMenu: {fileID: 2137874787}
-  firstChapter: {fileID: 1958038817}
+  firstChapter: {fileID: 1970674055}
   secondChapter: {fileID: 1958038817}
+  thirdChapter: {fileID: 734557417}
   tileMatching: TileMatching
   ticTacToe: TicTacToe
-  firstGameplayScene: {fileID: 0}
-  secondGameplayScene: {fileID: 0}
-  thirdGameplayScene: {fileID: 0}
-  fourthGameplayScene: {fileID: 0}
+  rythym: RythymDemo
+  firstGameplayScene: {fileID: 495208564}
+  secondGameplayScene: {fileID: 1686907113}
+  thirdGameplayScene: {fileID: 1838701482}
+  fourthGameplayScene: {fileID: 959249753}
+  fifthGameplayScene: {fileID: 1080880423}
+  sixthGameplayScene: {fileID: 588068185}
 --- !u!60 &1243183808
 PolygonCollider2D:
   m_ObjectHideFlags: 0
