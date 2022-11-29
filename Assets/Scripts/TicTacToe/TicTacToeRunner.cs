@@ -684,6 +684,22 @@ public class TicTacToeRunner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        /*
+        Resolution currentMonitorResolution;
+
+        currentMonitorResolution = Screen.currentResolution;
+
+        int width = currentMonitorResolution.width;
+
+        print(width);
+
+        distanceBetweenTiles = width / 6420;
+
+        print(distanceBetweenTiles);
+        */
+
+
+
         FindObjectOfType<AudioManager>().Play("GoldenDoodleMusicBackground");
         for (int i = 0; i < 3; i++)
         {

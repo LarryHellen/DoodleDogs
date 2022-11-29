@@ -119,6 +119,7 @@ public class IfIveBeenClicked : MonoBehaviour
             if (type == 1)
             {
                 rectTransform.sizeDelta = new Vector2(X_size[0], X_size[1]);
+                //rectTransform.localScale = new Vector3(0.1f, 0.07f, 0.1f);
 
 
                 currentTileSprite.sprite = x;
@@ -126,6 +127,7 @@ public class IfIveBeenClicked : MonoBehaviour
             else if (type == 2)
             {
                 rectTransform.sizeDelta = new Vector2(O_size[0], O_size[1]);
+                //rectTransform.localScale = new Vector3(0.1f, 0.05f, 0.1f);
 
                 currentTileSprite.sprite = o;
             }
@@ -155,6 +157,6 @@ public class IfIveBeenClicked : MonoBehaviour
         currentTileSprite.color = tempColor;
 
         currentTileSprite.sprite = square;
-        rectTransform.sizeDelta = new Vector2(600, 600);
+        rectTransform.sizeDelta = new Vector2(500, 500);
     }
 }
