@@ -1320,6 +1320,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 159741584}
   m_CullTransparentMesh: 1
+--- !u!114 &160944080 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7489426936028950947, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
+  m_PrefabInstance: {fileID: 1994605894}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &164542947
 GameObject:
   m_ObjectHideFlags: 0
@@ -11185,6 +11196,7 @@ MonoBehaviour:
   tileMatching: TileMatching
   ticTacToe: TicTacToe
   rythym: RythymDemo
+  sceneNumber: 0
   firstGameplayScene: {fileID: 495208564}
   secondGameplayScene: {fileID: 1686907113}
   thirdGameplayScene: {fileID: 1838701482}
@@ -16972,6 +16984,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1698191621}
   m_CullTransparentMesh: 1
+--- !u!114 &1702647352 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4452236275780484158, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
+  m_PrefabInstance: {fileID: 1994605894}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1740770739
 GameObject:
   m_ObjectHideFlags: 0
@@ -17660,7 +17683,19 @@ PrefabInstance:
       value: AudioManager
       objectReference: {fileID: 0}
     - target: {fileID: 6974965757228919458, guid: 2864a291c6639407c92fa2e79720b896, type: 3}
+      propertyPath: volumeSliderSFX
+      value: 
+      objectReference: {fileID: 160944080}
+    - target: {fileID: 6974965757228919458, guid: 2864a291c6639407c92fa2e79720b896, type: 3}
+      propertyPath: volumeSliderMusic
+      value: 
+      objectReference: {fileID: 1702647352}
+    - target: {fileID: 6974965757228919458, guid: 2864a291c6639407c92fa2e79720b896, type: 3}
       propertyPath: sounds.Array.data[4].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974965757228919458, guid: 2864a291c6639407c92fa2e79720b896, type: 3}
+      propertyPath: sounds.Array.data[4].isSong
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6974965757228919459, guid: 2864a291c6639407c92fa2e79720b896, type: 3}
@@ -20206,7 +20241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5604740481062617891, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15577.568
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5604740481062617891, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
       propertyPath: m_LocalRotation.w
