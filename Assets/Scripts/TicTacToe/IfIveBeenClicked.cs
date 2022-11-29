@@ -145,4 +145,16 @@ public class IfIveBeenClicked : MonoBehaviour
         yield return new WaitForSeconds(secondsToPause);
         TicTacToeRunner.runGame = true;
     }
+
+    public void ResetSprite()
+    {
+        var rectTransform = GetComponent<RectTransform>();
+
+        Color tempColor = currentTileSprite.color;
+        tempColor.a = 0f;
+        currentTileSprite.color = tempColor;
+
+        currentTileSprite.sprite = square;
+        rectTransform.sizeDelta = new Vector2(600, 600);
+    }
 }

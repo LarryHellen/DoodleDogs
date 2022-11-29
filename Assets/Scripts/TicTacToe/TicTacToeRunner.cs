@@ -291,6 +291,8 @@ public class TicTacToeRunner : MonoBehaviour
             for (int j = 0; j < 3; j++)
             {
                 board[i][j].GetComponent<IfIveBeenClicked>().type = 0;
+                board[i][j].GetComponent<IfIveBeenClicked>().ResetSprite();
+
             }
         }
 
