@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class MainNoteScript : MonoBehaviour
 {
-
     public float BPM;
     public string NOTE_TYPE;
 
@@ -18,6 +18,13 @@ public class MainNoteScript : MonoBehaviour
     private float Timer, LastTime = 0;
 
     public float noteGoneAtThisValue;
+
+    public float noteOpacityBeGone;
+
+    public SpriteRenderer spriteRenderer;
+
+
+
 
     void OnMouseDown()
     {
@@ -40,6 +47,8 @@ public class MainNoteScript : MonoBehaviour
     void Start()
     {
         BPM = BPM / 1000;
+
+        spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
     }
 
     // Update is called once per frame
@@ -62,16 +71,22 @@ public class MainNoteScript : MonoBehaviour
 
         }
 
+        if (transform.position[1] < noteOpacityBeGone)
+        {
+            spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+        }
+
+
         if (transform.position[1] < noteGoneAtThisValue)
-            {
+        {
                 TextSetScript.Score = 0;
                 Destroy(gameObject);
-            }
-            else if (HoldTimeNeeded <= HoldTime)
-            {
+        }
+        else if (HoldTimeNeeded <= HoldTime)
+        {
                 Destroy(gameObject);
                 TextSetScript.Score++;
-            }
+        }
 
 
     }

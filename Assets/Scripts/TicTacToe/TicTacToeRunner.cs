@@ -695,7 +695,7 @@ public class TicTacToeRunner : MonoBehaviour
 
         distanceBetweenTiles = width / 6420;
 
-        print(distanceBetweenTiles);
+        print(distanceBetweenTiles);    
         */
 
 
