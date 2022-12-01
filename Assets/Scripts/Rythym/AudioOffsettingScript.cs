@@ -10,6 +10,7 @@ public class AudioOffsettingScript : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioMixer _MasterMixer;
+    public float delay;
 
 
 
@@ -18,7 +19,7 @@ public class AudioOffsettingScript : MonoBehaviour
     void Start()
     {
         _MasterMixer.SetFloat("silencePlease", -80f);
-        audioSource.PlayDelayed(1f);
+        audioSource.PlayDelayed(delay);
     }
 
     // Update is called once per frame

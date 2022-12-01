@@ -391,6 +391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 196860436}
   _MasterMixer: {fileID: 24100000, guid: 70c7f59ac02e64e5090cd79a80f320e5, type: 2}
+  delay: 5
 --- !u!82 &196860436
 AudioSource:
   m_ObjectHideFlags: 0
@@ -580,7 +581,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &383012341
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1074,8 +1075,8 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  distanceBetween: 280
-  noteOffset: 435
+  distanceBetween: 325
+  noteOffset: 490
   spawnHeight: 1700
 --- !u!82 &553787653
 AudioSource:

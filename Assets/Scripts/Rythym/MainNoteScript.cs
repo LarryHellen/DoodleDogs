@@ -21,7 +21,7 @@ public class MainNoteScript : MonoBehaviour
 
     public float noteOpacityBeGone;
 
-    public SpriteRenderer spriteRenderer;
+    public Image spriteRenderer;
 
 
 
