@@ -91,7 +91,11 @@ MonoBehaviour:
   NOTE_TYPE: TAP
   HoldTimeNeeded: 80
   noteGoneAtThisValue: -80
+<<<<<<< Updated upstream
   noteOpacityBeGone: 30
+=======
+  noteOpacityBeGone: 25
+>>>>>>> Stashed changes
   spriteRenderer: {fileID: 1200767205854645947}
   initialOpacity: 0.3
   endOpacity: 1
