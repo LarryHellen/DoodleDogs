@@ -24,6 +24,15 @@ public class MainNoteScript : MonoBehaviour
     public Image spriteRenderer;
 
 
+    public float initialOpacity;
+
+    public float endOpacity;
+
+    private float currentOpacity;
+
+    //private bool becomeVisible = false;
+
+
 
 
     void OnMouseDown()
@@ -48,7 +57,9 @@ public class MainNoteScript : MonoBehaviour
     {
         BPM = BPM / 1000;
 
-        spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
+        currentOpacity = initialOpacity;
+
+        spriteRenderer.color = new Color(1f, 1f, 1f, currentOpacity);
     }
 
     // Update is called once per frame
@@ -68,12 +79,13 @@ public class MainNoteScript : MonoBehaviour
         {
             transform.position = transform.position - new Vector3(0, BPM, 0);
             LastTime = Timer;
-
+            
         }
 
         if (transform.position[1] < noteOpacityBeGone)
         {
-            spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+            spriteRenderer.color = new Color(1f, 1f, 1f, endOpacity);
+            //becomeVisible = true;
         }
 
 

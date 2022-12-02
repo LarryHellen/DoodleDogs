@@ -39,10 +39,10 @@ public class FourAudioNoteSpawner : MonoBehaviour
     public float minimumMaxFreq;
 
 
-    public float[] samples1 = new float[64];
-    public float[] samples2 = new float[64];
-    public float[] samples3 = new float[64];
-    public float[] samples4 = new float[64];
+    private float[] samples1 = new float[64];
+    private float[] samples2 = new float[64];
+    private float[] samples3 = new float[64];
+    private float[] samples4 = new float[64];
 
 
 
@@ -57,6 +57,14 @@ public class FourAudioNoteSpawner : MonoBehaviour
     public float noteOffset;
 
     public float spawnHeight;
+
+
+    public bool prioritizeLane1;
+    public bool prioritizeLane2;
+    public bool prioritizeLane3;
+    public bool prioritizeLane4;
+
+    private List<bool> lanePrioritization = new List<bool>();
 
 
 
@@ -93,6 +101,11 @@ public class FourAudioNoteSpawner : MonoBehaviour
             percentHigherThanCloseAvg3,
             percentHigherThanCloseAvg4
         };
+
+        lanePrioritization.Add(prioritizeLane1);
+        lanePrioritization.Add(prioritizeLane2);
+        lanePrioritization.Add(prioritizeLane3);
+        lanePrioritization.Add(prioritizeLane4);
     }
 
 
@@ -114,8 +127,22 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
                 for (int i = 0; i < 4; i++)
                 {
-                    print(i);
-                    //print(intervalsPast);
+
+                    if (FullNoteList[intervalsPast][0] + FullNoteList[intervalsPast][1] + FullNoteList[intervalsPast][2] + FullNoteList[intervalsPast][3] >= 3)
+                    {
+                        for (int j = 0; j < 4; j++)
+                        {
+                            if (lanePrioritization[j] == true && FullNoteList[intervalsPast][j] == 1)
+                            {
+                                FullNoteList[intervalsPast][j] = 1;
+                            }
+                            else
+                            {
+                                FullNoteList[intervalsPast][j] = 0;
+                            }
+                        }
+                    }
+
                     if (FullNoteList[intervalsPast][i] == 1)
                     {
                         GameObject ANote = Instantiate(Note, new Vector3(distanceBetween * i - noteOffset, spawnHeight, 0), Quaternion.identity);

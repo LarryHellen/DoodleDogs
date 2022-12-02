@@ -91,8 +91,10 @@ MonoBehaviour:
   NOTE_TYPE: TAP
   HoldTimeNeeded: 80
   noteGoneAtThisValue: -80
-  noteOpacityBeGone: 0
+  noteOpacityBeGone: 30
   spriteRenderer: {fileID: 1200767205854645947}
+  initialOpacity: 0.3
+  endOpacity: 1
 --- !u!114 &332456168473787172
 MonoBehaviour:
   m_ObjectHideFlags: 0
