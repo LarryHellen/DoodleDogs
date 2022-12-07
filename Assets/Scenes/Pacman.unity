@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tile: {fileID: 6873037727603861317}
-  tileSize: 0
+  tileSize: 1
   mapWidth: 2
   mapHeight: 2
   spawnHeightOffset: 0

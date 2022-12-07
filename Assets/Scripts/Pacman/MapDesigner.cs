@@ -13,26 +13,17 @@ public class MapDesigner : MonoBehaviour
     public float spawnHeightOffset;
     public float spawnWidthOffset;
 
-    public static List<List<int>> mapList;
+    public List<List<int>> mapList = new List<List<int>>();
 
 
     void Start()
     {
-        GameObject sizingTile = Instantiate(tile, new Vector2(0, 0), Quaternion.identity);
-        sizingTile.transform.localScale = new Vector2(tileSize, tileSize);
 
-        Collider2D tileCollider = sizingTile.GetComponent<Collider2D>();
-        Vector2 actualTileSize = tileCollider.bounds.size;
-
-        float actualTileHeight = actualTileSize[0];
-        float actualTileWidth = actualTileSize[1];
-
-
-        for (int i = 0; i < mapHeight; i++)
+        for (int i = 0; i < mapWidth; i++)
         {
             List<int> tempList = new List<int>();
 
-            for (int j = 0; j < mapWidth; j++)
+            for (int j = 0; j < mapHeight; j++)
             {
                 tempList.Add(0);
             }
@@ -48,7 +39,7 @@ public class MapDesigner : MonoBehaviour
         {
             for (int j = 0; j < mapHeight; j++)
             {
-                GameObject currentTile = Instantiate(tile, new Vector2(0, 0), Quaternion.identity);
+                GameObject currentTile = Instantiate(tile, new Vector2(i*tileSize - spawnWidthOffset, j*tileSize - spawnHeightOffset), Quaternion.identity);
 
                 currentTile.GetComponent<TileScript>().xCoord = i;
                 currentTile.GetComponent<TileScript>().yCoord = j;
@@ -63,23 +54,5 @@ public class MapDesigner : MonoBehaviour
     {
 
     }
-
-
-
-
-    /*
-    
-    public GameObject cube;
-    public Vector3 sizeChange; // This has to be set for (x,y,z) in the editor
-    //public float cubeSize = 0.2f;
-    void OnMouseDown()
-    {
-        cube.transform.localScale = cube.transform.localScale - sizeChange;    
-    }
-
-    */
-
-
-
 }
 

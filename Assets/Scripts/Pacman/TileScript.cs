@@ -12,6 +12,8 @@ public class TileScript : MonoBehaviour
 
     public GameObject mapDesigner;
 
+    private MapDesigner mapDesignerScript;
+
     void PlaceTile()
     {
         if (Input.GetMouseButtonDown(0))
@@ -20,18 +22,21 @@ public class TileScript : MonoBehaviour
 
             if (this.GetComponent<Collider2D>().OverlapPoint(mousePosition))
             {
-                /*
-                if (mapDesigner.GetComponent<MapDesigner>().mapList[yCoord][xCoord] = 1) //tmp1.GetComponent<IfIveBeenClicked>().type.
+
+                if (mapDesignerScript.mapList[yCoord][xCoord] == 1) //tmp1.GetComponent<IfIveBeenClicked>().type.
                 {
-                    mapDesigner.GetComponent<MapDesigner>().mapList[yCoord][xCoord] = 0;
+                    mapDesignerScript.mapList[yCoord][xCoord] = 0;
                     spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
                 }
                 else
                 {
-                    mapDesigner.GetComponent<MapDesigner>().mapList[yCoord][xCoord] = 1;
+                    mapDesignerScript.mapList[yCoord][xCoord] = 1;
                     spriteRenderer.color = new Color(0f, 0f, 0f, 1f);
                 }
-                */
+
+                print(xCoord);
+                print(yCoord);
+                
             }
         }
     }
@@ -39,7 +44,7 @@ public class TileScript : MonoBehaviour
 
     void Start()
     {
-        
+        mapDesignerScript = mapDesigner.GetComponent<MapDesigner>();
     }
 
     void Update()
