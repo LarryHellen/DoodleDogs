@@ -20,7 +20,7 @@ public class TileScript : MonoBehaviour
 
             if (this.GetComponent<Collider2D>().OverlapPoint(mousePosition))
             {
-                
+                /*
                 if (mapDesigner.GetComponent<MapDesigner>().mapList[yCoord][xCoord] = 1) //tmp1.GetComponent<IfIveBeenClicked>().type.
                 {
                     mapDesigner.GetComponent<MapDesigner>().mapList[yCoord][xCoord] = 0;
@@ -31,7 +31,7 @@ public class TileScript : MonoBehaviour
                     mapDesigner.GetComponent<MapDesigner>().mapList[yCoord][xCoord] = 1;
                     spriteRenderer.color = new Color(0f, 0f, 0f, 1f);
                 }
-                
+                */
             }
         }
     }
