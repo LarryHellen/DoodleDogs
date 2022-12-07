@@ -237,8 +237,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tile: {fileID: 6873037727603861317}
+  tileSize: 0
   mapWidth: 2
   mapHeight: 2
+  spawnHeightOffset: 0
+  spawnWidthOffset: 0
 --- !u!4 &570558342
 Transform:
   m_ObjectHideFlags: 0
@@ -261,17 +264,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1498394050305382211, guid: 8edf23a6b4ea24b9c8a0c84b63871229, type: 3}
+      propertyPath: mapDesigner
+      value: 
+      objectReference: {fileID: 570558340}
     - target: {fileID: 1985790614142267170, guid: 8edf23a6b4ea24b9c8a0c84b63871229, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1985790614142267170, guid: 8edf23a6b4ea24b9c8a0c84b63871229, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30.179836
+      value: -1.53
       objectReference: {fileID: 0}
     - target: {fileID: 1985790614142267170, guid: 8edf23a6b4ea24b9c8a0c84b63871229, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.009035
+      value: 4.29
       objectReference: {fileID: 0}
     - target: {fileID: 1985790614142267170, guid: 8edf23a6b4ea24b9c8a0c84b63871229, type: 3}
       propertyPath: m_LocalPosition.z
