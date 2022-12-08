@@ -5,6 +5,9 @@ using System.Collections.Generic;
 public class MapDesigner : MonoBehaviour
 {
     public GameObject tile;
+    public GameObject renderButton;
+    public GameObject mapDesigningGameObject;
+
     public float tileSize;
 
     public int mapWidth;
@@ -13,11 +16,20 @@ public class MapDesigner : MonoBehaviour
     public float spawnHeightOffset;
     public float spawnWidthOffset;
 
+    public bool mapEditor;
+
     public List<List<int>> mapList = new List<List<int>>();
 
 
     void Start()
     {
+
+        if (mapEditor == false)
+        {
+            renderButton.SetActive(false);
+            tile.SetActive(false);
+            mapDesigningGameObject.SetActive(false);
+        }
 
         for (int i = 0; i < mapWidth; i++)
         {
@@ -49,6 +61,32 @@ public class MapDesigner : MonoBehaviour
         }
     }
 
+    public void RenderMap()
+    {
+        mapList.Reverse();
+
+        string totalString = "mapList = new List<List<int>>()\n{\n";
+
+
+        foreach (List<int> lineOfNums in mapList)
+        {
+            
+            string lineToBePrinted = "";
+
+            foreach(int num in lineOfNums)
+            {
+                lineToBePrinted += num + ", ";
+            }
+
+            totalString += "    new List<int>(){" + lineToBePrinted + "}, \n";
+        }
+
+        totalString += "};";
+
+        print(totalString);
+
+        mapList.Reverse();
+    }
 
     void Update()
     {
