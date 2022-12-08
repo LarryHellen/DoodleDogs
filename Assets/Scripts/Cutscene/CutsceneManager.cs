@@ -37,6 +37,7 @@ public class CutsceneManager : MonoBehaviour
     {
         if (!settingsMenu.activeSelf)
         {
+            Handheld.Vibrate();
             sceneNumber++;
             if (sceneNumber == cutsceneList.IndexOf(firstGameplayScene) - 1 && cutscenes == firstChapter)
             {
