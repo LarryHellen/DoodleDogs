@@ -9,8 +9,10 @@ public class TileTransform : MonoBehaviour
 
 
     public void setRectO (){
-        myRectTransform.offsetMin = new Vector2(191,664.5f);
-        myRectTransform.offsetMax = new Vector2(-191,-664.5f);
+        Vector3 previousPos = transform.position;
+        myRectTransform.offsetMin = new Vector2(191,664.5f); //Left, Top
+        myRectTransform.offsetMax = new Vector2(-191,-664.5f); //Right, Bottom
+        transform.position = previousPos;
         //left = 191
         //right = 191
         //top = 664.5
@@ -18,8 +20,10 @@ public class TileTransform : MonoBehaviour
     }
 
     public void setRectX (){
-        myRectTransform.offsetMin = new Vector2(156,539);
-        myRectTransform.offsetMax = new Vector2(-156,-539);
+        Vector3 previousPos = transform.position;
+        myRectTransform.offsetMin = new Vector2(156,539); //Left, Top
+        myRectTransform.offsetMax = new Vector2(-156,-539); //Right, Bottom
+        transform.position = previousPos;
         //left = 156
         //right = 156
         //top = 539
