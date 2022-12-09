@@ -16,8 +16,25 @@ public class GameRunner : MonoBehaviour
 
     public GameObject player;
 
+    private Vector2 movementList;
+
+    private Vector2 playerPos;
+
+    private Vector2 possiblePos;
+
+    private Vector2 posToBe;
+
+    private float percentageDistance;
+
+    public float timeBetweenTiles;
+
+    private float timeFraction;
+
+
     void Start()
     {
+        playerPos = spawnPosition;
+
         mapList = new List<List<int>>()
         {
             new List<int>(){1, 1, 1, 0, },
@@ -59,5 +76,90 @@ public class GameRunner : MonoBehaviour
         //On certain input, lerp to a connecting tile's position (find this position by getting the tile's coordinates and multiplying by tile size)
 
         //0,0 for tile coordinates starts in the bottom left corner
+
+        
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            print("You pressed the W key");
+            movementList = new Vector2(0f, 1f);
+
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            print("You pressed the A key");
+            movementList = new Vector2(-1f, 0f);
+
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            print("You pressed the S key");
+            movementList = new Vector2(0f, -1f);
+
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            print("You pressed the D key");
+            movementList = new Vector2(1f, 0f);
+
+        }
+
+        if (!(CheckCollisions()))
+        {
+            print("No collision this way\n\n\n\n\n\n\n\n\n\n\n");
+
+            posToBe = playerPos + movementList;
+
+            percentageDistance = 0;
+
+
+            timeFraction = Time.deltaTime / timeBetweenTiles;
+
+            percentageDistance += timeFraction;
+
+            print(percentageDistance);
+
+            //while (percentageDistance < 1f)
+            //{
+            //player.transform.position = Vector2.Lerp(player.transform.position, new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset)), 1);
+            player.transform.position = new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset));
+            //}
+
+            playerPos = posToBe;
+        }
+        else
+        {
+            print("Collision over here");
+        }
+    }
+
+    bool CheckCollisions()
+    {
+        possiblePos = playerPos + movementList;
+        try
+        {
+            print(movementList);
+            print(playerPos);
+            print(possiblePos);
+
+            if (mapList[(int)possiblePos[0]][(int)possiblePos[1]] == 1)
+            {
+                print("    Wall Collision");
+                return true;
+                
+            }
+            else
+            {
+                print("    No Collision");
+                return false;
+
+            }
+        }
+        catch
+        {
+            print("    Edge Collision");
+            return true;
+
+        }
     }
 }
