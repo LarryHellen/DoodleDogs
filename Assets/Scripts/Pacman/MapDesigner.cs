@@ -31,34 +31,39 @@ public class MapDesigner : MonoBehaviour
             mapDesigningGameObject.SetActive(false);
         }
 
-        for (int i = 0; i < mapWidth; i++)
+        if (mapEditor != false)
         {
-            List<int> tempList = new List<int>();
 
-            for (int j = 0; j < mapHeight; j++)
+            for (int i = 0; i < mapWidth; i++)
             {
-                tempList.Add(0);
+                List<int> tempList = new List<int>();
+
+                for (int j = 0; j < mapHeight; j++)
+                {
+                    tempList.Add(0);
+                }
+
+                mapList.Add(tempList);
             }
 
-            mapList.Add(tempList);
-        }
+
+            //Multiply distances by actualTileHeight and actualTileWidth for proper position scaling with tile size
 
 
-        //Multiply distances by actualTileHeight and actualTileWidth for proper position scaling with tile size
-
-
-        for (int i = 0; i < mapWidth; i++)
-        {
-            for (int j = 0; j < mapHeight; j++)
+            for (int i = 0; i < mapWidth; i++)
             {
-                GameObject currentTile = Instantiate(tile, new Vector2(i*tileSize - spawnWidthOffset, j*tileSize - spawnHeightOffset), Quaternion.identity);
+                for (int j = 0; j < mapHeight; j++)
+                {
+                    GameObject currentTile = Instantiate(tile, new Vector2(i * tileSize - spawnWidthOffset, j * tileSize - spawnHeightOffset), Quaternion.identity);
 
-                currentTile.GetComponent<TileScript>().xCoord = i;
-                currentTile.GetComponent<TileScript>().yCoord = j;
+                    currentTile.GetComponent<TileScript>().xCoord = i;
+                    currentTile.GetComponent<TileScript>().yCoord = j;
 
-                currentTile.transform.localScale = new Vector2(tileSize, tileSize);
+                    currentTile.transform.localScale = new Vector2(tileSize, tileSize);
+                }
             }
         }
+        
     }
 
     public void RenderMap()

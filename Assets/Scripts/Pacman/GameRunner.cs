@@ -65,7 +65,6 @@ public class GameRunner : MonoBehaviour
 
 
         //SPAWN PLAYER WITH SCALED POSITION (MULTIPLY BY TILE SIZE)
-        mapList[(int) spawnPosition[0]][(int) spawnPosition[1]] = 2;
         GameObject currentPlayer = Instantiate(player, new Vector2(spawnPosition[0] * tileSize - spawnWidthOffset, spawnPosition[1] * tileSize - spawnHeightOffset), Quaternion.identity);
 
     }

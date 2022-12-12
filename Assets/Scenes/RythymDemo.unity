@@ -808,7 +808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b68927666a45d4ad2792a2e62031f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Note: {fileID: 0}
+  Note: {fileID: 1920921261662179915, guid: 0d05f81cf4c7f44ddb08d335946c198e, type: 3}
   audioSource1: {fileID: 553787656}
   audioSource2: {fileID: 553787655}
   audioSource3: {fileID: 553787654}
