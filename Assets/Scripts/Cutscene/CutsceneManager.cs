@@ -32,6 +32,12 @@ public class CutsceneManager : MonoBehaviour
         cutsceneList[sceneNumber].SetActive(true);
     }
 
+    private void ChangeSceneBack()
+    {
+        //FindObjectOfType<AudioManager>().Play("FlipPage");
+        cutsceneList[sceneNumber + 1].SetActive(false);
+        cutsceneList[sceneNumber].SetActive(true);
+    }
 
     private void OnMouseDown()
     {
@@ -39,6 +45,7 @@ public class CutsceneManager : MonoBehaviour
         {
             Handheld.Vibrate();
             sceneNumber++;
+
             if (sceneNumber == cutsceneList.IndexOf(firstGameplayScene) - 1 && cutscenes == firstChapter)
             {
                 PlayerPrefs.SetInt("played", 1);
@@ -148,4 +155,26 @@ public class CutsceneManager : MonoBehaviour
         sceneNumber = start;
         cutsceneList[start].SetActive(true);
     }
+
+    public void backButton()
+    {
+        if (sceneNumber > 0 && !settingsMenu.activeSelf) 
+        {
+            if(sceneNumber - 1 != cutsceneList.IndexOf(firstGameplayScene) && sceneNumber - 1 != cutsceneList.IndexOf(secondGameplayScene) && cutscenes == firstChapter)
+            {
+                sceneNumber--;
+                ChangeSceneBack();
+            }
+            else if (sceneNumber - 1 != cutsceneList.IndexOf(thirdGameplayScene) && sceneNumber - 1 != cutsceneList.IndexOf(fourthGameplayScene) && cutscenes == secondChapter)
+            {
+                sceneNumber--;
+                ChangeSceneBack();
+            }
+            else if (sceneNumber - 1 != cutsceneList.IndexOf(fifthGameplayScene) && sceneNumber - 1 != cutsceneList.IndexOf(sixthGameplayScene) && cutscenes == secondChapter)
+            {
+                sceneNumber--;
+                ChangeSceneBack();
+            }
+        }
+       }
 }
