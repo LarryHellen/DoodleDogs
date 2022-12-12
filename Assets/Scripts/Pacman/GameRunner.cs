@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class GameRunner : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class GameRunner : MonoBehaviour
 
     private Vector2 movementList;
 
-    private Vector2 playerPos;
+    public Vector2 playerPos;
 
     private Vector2 possiblePos;
 
@@ -30,6 +31,20 @@ public class GameRunner : MonoBehaviour
 
     private float timeFraction;
 
+    private GameObject currentPlayer;
+
+    void PrintOutMapList()
+    {
+        foreach (List<int> listThing in mapList)
+        {
+            string aString = "";
+            foreach (int num in listThing)
+            {
+                aString += num + " ";
+            }
+            print(aString);
+        }
+    }
 
     void Start()
     {
@@ -37,9 +52,9 @@ public class GameRunner : MonoBehaviour
 
         mapList = new List<List<int>>()
         {
-            new List<int>(){1, 1, 1, 0, },
-            new List<int>(){1, 0, 1, 0, },
-            new List<int>(){0, 0, 0, 0, },
+            new List<int>(){1, 1, 1, 1, },
+            new List<int>(){0, 0, 0, 1, },
+            new List<int>(){0, 0, 0, 1, },
             new List<int>(){0, 1, 0, 1, },
         };
 
@@ -63,10 +78,13 @@ public class GameRunner : MonoBehaviour
 
         }
 
+        mapList.Reverse();
+
+        PrintOutMapList();
 
         //SPAWN PLAYER WITH SCALED POSITION (MULTIPLY BY TILE SIZE)
-        GameObject currentPlayer = Instantiate(player, new Vector2(spawnPosition[0] * tileSize - spawnWidthOffset, spawnPosition[1] * tileSize - spawnHeightOffset), Quaternion.identity);
-
+        currentPlayer = Instantiate(player, new Vector2(spawnPosition[0] * tileSize - spawnWidthOffset, spawnPosition[1] * tileSize - spawnHeightOffset), Quaternion.identity);
+        
     }
 
 
@@ -80,32 +98,34 @@ public class GameRunner : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            print("You pressed the W key");
+            //print("You pressed the W key");
             movementList = new Vector2(0f, 1f);
 
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            print("You pressed the A key");
+            //print("You pressed the A key");
             movementList = new Vector2(-1f, 0f);
 
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            print("You pressed the S key");
+            //print("You pressed the S key");
             movementList = new Vector2(0f, -1f);
 
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            print("You pressed the D key");
+            //print("You pressed the D key");
             movementList = new Vector2(1f, 0f);
 
         }
 
         if (!(CheckCollisions()))
         {
-            print("No collision this way\n\n\n\n\n\n\n\n\n\n\n");
+
+            //print("No collision this way\n\n\n\n\n\n\n\n\n\n\n");
+            
 
             posToBe = playerPos + movementList;
 
@@ -116,19 +136,19 @@ public class GameRunner : MonoBehaviour
 
             percentageDistance += timeFraction;
 
-            print(percentageDistance);
+            //print(percentageDistance);
 
             //while (percentageDistance < 1f)
             //{
             //player.transform.position = Vector2.Lerp(player.transform.position, new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset)), 1);
-            player.transform.position = new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset));
+            currentPlayer.transform.position = new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset));
             //}
 
             playerPos = posToBe;
         }
         else
         {
-            print("Collision over here");
+            //print("Collision over here");
         }
     }
 
@@ -137,26 +157,27 @@ public class GameRunner : MonoBehaviour
         possiblePos = playerPos + movementList;
         try
         {
-            print(movementList);
-            print(playerPos);
-            print(possiblePos);
+            //print(movementList);
+            //print(playerPos);
+            //print(possiblePos);
 
             if (mapList[(int)possiblePos[0]][(int)possiblePos[1]] == 1)
             {
-                print("    Wall Collision");
+                //print("    Wall Collision");
                 return true;
                 
             }
             else
             {
-                print("    No Collision");
+                //print("    No Collision");
                 return false;
 
             }
         }
-        catch
+        catch (Exception e)
         {
-            print("    Edge Collision");
+            //print(e);
+            //print("    Edge Collision");
             return true;
 
         }
