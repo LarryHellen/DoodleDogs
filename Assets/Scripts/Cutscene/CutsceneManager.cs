@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class CutsceneManager : MonoBehaviour
 {
     public GameObject settingsMenu;
+    public GameObject cutscene1Num7, cutscene1End;
     private GameObject cutscenes;
     public GameObject firstChapter;
     public GameObject secondChapter;
@@ -39,9 +40,16 @@ public class CutsceneManager : MonoBehaviour
         cutsceneList[sceneNumber].SetActive(true);
     }
 
+    public void buttonForwardYes()
+    {
+        Handheld.Vibrate();
+        sceneNumber++;
+        ChangeScene();
+    }
+
     private void OnMouseDown()
     {
-        if (!settingsMenu.activeSelf)
+        if (!settingsMenu.activeSelf && !cutscene1Num7.activeSelf)
         {
             Handheld.Vibrate();
             sceneNumber++;
