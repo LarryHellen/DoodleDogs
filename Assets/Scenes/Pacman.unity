@@ -524,12 +524,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b533285f42b0846a894121987b7f011f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPosition: {x: 0, y: 0}
+  spawnPosition: {x: 1, y: 1}
   wallTile: {fileID: 6192885977710643903, guid: 58f11c66e369e4a71af19bddff5ce063, type: 3}
   tileSize: 1
   spawnHeightOffset: 0
   spawnWidthOffset: 1
   player: {fileID: 6075859397909390092, guid: d9e64365c56ae4513aebd14c8fd4b624, type: 3}
+  playerPos: {x: 0, y: 0}
+  timeBetweenTiles: 0
 --- !u!4 &935140226
 Transform:
   m_ObjectHideFlags: 0

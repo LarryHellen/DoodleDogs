@@ -59,13 +59,11 @@ public class GameRunner : MonoBehaviour
         };
 
 
-        mapList.Reverse();
-
         for (int i = 0; i < mapList.Count; i++)
         {
             for (int j = 0; j < mapList[0].Count; j++)
             {
-                if (mapList[j][i] == 1)
+                if (mapList[i][j] == 1)
                 {
                     GameObject currentTile = Instantiate(wallTile, new Vector2(i * tileSize - spawnWidthOffset, j * tileSize - spawnHeightOffset), Quaternion.identity);
 
@@ -78,7 +76,6 @@ public class GameRunner : MonoBehaviour
 
         }
 
-        mapList.Reverse();
 
         PrintOutMapList();
 
@@ -124,7 +121,7 @@ public class GameRunner : MonoBehaviour
         if (!(CheckCollisions()))
         {
 
-            //print("No collision this way\n\n\n\n\n\n\n\n\n\n\n");
+            print("No collision this way\n\n\n\n\n\n\n\n\n\n\n");
             
 
             posToBe = playerPos + movementList;
@@ -138,11 +135,11 @@ public class GameRunner : MonoBehaviour
 
             //print(percentageDistance);
 
-            //while (percentageDistance < 1f)
-            //{
-            //player.transform.position = Vector2.Lerp(player.transform.position, new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset)), 1);
-            currentPlayer.transform.position = new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset));
-            //}
+            while (percentageDistance < 1f)
+            {
+            player.transform.position = Vector2.Lerp(player.transform.position, new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset)), percentageDistance);
+            //currentPlayer.transform.position = new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset));
+            }
 
             playerPos = posToBe;
         }
