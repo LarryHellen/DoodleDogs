@@ -15,7 +15,7 @@ public class GameRunner : MonoBehaviour
     public float spawnHeightOffset;
     public float spawnWidthOffset;
 
-    public GameObject player;
+    public GameObject playerPrefab;
 
     private Vector2 movementList;
 
@@ -28,6 +28,10 @@ public class GameRunner : MonoBehaviour
     private float percentageDistance;
 
     public float timeBetweenTiles;
+
+    public float coroutineTimeBetween;
+
+    public float waitTime;
 
     private float timeFraction;
 
@@ -80,7 +84,7 @@ public class GameRunner : MonoBehaviour
         PrintOutMapList();
 
         //SPAWN PLAYER WITH SCALED POSITION (MULTIPLY BY TILE SIZE)
-        currentPlayer = Instantiate(player, new Vector2(spawnPosition[0] * tileSize - spawnWidthOffset, spawnPosition[1] * tileSize - spawnHeightOffset), Quaternion.identity);
+        currentPlayer = Instantiate(playerPrefab, new Vector2(spawnPosition[0] * tileSize - spawnWidthOffset, spawnPosition[1] * tileSize - spawnHeightOffset), Quaternion.identity);
         
     }
 
@@ -91,7 +95,50 @@ public class GameRunner : MonoBehaviour
 
         //0,0 for tile coordinates starts in the bottom left corner
 
-        
+
+        StartCoroutine(movementCode());
+
+
+        if (!(CheckCollisions()))
+        {
+            waitABit();
+
+            print("No collision this way\n\n\n\n\n\n\n\n\n\n\n");
+            
+
+            posToBe = playerPos + movementList;
+
+            percentageDistance = 0;
+
+
+            //print(percentageDistance);
+
+            while (percentageDistance < 1f)
+            {
+                print("yo");
+                print(percentageDistance);
+
+
+                timeFraction = Time.deltaTime / timeBetweenTiles;
+
+                percentageDistance += timeFraction;
+
+                currentPlayer.transform.position = Vector2.Lerp(currentPlayer.transform.position, new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset)), percentageDistance);
+                //currentPlayer.transform.position = new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset));
+            }
+
+            playerPos = posToBe;
+        }
+        else
+        {
+            //print("Collision over here");
+        }
+        //StartCoroutine(TestingCoroutine());
+    }
+
+
+    public IEnumerator movementCode()
+    {
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -118,36 +165,15 @@ public class GameRunner : MonoBehaviour
 
         }
 
-        if (!(CheckCollisions()))
-        {
-
-            print("No collision this way\n\n\n\n\n\n\n\n\n\n\n");
-            
-
-            posToBe = playerPos + movementList;
-
-            percentageDistance = 0;
-
-
-            timeFraction = Time.deltaTime / timeBetweenTiles;
-
-            percentageDistance += timeFraction;
-
-            //print(percentageDistance);
-
-            while (percentageDistance < 1f)
-            {
-            player.transform.position = Vector2.Lerp(player.transform.position, new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset)), percentageDistance);
-            //currentPlayer.transform.position = new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset));
-            }
-
-            playerPos = posToBe;
-        }
-        else
-        {
-            //print("Collision over here");
-        }
+        yield return new WaitForSeconds(coroutineTimeBetween);
     }
+
+
+    public IEnumerator waitABit()
+    {
+        yield return new WaitForSeconds(waitTime);
+    }
+
 
     bool CheckCollisions()
     {

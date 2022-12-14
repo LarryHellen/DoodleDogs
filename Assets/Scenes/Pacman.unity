@@ -529,9 +529,11 @@ MonoBehaviour:
   tileSize: 1
   spawnHeightOffset: 0
   spawnWidthOffset: 1
-  player: {fileID: 6075859397909390092, guid: d9e64365c56ae4513aebd14c8fd4b624, type: 3}
+  playerPrefab: {fileID: 6075859397909390092, guid: d9e64365c56ae4513aebd14c8fd4b624, type: 3}
   playerPos: {x: 0, y: 0}
-  timeBetweenTiles: 0
+  timeBetweenTiles: 10
+  coroutineTimeBetween: 0
+  waitTime: 1
 --- !u!4 &935140226
 Transform:
   m_ObjectHideFlags: 0
