@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class CutsceneManager : MonoBehaviour
 {
     public GameObject settingsMenu;
+    public GameObject backButtonDisable;
     public GameObject cutscene1Num7, cutscene1End;
     private GameObject cutscenes;
     public GameObject firstChapter;
@@ -44,12 +45,17 @@ public class CutsceneManager : MonoBehaviour
     {
         Handheld.Vibrate();
         sceneNumber++;
+        if (sceneNumber == 22)
+        {
+            backButtonDisable.SetActive(true);
+        }
         ChangeScene();
+
     }
 
     private void OnMouseDown()
     {
-        if (!settingsMenu.activeSelf && !cutscene1Num7.activeSelf)
+        if (!settingsMenu.activeSelf && !cutscene1Num7.activeSelf && !cutscene1End.activeSelf)
         {
             Handheld.Vibrate();
             sceneNumber++;
@@ -100,6 +106,10 @@ public class CutsceneManager : MonoBehaviour
                 PlayerPrefs.SetInt("played",6);
                 cutscenes = thirdChapter;
                 Setup();
+            }
+            if (sceneNumber == 21)
+            {
+                backButtonDisable.SetActive(false);
             }
             {
                 //SceneManager.LoadScene("Chapter2");
@@ -166,7 +176,7 @@ public class CutsceneManager : MonoBehaviour
 
     public void backButton()
     {
-        if (sceneNumber > 0 && !settingsMenu.activeSelf) 
+        if (sceneNumber > 0 && !settingsMenu.activeSelf && !cutscene1End.activeSelf) 
         {
             if(sceneNumber - 1 != cutsceneList.IndexOf(firstGameplayScene) && sceneNumber - 1 != cutsceneList.IndexOf(secondGameplayScene) && cutscenes == firstChapter)
             {
