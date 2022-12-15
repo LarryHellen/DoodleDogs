@@ -37,6 +37,8 @@ public class GameRunner : MonoBehaviour
 
     private GameObject currentPlayer;
 
+    private float timeElapsed;
+
     void PrintOutMapList()
     {
         foreach (List<int> listThing in mapList)
@@ -96,38 +98,20 @@ public class GameRunner : MonoBehaviour
         //0,0 for tile coordinates starts in the bottom left corner
 
 
-        StartCoroutine(movementCode());
+        StartCoroutine(MovementCode());
 
 
         if (!(CheckCollisions()))
         {
-            waitABit();
+            //waitABit();
 
-            print("No collision this way\n\n\n\n\n\n\n\n\n\n\n");
+            //print("No collision this way\n\n\n\n\n\n\n\n\n\n\n");
             
 
             posToBe = playerPos + movementList;
 
-            percentageDistance = 0;
 
-
-            //print(percentageDistance);
-
-            while (percentageDistance < 1f)
-            {
-                print("yo");
-                print(percentageDistance);
-
-
-                timeFraction = Time.deltaTime / timeBetweenTiles;
-
-                percentageDistance += timeFraction;
-
-                currentPlayer.transform.position = Vector2.Lerp(currentPlayer.transform.position, new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset)), percentageDistance);
-                //currentPlayer.transform.position = new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset));
-            }
-
-            playerPos = posToBe;
+            StartCoroutine(LerpingCode());
         }
         else
         {
@@ -137,7 +121,7 @@ public class GameRunner : MonoBehaviour
     }
 
 
-    public IEnumerator movementCode()
+    public IEnumerator MovementCode()
     {
 
         if (Input.GetKey(KeyCode.W))
@@ -168,6 +152,50 @@ public class GameRunner : MonoBehaviour
         yield return new WaitForSeconds(coroutineTimeBetween);
     }
 
+    public IEnumerator LerpingCode()
+    {
+        percentageDistance = 0;
+
+
+        //print(percentageDistance);
+
+
+        while (timeElapsed < timeBetweenTiles)
+        {
+            currentPlayer.transform.position = Vector2.Lerp(currentPlayer.transform.position, new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset)), timeElapsed / timeBetweenTiles);
+            timeElapsed += Time.deltaTime;
+            //print("This thing");
+        }
+
+        //print("this other thing");
+        currentPlayer.transform.position = new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset));
+
+        timeElapsed = 0;
+
+        yield return new WaitForSeconds(waitTime);
+        /*
+        while (percentageDistance < 1f)
+        {
+            print("yo");
+            print(percentageDistance);
+
+
+            timeFraction = Time.deltaTime / timeBetweenTiles;
+
+            percentageDistance += timeFraction;
+
+
+
+            currentPlayer.transform.position = Vector2.Lerp(currentPlayer.transform.position, new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset)), timeFraction);
+            //currentPlayer.transform.position = new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset));
+        }
+        */
+
+        playerPos = posToBe;
+
+
+        yield return null;
+    }
 
     public IEnumerator waitABit()
     {
