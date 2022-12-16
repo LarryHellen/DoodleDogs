@@ -8220,13 +8220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   star2: {fileID: 1525407787}
-<<<<<<< HEAD
   star3: {fileID: 0}
   star4: {fileID: 0}
-=======
-  star3: {fileID: 1866867223}
-  star4: {fileID: 1537319466}
->>>>>>> PROD
   star5: {fileID: 28987590}
   slide: {fileID: 706427643}
 --- !u!114 &706427643
@@ -17799,11 +17794,6 @@ Transform:
   - {fileID: 1133066586}
   - {fileID: 151300033}
   - {fileID: 1525407786}
-<<<<<<< HEAD
-=======
-  - {fileID: 1866867222}
-  - {fileID: 1537319465}
->>>>>>> PROD
   - {fileID: 28987589}
   - {fileID: 706427641}
   m_Father: {fileID: 1970674056}
@@ -18232,11 +18222,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< HEAD
   m_RootOrder: 4
-=======
-  m_RootOrder: 5
->>>>>>> PROD
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1584714392
 GameObject:
