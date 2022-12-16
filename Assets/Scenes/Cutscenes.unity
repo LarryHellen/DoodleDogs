@@ -398,7 +398,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1565561676}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7970,7 +7970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &681815681
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8200,7 +8200,7 @@ RectTransform:
   - {fileID: 1043678564}
   - {fileID: 390896185}
   m_Father: {fileID: 1565561676}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8220,8 +8220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   star2: {fileID: 1525407787}
-  star3: {fileID: 0}
-  star4: {fileID: 0}
+  star3: {fileID: 1866867223}
+  star4: {fileID: 1537319466}
   star5: {fileID: 28987590}
   slide: {fileID: 706427643}
 --- !u!114 &706427643
@@ -11322,7 +11322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1032830422
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17794,8 +17794,10 @@ Transform:
   - {fileID: 1133066586}
   - {fileID: 151300033}
   - {fileID: 1525407786}
-  - {fileID: 28987589}
+  - {fileID: 1866867222}
+  - {fileID: 1537319465}
   - {fileID: 706427641}
+  - {fileID: 28987589}
   m_Father: {fileID: 1970674056}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
