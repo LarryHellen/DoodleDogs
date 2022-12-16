@@ -111,7 +111,7 @@ public class GameRunner : MonoBehaviour
             posToBe = playerPos + movementList;
 
 
-            StartCoroutine(LerpingCode());
+            StartCoroutine(LerpingCode(new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset)), timeBetweenTiles));
         }
         else
         {
@@ -150,51 +150,25 @@ public class GameRunner : MonoBehaviour
         }
 
         yield return new WaitForSeconds(coroutineTimeBetween);
-    }
+    } // currentPlayer.transform.position = Vector2.Lerp(currentPlayer.transform.position, new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset)), timeElapsed / timeBetweenTiles);
 
-    public IEnumerator LerpingCode()
+    public IEnumerator LerpingCode(Vector2 targetPosition, float duration)
     {
-        percentageDistance = 0;
+        float time = 0;
+        Vector2 startPosition = currentPlayer.transform.position;
 
+        
 
-        //print(percentageDistance);
-
-
-        while (timeElapsed < timeBetweenTiles)
+        while (time < duration)
         {
-            currentPlayer.transform.position = Vector2.Lerp(currentPlayer.transform.position, new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset)), timeElapsed / timeBetweenTiles);
-            timeElapsed += Time.deltaTime;
-            //print("This thing");
+            currentPlayer.transform.position = Vector2.Lerp(startPosition, targetPosition, time / duration);
+            time += Time.deltaTime;
+            yield return null;
         }
 
-        //print("this other thing");
-        currentPlayer.transform.position = new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset));
-
-        timeElapsed = 0;
-
-        yield return new WaitForSeconds(waitTime);
-        /*
-        while (percentageDistance < 1f)
-        {
-            print("yo");
-            print(percentageDistance);
-
-
-            timeFraction = Time.deltaTime / timeBetweenTiles;
-
-            percentageDistance += timeFraction;
-
-
-
-            currentPlayer.transform.position = Vector2.Lerp(currentPlayer.transform.position, new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset)), timeFraction);
-            //currentPlayer.transform.position = new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset));
-        }
-        */
+        currentPlayer.transform.position = targetPosition;
 
         playerPos = posToBe;
-
-
-        yield return null;
     }
 
     public IEnumerator waitABit()

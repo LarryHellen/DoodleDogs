@@ -533,7 +533,7 @@ MonoBehaviour:
   playerPos: {x: 0, y: 0}
   timeBetweenTiles: 1
   coroutineTimeBetween: 0
-  waitTime: 1
+  waitTime: 0
 --- !u!4 &935140226
 Transform:
   m_ObjectHideFlags: 0
