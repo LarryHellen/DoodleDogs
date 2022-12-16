@@ -15,7 +15,7 @@ public class GameRunner : MonoBehaviour
     public float spawnHeightOffset;
     public float spawnWidthOffset;
 
-    public GameObject player;
+    public GameObject playerPrefab;
 
     private Vector2 movementList;
 
@@ -29,9 +29,15 @@ public class GameRunner : MonoBehaviour
 
     public float timeBetweenTiles;
 
+    public float coroutineTimeBetween;
+
+    public float waitTime;
+
     private float timeFraction;
 
     private GameObject currentPlayer;
+
+    private float timeElapsed;
 
     void PrintOutMapList()
     {
@@ -59,13 +65,11 @@ public class GameRunner : MonoBehaviour
         };
 
 
-        mapList.Reverse();
-
         for (int i = 0; i < mapList.Count; i++)
         {
             for (int j = 0; j < mapList[0].Count; j++)
             {
-                if (mapList[j][i] == 1)
+                if (mapList[i][j] == 1)
                 {
                     GameObject currentTile = Instantiate(wallTile, new Vector2(i * tileSize - spawnWidthOffset, j * tileSize - spawnHeightOffset), Quaternion.identity);
 
@@ -78,12 +82,11 @@ public class GameRunner : MonoBehaviour
 
         }
 
-        mapList.Reverse();
 
         PrintOutMapList();
 
         //SPAWN PLAYER WITH SCALED POSITION (MULTIPLY BY TILE SIZE)
-        currentPlayer = Instantiate(player, new Vector2(spawnPosition[0] * tileSize - spawnWidthOffset, spawnPosition[1] * tileSize - spawnHeightOffset), Quaternion.identity);
+        currentPlayer = Instantiate(playerPrefab, new Vector2(spawnPosition[0] * tileSize - spawnWidthOffset, spawnPosition[1] * tileSize - spawnHeightOffset), Quaternion.identity);
         
     }
 
@@ -94,7 +97,32 @@ public class GameRunner : MonoBehaviour
 
         //0,0 for tile coordinates starts in the bottom left corner
 
-        
+
+        StartCoroutine(MovementCode());
+
+
+        if (!(CheckCollisions()))
+        {
+            //waitABit();
+
+            //print("No collision this way\n\n\n\n\n\n\n\n\n\n\n");
+            
+
+            posToBe = playerPos + movementList;
+
+
+            StartCoroutine(LerpingCode());
+        }
+        else
+        {
+            //print("Collision over here");
+        }
+        //StartCoroutine(TestingCoroutine());
+    }
+
+
+    public IEnumerator MovementCode()
+    {
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -121,36 +149,59 @@ public class GameRunner : MonoBehaviour
 
         }
 
-        if (!(CheckCollisions()))
+        yield return new WaitForSeconds(coroutineTimeBetween);
+    }
+
+    public IEnumerator LerpingCode()
+    {
+        percentageDistance = 0;
+
+
+        //print(percentageDistance);
+
+
+        while (timeElapsed < timeBetweenTiles)
         {
+            currentPlayer.transform.position = Vector2.Lerp(currentPlayer.transform.position, new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset)), timeElapsed / timeBetweenTiles);
+            timeElapsed += Time.deltaTime;
+            //print("This thing");
+        }
 
-            //print("No collision this way\n\n\n\n\n\n\n\n\n\n\n");
-            
+        //print("this other thing");
+        currentPlayer.transform.position = new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset));
 
-            posToBe = playerPos + movementList;
+        timeElapsed = 0;
 
-            percentageDistance = 0;
+        yield return new WaitForSeconds(waitTime);
+        /*
+        while (percentageDistance < 1f)
+        {
+            print("yo");
+            print(percentageDistance);
 
 
             timeFraction = Time.deltaTime / timeBetweenTiles;
 
             percentageDistance += timeFraction;
 
-            //print(percentageDistance);
 
-            //while (percentageDistance < 1f)
-            //{
-            //player.transform.position = Vector2.Lerp(player.transform.position, new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset)), 1);
-            currentPlayer.transform.position = new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset));
-            //}
 
-            playerPos = posToBe;
+            currentPlayer.transform.position = Vector2.Lerp(currentPlayer.transform.position, new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset)), timeFraction);
+            //currentPlayer.transform.position = new Vector2((posToBe[0] * tileSize - spawnWidthOffset), (posToBe[1] * tileSize - spawnHeightOffset));
         }
-        else
-        {
-            //print("Collision over here");
-        }
+        */
+
+        playerPos = posToBe;
+
+
+        yield return null;
     }
+
+    public IEnumerator waitABit()
+    {
+        yield return new WaitForSeconds(waitTime);
+    }
+
 
     bool CheckCollisions()
     {
