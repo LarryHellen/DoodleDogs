@@ -12,6 +12,7 @@ public class CutsceneManager : MonoBehaviour
     public GameObject firstChapter;
     public GameObject secondChapter;
     public GameObject thirdChapter;
+    public GameObject fourthChapter;
     public string tileMatching;
     public string ticTacToe;
     public string rythym;
@@ -25,6 +26,8 @@ public class CutsceneManager : MonoBehaviour
     public GameObject fourthGameplayScene;
     public GameObject fifthGameplayScene;
     public GameObject sixthGameplayScene;
+    public GameObject seventhGameplayScene;
+    public GameObject eighthGameplayScene;
 
 
     private void ChangeScene()
@@ -92,6 +95,18 @@ public class CutsceneManager : MonoBehaviour
                 PlayerPrefs.SetInt("played", 8);
                 SceneManager.LoadScene(rythym);
             }
+            else if (sceneNumber == cutsceneList.IndexOf(seventhGameplayScene) - 1 && cutscenes == fourthChapter)
+            {
+                PlayerPrefs.SetInt("played", 10);
+                SceneManager.LoadScene(rythym);
+
+                Debug.Log("got here rythym");
+            }
+            else if (sceneNumber == cutsceneList.IndexOf(eighthGameplayScene) - 1 && cutscenes == fourthChapter)
+            {
+                PlayerPrefs.SetInt("played", 11);
+                SceneManager.LoadScene(rythym);
+            }
             else if (sceneNumber < cutscenes.transform.childCount)
             {
                 ChangeScene();
@@ -105,6 +120,13 @@ public class CutsceneManager : MonoBehaviour
                 cutscenes.SetActive(false);
                 PlayerPrefs.SetInt("played",6);
                 cutscenes = thirdChapter;
+                Setup();
+            }
+            else if (PlayerPrefs.GetInt("played") == 8)
+            {
+                cutscenes.SetActive(false);
+                PlayerPrefs.SetInt("played", 9);
+                cutscenes = fourthChapter;
                 Setup();
             }
             if (sceneNumber == 21)
@@ -125,7 +147,7 @@ public class CutsceneManager : MonoBehaviour
                 cutscenes = firstChapter;
             } else if(PlayerPrefs.GetInt("played") > 2 && PlayerPrefs.GetInt("played") < 6){
                 cutscenes = secondChapter;
-            } else{
+            } else if(PlayerPrefs.GetInt("played") > 5 && PlayerPrefs.GetInt("played") < 9){
                 cutscenes = thirdChapter;
             }
         } else {
@@ -161,7 +183,11 @@ public class CutsceneManager : MonoBehaviour
             } else if (PlayerPrefs.GetInt("played") == 7){
                 start = cutsceneList.IndexOf(fifthGameplayScene) + 1;
             } else if (PlayerPrefs.GetInt("played") == 8){
-                start = cutsceneList.IndexOf(fifthGameplayScene) + 1;
+                start = cutsceneList.IndexOf(sixthGameplayScene) + 1;
+            } else if (PlayerPrefs.GetInt("played") == 9){
+                start = cutsceneList.IndexOf(seventhGameplayScene) + 1;
+            } else if (PlayerPrefs.GetInt("played") == 10){
+                start = cutsceneList.IndexOf(eighthGameplayScene) + 1;
             }
         }
 
@@ -188,7 +214,12 @@ public class CutsceneManager : MonoBehaviour
                 sceneNumber--;
                 ChangeSceneBack();
             }
-            else if (sceneNumber - 1 != cutsceneList.IndexOf(fifthGameplayScene) && sceneNumber - 1 != cutsceneList.IndexOf(sixthGameplayScene) && cutscenes == secondChapter)
+            else if (sceneNumber - 1 != cutsceneList.IndexOf(fifthGameplayScene) && sceneNumber - 1 != cutsceneList.IndexOf(sixthGameplayScene) && cutscenes == thirdChapter)
+            {
+                sceneNumber--;
+                ChangeSceneBack();
+            }
+            else if (sceneNumber - 1 != cutsceneList.IndexOf(seventhGameplayScene) && sceneNumber - 1 != cutsceneList.IndexOf(eighthGameplayScene) && cutscenes == fourthChapter)
             {
                 sceneNumber--;
                 ChangeSceneBack();
