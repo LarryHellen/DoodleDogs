@@ -17,6 +17,10 @@ public class TicTacToeRunner : MonoBehaviour
     public float xBoardOffset;
     public float yBoardOffset;
 
+    public static bool started = false;
+
+    public bool simple;
+
     private List<List<int>> rP = new List<List<int>>()
     {
         new List<int>(){0,0},
@@ -54,7 +58,12 @@ public class TicTacToeRunner : MonoBehaviour
     private bool OHasWon;
 
 
+    public static bool currentlyRotating = false;
+
+    private GameObject tmp1, tmp2;
+
     private List<int> aiCoordsToPlaceOAt;
+
 
 
     void OnWin()
@@ -676,10 +685,142 @@ public class TicTacToeRunner : MonoBehaviour
     }
 
 
+    public List<int> NormalTicTacToeAI(List<List<GameObject>> aBoard)
+    {
 
-    public static bool currentlyRotating = false;
+        List<int> coordsToPlaceO = new List<int>();
 
-    private GameObject tmp1, tmp2;
+        List<List<GameObject>> anotherBoard = new List<List<GameObject>>();
+
+        int gameResult;
+
+
+        anotherBoard = new List<List<GameObject>>(); //REMAKING BOARD FOR NORMAL WIN CHECKING ON Xs
+
+
+        foreach (List<GameObject> gameObjectLists in aBoard) //REMAKING DUPLICATE OF CURRENT BOARD
+        {
+            List<GameObject> tmpList = new List<GameObject>();
+
+            foreach (GameObject aGameObject in gameObjectLists)
+            {
+                GameObject Tile = Instantiate(tile, new Vector3(100, 100, 0), Quaternion.identity);
+                Tile.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+                Tile.GetComponent<IfIveBeenClicked>().type = aGameObject.GetComponent<IfIveBeenClicked>().type;
+                tmpList.Add(Tile);
+            }
+
+            anotherBoard.Add(tmpList);
+        } //REMAKING DUPLICATE OF CURRENT BOARD END
+
+        int index = -1;
+
+        for (int num = 2; num > 0; num--)
+        { //LOOPING THROUGH BOTH Xs AND Os - NORMAL
+            //Debug.Log(num);
+
+            //LOOPING THROUGH EVERY POSSIBLE BOARD POSITION
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (board[i][j].GetComponent<IfIveBeenClicked>().type == 0)
+                    {
+                        anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type = num;
+
+                        gameResult = WinDetection(anotherBoard, false);
+
+
+
+                        if (gameResult == num)
+                        {
+                            //Debug.Log("-------");
+                            //DebugLogBoard(anotherBoard);
+                            //Debug.Log("-------");
+
+
+
+                            Debug.Log("I found a " + num + " win so I'm going in - NORMAL");
+                            if (toTwistOrNotToTwist == true)
+                            {
+                                for (int k = 0; k < 7; k++) //FINDING WHAT INDEX THIS (i,j) POSITION IS IN the "rP" list
+                                {
+                                    if (rP[k][0] == i && rP[k][1] == j)
+                                    {
+                                        index = k;
+                                        break;
+                                    }
+                                } //END OF THAT
+
+                                Debug.Log(index);
+                                if (index != 0)
+                                {
+                                    if (board[rP[index - 1][0]][rP[index - 1][1]].GetComponent<IfIveBeenClicked>().type == 0)
+                                    {
+                                        DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
+                                        return new List<int>() { rP[index - 1][0], rP[index - 1][1] };
+                                    }
+                                }
+                                else
+                                {
+                                    if (board[rP[7][0]][rP[7][1]].GetComponent<IfIveBeenClicked>().type == 0)
+                                    {
+                                        DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
+                                        return new List<int>() { rP[7][0], rP[7][1] };
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
+                                return new List<int>() { i, j };
+                            }
+                        }
+
+                        anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type = 0;
+                    }
+                }
+            }
+        }
+
+        Debug.Log("Going a random spot");
+
+
+        bool any0s = false;
+
+        //FIND ANY TILE LEFT OPEN AND PLACE THERE
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                if (board[i][j].GetComponent<IfIveBeenClicked>().type == 0)
+                {
+                    any0s = true;
+                    DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
+                    print(i + " and " + j);
+                    return new List<int>() { i, j };
+                }
+            }
+        }
+
+        if (any0s == false)
+        {
+            WinDetection(board, true);
+            print("This thingy rn");
+            DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
+            return new List<int>() { 0, 100 };
+        }
+
+
+        DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
+        return null;
+    }
+
+     
+    
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -698,9 +839,10 @@ public class TicTacToeRunner : MonoBehaviour
         print(distanceBetweenTiles);    
         */
 
-
+        
 
         FindObjectOfType<AudioManager>().Play("GoldenDoodleMusicBackground");
+
         for (int i = 0; i < 3; i++)
         {
             List<GameObject> row = new List<GameObject>();
@@ -711,8 +853,8 @@ public class TicTacToeRunner : MonoBehaviour
                 Vector3 tmpPos = new Vector3((j + distanceBetweenTiles * j) - xBoardOffset, (-i - distanceBetweenTiles * i) - yBoardOffset);
                 Tile.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
 
-                Tile.GetComponent<IfIveBeenClicked>().rotationBool = true;
-                Tile.GetComponent<IfIveBeenClicked>().tmpPos = tmpPos;
+                //Tile.GetComponent<IfIveBeenClicked>().rotationBool = true;
+                Tile.transform.position = tmpPos;
                 
 
                 row.Add(Tile);
@@ -720,6 +862,8 @@ public class TicTacToeRunner : MonoBehaviour
 
             board.Add(row);
         }
+
+        started = true;
     }
 
     // Update is called once per frame
@@ -733,7 +877,15 @@ public class TicTacToeRunner : MonoBehaviour
             //Debug.Log("^ Before-----After v");
 
 
-            aiCoordsToPlaceOAt = ticTacToeAI(board);
+            if (simple == true)
+            {
+                aiCoordsToPlaceOAt = NormalTicTacToeAI(board);
+            }
+            else
+            {
+                aiCoordsToPlaceOAt = ticTacToeAI(board);
+            }
+            
 
             if (aiCoordsToPlaceOAt[1] != 100)
             {
@@ -900,307 +1052,3 @@ public class TicTacToeRunner : MonoBehaviour
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//OLD AI CODE
-
-
-/*
-     int gameResult;
-
-     List <int> coordsToPlaceO = new List<int>();
-
-     List<List<GameObject>> anotherBoard = new List<List<GameObject>>();
-
-
-
-     foreach (List<GameObject> gameObjectLists in aBoard)
-     {
-         List<GameObject> tmpList = new List<GameObject>();
-
-         foreach (GameObject aGameObject in gameObjectLists)
-         {
-             Tile.GetComponent<IfIveBeenClicked>().type = aGameObject.GetComponent<IfIveBeenClicked>().type;
-             tmpList.Add(Tile);
-         }
-
-         anotherBoard.Add(tmpList);
-     }
-
-
-
-
-     List<List<int>> corners = new List<List<int>>()
-     {
-         new List<int>() { 0, 0 },
-         new List<int>() { 0, 2 },
-         new List<int>() { 2, 2 },
-         new List<int>() { 2, 0 }
-     };
-
-
-
-     tmp2 = anotherBoard[rP[0][0]][rP[0][1]];
-
-     for (int i = 0; i < 8; i++)
-     {
-         //Debug.Log(i);
-
-         tmp1 = anotherBoard[rP[i + 1][0]][rP[i + 1][1]];
-
-         anotherBoard[rP[i + 1][0]][rP[i + 1][1]] = tmp2;
-
-         tmp2 = tmp1;
-     }
-
-
-
-     Debug.Log("vvvvvvvvvvvvvvvvv");
-
-     DebugLogBoard(anotherBoard);
-
-     Debug.Log("^^^^^^^^^^^^^^^^");
-
-
-
-     //Disconnect between places an O can be placed and how it checks it
-
-     //Reconnect the disconnect by moving back the position in the rotated board, "anotherBoard" when placing | Something to do with rP[i+j-1][0] and rP[i+j-1][1]
-     int index = -1;
-     int before;
-
-
-
-
-
-     for (int num = 1; num < 3; num++)
-     {
-         Debug.Log("Placing " + num + "s rn");
-
-         for (int i = 0; i < 3; i++)
-         {
-             for (int j = 0; j < 3; j++)
-             {
-
-                 Debug.Log(i + "," + j);
-
-                 if (aBoard[i][j].GetComponent<IfIveBeenClicked>().type == 0) //Board is getting perma-changed bc there is a disconnect between this position and this position on the rotated board
-                 {
-
-                     List<int> anotherAnotherTmpList = new List<int>() { i, j };
-
-
-                     for (int k = 0; k < 7; k++)
-                     {
-                         if (rP[k][0] == anotherAnotherTmpList[0] && rP[k][1] == anotherAnotherTmpList[1])
-                         {
-                             index = k;
-                             break;
-                         }
-                     }
-
-
-
-                     if (index == -1)
-                     {
-                         before = anotherBoard[1][1].GetComponent<IfIveBeenClicked>().type;
-                         anotherBoard[1][1].GetComponent<IfIveBeenClicked>().type = num;
-                     }
-                     else
-                     {
-                         before = anotherBoard[rP[index][0]][rP[index][1]].GetComponent<IfIveBeenClicked>().type;
-                         anotherBoard[rP[index][0]][rP[index][1]].GetComponent<IfIveBeenClicked>().type = num;
-                     }
-
-
-
-                     Debug.Log("[[[[[[[[[[[[[[[[[[[[");
-                     DebugLogBoard(anotherBoard);
-                     Debug.Log("[[[[[[[[[[[[[[[[[[[[");
-
-
-
-
-                     gameResult = WinDetection(anotherBoard, false);
-
-                     if (gameResult == num)
-                     {
-                         if (index == 0)
-                         {
-
-                             Debug.Log("Found an " + num + "win with " + rP[7][0] + "," + rP[7][1]);
-
-
-                             coordsToPlaceO = new List<int>() { rP[7][0], rP[7][1] };
-
-                             if (board[coordsToPlaceO[0]][coordsToPlaceO[1]].GetComponent<IfIveBeenClicked>().type != 0)
-                             {
-                                 coordsToPlaceO = new List<int>();
-                             }
-                             else
-                             {
-                                 DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
-
-                                 return coordsToPlaceO;
-                             }
-                         }
-                         else if (index == -1)
-                         {
-                             Debug.Log("Found an " + num + "win with " + 1 + "," + 1);
-
-
-                             coordsToPlaceO = new List<int>() { 1, 1 };
-
-                             if (board[coordsToPlaceO[0]][coordsToPlaceO[1]].GetComponent<IfIveBeenClicked>().type != 0)
-                             {
-                                 coordsToPlaceO = new List<int>();
-                             }
-                             else
-                             {
-                                 DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
-
-                                 return coordsToPlaceO;
-                             }
-                         }
-                         else
-                         {
-
-                             Debug.Log("Found an " + num + "win with " + rP[index][0] + "," + rP[index][1]);
-
-
-                             coordsToPlaceO = new List<int>() { rP[index - 1][0], rP[index - 1][1] };
-
-                             if (board[coordsToPlaceO[0]][coordsToPlaceO[1]].GetComponent<IfIveBeenClicked>().type != 0)
-                             {
-                                 coordsToPlaceO = new List<int>();
-                             }
-                             else
-                             {
-                                 DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
-
-                                 return coordsToPlaceO;
-                             }
-                         }
-                     }
-
-                     if (index == 0)
-                     {
-                         anotherBoard[rP[0][0]][rP[0][1]].GetComponent<IfIveBeenClicked>().type = before;
-                     }
-                     else if (index == -1)
-                     {
-                         anotherBoard[1][1].GetComponent<IfIveBeenClicked>().type = before;
-                     }
-                     else
-                     {
-                         anotherBoard[rP[index][0]][rP[index][1]].GetComponent<IfIveBeenClicked>().type = before;
-                     }
-
-             }
-         }
-     }
- }
-
-
-
-
-
-
-     //Random.Range(0, waves.Count)
-     if (turnCounter == 1 && board[1][1].GetComponent<IfIveBeenClicked>().type == 0)
-     {
-         return new List<int>() {1, 1};
-
-
-
-
-
-
-         for (int i = 0; i < 3; i++)
-         {
-             for (int j = 0; j < 3; j++)
-             {
-                 if (anotherBoard[i][j].GetComponent<IfIveBeenClicked>().type == 1)
-                 {
-                     if (i == 0 && j == 1)
-                     {
-                         coordsToPlaceO.Add(rP[7][0]);
-                         coordsToPlaceO.Add(rP[7][1]);
-                         DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
-                         return coordsToPlaceO;
-                     }
-                     else
-                     {
-                         for (int k = 0; k < 7; k++)
-                         {
-                             if (rP[k][0] == i && rP[k][1] == j)
-                             {
-                                 index = k;
-                                 Debug.Log(index);
-                                 break;
-                             }
-                         }
-
-                         coordsToPlaceO.Add(rP[index - 2][0]);
-                         coordsToPlaceO.Add(rP[index - 2][1]);
-                         DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
-                         return coordsToPlaceO;
-                     }
-                 }
-             }
-         }
-
-     }
-
-
-     Debug.Log("Didn't find any wins so I'm winging it");
-
-
-     List<List<int>> anotherTmpList = new List<List<int>>();
-
-     foreach (List<int> coords in corners)
-     {
-         if (board[coords[0]][coords[1]].GetComponent<IfIveBeenClicked>().type == 0)
-         {
-             anotherTmpList.Add(coords);
-         }
-     }
-
-     if (anotherTmpList.Count != 0)
-     {
-         coordsToPlaceO = anotherTmpList[Random.Range(0, anotherTmpList.Count)];
-     }
-
-
-     //IF NO CORNERS LEFT RANDOMLY SELECT A REMAINING TILE
-     if (coordsToPlaceO.Count == 0)
-     {
-         for (int i = 0; i < 3; i++)
-         {
-             for (int j = 0; j < 3; j++)
-             {
-                 if (board[i][j].GetComponent<IfIveBeenClicked>().type == 0)
-                 {
-                     coordsToPlaceO.Add(i);
-                     coordsToPlaceO.Add(j);
-                     DeleteAllTheThingsInThisListOfListOfGameObjects(anotherBoard);
-                     return coordsToPlaceO;
-                 }
-             }
-         }
-     }
-     */

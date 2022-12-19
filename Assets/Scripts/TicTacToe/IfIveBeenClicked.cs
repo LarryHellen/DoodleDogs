@@ -34,7 +34,7 @@ public class IfIveBeenClicked : MonoBehaviour
     void OnMouseDown()
     {
         
-        if (TicTacToeRunner.runGame && ActivateSettings.gameRunning)
+        if (TicTacToeRunner.runGame && ActivateSettings.gameRunning && TicTacToeRunner.started == true)
         {
             if (type == 0)
             {
