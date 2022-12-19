@@ -13463,6 +13463,7 @@ MonoBehaviour:
   firstChapter: {fileID: 1970674055}
   secondChapter: {fileID: 1958038817}
   thirdChapter: {fileID: 734557417}
+  fourthChapter: {fileID: 1032830421}
   tileMatching: TileMatching
   ticTacToe: TicTacToe
   rythym: RythymDemo
@@ -13473,6 +13474,8 @@ MonoBehaviour:
   fourthGameplayScene: {fileID: 959249753}
   fifthGameplayScene: {fileID: 1080880423}
   sixthGameplayScene: {fileID: 588068185}
+  seventhGameplayScene: {fileID: 2145349838}
+  eighthGameplayScene: {fileID: 681815680}
 --- !u!60 &1243183808
 PolygonCollider2D:
   m_ObjectHideFlags: 0
