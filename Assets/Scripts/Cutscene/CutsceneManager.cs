@@ -184,9 +184,9 @@ public class CutsceneManager : MonoBehaviour
                 start = cutsceneList.IndexOf(fifthGameplayScene) + 1;
             } else if (PlayerPrefs.GetInt("played") == 8){
                 start = cutsceneList.IndexOf(sixthGameplayScene) + 1;
-            } else if (PlayerPrefs.GetInt("played") == 9){
-                start = cutsceneList.IndexOf(seventhGameplayScene) + 1;
             } else if (PlayerPrefs.GetInt("played") == 10){
+                start = cutsceneList.IndexOf(seventhGameplayScene) + 1;
+            } else if (PlayerPrefs.GetInt("played") == 11){
                 start = cutsceneList.IndexOf(eighthGameplayScene) + 1;
             }
         }
