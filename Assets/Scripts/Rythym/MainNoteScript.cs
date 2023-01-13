@@ -33,8 +33,6 @@ public class MainNoteScript : MonoBehaviour
     //private bool becomeVisible = false;
 
 
-
-
     void OnMouseDown()
     {
         BeingClicked = true;
@@ -46,12 +44,14 @@ public class MainNoteScript : MonoBehaviour
 
     }
 
+
     void OnMouseUp()
     {
         BeingClicked = false;
 
         HoldTime = 0;
     }
+
 
     void Start()
     {
@@ -61,6 +61,7 @@ public class MainNoteScript : MonoBehaviour
 
         spriteRenderer.color = new Color(1f, 1f, 1f, currentOpacity);
     }
+
 
     // Update is called once per frame
     void Update()
@@ -99,7 +100,6 @@ public class MainNoteScript : MonoBehaviour
                 Destroy(gameObject);
                 TextSetScript.Score++;
         }
-
 
     }
 }
