@@ -2,6 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+
+
+
+//THIS SCRIPT IS NOT USED IN THE ACTUAL PROGRAM, PLEASE REFER TO FourAudioNoteSpawner FOR THE CODE FOR NOTE SPAWNING
+
+
+
+
+
 public class NoteSpawningScript : MonoBehaviour
 {
     public GameObject Note;
@@ -28,26 +39,11 @@ public class NoteSpawningScript : MonoBehaviour
         {
             //print("NOTE SPAWNING SCRIPT STUFF " + FourAudioNoteSpawner.patternONotes[0] + FourAudioNoteSpawner.patternONotes[1] + FourAudioNoteSpawner.patternONotes[2] + FourAudioNoteSpawner.patternONotes[3]);
             for (int i = 0; i < 4; i++) {
-                print(i);
                 //print(intervalsPast);
                 if (FourAudioNoteSpawner.FullNoteList[intervalsPast][i] == 1)
                 {
-                    print(i);
-
                     GameObject ANote = Instantiate(Note, new Vector3(i, 8, 0), Quaternion.identity); 
                     ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "TAP";
-
-                    /*
-                    else //HOLD NOTE
-                    {
-                        GameObject ANote = (GameObject)Instantiate(Note, new Vector3(((1f * i)%4) - 1.5f, 8, 0), Quaternion.identity);
-                        ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "HOLD";
-                        ANote.transform.localScale = new Vector3(1f, 3f, 0.1f);
-                        var cubeRenderer = ANote.GetComponent<Renderer>();
-                        cubeRenderer.material.SetColor("_Color", Color.blue);
-                    }
-                    */
-                    
                 }
             }
             intervalsPast++;

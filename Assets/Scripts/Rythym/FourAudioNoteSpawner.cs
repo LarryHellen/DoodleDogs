@@ -10,6 +10,8 @@ public class FourAudioNoteSpawner : MonoBehaviour
 {
     public GameObject Note;
 
+    public GameObject HoldNote;
+
     List<AudioSource> audioSourceList = new List<AudioSource>();
 
     List<float[]> sampleList = new List<float[]>();
@@ -65,6 +67,9 @@ public class FourAudioNoteSpawner : MonoBehaviour
     public bool prioritizeLane4;
 
     private List<bool> lanePrioritization = new List<bool>();
+
+
+    public int maxHoldNoteLength;
 
 
 
@@ -143,11 +148,53 @@ public class FourAudioNoteSpawner : MonoBehaviour
                         }
                     }
 
-                    if (FullNoteList[intervalsPast][i] == 1)
+
+                    if (intervalsPast - maxHoldNoteLength < 0)
                     {
-                        GameObject ANote = Instantiate(Note, new Vector3(distanceBetween * i - noteOffset, spawnHeight, 0), Quaternion.identity);
-                        ANote.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
-                        ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "TAP";
+                        print("Saved from getting an exception because of delayed note spawning");
+
+                        //Just don't do the below thing lol
+                    }
+                    else if (FullNoteList[intervalsPast - maxHoldNoteLength][i] == 1)
+                    {
+                        int lengthOfHoldNote = 0;
+
+
+                        for (int j = 0; j < maxHoldNoteLength; j++)
+                        {
+                            if (FullNoteList[intervalsPast - maxHoldNoteLength + j + 1][i] == 1)
+                            {
+                                lengthOfHoldNote++;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+
+
+                        if (lengthOfHoldNote > 1)
+                        {
+                            print("Hold Note Spawn");
+
+                            for (int j = 0; j < maxHoldNoteLength; j++)
+                            {
+                                FullNoteList[intervalsPast - maxHoldNoteLength + j + 1][i] = 0;
+                            }
+
+                            GameObject ANote = Instantiate(HoldNote, new Vector3(distanceBetween * i - noteOffset, spawnHeight, 0), Quaternion.identity); //CHANGE THE GAMEOBJECT TO A HOLD NOTE GAMEOBJECT? Possibly stretch a gameobject depending on lengthofHoldNote then rest of normal note code
+                            ANote.GetComponent<HoldNoteScript>().lengthOfHoldNote = lengthOfHoldNote;
+                            ANote.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+                            ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "HOLD";
+                        }
+                        else
+                        {
+                            GameObject ANote = Instantiate(Note, new Vector3(distanceBetween * i - noteOffset, spawnHeight, 0), Quaternion.identity);
+                            ANote.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+                            ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "TAP";
+                        }
+
+
                     }
                 }
 

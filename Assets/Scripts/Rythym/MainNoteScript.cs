@@ -37,11 +37,11 @@ public class MainNoteScript : MonoBehaviour
     {
         BeingClicked = true;
 
+
         if (NOTE_TYPE == "TAP") { 
             Destroy(gameObject);
             TextSetScript.Score++;
         }
-
     }
 
 
@@ -95,7 +95,7 @@ public class MainNoteScript : MonoBehaviour
                 TextSetScript.Score = 0;
                 Destroy(gameObject);
         }
-        else if (HoldTimeNeeded <= HoldTime)
+        else if (HoldTime >= HoldTimeNeeded && NOTE_TYPE == "HOLD")
         {
                 Destroy(gameObject);
                 TextSetScript.Score++;
