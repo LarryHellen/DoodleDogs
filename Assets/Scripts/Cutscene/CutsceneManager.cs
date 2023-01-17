@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+
 
 public class CutsceneManager : MonoBehaviour
 {
@@ -28,6 +32,8 @@ public class CutsceneManager : MonoBehaviour
     public GameObject sixthGameplayScene;
     public GameObject seventhGameplayScene;
     public GameObject eighthGameplayScene;
+
+    public int cutsceneNum;
 
 
     private void ChangeScene()
@@ -65,67 +71,75 @@ public class CutsceneManager : MonoBehaviour
 
             if (sceneNumber == cutsceneList.IndexOf(firstGameplayScene) - 1 && cutscenes == firstChapter)
             {
-                PlayerPrefs.SetInt("played", 1);
-                SceneManager.LoadScene(tileMatching);
+                cutsceneNum = 1;
+                sceneLoader(tileMatching);
+                //SceneManager.LoadScene(tileMatching);
 
                 Debug.Log("got here tile");
             }
             else if (sceneNumber == cutsceneList.IndexOf(secondGameplayScene) - 1 && cutscenes == firstChapter)
             {
-                PlayerPrefs.SetInt("played", 2);
-                SceneManager.LoadScene(tileMatching);
+                cutsceneNum = 2;
+                sceneLoader(tileMatching);
             }
             else if (sceneNumber == cutsceneList.IndexOf(thirdGameplayScene) - 1 && cutscenes == secondChapter)
             {
-                PlayerPrefs.SetInt("played", 4);
-                SceneManager.LoadScene(ticTacToe);
+                cutsceneNum = 4;
+                sceneLoader(ticTacToe);
 
                 Debug.Log("got here tictac");
             }
             else if (sceneNumber == cutsceneList.IndexOf(fourthGameplayScene) - 1 && cutscenes == secondChapter)
             {
-                PlayerPrefs.SetInt("played", 5);
-                SceneManager.LoadScene(ticTacToe);
-            } else if (sceneNumber == cutsceneList.IndexOf(fifthGameplayScene) - 1 && cutscenes == thirdChapter){
-                PlayerPrefs.SetInt("played", 7);
-                SceneManager.LoadScene(rythym);
+                cutsceneNum = 5;
+                sceneLoader(ticTacToe);
+            }
+            else if (sceneNumber == cutsceneList.IndexOf(fifthGameplayScene) - 1 && cutscenes == thirdChapter)
+            {
+                cutsceneNum = 7;
+                sceneLoader(rythym);
 
                 Debug.Log("got here rythym");
-            } else if (sceneNumber == cutsceneList.IndexOf(sixthGameplayScene) - 1 && cutscenes == thirdChapter){
-                PlayerPrefs.SetInt("played", 8);
-                SceneManager.LoadScene(rythym);
+            }
+            else if (sceneNumber == cutsceneList.IndexOf(sixthGameplayScene) - 1 && cutscenes == thirdChapter)
+            {
+                cutsceneNum = 8;
+                sceneLoader(rythym);
             }
             else if (sceneNumber == cutsceneList.IndexOf(seventhGameplayScene) - 1 && cutscenes == fourthChapter)
             {
-                PlayerPrefs.SetInt("played", 10);
-                SceneManager.LoadScene(rythym);
+                cutsceneNum = 10;
+                sceneLoader(rythym);
 
                 Debug.Log("got here rythym");
             }
             else if (sceneNumber == cutsceneList.IndexOf(eighthGameplayScene) - 1 && cutscenes == fourthChapter)
             {
-                PlayerPrefs.SetInt("played", 11);
-                SceneManager.LoadScene(rythym);
+                cutsceneNum = 11;
+                sceneLoader(rythym);
             }
             else if (sceneNumber < cutscenes.transform.childCount)
             {
                 ChangeScene();
             }
-            else if(PlayerPrefs.GetInt("played") == 2){
+            else if (cutsceneNum == 2)
+            {
                 cutscenes.SetActive(false);
-                PlayerPrefs.SetInt("played",3);
+                cutsceneNum = 3;
                 cutscenes = secondChapter;
                 Setup();
-            } else if (PlayerPrefs.GetInt("played") == 5){
+            }
+            else if (cutsceneNum == 5)
+            {
                 cutscenes.SetActive(false);
-                PlayerPrefs.SetInt("played",6);
+                cutsceneNum = 6;
                 cutscenes = thirdChapter;
                 Setup();
             }
-            else if (PlayerPrefs.GetInt("played") == 8)
+            else if (cutsceneNum == 8)
             {
                 cutscenes.SetActive(false);
-                PlayerPrefs.SetInt("played", 9);
+                cutsceneNum = 9;
                 cutscenes = fourthChapter;
                 Setup();
             }
@@ -142,23 +156,28 @@ public class CutsceneManager : MonoBehaviour
 
     void Start()
     {
-        if(PlayerPrefs.HasKey("played")){
-            if(PlayerPrefs.GetInt("played") < 3){
-                cutscenes = firstChapter;
-            } else if(PlayerPrefs.GetInt("played") > 2 && PlayerPrefs.GetInt("played") < 6){
-                cutscenes = secondChapter;
-            } else if(PlayerPrefs.GetInt("played") > 5 && PlayerPrefs.GetInt("played") < 9){
-                cutscenes = thirdChapter;
-            }
-        } else {
+        //cutsceneNum = 0;
+        LoadByJSON();
+
+        if (cutsceneNum < 3)
+        {
             cutscenes = firstChapter;
+        }
+        else if (cutsceneNum > 2 && cutsceneNum < 6)
+        {
+            cutscenes = secondChapter;
+        }
+        else if (cutsceneNum > 5 && cutsceneNum < 9)
+        {
+            cutscenes = thirdChapter;
         }
 
         Setup();
 
     }
 
-    void Setup(){
+    void Setup()
+    {
         sceneNumber = 0;
         cutscenes.SetActive(true);
 
@@ -171,24 +190,37 @@ public class CutsceneManager : MonoBehaviour
 
         int start = 0;
 
-        if(PlayerPrefs.HasKey("played")){
-            if(PlayerPrefs.GetInt("played") == 1){
-                start = cutsceneList.IndexOf(firstGameplayScene) + 1;
-            } else if (PlayerPrefs.GetInt("played") == 2){
-                start = cutsceneList.IndexOf(secondGameplayScene) + 1;
-            } else if (PlayerPrefs.GetInt("played") == 4){
-                start = cutsceneList.IndexOf(thirdGameplayScene) + 1;
-            } else if (PlayerPrefs.GetInt("played") == 5){
-                start = cutsceneList.IndexOf(fourthGameplayScene) + 1;
-            } else if (PlayerPrefs.GetInt("played") == 7){
-                start = cutsceneList.IndexOf(fifthGameplayScene) + 1;
-            } else if (PlayerPrefs.GetInt("played") == 8){
-                start = cutsceneList.IndexOf(sixthGameplayScene) + 1;
-            } else if (PlayerPrefs.GetInt("played") == 10){
-                start = cutsceneList.IndexOf(seventhGameplayScene) + 1;
-            } else if (PlayerPrefs.GetInt("played") == 11){
-                start = cutsceneList.IndexOf(eighthGameplayScene) + 1;
-            }
+        if (cutsceneNum == 1)
+        {
+            start = cutsceneList.IndexOf(firstGameplayScene) + 1;
+        }
+        else if (cutsceneNum == 2)
+        {
+            start = cutsceneList.IndexOf(secondGameplayScene) + 1;
+        }
+        else if (cutsceneNum == 4)
+        {
+            start = cutsceneList.IndexOf(thirdGameplayScene) + 1;
+        }
+        else if (cutsceneNum == 5)
+        {
+            start = cutsceneList.IndexOf(fourthGameplayScene) + 1;
+        }
+        else if (cutsceneNum == 7)
+        {
+            start = cutsceneList.IndexOf(fifthGameplayScene) + 1;
+        }
+        else if (cutsceneNum == 8)
+        {
+            start = cutsceneList.IndexOf(sixthGameplayScene) + 1;
+        }
+        else if (cutsceneNum == 10)
+        {
+            start = cutsceneList.IndexOf(seventhGameplayScene) + 1;
+        }
+        else if (cutsceneNum == 11)
+        {
+            start = cutsceneList.IndexOf(eighthGameplayScene) + 1;
         }
 
         for (int i = 0; i < cutscenes.transform.childCount; i++)
@@ -202,9 +234,9 @@ public class CutsceneManager : MonoBehaviour
 
     public void backButton()
     {
-        if (sceneNumber > 0 && !settingsMenu.activeSelf && !cutscene1End.activeSelf) 
+        if (sceneNumber > 0 && !settingsMenu.activeSelf && !cutscene1End.activeSelf)
         {
-            if(sceneNumber - 1 != cutsceneList.IndexOf(firstGameplayScene) && sceneNumber - 1 != cutsceneList.IndexOf(secondGameplayScene) && cutscenes == firstChapter)
+            if (sceneNumber - 1 != cutsceneList.IndexOf(firstGameplayScene) && sceneNumber - 1 != cutsceneList.IndexOf(secondGameplayScene) && cutscenes == firstChapter)
             {
                 sceneNumber--;
                 ChangeSceneBack();
@@ -225,5 +257,64 @@ public class CutsceneManager : MonoBehaviour
                 ChangeSceneBack();
             }
         }
-       }
+    }
+    public PlayerData createPlayerDataObject()
+    {
+        PlayerData data = new PlayerData();
+
+        data.sceneNumber = cutsceneNum;
+
+        return data;
+    }
+
+    private void LoadFromPlayerData(PlayerData tempData)
+    {
+
+        cutsceneNum = tempData.sceneNumber;
+    }
+
+    //This was originally private, I made it public so I could access it in other scripts. Was there a reason for making it private?
+    //MARKER Object(Save Type) -> Json(String)
+    public void SaveByJSON()
+    {
+        PlayerData playerData = createPlayerDataObject();
+
+        string JsonString = JsonUtility.ToJson(playerData, true); //Convert PLAYERDATA Object into JSON();
+
+        StreamWriter sw = new StreamWriter(Application.dataPath + "/JSONData.text");
+        sw.Write(JsonString);
+        sw.Close();
+        Debug.Log("==============SAVED================");
+    }
+
+    //This was originally private, I made it public so I could access it in other scripts. Was there a reason for making it private?
+    //A: Mostly if we wanted another LoadByJSON script for a different save class. Ask me about it later FIXME: Delete if you understand
+    public void LoadByJSON()
+    {
+        if (File.Exists(Application.dataPath + "/JSONData.text"))
+        {
+            //LOAD THE GAME
+            StreamReader sr = new StreamReader(Application.dataPath + "/JSONData.text");
+
+            string JsonString = sr.ReadToEnd();
+
+            sr.Close();
+
+            //Convert JSON to the Object(PlayerData)
+            PlayerData playerData = JsonUtility.FromJson<PlayerData>(JsonString);
+
+            LoadFromPlayerData(playerData);
+
+        }
+        else
+        {
+            Debug.Log("NOT FOUND FILE");
+        }
+    }
+
+    public void sceneLoader(string name)
+    {
+        SaveByJSON();
+        SceneManager.LoadScene(name);
+    }
 }
