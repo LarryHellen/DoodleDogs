@@ -201,6 +201,7 @@ public class GameRunner : MonoBehaviour
         }
         catch (Exception e)
         {
+            print(e);
             //print(e);
             //print("    Edge Collision");
             return true;
