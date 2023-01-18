@@ -22,13 +22,14 @@ public class Board : MonoBehaviour
     public GameObject[] dots;
     public GameObject[,] allDots;
     private FindMatches findMatches;
-    private TimerCountdown timerCountdown;
+    private MoveCounter moveCounter;
     [HideInInspector]
     public CounterHolder counterHolder;
     public GameObject victoryScreen;
     public GameObject defeatScreen;
     public GameObject francois;
     private int coCount;
+    public int startingMoves;
 
     
 
@@ -36,7 +37,7 @@ public class Board : MonoBehaviour
     void Start()
     {
         findMatches = FindObjectOfType<FindMatches>();
-        timerCountdown = FindObjectOfType<TimerCountdown>();
+        moveCounter = FindObjectOfType<MoveCounter>();
         allDots = new GameObject[width,height];
         counterHolder = FindObjectOfType<CounterHolder>();
         SetUp();
@@ -171,7 +172,7 @@ public class Board : MonoBehaviour
             Destroy(dot);
         }
         counterHolder.Reset();
-        timerCountdown.Reset();
+        moveCounter.Reset();
         defeatScreen.SetActive(false);
         francois.SetActive(true);
         currentState = GameState.move;

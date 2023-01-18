@@ -15,6 +15,7 @@ public class Dot : MonoBehaviour
     public float targetY;
     public bool isMatched = false;
     private FindMatches findMatches;
+    private MoveCounter moveCounter;
     private GameObject otherDot;
     private Vector2 firstTouchPosition;
     private Vector2 finalTouchPosition;
@@ -27,6 +28,7 @@ public class Dot : MonoBehaviour
     {
         board = FindObjectOfType<Board>();
         findMatches = FindObjectOfType<FindMatches>();
+        moveCounter = FindObjectOfType<MoveCounter>();
         ActivateSettings = FindObjectOfType<ActivateSettings>();
         //targetX = (int)transform.position.x;
         //targetY = (int)transform.position.y;
@@ -105,6 +107,7 @@ public class Dot : MonoBehaviour
                 yield return new WaitForSeconds(.5f);
                 board.currentState = GameState.move;
             } else{
+                moveCounter.SpendMove();
                 board.DestroyMatches();
             }
             otherDot = null;
