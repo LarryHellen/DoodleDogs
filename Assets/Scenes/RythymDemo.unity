@@ -828,7 +828,7 @@ MonoBehaviour:
   prioritizeLane2: 0
   prioritizeLane3: 0
   prioritizeLane4: 1
-  maxHoldNoteLength: 2
+  maxHoldNoteLength: 5
 --- !u!82 &553787653
 AudioSource:
   m_ObjectHideFlags: 0

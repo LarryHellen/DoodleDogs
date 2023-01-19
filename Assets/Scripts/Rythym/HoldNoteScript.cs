@@ -7,17 +7,20 @@ public class HoldNoteScript : MonoBehaviour
     public int holdTimeConstant; //Need to test to find a good number
     public float scalingConstant; //Probably just the size of normal notes
     public int holdTimeRequired;
-
-    RectTransform rt;
+    private Vector3 scale;
+    private RectTransform rt;
 
     void Start()
     {
-        rt = this.GetComponent<RectTransform>();
+        
 
-        var scale = rt.sizeDelta;
-        scale.y = 10f;
-        rt.sizeDelta = scale;
+        
+        
+        //scale.y = 10;
+        //rt.localScale = scale;
+        
 
+        //scale = rt.localScale;
     }
 
     public void ScalingTime()
@@ -26,22 +29,17 @@ public class HoldNoteScript : MonoBehaviour
         //IMPLEMENT THE SCRIPT BELOW USING THE FUNCTIONALITY OF THE CODE WITHIN THE START FUNCTION
 
 
-        /*
-         * 
-        Vector3 scaledSize = rt.localScale;
 
-        print(scaledSize);
 
-        scaledSize[1] = (float)lengthOfHoldNote * scalingConstant;
+        rt = this.GetComponent<RectTransform>();
+        var scale = rt.localScale;
+        scale.y = (float) lengthOfHoldNote * scalingConstant;
+        rt.localScale = scale;
 
-        print(scaledSize);
-
-        rt.localScale = scaledSize;
 
         this.GetComponent<MainNoteScript>().HoldTimeNeeded = holdTimeConstant * lengthOfHoldNote;
 
         holdTimeRequired = holdTimeConstant * lengthOfHoldNote;
 
-        */
     }
 }
