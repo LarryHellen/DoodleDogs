@@ -111,6 +111,8 @@ public class FourAudioNoteSpawner : MonoBehaviour
         lanePrioritization.Add(prioritizeLane2);
         lanePrioritization.Add(prioritizeLane3);
         lanePrioritization.Add(prioritizeLane4);
+
+        FullNoteList.Add(new List<int>() {1, 0, 0, 0});
     }
 
 
@@ -184,6 +186,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
                             GameObject ANote = Instantiate(HoldNote, new Vector3(distanceBetween * i - noteOffset, spawnHeight, 0), Quaternion.identity); //CHANGE THE GAMEOBJECT TO A HOLD NOTE GAMEOBJECT? Possibly stretch a gameobject depending on lengthofHoldNote then rest of normal note code
                             ANote.GetComponent<HoldNoteScript>().lengthOfHoldNote = lengthOfHoldNote;
+                            print("Hold Note Length : " + lengthOfHoldNote);
                             ANote.GetComponent<HoldNoteScript>().ScalingTime();
                             ANote.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
                             ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "HOLD";
