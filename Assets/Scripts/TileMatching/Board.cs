@@ -50,6 +50,18 @@ public class Board : MonoBehaviour
                 SpawnDot(j,i,true);
             }
         }
+        CheckIfPossibleMatches();
+    }
+
+    private void CheckIfPossibleMatches()
+    {
+        bool possible = true;
+        //check possiblity here
+        if (!possible)
+        {
+            ResetGame();
+            SetUp();
+        }
     }
 
     private bool MatchesAt(int column, int row, GameObject piece){
