@@ -18,6 +18,7 @@ TagManager:
   - Ham Dot
   - Cheese Dot
   - Butter Dot
+  - Block Dot
   layers:
   - Default
   - TransparentFX

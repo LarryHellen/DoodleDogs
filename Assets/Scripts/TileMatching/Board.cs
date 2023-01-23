@@ -92,7 +92,31 @@ public class Board : MonoBehaviour
         if(currentState != GameState.win && currentState != GameState.lose){
             if(allDots[column,row].GetComponent<Dot>().isMatched){
                 FindObjectOfType<AudioManager>().Play("MatchSuccess");
-                counterHolder.addMatch(allDots[column,row].tag,1);
+                if(allDots[column,row].tag == "Block Dot"){
+                    List<int> exclude = new List<int>();
+                    List<string> temp = counterHolder.EmptyCounters();
+                    for(int i = 0; i < dots.Length; i++){
+                        if(dots[i].tag == "Block Dot"){
+                            exclude.Add(i);
+                        }
+                        else if(temp.IndexOf(dots[i].tag) != -1){
+                            exclude.Add(i);
+                        }
+                    }
+                    if(exclude.Count != dots.Length){
+                        for(int i = 0; i < 100; i++){
+                            int r = Random.Range(0,dots.Length-1);
+                            if(exclude.IndexOf(r) == -1)
+                            {
+                                Debug.Log("Removing match of " + dots[r].tag);
+                                counterHolder.addMatch(dots[r].tag,-1);
+                                i = 100;
+                            }
+                        }
+                    }
+                } else {
+                    counterHolder.addMatch(allDots[column,row].tag,1);
+                }
                 findMatches.currentMatches.Remove(allDots[column,row]);
                 Destroy(allDots[column,row]);
                 allDots[column,row] = null;
@@ -249,7 +273,7 @@ public class Board : MonoBehaviour
             piece.transform.position = tempPosition;
             piece.name = col + ", " + row;
             piece.transform.SetParent(FindObjectOfType<Board>().transform, true);
-            Debug.Log("" + xPos + " " + yPos + " " + piece.name);
+            //Debug.Log("" + xPos + " " + yPos + " " + piece.name);
         }
     }
 

@@ -2966,6 +2966,7 @@ MonoBehaviour:
   - {fileID: 3247555754842962652, guid: 034ce4c02a1d24d508633f4acac2aea6, type: 3}
   - {fileID: 7473812701580415757, guid: 1161fdb262a4545b4a217f745606ce41, type: 3}
   - {fileID: 1106311611364274494, guid: 42a98cf8d538144d19e620f5b2f0a7b1, type: 3}
+  - {fileID: 1106311611364274494, guid: 509c0581dfa4d4292a51ce08b1b334e8, type: 3}
   counterHolder: {fileID: 364654310}
   victoryScreen: {fileID: 1079109437}
   defeatScreen: {fileID: 728101793}

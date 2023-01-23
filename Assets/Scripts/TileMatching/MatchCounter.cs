@@ -46,8 +46,14 @@ public class MatchCounter : MonoBehaviour
         if(currentMatches >= neededMatches){
             currentMatches = neededMatches;
             full = true;
+        } else if (currentMatches < 0){
+            currentMatches = 0;
         }
         UpdateText();
+    }
+
+    public int GetMatches(){
+        return currentMatches;
     }
 
 }
