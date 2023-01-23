@@ -19,6 +19,7 @@ TagManager:
   - Cheese Dot
   - Butter Dot
   - Block Dot
+  - Tutorial Panel
   layers:
   - Default
   - TransparentFX
