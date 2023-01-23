@@ -76,5 +76,17 @@ public class CounterHolder : MonoBehaviour
         }
         return met;
     }
+
+    public List<string> EmptyCounters(){
+        List<string> emptyCounters = new List<string>();
+
+        foreach(GameObject counter in counterArray){
+            if(counter.GetComponent<MatchCounter>().GetMatches() == 0){
+                emptyCounters.Add(counter.tag);
+            }
+        }
+
+        return emptyCounters;
+    }
     
 }
