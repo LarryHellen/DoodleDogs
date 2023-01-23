@@ -120,7 +120,7 @@ MonoBehaviour:
   NOTE_TYPE: TAP
   HoldTimeNeeded: 60
   noteGoneAtThisValue: -100
-  noteOpacityBeGone: 20
+  noteOpacityBeGone: 30
   spriteRenderer: {fileID: 1061304286756781149}
   initialOpacity: 0.2
   endOpacity: 1
