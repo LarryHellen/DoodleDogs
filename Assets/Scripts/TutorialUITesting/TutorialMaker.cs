@@ -2,19 +2,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.UI;
 
 public class TutorialMaker : MonoBehaviour
 {
 
     public GameObject[] panelList;
-    public int panelIndex = 0;
+    public int panelIndex = -1;
     private List<GameObject> allCurrentPanels;
+    public Canvas canvas;
+    private float canvasHeight;
+    private float canvasWidth;
+    public GameObject defaultPanel;
 
 
     void Start()
     {
         panelList = GameObject.FindGameObjectsWithTag("Tutorial Panel"); //Put all panels with the tag "Tutorial Panel" into a list
         foreach (GameObject panel in panelList) { panel.SetActive(false); } //Hide every panel from the screen
+
+
+
+        canvas = FindObjectOfType<Canvas>(); //Get the canvas GameObject
+        canvasHeight = canvas.GetComponent<RectTransform>().rect.height; //Get the height of the canvas
+        canvasWidth = canvas.GetComponent<RectTransform>().rect.width; //Get the width of the canvas
+
+        //Testing Stuff Here
+        //CreatePanel(0f, 0f, 0f, 1f, Color.white, 0.5f);
+
 
         //NextPanel();
     }
@@ -38,6 +53,23 @@ public class TutorialMaker : MonoBehaviour
 
 
 
+
+        //3 step plan to fill in the negative space of the important panel with other panels
+
+
+
+        //Go from the bottom of the screen to the bottom egde of the panel (from panelList[panelIndex]) and create a panel in that space spanning the full width of the screen
+
+
+        //Start from the left and right sides of the important panel and continue to the screens edge with that height (create panels to fill that space)
+
+
+        //Start from the top of the important panel, move to the edge of the screen on the left and create a panel spanning the full width of the screen and the full height remaining
+
+
+
+
+
         //panelList[panelIndex].SetActive(false); <- Make the panel the negative space is being built off of hidden
         //return NegativeSpacePanels;
 
@@ -45,19 +77,26 @@ public class TutorialMaker : MonoBehaviour
     }
 
 
-    void CreatePanel() //Do this before creating the HighlightPanelNegativeSpace function
+    void CreatePanel(float xPos, float yPos, float xSize, float ySize, Color color, float opacity) //Do this before creating the HighlightPanelNegativeSpace function
     {
         //Required parameters
+        //x-pos, y-pos, size-x, size-y, color, opacity
 
-        //size-x, size-y, x-pos, y-pos, color, opacity
+
+        GameObject panel = Instantiate(defaultPanel, new Vector3(0, 0, 0), Quaternion.identity); //Creating new panel GameObject
+        panel.transform.SetParent(canvas.transform, false);
 
 
-        /*
-         GameObject panel = new GameObject("Panel");
-         panel.AddComponent<CanvasRenderer>();
-         i.color = Color.white;
-         panel.transform.SetParent(newCanvas.transform, false);
-        */
+        Image panelImage = panel.GetComponent<Image>(); //Getting the panel's Image component
+        Color tempPanelImageColor = panelImage.color; //Temporary Image Color variable
+        tempPanelImageColor = color; //Setting Color
+        tempPanelImageColor.a = opacity; //Setting Opacity
+        panelImage.color = tempPanelImageColor; //Setting Color + Opacity of the panel
+            
+
+        RectTransform panelRectTransform = panel.GetComponent<RectTransform>(); //Getting the RectTransform of the panel
+        panelRectTransform.sizeDelta = new Vector2(xSize, ySize); //Setting the size of the panel
+        panelRectTransform.position = new Vector3(xPos, yPos, 0); //Setting the position of the panel
     }
 
 
