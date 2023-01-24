@@ -77,7 +77,7 @@ public class TutorialMaker : MonoBehaviour
     }
 
 
-    void CreatePanel(float xPos, float yPos, float xSize, float ySize, Color color, float opacity) //Do this before creating the HighlightPanelNegativeSpace function
+    void CreatePanel(float xPos, float yPos, float xSize, float ySize, Color color, float opacity)
     {
         //Required parameters
         //x-pos, y-pos, size-x, size-y, color, opacity
