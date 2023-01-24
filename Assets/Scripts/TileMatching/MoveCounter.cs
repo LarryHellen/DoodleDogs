@@ -10,6 +10,7 @@ public class MoveCounter : MonoBehaviour
     private Board board;
     public int currentMoves;
     private TextMeshProUGUI textField;
+    bool tryingToEndGame;
 
 
     void Start(){
@@ -19,16 +20,23 @@ public class MoveCounter : MonoBehaviour
         UpdateText();
     }
 
+    void Update(){
+        if(board.coCount == 0 && tryingToEndGame){
+            board.endGame();
+        }
+    }
+
     public void SpendMove(){
         currentMoves--;
         UpdateText();
         if(currentMoves == 0){
-            board.endGame();
+            tryingToEndGame = true;
         }
     }
 
     public void Reset(){
         currentMoves = board.startingMoves;
+        tryingToEndGame = false;
         UpdateText();
     }
 

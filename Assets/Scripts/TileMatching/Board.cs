@@ -28,8 +28,9 @@ public class Board : MonoBehaviour
     public GameObject victoryScreen;
     public GameObject defeatScreen;
     public GameObject francois;
-    private int coCount;
+    public int coCount;
     public int startingMoves;
+    public float blockChance;
 
     
 
@@ -50,18 +51,9 @@ public class Board : MonoBehaviour
                 SpawnDot(j,i,true);
             }
         }
-        CheckDeadlock();
-    }
-
-    private void CheckDeadlock()
-    {
-        currentState = GameState.wait;
-        if (IsDeadlocked())
-        {
-            Debug.Log("Deadlocked, resetting game board");
-            ResetGame();
+        if(IsDeadlocked()){
+            ShuffleBoard();
         }
-        currentState = GameState.move;
     }
 
     private bool MatchesAt(int column, int row, GameObject piece){
@@ -232,6 +224,10 @@ public class Board : MonoBehaviour
         coCount--;
         if (coCount == 0)
         {
+            if(IsDeadlocked())
+            {
+                ShuffleBoard();
+            }
             currentState = GameState.move;
         }
         
@@ -252,7 +248,13 @@ public class Board : MonoBehaviour
             float yPos = row * yDistance + ySpawn;
             Vector2 tempPosition = new Vector2(xPos, yPos);
 
-            int dotToUse = Random.Range(0, dots.Length);
+            
+            bool retry = false;
+            int dotToUse;
+            
+            do{
+            retry = false;
+            dotToUse = Random.Range(0, dots.Length);
 
             if (noMatches)
             {
@@ -263,6 +265,14 @@ public class Board : MonoBehaviour
                     maxIterations++;
                 }
             }
+            if(dots[dotToUse].tag == "Block Dot"){
+                float prob = Random.Range(1,100);
+                prob /= 100;
+                if(prob <= blockChance){
+                    retry = true;
+                }
+            }
+            } while(retry == true);
 
             GameObject piece = Instantiate(dots[dotToUse], tempPosition, Quaternion.identity);
             allDots[col, row] = piece;
@@ -308,6 +318,9 @@ public class Board : MonoBehaviour
     }
 
     private bool SwitchAndCheck(int column, int row, Vector2 direction){
+        if(allDots[column,row].tag == "Block Dot"){
+            return false;
+        }
         SwitchPieces(column,row,direction);
         if(CheckForMatches()){
             SwitchPieces(column,row,direction);
@@ -341,5 +354,33 @@ public class Board : MonoBehaviour
             }
         }
         return true;
+    }
+
+    private void ShuffleBoard()
+    {
+        List<GameObject> newBoard = new List<GameObject>();
+        for(int i = 0; i < width; i++)
+        {
+            for(int j = 0; j < height; j++)
+            {
+                if(allDots[i,j]!=null)
+                {
+                    newBoard.Add(allDots[i,j]);
+                }
+            }
+        }
+        for(int i = 0; i < width; i++){
+            for(int j = 0; j < height; j++){
+                int pieceToUse = Random.Range(0, newBoard.Count);
+                Dot piece = newBoard[pieceToUse].GetComponent<Dot>();
+                piece.column = i;
+                piece.row = j;
+                allDots[i,j] = newBoard[pieceToUse];
+                newBoard.Remove(newBoard[pieceToUse]);
+            }
+        }
+        if(IsDeadlocked() || CheckForMatches()){
+            ShuffleBoard();
+        }
     }
 }

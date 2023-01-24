@@ -2971,7 +2971,9 @@ MonoBehaviour:
   victoryScreen: {fileID: 1079109437}
   defeatScreen: {fileID: 728101793}
   francois: {fileID: 718146748}
+  coCount: 0
   startingMoves: 15
+  blockChance: 0.5
 --- !u!1001 &6974965756729763972
 PrefabInstance:
   m_ObjectHideFlags: 0
