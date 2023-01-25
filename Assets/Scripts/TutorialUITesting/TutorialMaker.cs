@@ -8,7 +8,7 @@ public class TutorialMaker : MonoBehaviour
 {
 
     public GameObject[] panelList;
-    public int panelIndex = -1;
+    public int panelIndex = 0;
     private List<GameObject> allCurrentPanels;
     public Canvas canvas;
     private float canvasHeight;
@@ -27,11 +27,14 @@ public class TutorialMaker : MonoBehaviour
         canvasHeight = canvas.GetComponent<RectTransform>().rect.height; //Get the height of the canvas
         canvasWidth = canvas.GetComponent<RectTransform>().rect.width; //Get the width of the canvas
 
+        print(canvasWidth);
+        print(canvasHeight);
+
         //Testing Stuff Here
         //CreatePanel(0f, 0f, 0f, 1f, Color.white, 0.5f);
 
 
-        //NextPanel();
+        allCurrentPanels = HighlightPanelNegativeSpace();
     }
 
 
@@ -43,7 +46,7 @@ public class TutorialMaker : MonoBehaviour
 
     List<GameObject> HighlightPanelNegativeSpace() //Using a panelIndex, create panels in all spaces around the panel at the panelIndex in the panelList
     {
-        //List<GameObject> NegativeSpacePanels;
+        List<GameObject> NegativeSpacePanels = new List<GameObject>();
 
 
 
@@ -61,6 +64,12 @@ public class TutorialMaker : MonoBehaviour
         //Go from the bottom of the screen to the bottom egde of the panel (from panelList[panelIndex]) and create a panel in that space spanning the full width of the screen
 
 
+        RectTransform rt = panelList[panelIndex].GetComponent<RectTransform>();
+
+
+        //PANELS ARE POSITIONED COMPLETELY OFF MARGINS RELATIVE TO THE CANVAS EDGES, CHANGE THE CREATE PANEL FUNCTION TO ACCOUNT FOR THIS IN ITS VALUES
+
+
         //Start from the left and right sides of the important panel and continue to the screens edge with that height (create panels to fill that space)
 
 
@@ -73,11 +82,11 @@ public class TutorialMaker : MonoBehaviour
         //panelList[panelIndex].SetActive(false); <- Make the panel the negative space is being built off of hidden
         //return NegativeSpacePanels;
 
-        return null;
+        return NegativeSpacePanels;
     }
 
 
-    void CreatePanel(float xPos, float yPos, float xSize, float ySize, Color color, float opacity)
+    GameObject CreatePanel(float xPos, float yPos, float xSize, float ySize, Color color, float opacity) //CHANGE ALL SIZE AND POS VARS TO LEFT MARGIN, RIGHT MARGIN, TOP MARGIN and BOTTOM MARGIN
     {
         //Required parameters
         //x-pos, y-pos, size-x, size-y, color, opacity
@@ -95,22 +104,26 @@ public class TutorialMaker : MonoBehaviour
             
 
         RectTransform panelRectTransform = panel.GetComponent<RectTransform>(); //Getting the RectTransform of the panel
-        panelRectTransform.sizeDelta = new Vector2(xSize, ySize); //Setting the size of the panel
-        panelRectTransform.position = new Vector3(xPos, yPos, 0); //Setting the position of the panel
+        //panelRectTransform.sizeDelta = new Vector2(xSize, ySize); //Setting the size of the panel
+        //panelRectTransform.position = new Vector3(xPos, yPos, 0); //Setting the position of the panel
+
+        //SET ALL 4 MARGINS OF THE PANEL TO 4 CERTAIN AMOUNTS
+
+        return panel;
     }
 
 
     private void OnMouseDown()
     {
-        //NextPanel();
+        NextPanel();
     }
 
 
     void NextPanel()
     {
-        //panelIndex++;
-        //ClearList(allCurrentPanels);
-        //allCurrentPanels = HighlightPanelNegativeSpace();
+        panelIndex++;
+        ClearList(allCurrentPanels);
+        allCurrentPanels = HighlightPanelNegativeSpace();
     }
 
 
