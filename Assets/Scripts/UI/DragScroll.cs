@@ -6,7 +6,7 @@ public class DragScroll : MonoBehaviour
 {
     public GameObject background;
     public Vector3 startPoint = new Vector3(0, 0, 0);
-    public int b = 0;
+    public int b = 0, c = 0;
     // Start is called before the first frame update
     private void OnMouseDown()
     {
@@ -29,6 +29,10 @@ public class DragScroll : MonoBehaviour
         if (background.transform.position.y < b)
         {
             background.transform.position = new Vector3(background.transform.position.x, b, background.transform.position.z);
+        }
+        if (background.transform.position.y > c)
+        {
+            background.transform.position = new Vector3(background.transform.position.x, c, background.transform.position.z);
         }
     }
 }
