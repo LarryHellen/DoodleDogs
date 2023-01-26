@@ -31,7 +31,7 @@ public class TutorialMaker : MonoBehaviour
         print(canvasHeight);
 
         //Testing Stuff Here
-        //CreatePanel(0f, 0f, 0f, 1f, Color.white, 0.5f);
+        CreatePanel(500f, 500f, -100f, -100f, Color.white, 1f);
 
 
         allCurrentPanels = HighlightPanelNegativeSpace();
@@ -50,10 +50,12 @@ public class TutorialMaker : MonoBehaviour
 
 
 
+        RectTransform rt = panelList[panelIndex].GetComponent<RectTransform>();
+
+
+
 
         //Algorithm to find and create all panels in negative space
-
-
 
 
 
@@ -64,10 +66,7 @@ public class TutorialMaker : MonoBehaviour
         //Go from the bottom of the screen to the bottom egde of the panel (from panelList[panelIndex]) and create a panel in that space spanning the full width of the screen
 
 
-        RectTransform rt = panelList[panelIndex].GetComponent<RectTransform>();
 
-
-        //PANELS ARE POSITIONED COMPLETELY OFF MARGINS RELATIVE TO THE CANVAS EDGES, CHANGE THE CREATE PANEL FUNCTION TO ACCOUNT FOR THIS IN ITS VALUES
 
 
         //Start from the left and right sides of the important panel and continue to the screens edge with that height (create panels to fill that space)
@@ -86,14 +85,14 @@ public class TutorialMaker : MonoBehaviour
     }
 
 
-    GameObject CreatePanel(float xPos, float yPos, float xSize, float ySize, Color color, float opacity) //CHANGE ALL SIZE AND POS VARS TO LEFT MARGIN, RIGHT MARGIN, TOP MARGIN and BOTTOM MARGIN
+    GameObject CreatePanel(float xPos, float yPos, float xSize, float ySize, Color color, float opacity)
     {
         //Required parameters
         //x-pos, y-pos, size-x, size-y, color, opacity
 
 
-        GameObject panel = Instantiate(defaultPanel, new Vector3(0, 0, 0), Quaternion.identity); //Creating new panel GameObject
-        panel.transform.SetParent(canvas.transform, false);
+        GameObject panel = Instantiate(defaultPanel, new Vector2(0, 0), Quaternion.identity); //Creating new panel GameObject
+        panel.transform.SetParent(canvas.transform, true);
 
 
         Image panelImage = panel.GetComponent<Image>(); //Getting the panel's Image component
@@ -104,8 +103,10 @@ public class TutorialMaker : MonoBehaviour
             
 
         RectTransform panelRectTransform = panel.GetComponent<RectTransform>(); //Getting the RectTransform of the panel
-        //panelRectTransform.sizeDelta = new Vector2(xSize, ySize); //Setting the size of the panel
-        //panelRectTransform.position = new Vector3(xPos, yPos, 0); //Setting the position of the panel
+
+        panelRectTransform.anchoredPosition = new Vector2(xPos, yPos); //Setting the position of the panel (this is based off the center of the panel)
+        panelRectTransform.sizeDelta = new Vector2(xSize, ySize); //Setting the size of the panel (this is relative to the size of the canvas, xSize = 100 is 100 units larger than the canvas on the x-axis)
+
 
         //SET ALL 4 MARGINS OF THE PANEL TO 4 CERTAIN AMOUNTS
 
