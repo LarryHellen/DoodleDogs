@@ -12,7 +12,7 @@ public class CutsceneManager : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject backButtonDisable;
     public GameObject cutscene1Num7, cutscene1End;
-    private GameObject cutscenes;
+    public GameObject cutscenes;
     public GameObject firstChapter;
     public GameObject secondChapter;
     public GameObject thirdChapter;
@@ -32,6 +32,9 @@ public class CutsceneManager : MonoBehaviour
     public GameObject sixthGameplayScene;
     public GameObject seventhGameplayScene;
     public GameObject eighthGameplayScene;
+
+    public GameObject chapter2Enable;
+    public GameObject chapter3Enable;
 
     public int cutsceneNum;
 
