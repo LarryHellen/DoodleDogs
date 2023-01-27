@@ -134,6 +134,7 @@ public class CutsceneManager : MonoBehaviour
             }
             else if (cutsceneNum == 5)
             {
+                SceneManager.LoadScene("Chapter2");
                 cutscenes.SetActive(false);
                 cutsceneNum = 6;
                 cutscenes = thirdChapter;
