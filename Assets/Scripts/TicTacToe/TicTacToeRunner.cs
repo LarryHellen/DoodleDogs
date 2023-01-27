@@ -828,6 +828,15 @@ public class TicTacToeRunner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        LoadByJSON();
+
+        print("yoyoyo");
+
+        toTwistOrNotToTwist = advanced;
+
+        simple = !advanced;
+
+
         /*
         Resolution currentMonitorResolution;
 
