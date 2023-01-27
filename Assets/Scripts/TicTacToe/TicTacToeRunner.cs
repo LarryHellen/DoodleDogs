@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+
 
 public class TicTacToeRunner : MonoBehaviour
 {
@@ -20,6 +22,7 @@ public class TicTacToeRunner : MonoBehaviour
     public static bool started = false;
 
     public bool simple;
+    public bool advanced;
 
     private List<List<int>> rP = new List<List<int>>()
     {
@@ -1049,6 +1052,39 @@ public class TicTacToeRunner : MonoBehaviour
         runGame = false;
         yield return new WaitForSeconds(secondsToPause);
         runGame = true;
+    }
+
+    private void LoadFromPlayerData(PlayerData tempData)
+    {
+        int cutsceneNum = tempData.sceneNumber;
+        if(cutsceneNum == 5){
+            advanced = true;
+        }
+    }
+
+    //This was originally private, I made it public so I could access it in other scripts. Was there a reason for making it private?
+    //A: Mostly if we wanted another LoadByJSON script for a different save class. Ask me about it later FIXME: Delete if you understand
+    public void LoadByJSON()
+    {
+        if (File.Exists(Application.dataPath + "/JSONData.text"))
+        {
+            //LOAD THE GAME
+            StreamReader sr = new StreamReader(Application.dataPath + "/JSONData.text");
+
+            string JsonString = sr.ReadToEnd();
+
+            sr.Close();
+
+            //Convert JSON to the Object(PlayerData)
+            PlayerData playerData = JsonUtility.FromJson<PlayerData>(JsonString);
+
+            LoadFromPlayerData(playerData);
+
+        }
+        else
+        {
+            Debug.Log("NOT FOUND FILE");
+        }
     }
 
 }

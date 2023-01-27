@@ -75,7 +75,7 @@ public class CutsceneManager : MonoBehaviour
                 sceneLoader(tileMatching);
                 //SceneManager.LoadScene(tileMatching);
 
-                Debug.Log("got here tile");
+                //Debug.Log("got here tile");
             }
             else if (sceneNumber == cutsceneList.IndexOf(secondGameplayScene) - 1 && cutscenes == firstChapter)
             {
@@ -87,7 +87,7 @@ public class CutsceneManager : MonoBehaviour
                 cutsceneNum = 4;
                 sceneLoader(ticTacToe);
 
-                Debug.Log("got here tictac");
+                //Debug.Log("got here tictac");
             }
             else if (sceneNumber == cutsceneList.IndexOf(fourthGameplayScene) - 1 && cutscenes == secondChapter)
             {
@@ -99,7 +99,7 @@ public class CutsceneManager : MonoBehaviour
                 cutsceneNum = 7;
                 sceneLoader(rythym);
 
-                Debug.Log("got here rythym");
+                //Debug.Log("got here rythym");
             }
             else if (sceneNumber == cutsceneList.IndexOf(sixthGameplayScene) - 1 && cutscenes == thirdChapter)
             {
@@ -111,7 +111,7 @@ public class CutsceneManager : MonoBehaviour
                 cutsceneNum = 10;
                 sceneLoader(rythym);
 
-                Debug.Log("got here rythym");
+                //Debug.Log("got here rythym");
             }
             else if (sceneNumber == cutsceneList.IndexOf(eighthGameplayScene) - 1 && cutscenes == fourthChapter)
             {
