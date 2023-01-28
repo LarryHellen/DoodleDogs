@@ -836,6 +836,9 @@ public class TicTacToeRunner : MonoBehaviour
 
         simple = !advanced;
 
+        print(toTwistOrNotToTwist);
+        print(simple);
+
 
         /*
         Resolution currentMonitorResolution;
