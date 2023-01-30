@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 414862482}
   - component: {fileID: 414862481}
   m_Layer: 5
-  m_Name: LogoTop
+  m_Name: Logo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
