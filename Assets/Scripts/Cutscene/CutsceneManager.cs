@@ -19,6 +19,7 @@ public class CutsceneManager : MonoBehaviour
     public GameObject fourthChapter;
     public string tileMatching;
     public string ticTacToe;
+    public string ticTacToe2;
     public string rythym;
 
     private List<GameObject> cutsceneList = new List<GameObject>();
@@ -72,7 +73,7 @@ public class CutsceneManager : MonoBehaviour
             Handheld.Vibrate();
             sceneNumber++;
 
-            if (sceneNumber == cutsceneList.IndexOf(firstGameplayScene) - 1 && cutscenes == firstChapter)
+            if (sceneNumber == cutsceneList.IndexOf(firstGameplayScene) + 1 && cutscenes == firstChapter)
             {
                 cutsceneNum = 1;
                 sceneLoader(tileMatching);
@@ -80,43 +81,43 @@ public class CutsceneManager : MonoBehaviour
 
                 //Debug.Log("got here tile");
             }
-            else if (sceneNumber == cutsceneList.IndexOf(secondGameplayScene) - 1 && cutscenes == firstChapter)
+            else if (sceneNumber == cutsceneList.IndexOf(secondGameplayScene) + 1 && cutscenes == firstChapter)
             {
                 cutsceneNum = 2;
                 sceneLoader(tileMatching);
             }
-            else if (sceneNumber == cutsceneList.IndexOf(thirdGameplayScene) - 1 && cutscenes == secondChapter)
+            else if (sceneNumber == cutsceneList.IndexOf(thirdGameplayScene) + 1 && cutscenes == secondChapter)
             {
                 cutsceneNum = 4;
                 sceneLoader(ticTacToe);
 
                 //Debug.Log("got here tictac");
             }
-            else if (sceneNumber == cutsceneList.IndexOf(fourthGameplayScene) - 1 && cutscenes == secondChapter)
+            else if (sceneNumber == cutsceneList.IndexOf(fourthGameplayScene) + 1 && cutscenes == secondChapter)
             {
                 cutsceneNum = 5;
-                sceneLoader(ticTacToe);
+                sceneLoader(ticTacToe2);
             }
-            else if (sceneNumber == cutsceneList.IndexOf(fifthGameplayScene) - 1 && cutscenes == thirdChapter)
+            else if (sceneNumber == cutsceneList.IndexOf(fifthGameplayScene) + 1 && cutscenes == thirdChapter)
             {
                 cutsceneNum = 7;
                 sceneLoader(rythym);
 
                 //Debug.Log("got here rythym");
             }
-            else if (sceneNumber == cutsceneList.IndexOf(sixthGameplayScene) - 1 && cutscenes == thirdChapter)
+            else if (sceneNumber == cutsceneList.IndexOf(sixthGameplayScene) + 1 && cutscenes == thirdChapter)
             {
                 cutsceneNum = 8;
                 sceneLoader(rythym);
             }
-            else if (sceneNumber == cutsceneList.IndexOf(seventhGameplayScene) - 1 && cutscenes == fourthChapter)
+            else if (sceneNumber == cutsceneList.IndexOf(seventhGameplayScene) + 1 && cutscenes == fourthChapter)
             {
                 cutsceneNum = 10;
                 sceneLoader(rythym);
 
                 //Debug.Log("got here rythym");
             }
-            else if (sceneNumber == cutsceneList.IndexOf(eighthGameplayScene) - 1 && cutscenes == fourthChapter)
+            else if (sceneNumber == cutsceneList.IndexOf(eighthGameplayScene) + 1 && cutscenes == fourthChapter)
             {
                 cutsceneNum = 11;
                 sceneLoader(rythym);

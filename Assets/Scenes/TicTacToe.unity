@@ -445,7 +445,7 @@ MonoBehaviour:
   VictoryScreen: {fileID: 1271644154}
   DefeatScreen: {fileID: 1962922123}
   TieScreen: {fileID: 1794357979}
-  toTwistOrNotToTwist: 1
+  toTwistOrNotToTwist: 0
   distanceBetweenTiles: 0.6
   xBoardOffset: 0.5
   yBoardOffset: -0.5
