@@ -31,7 +31,7 @@ public class TutorialMaker : MonoBehaviour
         print(canvasHeight);
 
         //Testing Stuff Here
-        //CreatePanel(500f, 0f, 100f, 100f, Color.white, 0.6f);
+        //CreatePanel(0f, 0f, 100f, 100f, Color.white, 0.6f);
 
 
         allCurrentPanels = HighlightPanelNegativeSpace();
@@ -51,6 +51,7 @@ public class TutorialMaker : MonoBehaviour
 
 
         RectTransform rt = panelList[panelIndex].GetComponent<RectTransform>();
+        //Create a Vector2 containing the normalized x and y coordinates of the parent panel
 
 
 
@@ -64,7 +65,9 @@ public class TutorialMaker : MonoBehaviour
 
 
         //Go from the bottom of the screen to the bottom egde of the panel (from panelList[panelIndex]) and create a panel in that space spanning the full width of the screen
-        CreatePanel(0, 0, 100f, 100f, Color.white, 0.5f);
+        print(rt.localPosition[1]);
+
+        CreatePanel(canvasWidth/2, canvasHeight/2, 100f, 100f, Color.white, 0.5f);
 
 
 
@@ -104,7 +107,7 @@ public class TutorialMaker : MonoBehaviour
 
         RectTransform panelRectTransform = panel.GetComponent<RectTransform>(); //Getting the RectTransform of the panel
 
-        panelRectTransform.localPosition = new Vector2(xPos, yPos); //Setting the position of the panel (this is based off the center of the panel)
+        panelRectTransform.localPosition = new Vector2(xPos - canvasWidth/2, yPos - canvasHeight/2); //Setting the position of the panel (this is based off the center of the panel)
         panelRectTransform.sizeDelta = new Vector2(xSize, ySize); //Setting the size of the panel (this is relative to the size of the canvas, xSize = 100 is 100 units larger than the canvas on the x-axis)
 
 
@@ -132,5 +135,4 @@ public class TutorialMaker : MonoBehaviour
     {
         foreach (GameObject thing in aList) { Destroy(thing); }
     }
-
 }
