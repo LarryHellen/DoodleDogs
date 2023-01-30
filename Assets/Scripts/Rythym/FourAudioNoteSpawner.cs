@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.IO;
+
 
 [RequireComponent(typeof(AudioSource))]
 
@@ -47,6 +49,9 @@ public class FourAudioNoteSpawner : MonoBehaviour
     private float[] samples4 = new float[64];
 
 
+    public bool advanced;
+
+
 
     public static List<int> patternONotes = new List<int>();
 
@@ -75,6 +80,8 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
     void Start()
     {
+        LoadByJSON();
+
         interval = 60 / BPM;
 
         samples1 = new float[sampleSize];
@@ -175,7 +182,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
                         }
 
 
-                        if (lengthOfHoldNote > 1)
+                        if (lengthOfHoldNote > 1 && advanced == true)
                         {
                             print("Hold Note Spawn");
 
@@ -204,10 +211,22 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
                 period = 0;
                 intervalsPast++;
+
+                if (intervalsPast * interval > 50f)
+                {
+                    Lose();
+                    print("you lost");
+                }
             }
             period += UnityEngine.Time.deltaTime;
         }
     }
+
+    public void Lose()
+    {
+        //Losing Time!
+    }
+
 
 
     List<int> GetSpectrumAudioSource()
@@ -257,5 +276,39 @@ public class FourAudioNoteSpawner : MonoBehaviour
         avg = total / samples.Count();
 
         return avg;
+    }
+
+    private void LoadFromPlayerData(PlayerData tempData)
+    {
+        int cutsceneNum = tempData.sceneNumber;
+        if (cutsceneNum == 11)
+        {
+            advanced = true;
+        }
+    }
+
+    //This was originally private, I made it public so I could access it in other scripts. Was there a reason for making it private?
+    //A: Mostly if we wanted another LoadByJSON script for a different save class. Ask me about it later FIXME: Delete if you understand
+    public void LoadByJSON()
+    {
+        if (File.Exists(Application.dataPath + "/JSONData.text"))
+        {
+            //LOAD THE GAME
+            StreamReader sr = new StreamReader(Application.dataPath + "/JSONData.text");
+
+            string JsonString = sr.ReadToEnd();
+
+            sr.Close();
+
+            //Convert JSON to the Object(PlayerData)
+            PlayerData playerData = JsonUtility.FromJson<PlayerData>(JsonString);
+
+            LoadFromPlayerData(playerData);
+
+        }
+        else
+        {
+            Debug.Log("NOT FOUND FILE");
+        }
     }
 }

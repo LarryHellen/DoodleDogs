@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public enum GameState{
     wait,
@@ -31,6 +32,7 @@ public class Board : MonoBehaviour
     public int coCount;
     public int startingMoves;
     public float blockChance;
+    public bool advanced;
 
     
 
@@ -41,6 +43,7 @@ public class Board : MonoBehaviour
         moveCounter = FindObjectOfType<MoveCounter>();
         allDots = new GameObject[width,height];
         counterHolder = FindObjectOfType<CounterHolder>();
+        LoadByJSON();
         SetUp();
     }
 
@@ -268,7 +271,7 @@ public class Board : MonoBehaviour
             if(dots[dotToUse].tag == "Block Dot"){
                 float prob = Random.Range(1,100);
                 prob /= 100;
-                if(prob <= blockChance){
+                if(prob <= blockChance || advanced == false){
                     retry = true;
                 }
             }
@@ -381,6 +384,39 @@ public class Board : MonoBehaviour
         }
         if(IsDeadlocked() || CheckForMatches()){
             ShuffleBoard();
+        }
+    }
+
+    private void LoadFromPlayerData(PlayerData tempData)
+    {
+        int cutsceneNum = tempData.sceneNumber;
+        if(cutsceneNum == 2){
+            advanced = true;
+        }
+    }
+
+    //This was originally private, I made it public so I could access it in other scripts. Was there a reason for making it private?
+    //A: Mostly if we wanted another LoadByJSON script for a different save class. Ask me about it later FIXME: Delete if you understand
+    public void LoadByJSON()
+    {
+        if (File.Exists(Application.dataPath + "/JSONData.text"))
+        {
+            //LOAD THE GAME
+            StreamReader sr = new StreamReader(Application.dataPath + "/JSONData.text");
+
+            string JsonString = sr.ReadToEnd();
+
+            sr.Close();
+
+            //Convert JSON to the Object(PlayerData)
+            PlayerData playerData = JsonUtility.FromJson<PlayerData>(JsonString);
+
+            LoadFromPlayerData(playerData);
+
+        }
+        else
+        {
+            Debug.Log("NOT FOUND FILE");
         }
     }
 }

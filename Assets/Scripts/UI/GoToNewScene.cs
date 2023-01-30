@@ -19,6 +19,7 @@ public class GoToNewScene : MonoBehaviour
             cutsceneNum = 0;
         }
         SaveByJSON();
+        Debug.Log("got here");
         SceneManager.LoadScene(scene);
     }
 

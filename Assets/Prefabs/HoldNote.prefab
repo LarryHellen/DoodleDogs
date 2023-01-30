@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e02f7004a654649bde8fd90840bd9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BPM: 150
+  BPM: 120
   NOTE_TYPE: TAP
   HoldTimeNeeded: 60
   noteGoneAtThisValue: -100

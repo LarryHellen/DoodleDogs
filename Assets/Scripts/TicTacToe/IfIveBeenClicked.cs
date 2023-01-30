@@ -34,27 +34,27 @@ public class IfIveBeenClicked : MonoBehaviour
     void OnMouseDown()
     {
         
-        if (TicTacToeRunner.runGame && ActivateSettings.gameRunning && TicTacToeRunner.started == true)
+        if (tttr.runGame && ActivateSettings.gameRunning && tttr.started == true)
         {
             if (type == 0)
             {
-                if (TicTacToeRunner.turnCounter % 2 == 0)
+                if (tttr.turnCounter % 2 == 0)
                 {
                     type = 1;
-                    TicTacToeRunner.turnCounter++;
+                    tttr.turnCounter++;
                     HasChanged = false;
                     FindObjectOfType<AudioManager>().Play("PlaceBall");
-                    //Debug.Log(TicTacToeRunner.turnCounter);
+                    //Debug.Log(tttr.turnCounter);
                     StartCoroutine(pauseGame(.5f));
 
                 }
-                else if (TicTacToeRunner.turnCounter % 2 == 1 && TicTacToeRunner.twoPlayer == true)
+                else if (tttr.turnCounter % 2 == 1 && tttr.twoPlayer == true)
                 {
                     type = 2;
-                    TicTacToeRunner.turnCounter++;
-                    TicTacToeRunner.currentlyRotating = true;
+                    tttr.turnCounter++;
+                    tttr.currentlyRotating = true;
                     HasChanged = false;
-                    //Debug.Log(TicTacToeRunner.turnCounter);
+                    //Debug.Log(tttr.turnCounter);
                 }
             }
         }
@@ -63,7 +63,7 @@ public class IfIveBeenClicked : MonoBehaviour
     void Start()
     {
         myTileTransform = GetComponent<TileTransform>();
-        //tttr = FindObjectOfType<TicTacToeRunner>();
+        tttr = FindObjectOfType<TicTacToeRunner>();
         X_size = x.rect.size;
         O_size = o.rect.size;
     }
@@ -154,9 +154,9 @@ public class IfIveBeenClicked : MonoBehaviour
     }
 
     private IEnumerator pauseGame(float secondsToPause){
-        TicTacToeRunner.runGame = false;
+        tttr.runGame = false;
         yield return new WaitForSeconds(secondsToPause);
-        TicTacToeRunner.runGame = true;
+        tttr.runGame = true;
     }
 
     public void ResetSprite()
