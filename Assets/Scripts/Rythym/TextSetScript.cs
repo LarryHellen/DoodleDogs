@@ -9,6 +9,14 @@ public class TextSetScript : MonoBehaviour
     public TextMeshProUGUI DaScore;
     public int notesNeededForAWin;
 
+
+    public GameObject WinScreen;
+
+    private void Start()
+    {
+        WinScreen.SetActive(false);
+    }
+
     void FixedUpdate()
     {
         DaScore.SetText(Score.ToString());
@@ -24,5 +32,6 @@ public class TextSetScript : MonoBehaviour
     {
         //Win code here
         print("you win");
+        WinScreen.SetActive(true);
     }
 }

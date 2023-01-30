@@ -77,6 +77,8 @@ public class FourAudioNoteSpawner : MonoBehaviour
     public int maxHoldNoteLength;
 
 
+    public GameObject LoseScreen;
+
 
     void Start()
     {
@@ -120,6 +122,9 @@ public class FourAudioNoteSpawner : MonoBehaviour
         lanePrioritization.Add(prioritizeLane4);
 
         FullNoteList.Add(new List<int>() {1, 0, 0, 0});
+
+
+        LoseScreen.SetActive(false);
     }
 
 
@@ -225,6 +230,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
     public void Lose()
     {
         //Losing Time!
+        LoseScreen.SetActive(true);
     }
 
 
