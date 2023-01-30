@@ -19,7 +19,7 @@ public class TicTacToeRunner : MonoBehaviour
     public float xBoardOffset;
     public float yBoardOffset;
 
-    public static bool started = false;
+    public bool started = false;
 
     public bool simple;
     public bool advanced;
@@ -47,12 +47,12 @@ public class TicTacToeRunner : MonoBehaviour
          new List<int>() { 2, 0 }
      };
 
-    public static bool twoPlayer = false;
+    public bool twoPlayer = false;
 
     private List<List<GameObject>> board = new List<List<GameObject>>();
-    public static int turnCounter = 0;
+    public int turnCounter = 0;
 
-    public static bool runGame = true;
+    public bool runGame = true;
 
     public bool unfair;
 
@@ -61,7 +61,7 @@ public class TicTacToeRunner : MonoBehaviour
     private bool OHasWon;
 
 
-    public static bool currentlyRotating = false;
+    public bool currentlyRotating = false;
 
     private GameObject tmp1, tmp2;
 
@@ -830,7 +830,7 @@ public class TicTacToeRunner : MonoBehaviour
     {
         LoadByJSON();
 
-        print("yoyoyo");
+        print("started");
 
         toTwistOrNotToTwist = advanced;
 

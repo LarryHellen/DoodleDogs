@@ -449,7 +449,7 @@ MonoBehaviour:
   distanceBetweenTiles: 0.6
   xBoardOffset: 0.5
   yBoardOffset: -0.5
-  simple: 0
+  simple: 1
   advanced: 0
   unfair: 0
 --- !u!4 &175947105

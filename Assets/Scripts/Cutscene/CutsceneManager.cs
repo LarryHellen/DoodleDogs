@@ -96,7 +96,7 @@ public class CutsceneManager : MonoBehaviour
             else if (sceneNumber == cutsceneList.IndexOf(fourthGameplayScene) + 1 && cutscenes == secondChapter)
             {
                 cutsceneNum = 5;
-                sceneLoader(ticTacToe2);
+                sceneLoader(ticTacToe);
             }
             else if (sceneNumber == cutsceneList.IndexOf(fifthGameplayScene) + 1 && cutscenes == thirdChapter)
             {
