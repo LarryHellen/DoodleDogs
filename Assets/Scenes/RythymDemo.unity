@@ -1299,12 +1299,14 @@ MonoBehaviour:
   audioSource4: {fileID: 553787653}
   sampleSize: 64
   BPM: 100
+  intervalsPast: 0
   percentHigherThanCloseAvg1: 2000
   percentHigherThanCloseAvg2: 2000
   percentHigherThanCloseAvg3: 2000
   percentHigherThanCloseAvg4: 2000
   minimumMaxFreq: 0.0001
   advanced: 0
+  tss: {fileID: 0}
   distanceBetween: 325
   noteOffset: 490
   spawnHeight: 2500
@@ -1313,7 +1315,6 @@ MonoBehaviour:
   prioritizeLane3: 0
   prioritizeLane4: 1
   maxHoldNoteLength: 5
-  LoseScreen: {fileID: 728581138}
 --- !u!82 &553787653
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2952,7 +2953,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DaScore: {fileID: 2039418592}
-  notesNeededForAWin: 30
+  Invicibility: 0
+  LoseScreen: {fileID: 728581138}
   WinScreen: {fileID: 82272166}
 --- !u!1 &2048300303
 GameObject:

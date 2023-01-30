@@ -7,25 +7,25 @@ public class TextSetScript : MonoBehaviour
 {
     public static int Score = 0;
     public TextMeshProUGUI DaScore;
-    public int notesNeededForAWin;
 
-
+    public bool Invicibility;
+    public GameObject LoseScreen;
     public GameObject WinScreen;
+    private FourAudioNoteSpawner fans;
 
     private void Start()
     {
+        fans = FindObjectOfType<FourAudioNoteSpawner>();
         WinScreen.SetActive(false);
+        LoseScreen.SetActive(false);
     }
 
     void FixedUpdate()
     {
         DaScore.SetText(Score.ToString());
-
-        if (Score > notesNeededForAWin)
-        {
-            RhythmGameWinCondition();
-        }
     }
+
+
 
 
     public void RhythmGameWinCondition()
@@ -33,5 +33,16 @@ public class TextSetScript : MonoBehaviour
         //Win code here
         print("you win");
         WinScreen.SetActive(true);
+    }
+
+
+    public void RhythmGameLoseCondition()
+    {
+        if (!Invicibility)
+        {
+            //Lose code here
+            print("you lose");
+            LoseScreen.SetActive(true);
+        }
     }
 }

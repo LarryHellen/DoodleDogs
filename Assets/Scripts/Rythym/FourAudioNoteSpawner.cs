@@ -10,6 +10,9 @@ using System.IO;
 
 public class FourAudioNoteSpawner : MonoBehaviour
 {
+
+    
+
     public GameObject Note;
 
     public GameObject HoldNote;
@@ -33,7 +36,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
     private float interval;
     private float period = 0;
     private bool running = true;
-    private int intervalsPast = 0;
+    [HideInInspector] public int intervalsPast = 0;
 
     public int percentHigherThanCloseAvg1;
     public int percentHigherThanCloseAvg2;
@@ -51,6 +54,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
     public bool advanced;
 
+    public TextSetScript tss;
 
 
     public static List<int> patternONotes = new List<int>();
@@ -77,7 +81,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
     public int maxHoldNoteLength;
 
 
-    public GameObject LoseScreen;
+
 
 
     void Start()
@@ -123,8 +127,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
         FullNoteList.Add(new List<int>() {1, 0, 0, 0});
 
-
-        LoseScreen.SetActive(false);
+        tss = FindObjectOfType<TextSetScript>();
     }
 
 
@@ -219,18 +222,12 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
                 if (intervalsPast * interval > 50f)
                 {
-                    Lose();
-                    print("you lost");
+                    tss.RhythmGameWinCondition();
+                    print("song ended");
                 }
             }
             period += UnityEngine.Time.deltaTime;
         }
-    }
-
-    public void Lose()
-    {
-        //Losing Time!
-        LoseScreen.SetActive(true);
     }
 
 

@@ -33,6 +33,10 @@ public class MainNoteScript : MonoBehaviour
     //private bool becomeVisible = false;
 
 
+    public TextSetScript tss;
+
+
+
     void OnMouseDown()
     {
         BeingClicked = true;
@@ -60,6 +64,8 @@ public class MainNoteScript : MonoBehaviour
         currentOpacity = initialOpacity;
 
         spriteRenderer.color = new Color(1f, 1f, 1f, currentOpacity);
+
+        tss = FindObjectOfType<TextSetScript>();
     }
 
 
@@ -93,6 +99,7 @@ public class MainNoteScript : MonoBehaviour
         if (transform.position[1] < noteGoneAtThisValue)
         {
                 TextSetScript.Score = 0;
+                tss.RhythmGameLoseCondition();
                 Destroy(gameObject);
         }
         else if (HoldTime >= HoldTimeNeeded && NOTE_TYPE == "HOLD")
