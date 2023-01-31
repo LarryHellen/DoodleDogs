@@ -31,6 +31,7 @@ public class TextSetScript : MonoBehaviour
     public void RhythmGameWinCondition()
     {
         //Win code here
+        Time.timeScale = 0;
         print("you win");
         WinScreen.SetActive(true);
     }
@@ -41,6 +42,7 @@ public class TextSetScript : MonoBehaviour
         if (!Invicibility)
         {
             //Lose code here
+            Time.timeScale = 0;
             print("you lose");
             LoseScreen.SetActive(true);
         }
