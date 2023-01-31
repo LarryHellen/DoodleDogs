@@ -64,19 +64,30 @@ public class TutorialMaker : MonoBehaviour
 
 
 
-        //Go from the bottom of the screen to the bottom egde of the panel (from panelList[panelIndex]) and create a panel in that space spanning the full width of the screen
-        print(rt.localPosition[1]);
+        //Bottom Panel
+        float height = ((canvasHeight / 2 + rt.localPosition[1]) - (rt.sizeDelta[1]/2)) / 2 ;
 
-        CreatePanel(canvasWidth/2, canvasHeight/2, 100f, 100f, Color.white, 0.5f);
+        CreatePanel(canvasWidth/2, height, canvasWidth, height*2, Color.white, 0.5f);
+
+
+        //Top Panel
+
+        height = ((canvasHeight - ((canvasHeight / 2 + rt.localPosition[1]) + (rt.sizeDelta[1] / 2))) / 2) + (canvasHeight / 2 + rt.localPosition[1]) + (rt.sizeDelta[1] / 2);
+
+        CreatePanel(canvasWidth / 2, height, canvasWidth, (canvasHeight - ((canvasHeight / 2 + rt.localPosition[1]) + (rt.sizeDelta[1] / 2))), Color.white, 0.5f);
 
 
 
 
         //Start from the left and right sides of the important panel and continue to the screens edge with that height (create panels to fill that space)
+        float width = ((rt.localPosition[0] + canvasWidth / 2) - (rt.sizeDelta[0]/2)) / 2;
+
+        CreatePanel(width, rt.position[1], width*2, rt.sizeDelta[1], Color.white, 0.5f);
 
 
-        //Start from the top of the important panel, move to the edge of the screen on the left and create a panel spanning the full width of the screen and the full height remaining
+        width = ((canvasWidth - (((rt.localPosition[0] + canvasWidth / 2) + (rt.sizeDelta[0] / 2)) / 2))/2) + ((rt.localPosition[0] + canvasWidth / 2) + (rt.sizeDelta[0] / 2)); //THIS NEEDS FIXING
 
+        CreatePanel(width, rt.position[1], canvasWidth - ((rt.localPosition[0] + canvasWidth / 2) + (rt.sizeDelta[0] / 2)), rt.sizeDelta[1], Color.white, 0.5f);
 
 
 
