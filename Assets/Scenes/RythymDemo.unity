@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 82272167}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WinScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1859,7 +1859,7 @@ GameObject:
   m_Component:
   - component: {fileID: 728581139}
   - component: {fileID: 728581140}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LoseScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1874,7 +1874,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728581138}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 24.058187, y: 24.058187, z: 24.058187}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2134,7 +2134,7 @@ GameObject:
   - component: {fileID: 841292916}
   - component: {fileID: 841292918}
   - component: {fileID: 841292917}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2741,7 +2741,7 @@ GameObject:
   - component: {fileID: 1914568586}
   - component: {fileID: 1914568588}
   - component: {fileID: 1914568587}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LoseScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,9 +10,6 @@ using System.IO;
 
 public class FourAudioNoteSpawner : MonoBehaviour
 {
-
-    
-
     public GameObject Note;
 
     public GameObject HoldNote;
@@ -190,6 +187,8 @@ public class FourAudioNoteSpawner : MonoBehaviour
                         }
 
 
+                        Vector3 tempPos = new Vector3(distanceBetween * i - noteOffset, spawnHeight, 0);
+
                         if (lengthOfHoldNote > 1 && advanced == true)
                         {
                             print("Hold Note Spawn");
@@ -199,17 +198,45 @@ public class FourAudioNoteSpawner : MonoBehaviour
                                 FullNoteList[intervalsPast - maxHoldNoteLength + j + 1][i] = 0;
                             }
 
-                            GameObject ANote = Instantiate(HoldNote, new Vector3(distanceBetween * i - noteOffset, spawnHeight, 0), Quaternion.identity); //CHANGE THE GAMEOBJECT TO A HOLD NOTE GAMEOBJECT? Possibly stretch a gameobject depending on lengthofHoldNote then rest of normal note code
+                            
+
+                            GameObject ANote = Instantiate(HoldNote, tempPos, Quaternion.identity); //CHANGE THE GAMEOBJECT TO A HOLD NOTE GAMEOBJECT? Possibly stretch a gameobject depending on lengthofHoldNote then rest of normal note code
+
+
+
                             ANote.GetComponent<HoldNoteScript>().lengthOfHoldNote = lengthOfHoldNote;
                             print("Hold Note Length : " + lengthOfHoldNote);
                             ANote.GetComponent<HoldNoteScript>().ScalingTime();
+
+
+
                             ANote.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+
+
+                            //ANote.transform.position = tempPos;
+
+
+                            //ANote.transform.SetParent(AllTheNotes.transform, false);
+
+
+                            
+                            //ANote.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
                             ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "HOLD";
                         }
                         else
                         {
-                            GameObject ANote = Instantiate(Note, new Vector3(distanceBetween * i - noteOffset, spawnHeight, 0), Quaternion.identity);
+                            GameObject ANote = Instantiate(Note, tempPos, Quaternion.identity);
+
+
                             ANote.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+
+
+                            //ANote.transform.position = tempPos;
+
+
+                            //ANote.transform.SetParent(AllTheNotes.transform, false);
+
+
                             ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "TAP";
                         }
 
