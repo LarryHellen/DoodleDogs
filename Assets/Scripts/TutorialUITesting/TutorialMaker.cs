@@ -27,12 +27,6 @@ public class TutorialMaker : MonoBehaviour
         canvasHeight = canvas.GetComponent<RectTransform>().rect.height; //Get the height of the canvas
         canvasWidth = canvas.GetComponent<RectTransform>().rect.width; //Get the width of the canvas
 
-        print(canvasWidth);
-        print(canvasHeight);
-
-        //Testing Stuff Here
-        //CreatePanel(0f, 0f, 100f, 100f, Color.white, 0.6f);
-
 
         allCurrentPanels = HighlightPanelNegativeSpace();
     }
@@ -40,7 +34,10 @@ public class TutorialMaker : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetMouseButtonDown(0))
+        {
+            NextPanel();
+        }
     }
 
 
@@ -64,25 +61,32 @@ public class TutorialMaker : MonoBehaviour
 
 
 
-        //Go from the bottom of the screen to the bottom egde of the panel (from panelList[panelIndex]) and create a panel in that space spanning the full width of the screen
-        print(rt.localPosition[1]);
+        //Bottom Panel
+        float height = ((canvasHeight / 2 + rt.localPosition[1]) - (rt.sizeDelta[1]/2)) / 2 ;
 
-        CreatePanel(canvasWidth/2, canvasHeight/2, 100f, 100f, Color.white, 0.5f);
-
-
+        NegativeSpacePanels.Add(CreatePanel(canvasWidth/2, height, canvasWidth, height*2, Color.white, 0.5f));
 
 
-        //Start from the left and right sides of the important panel and continue to the screens edge with that height (create panels to fill that space)
+        //Top Panel
+        height = ((canvasHeight - ((canvasHeight / 2 + rt.localPosition[1]) + (rt.sizeDelta[1] / 2))) / 2) + (canvasHeight / 2 + rt.localPosition[1]) + (rt.sizeDelta[1] / 2);
 
-
-        //Start from the top of the important panel, move to the edge of the screen on the left and create a panel spanning the full width of the screen and the full height remaining
+        NegativeSpacePanels.Add(CreatePanel(canvasWidth / 2, height, canvasWidth, (canvasHeight - ((canvasHeight / 2 + rt.localPosition[1]) + (rt.sizeDelta[1] / 2))), Color.white, 0.5f));
 
 
 
 
+        //Left Panel
+        float width = ((rt.localPosition[0] + canvasWidth / 2) - (rt.sizeDelta[0]/2)) / 2;
 
-        //panelList[panelIndex].SetActive(false); <- Make the panel the negative space is being built off of hidden
-        //return NegativeSpacePanels;
+        NegativeSpacePanels.Add(CreatePanel(width, rt.position[1], width*2, rt.sizeDelta[1], Color.white, 0.5f));
+
+
+        //Right Panel
+        width = ((rt.localPosition[0] + canvasWidth / 2) + rt.sizeDelta[0]/2) + ((canvasWidth - ((rt.localPosition[0] + canvasWidth / 2) + rt.sizeDelta[0] / 2))/2);
+
+
+        NegativeSpacePanels.Add(CreatePanel(width, rt.position[1], canvasWidth - ((rt.localPosition[0] + canvasWidth / 2) + (rt.sizeDelta[0] / 2)), rt.sizeDelta[1], Color.white, 0.5f));
+
 
         return NegativeSpacePanels;
     }
@@ -114,12 +118,6 @@ public class TutorialMaker : MonoBehaviour
         //SET ALL 4 MARGINS OF THE PANEL TO 4 CERTAIN AMOUNTS
 
         return panel;
-    }
-
-
-    private void OnMouseDown()
-    {
-        NextPanel();
     }
 
 
