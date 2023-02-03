@@ -14,6 +14,8 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
     public GameObject HoldNote;
 
+    public Canvas NoteCanvas;
+
     List<AudioSource> audioSourceList = new List<AudioSource>();
 
     List<float[]> sampleList = new List<float[]>();
@@ -48,7 +50,6 @@ public class FourAudioNoteSpawner : MonoBehaviour
     private float[] samples3 = new float[64];
     private float[] samples4 = new float[64];
 
-
     public bool advanced;
 
     public TextSetScript tss;
@@ -77,13 +78,32 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
     public int maxHoldNoteLength;
 
+    private List<GameObject> allNotes;
 
+    public GameObject loseScreen;
+    public GameObject winScreen;
 
-
-
-    void Start()
+    void DeleteAllGameObjectsInList(List<GameObject> listOfGameObjects)
     {
-        LoadByJSON();
+        foreach(GameObject specificGameObject in listOfGameObjects)
+        {
+            Destroy(specificGameObject);
+        }
+    }
+
+    public void Setup()
+    {
+        allNotes = new List<GameObject>();
+
+        DeleteAllGameObjectsInList(allNotes);
+
+
+
+        winScreen.SetActive(false);
+
+        loseScreen.SetActive(false);
+
+
 
         interval = 60 / BPM;
 
@@ -122,9 +142,22 @@ public class FourAudioNoteSpawner : MonoBehaviour
         lanePrioritization.Add(prioritizeLane3);
         lanePrioritization.Add(prioritizeLane4);
 
-        FullNoteList.Add(new List<int>() {1, 0, 0, 0});
+        FullNoteList.Add(new List<int>() { 1, 0, 0, 0 });
 
         tss = FindObjectOfType<TextSetScript>();
+
+
+
+    period = 0;
+    running = true;
+    intervalsPast = 0;
+}
+
+    void Start()
+    {
+        LoadByJSON();
+
+        Setup();
     }
 
 
@@ -210,7 +243,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
 
 
-                            ANote.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+                            ANote.transform.SetParent(NoteCanvas.transform, false);
 
 
                             //ANote.transform.position = tempPos;
@@ -222,13 +255,14 @@ public class FourAudioNoteSpawner : MonoBehaviour
                             
                             //ANote.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
                             ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "HOLD";
+                            allNotes.Add(ANote);
                         }
                         else
                         {
                             GameObject ANote = Instantiate(Note, tempPos, Quaternion.identity);
 
 
-                            ANote.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+                            ANote.transform.SetParent(NoteCanvas.transform, false);
 
 
                             //ANote.transform.position = tempPos;
@@ -238,6 +272,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
 
                             ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "TAP";
+                            allNotes.Add(ANote);
                         }
 
 
