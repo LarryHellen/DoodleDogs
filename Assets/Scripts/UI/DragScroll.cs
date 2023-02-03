@@ -5,13 +5,17 @@ using UnityEngine;
 public class DragScroll : MonoBehaviour
 {
     public GameObject background;
+    public GameObject settingsMenu;
     public Vector3 startPoint = new Vector3(0, 0, 0);
     public int b = 0, c = 0;
     // Start is called before the first frame update
     private void OnMouseDown()
     {
-        startPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
-        Debug.Log("e");
+        if (!settingsMenu.activeSelf)
+        {
+            startPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
+            Debug.Log("e");
+        }
     }
     private void OnMouseUp()
     {
