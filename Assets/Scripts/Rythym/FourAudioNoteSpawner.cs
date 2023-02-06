@@ -16,7 +16,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
     public Canvas NoteCanvas;
 
-    List<AudioSource> audioSourceList = new List<AudioSource>();
+    public List<AudioSource> audioSourceList;
 
     List<float[]> sampleList = new List<float[]>();
 
@@ -93,9 +93,21 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
     public void Setup()
     {
+        print("SETTING UP RIGHT NOW");
+        try
+        {
+            DeleteAllGameObjectsInList(allNotes);
+        }
+        catch
+        {
+            //Do Nothing
+        }
+        
+
+
         allNotes = new List<GameObject>();
 
-        DeleteAllGameObjectsInList(allNotes);
+        
 
 
 
@@ -151,7 +163,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
     period = 0;
     running = true;
     intervalsPast = 0;
-}
+    }
 
     void Start()
     {
@@ -300,7 +312,9 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
+
             audioSourceList[i].GetSpectrumData(sampleList[i], 0, FFTWindow.Blackman);
+
 
             if (IsMaxIntensityGreaterThanAvg(sampleList[i], i))
             {
