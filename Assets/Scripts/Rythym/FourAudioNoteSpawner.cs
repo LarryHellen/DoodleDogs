@@ -177,6 +177,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
     {
         if (running)
         {
+            //print("Gameplay");
             
 
             if (period > interval)
@@ -187,11 +188,11 @@ public class FourAudioNoteSpawner : MonoBehaviour
                 //print("FULL NOTE STUFF" + FullNoteList[intervalsPast][0] + " " + FullNoteList[intervalsPast][1] + " " + FullNoteList[intervalsPast][2] + " " + FullNoteList[intervalsPast][3]);
 
 
+                print("Gameplay");
 
 
                 for (int i = 0; i < 4; i++)
                 {
-
                     if (FullNoteList[intervalsPast][0] + FullNoteList[intervalsPast][1] + FullNoteList[intervalsPast][2] + FullNoteList[intervalsPast][3] >= 3)
                     {
                         for (int j = 0; j < 4; j++)
