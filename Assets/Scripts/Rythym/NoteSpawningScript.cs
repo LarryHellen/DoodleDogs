@@ -38,18 +38,19 @@ public class NoteSpawningScript : MonoBehaviour
         if (period > timeBetweenNotes)
         {
             //print("NOTE SPAWNING SCRIPT STUFF " + FourAudioNoteSpawner.patternONotes[0] + FourAudioNoteSpawner.patternONotes[1] + FourAudioNoteSpawner.patternONotes[2] + FourAudioNoteSpawner.patternONotes[3]);
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 4; i++)
+            {
                 //print(intervalsPast);
                 if (FourAudioNoteSpawner.FullNoteList[intervalsPast][i] == 1)
                 {
-                    GameObject ANote = Instantiate(Note, new Vector3(i, 8, 0), Quaternion.identity); 
+                    GameObject ANote = Instantiate(Note, new Vector3(i, 8, 0), Quaternion.identity);
                     ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "TAP";
                 }
             }
             intervalsPast++;
             period = 0;
         }
-        period += UnityEngine.Time.deltaTime;
+        period += Time.fixedDeltaTime;
     }
 }
 

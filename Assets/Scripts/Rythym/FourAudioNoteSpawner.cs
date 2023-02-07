@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 
 [RequireComponent(typeof(AudioSource))]
@@ -35,7 +36,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
     private float interval;
     private float period = 0;
     private bool running = true;
-    [HideInInspector] public int intervalsPast = 0;
+    public int intervalsPast = 0;
 
     public int percentHigherThanCloseAvg1;
     public int percentHigherThanCloseAvg2;
@@ -91,6 +92,11 @@ public class FourAudioNoteSpawner : MonoBehaviour
         }
     }
 
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene("RythymDemo");
+    }
+    
     public void Setup()
     {
         print("SETTING UP RIGHT NOW");
@@ -102,7 +108,9 @@ public class FourAudioNoteSpawner : MonoBehaviour
         {
             //Do Nothing
         }
-        
+
+        Time.timeScale = 1;
+
 
 
         allNotes = new List<GameObject>();
@@ -160,9 +168,9 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
 
 
-    period = 0;
-    running = true;
-    intervalsPast = 0;
+        period = 0;
+        running = true;
+        intervalsPast = 0;
     }
 
     void Start()
@@ -188,7 +196,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
                 //print("FULL NOTE STUFF" + FullNoteList[intervalsPast][0] + " " + FullNoteList[intervalsPast][1] + " " + FullNoteList[intervalsPast][2] + " " + FullNoteList[intervalsPast][3]);
 
 
-                print("Gameplay");
+                //print("Gameplay");
 
 
                 for (int i = 0; i < 4; i++)
@@ -301,7 +309,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
                     print("song ended");
                 }
             }
-            period += UnityEngine.Time.deltaTime;
+            period += Time.deltaTime;
         }
     }
 
