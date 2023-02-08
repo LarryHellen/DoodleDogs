@@ -49,6 +49,14 @@ public class CutsceneManager : MonoBehaviour
 
     private void ChangeSceneBack()
     {
+        if ((sceneNumber == 7 && secondChapter.activeSelf))
+        {
+            backButtonDisable.SetActive(false);
+        }
+        if ((sceneNumber == 11 && secondChapter.activeSelf))
+        {
+            backButtonDisable.SetActive(false);
+        }
         //FindObjectOfType<AudioManager>().Play("FlipPage");
         cutsceneList[sceneNumber + 1].SetActive(false);
         cutsceneList[sceneNumber].SetActive(true);
@@ -58,9 +66,13 @@ public class CutsceneManager : MonoBehaviour
     {
         Handheld.Vibrate();
         sceneNumber++;
-        if (sceneNumber == 22)
+        if ((sceneNumber == 22 && firstChapter.activeSelf))
         {
             backButtonDisable.SetActive(true);
+        }
+        if ((sceneNumber == 10 && secondChapter.activeSelf))
+        {
+            CutsceneManager.FindObjectOfType<PolygonCollider2D>().enabled = true;
         }
         ChangeScene();
 
@@ -148,13 +160,20 @@ public class CutsceneManager : MonoBehaviour
                 cutscenes = fourthChapter;
                 Setup();
             }
-            if (sceneNumber == 21)
+            if (sceneNumber == 21 && firstChapter.activeSelf)
             {
                 backButtonDisable.SetActive(false);
             }
+            if (sceneNumber == 6 && secondChapter.activeSelf)
             {
-                //SceneManager.LoadScene("Chapter2");
+                backButtonDisable.SetActive(false);
+                CutsceneManager.FindObjectOfType<PolygonCollider2D>().enabled = false;
             }
+            if (sceneNumber == 12 && secondChapter.activeSelf)
+            {
+                backButtonDisable.SetActive(true);
+            }
+            
         }
 
     }

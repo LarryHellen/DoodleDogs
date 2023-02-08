@@ -124,3 +124,4 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1061304286756781149}
   initialOpacity: 0.2
   endOpacity: 1
+  tss: {fileID: 0}

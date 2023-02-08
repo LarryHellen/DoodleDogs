@@ -4,20 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 
 [RequireComponent(typeof(AudioSource))]
 
 public class FourAudioNoteSpawner : MonoBehaviour
 {
-
-    
-
     public GameObject Note;
 
     public GameObject HoldNote;
 
-    List<AudioSource> audioSourceList = new List<AudioSource>();
+    public Canvas NoteCanvas;
+
+    public List<AudioSource> audioSourceList;
 
     List<float[]> sampleList = new List<float[]>();
 
@@ -36,7 +36,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
     private float interval;
     private float period = 0;
     private bool running = true;
-    [HideInInspector] public int intervalsPast = 0;
+    public int intervalsPast = 0;
 
     public int percentHigherThanCloseAvg1;
     public int percentHigherThanCloseAvg2;
@@ -50,7 +50,6 @@ public class FourAudioNoteSpawner : MonoBehaviour
     private float[] samples2 = new float[64];
     private float[] samples3 = new float[64];
     private float[] samples4 = new float[64];
-
 
     public bool advanced;
 
@@ -80,13 +79,51 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
     public int maxHoldNoteLength;
 
+    private List<GameObject> allNotes;
 
+    public GameObject loseScreen;
+    public GameObject winScreen;
 
-
-
-    void Start()
+    void DeleteAllGameObjectsInList(List<GameObject> listOfGameObjects)
     {
-        LoadByJSON();
+        foreach(GameObject specificGameObject in listOfGameObjects)
+        {
+            Destroy(specificGameObject);
+        }
+    }
+
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene("RythymDemo");
+    }
+    
+    public void Setup()
+    {
+        print("SETTING UP RIGHT NOW");
+        try
+        {
+            DeleteAllGameObjectsInList(allNotes);
+        }
+        catch
+        {
+            //Do Nothing
+        }
+
+        Time.timeScale = 1;
+
+
+
+        allNotes = new List<GameObject>();
+
+        
+
+
+
+        winScreen.SetActive(false);
+
+        loseScreen.SetActive(false);
+
+
 
         interval = 60 / BPM;
 
@@ -125,9 +162,22 @@ public class FourAudioNoteSpawner : MonoBehaviour
         lanePrioritization.Add(prioritizeLane3);
         lanePrioritization.Add(prioritizeLane4);
 
-        FullNoteList.Add(new List<int>() {1, 0, 0, 0});
+        FullNoteList.Add(new List<int>() { 1, 0, 0, 0 });
 
         tss = FindObjectOfType<TextSetScript>();
+
+
+
+        period = 0;
+        running = true;
+        intervalsPast = 0;
+    }
+
+    void Start()
+    {
+        LoadByJSON();
+
+        Setup();
     }
 
 
@@ -135,6 +185,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
     {
         if (running)
         {
+            //print("Gameplay");
             
 
             if (period > interval)
@@ -145,11 +196,11 @@ public class FourAudioNoteSpawner : MonoBehaviour
                 //print("FULL NOTE STUFF" + FullNoteList[intervalsPast][0] + " " + FullNoteList[intervalsPast][1] + " " + FullNoteList[intervalsPast][2] + " " + FullNoteList[intervalsPast][3]);
 
 
+                //print("Gameplay");
 
 
                 for (int i = 0; i < 4; i++)
                 {
-
                     if (FullNoteList[intervalsPast][0] + FullNoteList[intervalsPast][1] + FullNoteList[intervalsPast][2] + FullNoteList[intervalsPast][3] >= 3)
                     {
                         for (int j = 0; j < 4; j++)
@@ -190,6 +241,8 @@ public class FourAudioNoteSpawner : MonoBehaviour
                         }
 
 
+                        Vector3 tempPos = new Vector3(distanceBetween * i - noteOffset, spawnHeight, 0);
+
                         if (lengthOfHoldNote > 1 && advanced == true)
                         {
                             print("Hold Note Spawn");
@@ -199,18 +252,48 @@ public class FourAudioNoteSpawner : MonoBehaviour
                                 FullNoteList[intervalsPast - maxHoldNoteLength + j + 1][i] = 0;
                             }
 
-                            GameObject ANote = Instantiate(HoldNote, new Vector3(distanceBetween * i - noteOffset, spawnHeight, 0), Quaternion.identity); //CHANGE THE GAMEOBJECT TO A HOLD NOTE GAMEOBJECT? Possibly stretch a gameobject depending on lengthofHoldNote then rest of normal note code
+                            
+
+                            GameObject ANote = Instantiate(HoldNote, tempPos, Quaternion.identity); //CHANGE THE GAMEOBJECT TO A HOLD NOTE GAMEOBJECT? Possibly stretch a gameobject depending on lengthofHoldNote then rest of normal note code
+
+
+
                             ANote.GetComponent<HoldNoteScript>().lengthOfHoldNote = lengthOfHoldNote;
                             print("Hold Note Length : " + lengthOfHoldNote);
                             ANote.GetComponent<HoldNoteScript>().ScalingTime();
-                            ANote.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+
+
+
+                            ANote.transform.SetParent(NoteCanvas.transform, false);
+
+
+                            //ANote.transform.position = tempPos;
+
+
+                            //ANote.transform.SetParent(AllTheNotes.transform, false);
+
+
+                            
+                            //ANote.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
                             ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "HOLD";
+                            allNotes.Add(ANote);
                         }
                         else
                         {
-                            GameObject ANote = Instantiate(Note, new Vector3(distanceBetween * i - noteOffset, spawnHeight, 0), Quaternion.identity);
-                            ANote.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+                            GameObject ANote = Instantiate(Note, tempPos, Quaternion.identity);
+
+
+                            ANote.transform.SetParent(NoteCanvas.transform, false);
+
+
+                            //ANote.transform.position = tempPos;
+
+
+                            //ANote.transform.SetParent(AllTheNotes.transform, false);
+
+
                             ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "TAP";
+                            allNotes.Add(ANote);
                         }
 
 
@@ -226,7 +309,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
                     print("song ended");
                 }
             }
-            period += UnityEngine.Time.deltaTime;
+            period += Time.deltaTime;
         }
     }
 
@@ -238,7 +321,9 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
+
             audioSourceList[i].GetSpectrumData(sampleList[i], 0, FFTWindow.Blackman);
+
 
             if (IsMaxIntensityGreaterThanAvg(sampleList[i], i))
             {
