@@ -32,7 +32,12 @@ public class FourAudioNoteSpawner : MonoBehaviour
     //Make 4 vars for 4 audio spectrum datas
     public int sampleSize = 64;
 
+
     public float BPM;
+
+    public float timeBetweenNotes;
+
+
     private float interval;
     private float period = 0;
     private bool running = true;
@@ -84,6 +89,9 @@ public class FourAudioNoteSpawner : MonoBehaviour
     public GameObject loseScreen;
     public GameObject winScreen;
 
+
+
+
     void DeleteAllGameObjectsInList(List<GameObject> listOfGameObjects)
     {
         foreach(GameObject specificGameObject in listOfGameObjects)
@@ -125,7 +133,9 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
 
 
-        interval = 60 / BPM;
+        //interval = 60 / BPM;
+
+        interval = timeBetweenNotes;
 
         samples1 = new float[sampleSize];
         samples2 = new float[sampleSize];
