@@ -27,7 +27,7 @@ public class DragScroll : MonoBehaviour
     {
         if (startPoint != new Vector3(0, 0, 0))
         {
-            background.transform.position -= new Vector3(0, (Input.mousePosition.y - startPoint.y)/2, 0);
+            background.transform.position += new Vector3(0, (Input.mousePosition.y - startPoint.y)/2, 0);
             startPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
         }
         if (background.transform.position.y < b)
