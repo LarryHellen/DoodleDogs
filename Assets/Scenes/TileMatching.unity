@@ -272,7 +272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &64361036
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3971,7 +3971,7 @@ MonoBehaviour:
   startingMoves: 15
   blockChance: 0.5
   advanced: 0
-  tutorialEnabled: 1
+  tutorialEnabled: 0
 --- !u!1 &1975783576
 GameObject:
   m_ObjectHideFlags: 0
