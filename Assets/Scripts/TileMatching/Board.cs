@@ -33,6 +33,8 @@ public class Board : MonoBehaviour
     public int startingMoves;
     public float blockChance;
     public bool advanced;
+    public bool tutorialEnabled;
+    private TutorialSystem tutorialSystem;
 
     
 
@@ -41,6 +43,7 @@ public class Board : MonoBehaviour
     {
         findMatches = FindObjectOfType<FindMatches>();
         moveCounter = FindObjectOfType<MoveCounter>();
+        tutorialSystem = FindObjectOfType<TutorialSystem>();
         allDots = new GameObject[width,height];
         counterHolder = FindObjectOfType<CounterHolder>();
         LoadByJSON();

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 
 [RequireComponent(typeof(AudioSource))]
@@ -14,7 +15,9 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
     public GameObject HoldNote;
 
-    List<AudioSource> audioSourceList = new List<AudioSource>();
+    public Canvas NoteCanvas;
+
+    public List<AudioSource> audioSourceList;
 
     List<float[]> sampleList = new List<float[]>();
 
@@ -29,11 +32,16 @@ public class FourAudioNoteSpawner : MonoBehaviour
     //Make 4 vars for 4 audio spectrum datas
     public int sampleSize = 64;
 
+
     public float BPM;
+
+    public float timeBetweenNotes;
+
+
     private float interval;
     private float period = 0;
     private bool running = true;
-    [HideInInspector] public int intervalsPast = 0;
+    public int intervalsPast = 0;
 
     public int percentHigherThanCloseAvg1;
     public int percentHigherThanCloseAvg2;
@@ -47,7 +55,6 @@ public class FourAudioNoteSpawner : MonoBehaviour
     private float[] samples2 = new float[64];
     private float[] samples3 = new float[64];
     private float[] samples4 = new float[64];
-
 
     public bool advanced;
 
@@ -77,15 +84,58 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
     public int maxHoldNoteLength;
 
+    private List<GameObject> allNotes;
+
+    public GameObject loseScreen;
+    public GameObject winScreen;
 
 
 
 
-    void Start()
+    void DeleteAllGameObjectsInList(List<GameObject> listOfGameObjects)
     {
-        LoadByJSON();
+        foreach(GameObject specificGameObject in listOfGameObjects)
+        {
+            Destroy(specificGameObject);
+        }
+    }
 
-        interval = 60 / BPM;
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene("RythymDemo");
+    }
+    
+    public void Setup()
+    {
+        print("SETTING UP RIGHT NOW");
+        try
+        {
+            DeleteAllGameObjectsInList(allNotes);
+        }
+        catch
+        {
+            //Do Nothing
+        }
+
+        Time.timeScale = 1;
+
+
+
+        allNotes = new List<GameObject>();
+
+        
+
+
+
+        winScreen.SetActive(false);
+
+        loseScreen.SetActive(false);
+
+
+
+        //interval = 60 / BPM;
+
+        interval = timeBetweenNotes;
 
         samples1 = new float[sampleSize];
         samples2 = new float[sampleSize];
@@ -122,9 +172,22 @@ public class FourAudioNoteSpawner : MonoBehaviour
         lanePrioritization.Add(prioritizeLane3);
         lanePrioritization.Add(prioritizeLane4);
 
-        FullNoteList.Add(new List<int>() {1, 0, 0, 0});
+        FullNoteList.Add(new List<int>() { 1, 0, 0, 0 });
 
         tss = FindObjectOfType<TextSetScript>();
+
+
+
+        period = 0;
+        running = true;
+        intervalsPast = 0;
+    }
+
+    void Start()
+    {
+        LoadByJSON();
+
+        Setup();
     }
 
 
@@ -132,6 +195,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
     {
         if (running)
         {
+            //print("Gameplay");
             
 
             if (period > interval)
@@ -142,11 +206,11 @@ public class FourAudioNoteSpawner : MonoBehaviour
                 //print("FULL NOTE STUFF" + FullNoteList[intervalsPast][0] + " " + FullNoteList[intervalsPast][1] + " " + FullNoteList[intervalsPast][2] + " " + FullNoteList[intervalsPast][3]);
 
 
+                //print("Gameplay");
 
 
                 for (int i = 0; i < 4; i++)
                 {
-
                     if (FullNoteList[intervalsPast][0] + FullNoteList[intervalsPast][1] + FullNoteList[intervalsPast][2] + FullNoteList[intervalsPast][3] >= 3)
                     {
                         for (int j = 0; j < 4; j++)
@@ -210,7 +274,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
 
 
-                            ANote.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+                            ANote.transform.SetParent(NoteCanvas.transform, false);
 
 
                             //ANote.transform.position = tempPos;
@@ -222,13 +286,14 @@ public class FourAudioNoteSpawner : MonoBehaviour
                             
                             //ANote.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
                             ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "HOLD";
+                            allNotes.Add(ANote);
                         }
                         else
                         {
                             GameObject ANote = Instantiate(Note, tempPos, Quaternion.identity);
 
 
-                            ANote.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+                            ANote.transform.SetParent(NoteCanvas.transform, false);
 
 
                             //ANote.transform.position = tempPos;
@@ -238,6 +303,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
 
                             ANote.GetComponent<MainNoteScript>().NOTE_TYPE = "TAP";
+                            allNotes.Add(ANote);
                         }
 
 
@@ -253,7 +319,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
                     print("song ended");
                 }
             }
-            period += UnityEngine.Time.deltaTime;
+            period += Time.deltaTime;
         }
     }
 
@@ -265,7 +331,9 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
+
             audioSourceList[i].GetSpectrumData(sampleList[i], 0, FFTWindow.Blackman);
+
 
             if (IsMaxIntensityGreaterThanAvg(sampleList[i], i))
             {

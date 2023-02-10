@@ -5,7 +5,7 @@ using TMPro;
 
 public class TextSetScript : MonoBehaviour
 {
-    public static int Score = 0;
+    public int Score = 0;
     public TextMeshProUGUI DaScore;
 
     public bool Invicibility;

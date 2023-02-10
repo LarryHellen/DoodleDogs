@@ -32,7 +32,6 @@ public class MainNoteScript : MonoBehaviour
 
     //private bool becomeVisible = false;
 
-
     public TextSetScript tss;
 
 
@@ -44,7 +43,7 @@ public class MainNoteScript : MonoBehaviour
 
         if (NOTE_TYPE == "TAP") { 
             Destroy(gameObject);
-            TextSetScript.Score++;
+            tss.Score++;
         }
     }
 
@@ -98,14 +97,14 @@ public class MainNoteScript : MonoBehaviour
 
         if (transform.position[1] < noteGoneAtThisValue)
         {
-                TextSetScript.Score = 0;
+                tss.Score = 0;
                 tss.RhythmGameLoseCondition();
                 Destroy(gameObject);
         }
         else if (HoldTime >= HoldTimeNeeded && NOTE_TYPE == "HOLD")
         {
                 Destroy(gameObject);
-                TextSetScript.Score++;
+                tss.Score++;
         }
 
     }
