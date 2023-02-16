@@ -173,7 +173,11 @@ public class CutsceneManager : MonoBehaviour
             {
                 backButtonDisable.SetActive(true);
             }
-            
+            if (sceneNumber == 26 && firstChapter.activeSelf)
+            {
+                backButtonDisable.SetActive(false);
+            }
+
         }
 
     }
