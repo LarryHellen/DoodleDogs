@@ -11,7 +11,7 @@ public class CutsceneManager : MonoBehaviour
 {
     public GameObject settingsMenu;
     public GameObject backButtonDisable;
-    public GameObject cutscene1Num7, cutscene1End;
+    public GameObject cutscene1Num7, cutscene1End, cutscene1End2;
     public GameObject cutscenes;
     public GameObject firstChapter;
     public GameObject secondChapter;
@@ -80,7 +80,7 @@ public class CutsceneManager : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!settingsMenu.activeSelf && !cutscene1Num7.activeSelf && !cutscene1End.activeSelf)
+        if (!settingsMenu.activeSelf && !cutscene1Num7.activeSelf && !cutscene1End.activeSelf && !cutscene1End2.activeSelf)
         {
             Handheld.Vibrate();
             sceneNumber++;
@@ -143,6 +143,7 @@ public class CutsceneManager : MonoBehaviour
                 cutscenes.SetActive(false);
                 cutsceneNum = 3;
                 cutscenes = secondChapter;
+                backButtonDisable.SetActive(true);
                 Setup();
             }
             else if (cutsceneNum == 5)
@@ -291,6 +292,7 @@ public class CutsceneManager : MonoBehaviour
         PlayerData data = new PlayerData();
 
         data.sceneNumber = cutsceneNum;
+        //data.lSC = this.lSC;
 
         return data;
     }
@@ -299,6 +301,7 @@ public class CutsceneManager : MonoBehaviour
     {
 
         cutsceneNum = tempData.sceneNumber;
+        //lSC = tempData.lSC;
     }
 
     //This was originally private, I made it public so I could access it in other scripts. Was there a reason for making it private?

@@ -836,8 +836,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c52ab4ee3df44ac2b30a1407010e516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CutsceneManager: {fileID: 0}
   background: {fileID: 774242374}
   settingsMenu: {fileID: 4021315120305003838}
+  c2d: {fileID: 663081180}
+  c3d: {fileID: 1591595734}
   startPoint: {x: 0, y: 0, z: 0}
   b: 100
   c: 4000
