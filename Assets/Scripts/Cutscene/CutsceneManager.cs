@@ -57,10 +57,6 @@ public class CutsceneManager : MonoBehaviour
         {
             backButtonDisable.SetActive(false);
         }
-        if ((sceneNumber == 4 && firstChapter.activeSelf))
-        {
-            backButtonDisable.SetActive(false);
-        }
         //FindObjectOfType<AudioManager>().Play("FlipPage");
         cutsceneList[sceneNumber + 1].SetActive(false);
         cutsceneList[sceneNumber].SetActive(true);
@@ -77,10 +73,6 @@ public class CutsceneManager : MonoBehaviour
         if ((sceneNumber == 10 && secondChapter.activeSelf))
         {
             CutsceneManager.FindObjectOfType<PolygonCollider2D>().enabled = true;
-        }
-        if ((sceneNumber == 5 && firstChapter.activeSelf))
-        {
-            backButtonDisable.SetActive(true);
         }
         ChangeScene();
 
@@ -183,10 +175,6 @@ public class CutsceneManager : MonoBehaviour
                 backButtonDisable.SetActive(true);
             }
             if (sceneNumber == 26 && firstChapter.activeSelf)
-            {
-                backButtonDisable.SetActive(false);
-            }
-            if (sceneNumber == 4 && firstChapter.activeSelf)
             {
                 backButtonDisable.SetActive(false);
             }
