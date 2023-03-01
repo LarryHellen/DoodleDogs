@@ -273,7 +273,6 @@ GameObject:
   - component: {fileID: 302725721}
   - component: {fileID: 302725720}
   - component: {fileID: 302725719}
-  - component: {fileID: 302725722}
   m_Layer: 5
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -611,7 +610,6 @@ GameObject:
   - component: {fileID: 1197963072}
   - component: {fileID: 1197963071}
   - component: {fileID: 1197963070}
-  - component: {fileID: 1197963073}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -733,6 +731,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1197963068}
   m_CullTransparentMesh: 1
+--- !u!1 &1283741367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1283741368}
+  - component: {fileID: 1283741369}
+  m_Layer: 0
+  m_Name: Console
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1283741368
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283741367}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.5861027, y: 6.758745, z: -0.044389825}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1283741369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283741367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97c4f437207b3477e9eb95e9c888a6f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1729200776 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7489426936028950947, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
