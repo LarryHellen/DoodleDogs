@@ -14,14 +14,16 @@ public class GoToNewScene : MonoBehaviour
 
     public void GoToScene()
     {
-        LoadByJSON();
+        if (File.Exists(Application.dataPath + "/JSONData.text")){
+            LoadByJSON();
+        }
         if(reset){
             cutsceneNum = 0;
         }
         SaveByJSON();
-        Debug.Log("got here");
         SceneManager.LoadScene(scene);
     }
+
 
     public PlayerData createPlayerDataObject()
     {
