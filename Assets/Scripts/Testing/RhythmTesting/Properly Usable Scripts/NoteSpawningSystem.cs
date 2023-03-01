@@ -4,10 +4,10 @@ using System.Collections;
 public class NoteSpawningSystem : MonoBehaviour
 {
     //Init NotePattern (list of lists of booleans)
-    //Init AudioList (list of AudioSources)
+    //Init AudioArray (Array of AudioSources)
 
 
-    //Init Columns(Get from main spanwer script)
+    //Init Columns (Get from legnth of Audio Array)
     //Init NotePercentLengthOfScreen (Get from main spanwer script)
     //Init IntervalLength (Get from main spanwer script)
     //Init SpaceBetweenNotes (Get from main spanwer script)
