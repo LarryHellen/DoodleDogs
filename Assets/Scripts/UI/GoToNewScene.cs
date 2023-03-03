@@ -14,7 +14,10 @@ public class GoToNewScene : MonoBehaviour
 
     public void GoToScene()
     {
-        if (File.Exists(Application.dataPath + "/JSONData.text")){
+        if(!Directory.Exists(Path.GetDirectoryName(Application.persistentDataPath+"/Saves/"))){
+            Directory.CreateDirectory(Path.GetDirectoryName(Application.persistentDataPath+"/Saves/"));
+        }
+        if (File.Exists(Application.persistentDataPath+"/Saves/JSONData.text")){
             LoadByJSON();
         }
         if(reset){
@@ -48,7 +51,10 @@ public class GoToNewScene : MonoBehaviour
 
         string JsonString = JsonUtility.ToJson(playerData, true); //Convert PLAYERDATA Object into JSON();
 
-        StreamWriter sw = new StreamWriter(Application.dataPath + "/JSONData.text");
+        if(!Directory.Exists(Path.GetDirectoryName(Application.persistentDataPath+"/Saves/"))){
+            Directory.CreateDirectory(Path.GetDirectoryName(Application.persistentDataPath+"/Saves/"));
+        }
+        StreamWriter sw = new StreamWriter(Application.persistentDataPath+"/Saves/JSONData.text");
         sw.Write(JsonString);
         sw.Close();
         Debug.Log("==============SAVED================");
@@ -58,10 +64,13 @@ public class GoToNewScene : MonoBehaviour
     //A: Mostly if we wanted another LoadByJSON script for a different save class. Ask me about it later FIXME: Delete if you understand
     public void LoadByJSON()
     {
-        if (File.Exists(Application.dataPath + "/JSONData.text"))
+        if(!Directory.Exists(Path.GetDirectoryName(Application.persistentDataPath+"/Saves/"))){
+            Directory.CreateDirectory(Path.GetDirectoryName(Application.persistentDataPath+"/Saves/"));
+        }
+        if (File.Exists(Application.persistentDataPath+"/Saves/JSONData.text"))
         {
             //LOAD THE GAME
-            StreamReader sr = new StreamReader(Application.dataPath + "/JSONData.text");
+            StreamReader sr = new StreamReader(Application.persistentDataPath+"/Saves/JSONData.text");
 
             string JsonString = sr.ReadToEnd();
 

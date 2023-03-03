@@ -1078,10 +1078,13 @@ public class TicTacToeRunner : MonoBehaviour
     //A: Mostly if we wanted another LoadByJSON script for a different save class. Ask me about it later FIXME: Delete if you understand
     public void LoadByJSON()
     {
-        if (File.Exists(Application.dataPath + "/JSONData.text"))
+        if(!Directory.Exists(Path.GetDirectoryName(Application.persistentDataPath+"/Saves/"))){
+            Directory.CreateDirectory(Path.GetDirectoryName(Application.persistentDataPath+"/Saves/"));
+        }
+        if (File.Exists(Application.persistentDataPath+"/Saves/JSONData.text"))
         {
             //LOAD THE GAME
-            StreamReader sr = new StreamReader(Application.dataPath + "/JSONData.text");
+            StreamReader sr = new StreamReader(Application.persistentDataPath+"/Saves/JSONData.text");
 
             string JsonString = sr.ReadToEnd();
 
