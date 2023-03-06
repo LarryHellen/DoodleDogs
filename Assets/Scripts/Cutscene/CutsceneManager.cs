@@ -12,6 +12,7 @@ public class CutsceneManager : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject backButtonDisable;
     public GameObject cutscene1Num7, cutscene1End, cutscene1End2;
+    public GameObject c2r;
     public GameObject cutscenes;
     public GameObject firstChapter;
     public GameObject secondChapter;
@@ -88,7 +89,7 @@ public class CutsceneManager : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!settingsMenu.activeSelf && !cutscene1Num7.activeSelf && !cutscene1End.activeSelf && !cutscene1End2.activeSelf)
+        if (!settingsMenu.activeSelf && !cutscene1Num7.activeSelf && !cutscene1End.activeSelf && !cutscene1End2.activeSelf && !c2r.activeSelf)
         {
             Handheld.Vibrate();
             sceneNumber++;
@@ -187,6 +188,10 @@ public class CutsceneManager : MonoBehaviour
                 backButtonDisable.SetActive(false);
             }
             if (sceneNumber == 4 && firstChapter.activeSelf)
+            {
+                backButtonDisable.SetActive(false);
+            }
+            if (sceneNumber == 25 && secondChapter.activeSelf)
             {
                 backButtonDisable.SetActive(false);
             }
