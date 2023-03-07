@@ -87,5 +87,5 @@ public class BasicNoteObject : MonoBehaviour
 // y- BASIC NOTE AND HOLD NOTE TAPPING SYSTEMS
 // y- NOTE MOVEMENT SO THAT NOTES LAND ON A CERTAIN SCREEN HEIGHT PERCENTAGE ON THE BEAT
 // y- NOTE PATTERN CREATOR + DISPLAYER
-// n- NEW HOLD AND BASIC NOTE PREFABS
-// check logic- DELAY THE START OF AUDIO BY (MaxHoldNoteLength + TimeToOnBeatLocation) number of Intervals
+// y- NEW HOLD AND BASIC NOTE PREFABS
+// check logic- DELAY THE START OF AUDIO BY (MaxHoldNoteLength + TimeToOnBeatLocation) number of Intervals (it works)
