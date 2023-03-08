@@ -22,9 +22,8 @@ public class Board : MonoBehaviour
     public GameObject tilePrefab;
     public GameObject[] dots;
     public GameObject[,] allDots;
-    private FindMatches findMatches;
-    private MoveCounter moveCounter;
-    [HideInInspector]
+    public FindMatches findMatches;
+    public MoveCounter moveCounter;
     public CounterHolder counterHolder;
     public GameObject victoryScreen;
     public GameObject defeatScreen;
@@ -34,24 +33,20 @@ public class Board : MonoBehaviour
     public float blockChance;
     public bool advanced;
     public bool tutorialEnabled;
-    private TutorialSystem tutorialSystem;
+    public TutorialSystem tutorialSystem;
 
     
 
     // Start is called before the first frame update
     void Start()
     {
-        findMatches = FindObjectOfType<FindMatches>();
-        moveCounter = FindObjectOfType<MoveCounter>();
-        tutorialSystem = FindObjectOfType<TutorialSystem>();
-        allDots = new GameObject[width,height];
-        counterHolder = FindObjectOfType<CounterHolder>();
         LoadByJSON();
         SetUp();
     }
 
     
     private void SetUp(){
+        allDots = new GameObject[width,height];
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){
                 SpawnDot(j,i,true);

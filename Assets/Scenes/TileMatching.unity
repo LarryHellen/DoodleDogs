@@ -4903,15 +4903,18 @@ MonoBehaviour:
   - {fileID: 7473812701580415757, guid: 1161fdb262a4545b4a217f745606ce41, type: 3}
   - {fileID: 1106311611364274494, guid: 42a98cf8d538144d19e620f5b2f0a7b1, type: 3}
   - {fileID: 1106311611364274494, guid: 509c0581dfa4d4292a51ce08b1b334e8, type: 3}
+  findMatches: {fileID: 1431927851}
+  moveCounter: {fileID: 1935627843}
   counterHolder: {fileID: 364654310}
   victoryScreen: {fileID: 1079109437}
   defeatScreen: {fileID: 728101793}
   francois: {fileID: 718146748}
   coCount: 0
-  startingMoves: 15
+  startingMoves: 10
   blockChance: 0.5
   advanced: 0
   tutorialEnabled: 0
+  tutorialSystem: {fileID: 64361037}
 --- !u!1 &1975783576
 GameObject:
   m_ObjectHideFlags: 0
