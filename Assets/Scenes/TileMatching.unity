@@ -4906,6 +4906,7 @@ MonoBehaviour:
   findMatches: {fileID: 1431927851}
   moveCounter: {fileID: 1935627843}
   counterHolder: {fileID: 364654310}
+  actovateSettings: {fileID: 983701000}
   victoryScreen: {fileID: 1079109437}
   defeatScreen: {fileID: 728101793}
   francois: {fileID: 718146748}

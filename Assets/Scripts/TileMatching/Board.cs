@@ -25,6 +25,7 @@ public class Board : MonoBehaviour
     public FindMatches findMatches;
     public MoveCounter moveCounter;
     public CounterHolder counterHolder;
+    public ActivateSettings actovateSettings;
     public GameObject victoryScreen;
     public GameObject defeatScreen;
     public GameObject francois;
