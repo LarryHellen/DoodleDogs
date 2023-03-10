@@ -7,6 +7,7 @@ using System.IO;
 public class TicTacToeRunner : MonoBehaviour
 {
     public GameObject tile;
+    public ActivateSettings activateSettings;
 
     public GameObject VictoryScreen, DefeatScreen, TieScreen;
 
