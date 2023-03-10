@@ -202,6 +202,7 @@ public class CutsceneManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         //cutsceneNum = 0;
         LoadByJSON();
 
