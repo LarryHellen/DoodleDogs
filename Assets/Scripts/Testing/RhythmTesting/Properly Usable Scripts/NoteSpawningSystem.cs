@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class NoteSpawningSystem : MonoBehaviour
 {
@@ -18,24 +19,54 @@ public class NoteSpawningSystem : MonoBehaviour
     //Init Columns (Get from legnth of Audio Array)
     //Init NotePercentLengthOfScreen (Get from main spanwer script)
     //Init IntervalLength (Get from main spanwer script)
-    //Init SpaceBetweenNotes (Get from main spanwer script)
-    //Init PublicDeltaTime (Get from main spanwer script)
+    //Init HorizontalSpaceBetweenNotes (Get from main spanwer script)
     //Init TimeElapsedSinceLastInterval
     //Init ScreenHeightPercentForNoteHide (Get from main spanwer script)
     //Init ScreenHeightPercentForNoteToLandOnBeat (Get from main spanwer script)
     //Init ScreenHeightPercentForNoteShow (Get from main spanwer script)
     //Init MaxHoldNoteLength
     //Init TimeToOnBeatLocation (Get from main spanwer script)
+    
+
+    public float screenWidth;
+    public float screenHeight;
+
+    private List<List<bool>> notePattern;
+    private AudioSource[] audioArray;
+
+    public GameObject BasicNotePrefab;
+    public GameObject HoldNotePrefab;
+
+    public int columns;
+    public float notePercentLengthOfScreen;
+    public float intervalLength;
+    public float horizontalSpaceBetweenNotes;
+    private float timeElapsedSinceLastInterval;
+    public float ScreenHeightPercentForNoteHide;
+    public float ScreenHeightPercentForNoteToLandOnBeat;
+    public float ScreenHeightPercentForNoteShow;
+    public int maxHoldNoteLength;
+    public float timeToOnBeatLocation;
 
 
     void Start()
     {
         //Get all audio sources attached to the object that this script is attached to and put them in a list
+        audioArray = GetComponents<AudioSource>();
+
         //Set column number according to the number of audio sources
+        columns = audioArray.Length;
 
-        //Set ScreenWidth and ScreenHeight
+        //Set ScreenWidth and ScreenHeight to the World Space width and height
+        Vector3 tempScreenWidthAndHeightCoords;
+        Vector3 screenWidthAndHeightCoords = new Vector3(Screen.width, Screen.height, 0f);
+        tempScreenWidthAndHeightCoords = Camera.main.ScreenToWorldPoint(screenWidthAndHeightCoords) * 2; //"*2" so that it is the full screen height and width as opposed to half of it
 
-        //Set TimeToOnBeatLocation = MaxHoldNoteLength + ExtraAudioDelay
+        screenWidth = tempScreenWidthAndHeightCoords.x;
+        screenHeight = tempScreenWidthAndHeightCoords.y;
+
+        //Set TimeToOnBeatLocation = MaxHoldNoteLength
+        timeToOnBeatLocation = maxHoldNoteLength;
     }
 
 

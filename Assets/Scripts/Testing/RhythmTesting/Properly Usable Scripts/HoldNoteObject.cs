@@ -10,6 +10,13 @@ public class HoldNoteObject : MonoBehaviour
     //Init HoldNoteHoldTime
 
 
+    public int holdNoteLengthSize;
+    public float holdNoteLengthConstant;
+    public float holdNoteBaseTime;
+    public float holdNoteTimeConstant;
+    private float holdNoteHoldTime;
+
+
     void Start()
     {
         //When note spawn, scale to the correct size (HoldNoteLengthSize*(HoldNoteLengthConstant*ScreenHeight))

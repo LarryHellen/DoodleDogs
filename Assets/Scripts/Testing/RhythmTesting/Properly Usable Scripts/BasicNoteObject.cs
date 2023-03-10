@@ -13,7 +13,6 @@ public class BasicNoteObject : MonoBehaviour
     //Init NoteHeight
     //Init IntervalLength (Get from main spanwer script)
     //Init SpaceBetweenNotes (Get from main spanwer script)
-    //Init PublicDeltaTime (Get from main spanwer script)
     //Init TimeElapsedSinceLastInterval
     //Init ScreenHeightPercentForNoteHide (Get from main spanwer script)
     //Init ScreenHeightPercentForNoteToLandOnBeat (Get from main spanwer script)
