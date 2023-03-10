@@ -185,6 +185,7 @@ public class FourAudioNoteSpawner : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         LoadByJSON();
 
         Setup();

@@ -64,6 +64,7 @@ public class IfIveBeenClicked : MonoBehaviour
     {
         myTileTransform = GetComponent<TileTransform>();
         tttr = FindObjectOfType<TicTacToeRunner>();
+        ActivateSettings = tttr.activateSettings;
         X_size = x.rect.size;
         O_size = o.rect.size;
     }

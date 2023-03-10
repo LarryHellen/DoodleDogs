@@ -442,6 +442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tile: {fileID: 4052168045919117037, guid: 73c86b2a75d554a9ababac18e5438eaa, type: 3}
+  activateSettings: {fileID: 5604740481653923671}
   VictoryScreen: {fileID: 1271644154}
   DefeatScreen: {fileID: 1962922123}
   TieScreen: {fileID: 1794357979}
@@ -3385,6 +3386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsMenu: {fileID: 5604740481653923659}
+  gameRunning: 1
 --- !u!1 &5604740482088457824
 GameObject:
   m_ObjectHideFlags: 0

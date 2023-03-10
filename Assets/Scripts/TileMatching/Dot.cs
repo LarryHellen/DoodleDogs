@@ -27,9 +27,9 @@ public class Dot : MonoBehaviour
     void Start()
     {
         board = FindObjectOfType<Board>();
-        findMatches = FindObjectOfType<FindMatches>();
-        moveCounter = FindObjectOfType<MoveCounter>();
-        ActivateSettings = FindObjectOfType<ActivateSettings>();
+        findMatches = board.findMatches;
+        moveCounter = board.moveCounter;
+        ActivateSettings = board.actovateSettings;
         //targetX = (int)transform.position.x;
         //targetY = (int)transform.position.y;
         //row = targetY;

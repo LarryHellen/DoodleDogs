@@ -5,7 +5,7 @@ using UnityEngine;
 public class ActivateSettings : MonoBehaviour
 {
     public GameObject settingsMenu;
-    public static bool gameRunning = true;
+    public bool gameRunning = true;
 
     public void OpenSettings()
     {

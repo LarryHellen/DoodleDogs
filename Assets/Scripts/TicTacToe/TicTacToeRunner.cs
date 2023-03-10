@@ -7,6 +7,7 @@ using System.IO;
 public class TicTacToeRunner : MonoBehaviour
 {
     public GameObject tile;
+    public ActivateSettings activateSettings;
 
     public GameObject VictoryScreen, DefeatScreen, TieScreen;
 
@@ -828,6 +829,7 @@ public class TicTacToeRunner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         LoadByJSON();
 
         print("started");

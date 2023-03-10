@@ -6,34 +6,24 @@ using UnityEngine.UI;
 
 public class MatchCounter : MonoBehaviour
 {
-    private int currentMatches;
-    private int neededMatches;
+    public int currentMatches;
+    public int neededMatches;
     public string matchType;
-    private TextMeshProUGUI textField;
+    public TextMeshProUGUI textField;
     public bool full;
     public GameObject iconObject;
     public Sprite[] iconSprites;
 
 
     // Start is called before the first frame update
-    public void Create(int neededMatches, string matchType)
+    public void Start()
+    {
+        Create();
+    }
+    public void Create()
     {
         full = false;
         currentMatches = 0;
-        this.neededMatches = neededMatches;
-        this.matchType = matchType;
-        textField = gameObject.GetComponent<TextMeshProUGUI>();
-
-        if(matchType == "Bread Dot"){
-            iconObject.GetComponent<Image>().sprite = iconSprites[2];
-        } else if (matchType == "Butter Dot"){
-            iconObject.GetComponent<Image>().sprite = iconSprites[1];
-        } else if (matchType == "Cheese Dot"){
-            iconObject.GetComponent<Image>().sprite = iconSprites[3];
-        } else if (matchType == "Ham Dot"){
-            iconObject.GetComponent<Image>().sprite = iconSprites[0];
-        }
-
         UpdateText();
     }
 
@@ -54,6 +44,11 @@ public class MatchCounter : MonoBehaviour
 
     public int GetMatches(){
         return currentMatches;
+    }
+
+    public void Reset()
+    {
+        Create();
     }
 
 }
