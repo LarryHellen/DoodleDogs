@@ -256,25 +256,25 @@ public class Board : MonoBehaviour
             int dotToUse;
             
             do{
-            retry = false;
-            dotToUse = Random.Range(0, dots.Length);
+                retry = false;
+                dotToUse = Random.Range(0, dots.Length);
 
-            if (noMatches)
-            {
-                int maxIterations = 0;
-                while (MatchesAt(col, row, dots[dotToUse]) && maxIterations < 100)
+                if (noMatches)
                 {
-                    dotToUse = Random.Range(0, dots.Length);
-                    maxIterations++;
+                    int maxIterations = 0;
+                    while (MatchesAt(col, row, dots[dotToUse]) && maxIterations < 100)
+                    {
+                        dotToUse = Random.Range(0, dots.Length);
+                        maxIterations++;
+                    }
                 }
-            }
-            if(dots[dotToUse].tag == "Block Dot"){
-                float prob = Random.Range(1,100);
-                prob /= 100;
-                if(prob <= blockChance || advanced == false){
-                    retry = true;
+                if(dots[dotToUse].tag == "Block Dot"){
+                    float prob = Random.Range(1,100);
+                    prob /= 100;
+                    if (prob >= blockChance || advanced == false){
+                        retry = true;
+                    }
                 }
-            }
             } while(retry == true);
 
             GameObject piece = Instantiate(dots[dotToUse], tempPosition, Quaternion.identity);
