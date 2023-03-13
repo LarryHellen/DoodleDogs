@@ -44,7 +44,8 @@ public class BasicNoteObject : MonoBehaviour
 
     void Start()
     {
-        //Set all variables for proper positioning and size (change sizze only if HoldNoteObject script not attached)
+        //Set all variables for proper size (change height size only if HoldNoteObject script not attached)
+        //Remember to set proper widths
 
 
         //NOTE - MOVEMENT
