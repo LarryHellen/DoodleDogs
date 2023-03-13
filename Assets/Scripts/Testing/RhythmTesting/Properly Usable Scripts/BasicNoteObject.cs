@@ -8,11 +8,10 @@ public class BasicNoteObject : MonoBehaviour
 
 
     //Init Columns (Get from main spanwer script) 
-    //Init NotePercentLengthOfScreen (Get from main spanwer script)
+    //Init NotePercentLengthOfScreen
     //Init NoteWidth
     //Init NoteHeight
     //Init IntervalLength (Get from main spanwer script)
-    //Init SpaceBetweenNotes (Get from main spanwer script)
     //Init TimeElapsedSinceLastInterval
     //Init ScreenHeightPercentForNoteHide (Get from main spanwer script)
     //Init ScreenHeightPercentForNoteToLandOnBeat (Get from main spanwer script)
@@ -26,6 +25,21 @@ public class BasicNoteObject : MonoBehaviour
     //Init InitialOpacity
     //Init EndOpacity
     //Init SpriteRenderer
+
+
+    public float notePercentLengthOfScreen;
+    private float noteWidth;
+    private float noteHeight;
+    private float timeElapsedSinceLastInterval;
+    private float distanceToMoveIn1Interval;
+    private float timeBeenTapped;
+
+    // OPACITY //
+    public float screenHeightPercentForNoteShow;
+    public float initialOpacity;
+    public float endOpacity;
+    public SpriteRenderer spriteRenderer;
+
 
 
     void Start()
@@ -79,12 +93,3 @@ public class BasicNoteObject : MonoBehaviour
         //END OF "NOTE - WINNING AND LOSING"
     }
 }
-
-
-//THINGS I NEED TO FIGURE OUT
-// y- HOLD NOTE SPAWNING SYSTEM (OLD METHOD? FIND A NEW METHOD?)
-// y- BASIC NOTE AND HOLD NOTE TAPPING SYSTEMS
-// y- NOTE MOVEMENT SO THAT NOTES LAND ON A CERTAIN SCREEN HEIGHT PERCENTAGE ON THE BEAT
-// y- NOTE PATTERN CREATOR + DISPLAYER
-// y- NEW HOLD AND BASIC NOTE PREFABS
-// check logic- DELAY THE START OF AUDIO BY (MaxHoldNoteLength + TimeToOnBeatLocation) number of Intervals (it works)

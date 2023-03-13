@@ -1,19 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class AudioDelay : MonoBehaviour
 {
     //Init TimeToOnBeatLocation (Get from main spanwer script)
     //Init AudioSource
-    //public AudioMixer silencer;
+
+
+    public AudioSource audioSource;
+
+    private NoteSpawningSystem noteSpawningSystem;
 
 
     void Start()
     {
+        noteSpawningSystem = GameObject.Find("NoteSpawnManager").GetComponent<NoteSpawningSystem>();
 
-        //AudioSource.PlayDelayed(TimeToOnBeatLocation); 
+        //Delay the start of the audible audio by the time it takes for a note to scroll into position and the max hold note length
+        audioSource.PlayDelayed(noteSpawningSystem.timeToOnBeatLocation + noteSpawningSystem.maxHoldNoteLength*noteSpawningSystem.intervalLength); 
     }
 }
-
-//This line should actually be geared towards the audiosources in the note spawning script (it should still occur here because it only needs to occur once):
-//Set the audio to be silenced completely -> "_MasterMixer.SetFloat("silencePlease", -80f);"

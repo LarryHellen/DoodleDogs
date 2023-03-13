@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 
 public class NoteSpawningSystem : MonoBehaviour
 {
@@ -17,7 +18,6 @@ public class NoteSpawningSystem : MonoBehaviour
 
 
     //Init Columns (Get from legnth of Audio Array)
-    //Init NotePercentLengthOfScreen (Get from main spanwer script)
     //Init IntervalLength (Get from main spanwer script)
     //Init HorizontalSpaceBetweenNotes (Get from main spanwer script)
     //Init TimeElapsedSinceLastInterval
@@ -25,7 +25,7 @@ public class NoteSpawningSystem : MonoBehaviour
     //Init ScreenHeightPercentForNoteToLandOnBeat (Get from main spanwer script)
     //Init ScreenHeightPercentForNoteShow (Get from main spanwer script)
     //Init MaxHoldNoteLength
-    //Init TimeToOnBeatLocation (Get from main spanwer script)
+    //Init TimeToOnBeatLocation (Get from main spanwer script, in intervals)
     
 
     public float screenWidth;
@@ -47,6 +47,7 @@ public class NoteSpawningSystem : MonoBehaviour
     public float ScreenHeightPercentForNoteShow;
     public int maxHoldNoteLength;
     public float timeToOnBeatLocation;
+    public AudioMixer silencer;
 
 
     void Start()
@@ -65,8 +66,8 @@ public class NoteSpawningSystem : MonoBehaviour
         screenWidth = tempScreenWidthAndHeightCoords.x;
         screenHeight = tempScreenWidthAndHeightCoords.y;
 
-        //Set TimeToOnBeatLocation = MaxHoldNoteLength
-        timeToOnBeatLocation = maxHoldNoteLength;
+        //Silence all audios
+        silencer.SetFloat("silencePlease", -80f);
     }
 
 
