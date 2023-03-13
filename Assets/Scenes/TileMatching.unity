@@ -4913,7 +4913,7 @@ MonoBehaviour:
   coCount: 0
   startingMoves: 10
   blockChance: 0.5
-  advanced: 0
+  advanced: 1
   tutorialEnabled: 0
   tutorialSystem: {fileID: 64361037}
 --- !u!1 &1975783576
