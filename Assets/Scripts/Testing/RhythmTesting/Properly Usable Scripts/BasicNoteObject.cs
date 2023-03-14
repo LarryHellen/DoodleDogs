@@ -9,9 +9,8 @@ public class BasicNoteObject : MonoBehaviour
 
     //Init Columns (Get from main spanwer script) 
     //Init NotePercentLengthOfScreen
-    //Init NoteWidth
-    //Init NoteHeight
     //Init IntervalLength (Get from main spanwer script)
+    //Init HorizontalSpaceBetweenNotes (Get from main spanwer script)
     //Init TimeElapsedSinceLastInterval
     //Init ScreenHeightPercentForNoteHide (Get from main spanwer script)
     //Init ScreenHeightPercentForNoteToLandOnBeat (Get from main spanwer script)
@@ -28,11 +27,10 @@ public class BasicNoteObject : MonoBehaviour
 
 
     public float notePercentLengthOfScreen;
-    private float noteWidth;
-    private float noteHeight;
     private float timeElapsedSinceLastInterval;
     private float distanceToMoveIn1Interval;
     private float timeBeenTapped;
+    private bool isHoldNote = false;
 
     // OPACITY //
     public float screenHeightPercentForNoteShow;
@@ -40,18 +38,49 @@ public class BasicNoteObject : MonoBehaviour
     public float endOpacity;
     public SpriteRenderer spriteRenderer;
 
+    private NoteSpawningSystem nSS;
+    private HoldNoteObject holdNoteObject;
+    private Transform t;
 
 
     void Start()
     {
+        t = GetComponent<Transform>();
+
+        nSS = GameObject.Find("NoteSpawnManager").GetComponent<NoteSpawningSystem>();
+        holdNoteObject = GetComponent<HoldNoteObject>();
+
+        if (holdNoteObject != null)
+        {
+            isHoldNote = true;
+        }
+
         //Set all variables for proper size (change height size only if HoldNoteObject script not attached)
         //Remember to set proper widths
+
+
+        //Width Setting
+        print(nSS.columns);
+
+        var scale = t.localScale;
+        scale.x = (nSS.screenWidth - (nSS.horizontalSpaceBetweenNotes * (nSS.columns - 1))) / nSS.columns; //FIX SCALING
+
+
+        //Height Setting
+
+        if (!isHoldNote)
+        {
+            scale.y = nSS.screenHeight * nSS.notePercentLengthOfScreen; //FIX SCALING
+        }
+
+        t.localScale = scale;
 
 
         //NOTE - MOVEMENT
 
 
         //DistanceToMoveIn1Interval = (ScreenHeight - ScreenHeight*ScreenHeightPercentForNoteToLandOnBeat)/TimeToOnBeatLocation
+        distanceToMoveIn1Interval = (nSS.screenHeight - nSS.screenHeight * screenHeightPercentForNoteShow) / nSS.timeToOnBeatLocation; //timeToOnBeatLocation is in units of time of size "IntervalLength"
 
 
         //END OF "NOTE - MOVEMENT"
@@ -93,4 +122,8 @@ public class BasicNoteObject : MonoBehaviour
 
         //END OF "NOTE - WINNING AND LOSING"
     }
+
+
+
+
 }

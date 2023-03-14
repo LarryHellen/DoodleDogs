@@ -26,18 +26,11 @@ public class NoteSpawningSystem : MonoBehaviour
     //Init ScreenHeightPercentForNoteShow (Get from main spanwer script)
     //Init MaxHoldNoteLength
     //Init TimeToOnBeatLocation (Get from main spanwer script, in intervals)
-    
 
-    public float screenWidth;
-    public float screenHeight;
 
-    private List<List<bool>> notePattern;
-    private AudioSource[] audioArray;
+    [Header("Manual Variables")]
 
-    public GameObject BasicNotePrefab;
-    public GameObject HoldNotePrefab;
 
-    public int columns;
     public float notePercentLengthOfScreen;
     public float intervalLength;
     public float horizontalSpaceBetweenNotes;
@@ -47,10 +40,24 @@ public class NoteSpawningSystem : MonoBehaviour
     public float ScreenHeightPercentForNoteShow;
     public int maxHoldNoteLength;
     public float timeToOnBeatLocation;
+    public GameObject BasicNotePrefab;
+    public GameObject HoldNotePrefab;
     public AudioMixer silencer;
 
+    [Space(25)]
 
-    void Start()
+    [Header("Automatic Variables")]
+
+    public int columns;
+    public float screenWidth;
+    public float screenHeight;
+
+
+    private List<List<bool>> notePattern;
+    private AudioSource[] audioArray;
+
+
+    void Awake()
     {
         //Get all audio sources attached to the object that this script is attached to and put them in a list
         audioArray = GetComponents<AudioSource>();
