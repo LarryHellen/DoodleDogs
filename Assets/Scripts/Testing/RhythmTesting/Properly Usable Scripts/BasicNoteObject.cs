@@ -60,8 +60,6 @@ public class BasicNoteObject : MonoBehaviour
 
 
         //Width Setting
-        print(nSS.columns);
-
         var scale = t.localScale;
         scale.x = (nSS.screenWidth - (nSS.horizontalSpaceBetweenNotes * (nSS.columns - 1))) / nSS.columns; //FIX SCALING
 

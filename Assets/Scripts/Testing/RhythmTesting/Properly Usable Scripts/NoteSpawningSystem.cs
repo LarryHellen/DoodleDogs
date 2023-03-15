@@ -72,11 +72,13 @@ public class NoteSpawningSystem : MonoBehaviour
 
         screenWidth = tempScreenWidthAndHeightCoords.x;
         screenHeight = tempScreenWidthAndHeightCoords.y;
+    }
 
+    void Start()
+    {
         //Silence all audios
         silencer.SetFloat("silencePlease", -80f);
     }
-
 
     void Update()
     {
