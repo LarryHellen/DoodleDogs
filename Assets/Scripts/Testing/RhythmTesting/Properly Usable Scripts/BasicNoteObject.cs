@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class BasicNoteObject : MonoBehaviour
 {
@@ -36,16 +37,17 @@ public class BasicNoteObject : MonoBehaviour
     public float screenHeightPercentForNoteShow;
     public float initialOpacity;
     public float endOpacity;
-    public SpriteRenderer spriteRenderer;
+    private Image image;
 
     private NoteSpawningSystem nSS;
     private HoldNoteObject holdNoteObject;
-    private Transform t;
+    private RectTransform rt;
 
 
     void Start()
     {
-        t = GetComponent<Transform>();
+        image = GetComponent<Image>();
+        rt = GetComponent<RectTransform>();
 
         nSS = GameObject.Find("NoteSpawnManager").GetComponent<NoteSpawningSystem>();
         holdNoteObject = GetComponent<HoldNoteObject>();
@@ -60,18 +62,18 @@ public class BasicNoteObject : MonoBehaviour
 
 
         //Width Setting
-        var scale = t.localScale;
-        scale.x = (nSS.screenWidth - (nSS.horizontalSpaceBetweenNotes * (nSS.columns - 1))) / nSS.columns; //FIX SCALING
+        var sizeDelta = rt.sizeDelta;
+        sizeDelta.x = (nSS.screenWidth - (nSS.horizontalSpaceBetweenNotes * (nSS.columns - 1))) / nSS.columns;
 
 
         //Height Setting
-
         if (!isHoldNote)
         {
-            scale.y = nSS.screenHeight * nSS.notePercentLengthOfScreen; //FIX SCALING
+            sizeDelta.y = nSS.screenHeight * notePercentLengthOfScreen;
         }
 
-        t.localScale = scale;
+        rt.sizeDelta = sizeDelta;
+        
 
 
         //NOTE - MOVEMENT

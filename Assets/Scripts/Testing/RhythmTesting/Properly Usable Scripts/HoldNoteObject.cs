@@ -16,23 +16,23 @@ public class HoldNoteObject : MonoBehaviour
     public float holdNoteBaseTime;
     public float holdNoteTimeConstant;
     private float holdNoteHoldTime;
-    private Transform t;
+    private RectTransform rt;
 
-    private NoteSpawningSystem noteSpawningSystem;
+    private NoteSpawningSystem nSS;
 
 
     void Start()
     {
         //Getting the NoteSpawningSystem Script for its variables
-        noteSpawningSystem = GameObject.Find("NoteSpawnManager").GetComponent<NoteSpawningSystem>();
+        nSS = GameObject.Find("NoteSpawnManager").GetComponent<NoteSpawningSystem>();
 
         //When note spawn, scale to the correct size (HoldNoteLengthSize*(HoldNoteLengthConstant*ScreenHeight))
-        t = GetComponent<Transform>();
-        var scale = t.localScale;
-        scale.y = holdNoteLength * holdNoteLengthConstant * noteSpawningSystem.screenHeight; //FIX SCALING
-        t.localScale = scale;
+        rt = GetComponent<RectTransform>();
+        var sizeDelta = rt.sizeDelta;
+        sizeDelta.y = holdNoteLength * holdNoteLengthConstant * nSS.screenHeight; //FIX SCALING
+        rt.sizeDelta = sizeDelta;
 
         //Set HoldNoteHoldTime to the proper number of seconds [HoldNoteHoldTime = (HoldNoteLengthSize*HoldNoteTimeConstant*IntervalLength)]
-        holdNoteHoldTime = holdNoteLength * noteSpawningSystem.intervalLength * holdNoteTimeConstant;
+        holdNoteHoldTime = holdNoteLength * nSS.intervalLength * holdNoteTimeConstant;
     }
 }

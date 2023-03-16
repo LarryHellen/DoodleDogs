@@ -31,7 +31,6 @@ public class NoteSpawningSystem : MonoBehaviour
     [Header("Manual Variables")]
 
 
-    public float notePercentLengthOfScreen;
     public float intervalLength;
     public float horizontalSpaceBetweenNotes;
     private float timeElapsedSinceLastInterval;
@@ -66,12 +65,19 @@ public class NoteSpawningSystem : MonoBehaviour
         columns = audioArray.Length;
 
         //Set ScreenWidth and ScreenHeight to the World Space width and height
+        GameObject canvas = GameObject.Find("GameField");
+        RectTransform canvasRt = canvas.GetComponent<RectTransform>();
+        screenWidth = canvasRt.sizeDelta.x;
+        screenHeight = canvasRt.sizeDelta.y;
+
+        /*
         Vector3 tempScreenWidthAndHeightCoords;
         Vector3 screenWidthAndHeightCoords = new Vector3(Screen.width, Screen.height, 0f);
         tempScreenWidthAndHeightCoords = Camera.main.ScreenToWorldPoint(screenWidthAndHeightCoords) * 2; //"*2" so that it is the full screen height and width as opposed to half of it
 
         screenWidth = tempScreenWidthAndHeightCoords.x;
         screenHeight = tempScreenWidthAndHeightCoords.y;
+        */
     }
 
     void Start()
