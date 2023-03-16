@@ -29,7 +29,7 @@ public class HoldNoteObject : MonoBehaviour
         //When note spawn, scale to the correct size (HoldNoteLengthSize*(HoldNoteLengthConstant*ScreenHeight))
         rt = GetComponent<RectTransform>();
         var sizeDelta = rt.sizeDelta;
-        sizeDelta.y = holdNoteLength * holdNoteLengthConstant * nSS.screenHeight; //FIX SCALING
+        sizeDelta.y = holdNoteLength * holdNoteLengthConstant * nSS.screenHeight;
         rt.sizeDelta = sizeDelta;
 
         //Set HoldNoteHoldTime to the proper number of seconds [HoldNoteHoldTime = (HoldNoteLengthSize*HoldNoteTimeConstant*IntervalLength)]
