@@ -58,7 +58,7 @@ public class CutsceneManager : MonoBehaviour
         {
             backButtonDisable.SetActive(false);
         }
-        if ((sceneNumber == 4 && firstChapter.activeSelf))
+        if ((sceneNumber == 3 && firstChapter.activeSelf))
         {
             backButtonDisable.SetActive(false);
         }
@@ -83,7 +83,7 @@ public class CutsceneManager : MonoBehaviour
         {
             CutsceneManager.FindObjectOfType<PolygonCollider2D>().enabled = true;
         }
-        if ((sceneNumber == 5 && firstChapter.activeSelf))
+        if ((sceneNumber == 4 && firstChapter.activeSelf))
         {
             backButtonDisable.SetActive(true);
         }
@@ -195,11 +195,11 @@ public class CutsceneManager : MonoBehaviour
             {
                 backButtonDisable.SetActive(false);
             }
-            if (sceneNumber == 4 && firstChapter.activeSelf)
+            if (sceneNumber == 3 && firstChapter.activeSelf)
             {
                 backButtonDisable.SetActive(false);
             }
-            if (sceneNumber == 25 && secondChapter.activeSelf)
+            if (sceneNumber == 28 && secondChapter.activeSelf)
             {
                 backButtonDisable.SetActive(false);
             }
