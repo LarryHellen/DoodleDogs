@@ -41,6 +41,6 @@ public class MoveCounter : MonoBehaviour
     }
 
     private void UpdateText(){
-        textField.text = currentMoves + "/" + board.startingMoves;
+        textField.text = "" + currentMoves;
     }
 }
