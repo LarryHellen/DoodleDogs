@@ -50,15 +50,19 @@ public class CutsceneManager : MonoBehaviour
 
     private void ChangeSceneBack()
     {
-        if ((sceneNumber == 7 && secondChapter.activeSelf))
+        if ((sceneNumber == 9 && secondChapter.activeSelf))
         {
             backButtonDisable.SetActive(false);
         }
-        if ((sceneNumber == 11 && secondChapter.activeSelf))
+        if ((sceneNumber == 10 && secondChapter.activeSelf))
         {
             backButtonDisable.SetActive(false);
         }
         if ((sceneNumber == 4 && firstChapter.activeSelf))
+        {
+            backButtonDisable.SetActive(false);
+        }
+        if (sceneNumber == 4 && secondChapter.activeSelf)
         {
             backButtonDisable.SetActive(false);
         }
@@ -75,11 +79,15 @@ public class CutsceneManager : MonoBehaviour
         {
             backButtonDisable.SetActive(true);
         }
-        if ((sceneNumber == 10 && secondChapter.activeSelf))
+        if ((sceneNumber == 11 && secondChapter.activeSelf))
         {
             CutsceneManager.FindObjectOfType<PolygonCollider2D>().enabled = true;
         }
         if ((sceneNumber == 5 && firstChapter.activeSelf))
+        {
+            backButtonDisable.SetActive(true);
+        }
+        if ((sceneNumber == 5 && secondChapter.activeSelf))
         {
             backButtonDisable.SetActive(true);
         }
@@ -89,7 +97,7 @@ public class CutsceneManager : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!settingsMenu.activeSelf && !cutscene1Num7.activeSelf && !cutscene1End.activeSelf && !cutscene1End2.activeSelf && !c2r.activeSelf)
+        if (!settingsMenu.activeSelf && !cutscene1Num7.activeSelf && !cutscene1End.activeSelf && !cutscene1End2.activeSelf && !c2r.activeSelf && !(secondChapter.activeSelf && sceneNumber == 4) && !(secondChapter.activeSelf && (sceneNumber == 8 || sceneNumber == 9 || sceneNumber == 10)))
         {
             Handheld.Vibrate();
             sceneNumber++;
@@ -174,12 +182,12 @@ public class CutsceneManager : MonoBehaviour
             {
                 backButtonDisable.SetActive(false);
             }
-            if (sceneNumber == 6 && secondChapter.activeSelf)
+            if (sceneNumber == 8 && secondChapter.activeSelf)
             {
                 backButtonDisable.SetActive(false);
                 CutsceneManager.FindObjectOfType<PolygonCollider2D>().enabled = false;
             }
-            if (sceneNumber == 12 && secondChapter.activeSelf)
+            if (sceneNumber == 11 && secondChapter.activeSelf)
             {
                 backButtonDisable.SetActive(true);
             }
@@ -194,6 +202,14 @@ public class CutsceneManager : MonoBehaviour
             if (sceneNumber == 25 && secondChapter.activeSelf)
             {
                 backButtonDisable.SetActive(false);
+            }
+            if (sceneNumber == 4 && secondChapter.activeSelf)
+            {
+                backButtonDisable.SetActive(false);
+            }
+            if (sceneNumber == 10 && secondChapter.activeSelf)
+            {
+                backButtonDisable.SetActive(true);
             }
 
         }
