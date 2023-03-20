@@ -79,39 +79,28 @@ public class BasicNoteObject : MonoBehaviour
         //NOTE - MOVEMENT
 
 
-        //DistanceToMoveIn1Interval = (ScreenHeight - ScreenHeight*ScreenHeightPercentForNoteToLandOnBeat)/TimeToOnBeatLocation
-        distanceToMoveIn1Interval = (nSS.screenHeight - nSS.screenHeight * screenHeightPercentForNoteShow) / nSS.timeToOnBeatLocation; //timeToOnBeatLocation is in units of time of size "IntervalLength"
+        //DistanceToMoveIn1Interval = (CurrentHeight - ScreenHeight*ScreenHeightPercentForNoteToLandOnBeat)/TimeToOnBeatLocation
+        distanceToMoveIn1Interval = (transform.position.y - nSS.screenHeight * screenHeightPercentForNoteShow) / nSS.timeToOnBeatLocation; //timeToOnBeatLocation is in units of time of size "IntervalLength"
 
+        //Start Note Movement
+        InvokeRepeating("LerpMovementFunc", 0, nSS.intervalLength);
+        //print(rt.localPosition);
 
         //END OF "NOTE - MOVEMENT"
     }
 
-
     void Update()
     {
-        //NOTE - MOVEMENT
-
-
-        //SETUP LERP VARIABLES
-
-        //LERP TO DistanceToMoveIn1Interval from a starting position over 1 Interval of time
-
-        //if (lerp complete)
-            //RESET LERP VARIABLES
-
-
-        //END OF "NOTE - MOVEMENT"
-
 
 
         //NOTE - WINNING AND LOSING
 
 
         //if HoldNoteObject script is attached and object being clicked, increase a TimeBeenTapped variable by deltaTime
-            //if TimeBeenTapped is greater than this objects HoldTime, [Destroy this object and give the player score] <- Seperate function?
+        //if TimeBeenTapped is greater than this objects HoldTime, [Destroy this object and give the player score] <- Seperate function?
 
         //if HoldNoteObject script is attached and object not being clicked
-            //Set TimeBeenTapped to 0
+        //Set TimeBeenTapped to 0
 
 
         //else if (HoldNoteObject script not attached and object being clicked), [Destroy this object and give the player score] <- Seperate function?
@@ -123,7 +112,29 @@ public class BasicNoteObject : MonoBehaviour
         //END OF "NOTE - WINNING AND LOSING"
     }
 
+    void LerpMovementFunc()
+    {
+        StartCoroutine(LerpMovement());
+    }
 
+    IEnumerator LerpMovement()
+    {
+        float startPos = rt.localPosition.y;
+        float endPos = rt.localPosition.y - distanceToMoveIn1Interval;
+        float timeElapsed = 0;
+        float lerpValue = 0;
 
+        while (timeElapsed < nSS.intervalLength)
+        {
+            lerpValue = Mathf.Lerp(startPos, endPos, timeElapsed / nSS.intervalLength);
+            timeElapsed += Time.deltaTime;
+
+            rt.localPosition = new Vector3(rt.localPosition.x, lerpValue, rt.localPosition.z);
+
+            yield return null;
+        }
+
+        rt.localPosition = new Vector3(rt.localPosition.x, endPos, rt.localPosition.z);
+    }
 
 }
