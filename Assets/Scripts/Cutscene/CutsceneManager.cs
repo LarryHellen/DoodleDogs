@@ -35,8 +35,8 @@ public class CutsceneManager : MonoBehaviour
     public GameObject seventhGameplayScene;
     public GameObject eighthGameplayScene;
 
-    public GameObject chapter2Enable;
-    public GameObject chapter3Enable;
+    //public GameObject chapter2Enable;
+    //public GameObject chapter3Enable;
 
     public int cutsceneNum;
 
@@ -163,7 +163,7 @@ public class CutsceneManager : MonoBehaviour
                 backButtonDisable.SetActive(true);
                 Setup();
             }
-            else if (cutsceneNum == 5)
+            else if (cutsceneNum == 10)
             {
                 SceneManager.LoadScene("Chapter2");
                 cutscenes.SetActive(false);
