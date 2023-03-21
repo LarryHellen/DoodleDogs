@@ -18203,7 +18203,7 @@ MonoBehaviour:
   tileMatching: TileMatching
   ticTacToe: TicTacToe
   ticTacToe2: TicTacToe2
-  rythym: RythymDemo
+  rythym: RhythmGameTesting
   sceneNumber: 0
   firstGameplayScene: {fileID: 957216106}
   secondGameplayScene: {fileID: 1851614582}
@@ -18213,8 +18213,6 @@ MonoBehaviour:
   sixthGameplayScene: {fileID: 588068185}
   seventhGameplayScene: {fileID: 2145349838}
   eighthGameplayScene: {fileID: 681815680}
-  chapter2Enable: {fileID: 0}
-  chapter3Enable: {fileID: 0}
   cutsceneNum: 0
 --- !u!60 &1243183808
 PolygonCollider2D:
