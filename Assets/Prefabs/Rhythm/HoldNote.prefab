@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2ab78a23eaf424980c092d04c966ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdNoteLength: 1
-  holdNoteLengthConstant: 0.5
+  holdNoteLength: 2
+  holdNoteLengthConstant: 0.25
   holdNoteBaseTime: 0
   holdNoteTimeConstant: 0
 --- !u!114 &7846122841841152006
@@ -68,8 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628f24c6048a24e4e908ace3b376584d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notePercentLengthOfScreen: 0.5
-  screenHeightPercentForNoteShow: 0
+  notePercentLengthOfScreen: 0.25
   initialOpacity: 0
   endOpacity: 0
 --- !u!222 &8999597745335800674

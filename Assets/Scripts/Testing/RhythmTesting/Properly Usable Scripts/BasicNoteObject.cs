@@ -33,8 +33,8 @@ public class BasicNoteObject : MonoBehaviour
     private float timeBeenTapped;
     private bool isHoldNote = false;
 
+
     // OPACITY //
-    public float screenHeightPercentForNoteShow;
     public float initialOpacity;
     public float endOpacity;
     private Image image;
@@ -80,10 +80,11 @@ public class BasicNoteObject : MonoBehaviour
 
 
         //DistanceToMoveIn1Interval = (CurrentHeight - ScreenHeight*ScreenHeightPercentForNoteToLandOnBeat)/TimeToOnBeatLocation
-        distanceToMoveIn1Interval = (transform.position.y - nSS.screenHeight * screenHeightPercentForNoteShow) / nSS.timeToOnBeatLocation; //timeToOnBeatLocation is in units of time of size "IntervalLength"
+        distanceToMoveIn1Interval = (rt.localPosition.y - ((nSS.screenHeightPercentForNoteToLandOnBeat * nSS.screenHeight) - (nSS.screenHeight / 2))) / nSS.timeToOnBeatLocation; //timeToOnBeatLocation is in units of time of size "IntervalLength"
+        //print(distanceToMoveIn1Interval);
 
         //Start Note Movement
-        InvokeRepeating("LerpMovementFunc", 0, nSS.intervalLength);
+        StartCoroutine(LerpMovement());
         //print(rt.localPosition);
 
         //END OF "NOTE - MOVEMENT"
@@ -91,8 +92,6 @@ public class BasicNoteObject : MonoBehaviour
 
     void Update()
     {
-
-
         //NOTE - WINNING AND LOSING
 
 
@@ -112,29 +111,27 @@ public class BasicNoteObject : MonoBehaviour
         //END OF "NOTE - WINNING AND LOSING"
     }
 
-    void LerpMovementFunc()
-    {
-        StartCoroutine(LerpMovement());
-    }
-
     IEnumerator LerpMovement()
     {
-        float startPos = rt.localPosition.y;
-        float endPos = rt.localPosition.y - distanceToMoveIn1Interval;
-        float timeElapsed = 0;
-        float lerpValue = 0;
-
-        while (timeElapsed < nSS.intervalLength)
+        while (true)
         {
-            lerpValue = Mathf.Lerp(startPos, endPos, timeElapsed / nSS.intervalLength);
-            timeElapsed += Time.deltaTime;
+            float startPos = rt.localPosition.y;
+            float endPos = rt.localPosition.y - distanceToMoveIn1Interval;
+            float timeElapsed = 0;
+            float lerpValue = 0;
 
-            rt.localPosition = new Vector3(rt.localPosition.x, lerpValue, rt.localPosition.z);
+            while (timeElapsed < nSS.intervalLength)
+            {
+                lerpValue = Mathf.Lerp(startPos, endPos, timeElapsed / nSS.intervalLength);
+                timeElapsed += Time.deltaTime;
 
-            yield return null;
+                rt.localPosition = new Vector3(rt.localPosition.x, lerpValue, rt.localPosition.z);
+
+                yield return null;
+            }
+
+            rt.localPosition = new Vector3(rt.localPosition.x, endPos, rt.localPosition.z);
         }
-
-        rt.localPosition = new Vector3(rt.localPosition.x, endPos, rt.localPosition.z);
     }
-
+        
 }

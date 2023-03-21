@@ -34,13 +34,15 @@ public class NoteSpawningSystem : MonoBehaviour
     public float intervalLength;
     public float horizontalSpaceBetweenNotes;
     private float timeElapsedSinceLastInterval;
-    public float ScreenHeightPercentForNoteHide;
-    public float ScreenHeightPercentForNoteToLandOnBeat;
-    public float ScreenHeightPercentForNoteShow;
     public int maxHoldNoteLength;
     public float timeToOnBeatLocation;
+    public GameObject OnBeatTestingLine;
     public GameObject BasicNotePrefab;
     public GameObject HoldNotePrefab;
+
+    public float screenHeightPercentForNoteHide;
+    public float screenHeightPercentForNoteToLandOnBeat;
+    public float screenHeightPercentForNoteShow;
 
     [Space(25)]
 
@@ -53,6 +55,8 @@ public class NoteSpawningSystem : MonoBehaviour
 
     private List<List<bool>> notePattern;
     private AudioSource[] audioArray;
+
+    private BasicNoteObject basicNoteObject;
 
 
     void Awake()
@@ -72,7 +76,8 @@ public class NoteSpawningSystem : MonoBehaviour
 
     void Start()
     {
-
+        RectTransform lrt = OnBeatTestingLine.GetComponent<RectTransform>();
+        lrt.localPosition = new Vector3(lrt.localPosition.x, (screenHeightPercentForNoteToLandOnBeat * screenHeight) - screenHeight/2, lrt.localPosition.y);
     }
 
     void Update()

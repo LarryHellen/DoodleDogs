@@ -51,8 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628f24c6048a24e4e908ace3b376584d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notePercentLengthOfScreen: 0.5
-  screenHeightPercentForNoteShow: 0
+  notePercentLengthOfScreen: 0.25
   initialOpacity: 0
   endOpacity: 0
 --- !u!222 &6259454622344485563
