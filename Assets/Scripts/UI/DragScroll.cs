@@ -14,7 +14,7 @@ public class DragScroll : MonoBehaviour
     public int p;
     public Vector3 startPoint = new Vector3(0, 0, 0);
     public int b = 0, c = 0;
-    public int cutsceneNum;
+    public  int cutsceneNum;
     // Start is called before the first frame update
     private void OnMouseDown()
     {
