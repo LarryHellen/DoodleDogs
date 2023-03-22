@@ -81,6 +81,15 @@ public class BasicNoteObject : MonoBehaviour
 
         //DistanceToMoveIn1Interval = (CurrentHeight - ScreenHeight*ScreenHeightPercentForNoteToLandOnBeat)/TimeToOnBeatLocation
         distanceToMoveIn1Interval = (rt.localPosition.y - ((nSS.screenHeightPercentForNoteToLandOnBeat * nSS.screenHeight) - (nSS.screenHeight / 2))) / nSS.timeToOnBeatLocation; //timeToOnBeatLocation is in units of time of size "IntervalLength"
+
+
+        //+ (nSS.screenHeight * notePercentLengthOfScreen/2))
+        //Something like this for note to get to the top of the line of time
+
+
+
+
+
         //print(distanceToMoveIn1Interval);
 
         //Start Note Movement
