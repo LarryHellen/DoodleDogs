@@ -271,7 +271,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: Cutscenes
   reset: 1
-  cutsceneNum: 0
 --- !u!1 &405500884
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,8 +735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene: Cutscenes
-  reset: 1
-  cutsceneNum: 0
+  reset: 0
 --- !u!1 &774242374
 GameObject:
   m_ObjectHideFlags: 0
@@ -1400,8 +1398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene: Cutscenes
-  reset: 1
-  cutsceneNum: 0
+  reset: 0
 --- !u!1 &1252013134 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5604740481062617916, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
@@ -2244,6 +2241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsMenu: {fileID: 4021315120305003838}
+  gameRunning: 1
 --- !u!222 &4021315120305003811
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2861,4 +2859,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: MainMenu
   reset: 0
-  cutsceneNum: 0

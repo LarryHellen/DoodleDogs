@@ -7,14 +7,14 @@ using System.IO;
 
 public class DragScroll : MonoBehaviour
 {
-    private CutsceneManager CutsceneManager;
+    //private CutsceneManager CutsceneManager;
     public GameObject background;
     public GameObject settingsMenu;
     public GameObject c2d, c3d;//, c4d;
     public int p;
     public Vector3 startPoint = new Vector3(0, 0, 0);
     public int b = 0, c = 0;
-    int cutsceneNum;
+    public int cutsceneNum;
     // Start is called before the first frame update
     private void OnMouseDown()
     {
@@ -48,7 +48,7 @@ public class DragScroll : MonoBehaviour
     }
     void Start()
     {
-
+        print(cutsceneNum);
         //cutsceneNum = 0;
         LoadByJSON();
         if (cutsceneNum > 2)
@@ -63,7 +63,7 @@ public class DragScroll : MonoBehaviour
         {
             print(cutsceneNum);
         }
-       
+
     }
 
     public PlayerData createPlayerDataObject()
@@ -71,6 +71,7 @@ public class DragScroll : MonoBehaviour
         PlayerData data = new PlayerData();
 
         data.sceneNumber = cutsceneNum;
+        //data.lSC = this.lSC;
 
         return data;
     }
@@ -79,6 +80,7 @@ public class DragScroll : MonoBehaviour
     {
 
         cutsceneNum = tempData.sceneNumber;
+        //lSC = tempData.lSC;
     }
 
     //This was originally private, I made it public so I could access it in other scripts. Was there a reason for making it private?
@@ -89,7 +91,10 @@ public class DragScroll : MonoBehaviour
 
         string JsonString = JsonUtility.ToJson(playerData, true); //Convert PLAYERDATA Object into JSON();
 
-        StreamWriter sw = new StreamWriter(Application.dataPath + "/JSONData.text");
+        if(!Directory.Exists(Path.GetDirectoryName(Application.persistentDataPath+"/Saves/"))){
+            Directory.CreateDirectory(Path.GetDirectoryName(Application.persistentDataPath+"/Saves/"));
+        }
+        StreamWriter sw = new StreamWriter(Application.persistentDataPath+"/Saves/JSONData.text");
         sw.Write(JsonString);
         sw.Close();
         Debug.Log("==============SAVED================");
@@ -99,10 +104,13 @@ public class DragScroll : MonoBehaviour
     //A: Mostly if we wanted another LoadByJSON script for a different save class. Ask me about it later FIXME: Delete if you understand
     public void LoadByJSON()
     {
-        if (File.Exists(Application.dataPath + "/JSONData.text"))
+        if(!Directory.Exists(Path.GetDirectoryName(Application.persistentDataPath+"/Saves/"))){
+            Directory.CreateDirectory(Path.GetDirectoryName(Application.persistentDataPath+"/Saves/"));
+        }
+        if (File.Exists(Application.persistentDataPath+"/Saves/JSONData.text"))
         {
             //LOAD THE GAME
-            StreamReader sr = new StreamReader(Application.dataPath + "/JSONData.text");
+            StreamReader sr = new StreamReader(Application.persistentDataPath+"/Saves/JSONData.text");
 
             string JsonString = sr.ReadToEnd();
 

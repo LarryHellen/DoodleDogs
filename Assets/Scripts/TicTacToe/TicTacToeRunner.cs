@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-
+using UnityEngine.UI;
 
 public class TicTacToeRunner : MonoBehaviour
 {
     public GameObject tile;
     public ActivateSettings activateSettings;
 
-    public GameObject VictoryScreen, DefeatScreen, TieScreen;
+    public GameObject VictoryScreen, DefeatScreen, TieScreen, lostScene;
 
     public bool toTwistOrNotToTwist;
 
@@ -80,6 +80,7 @@ public class TicTacToeRunner : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().Play("DefeatScreen");
         DefeatScreen.SetActive(true);
+        DefeatScreen.transform.SetAsLastSibling();
     }
 
     void OnTie()
@@ -296,6 +297,7 @@ public class TicTacToeRunner : MonoBehaviour
         VictoryScreen.SetActive(false);
         DefeatScreen.SetActive(false);
         TieScreen.SetActive(false);
+        lostScene.SetActive(true);
 
         turnCounter = 0;
 

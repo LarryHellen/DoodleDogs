@@ -83,7 +83,7 @@ public class CutsceneManager : MonoBehaviour
         {
             CutsceneManager.FindObjectOfType<PolygonCollider2D>().enabled = true;
         }
-        if ((sceneNumber == 4 && firstChapter.activeSelf))
+        if ((sceneNumber == 4  && firstChapter.activeSelf))
         {
             backButtonDisable.SetActive(true);
         }
