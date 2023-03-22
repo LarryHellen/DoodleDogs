@@ -32580,6 +32580,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 208760398}
     m_Modifications:
+    - target: {fileID: 378894570167416549, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
+      propertyPath: cm
+      value: 
+      objectReference: {fileID: 1243183807}
+    - target: {fileID: 378894570167416549, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
+      propertyPath: inCutscenes
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1131230567450613519, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

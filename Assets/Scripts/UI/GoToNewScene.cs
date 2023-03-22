@@ -10,7 +10,9 @@ public class GoToNewScene : MonoBehaviour
 {
     public string scene = "";
     public bool reset;
-    public int cutsceneNum;
+    private int cutsceneNum;
+    public bool inCutscenes;
+    public CutsceneManager cm;
 
     public void GoToScene()
     {
@@ -23,7 +25,11 @@ public class GoToNewScene : MonoBehaviour
         if(reset){
             cutsceneNum = 0;
         }
-        SaveByJSON();
+        if (inCutscenes)
+        {
+            this.cutsceneNum = cm.cutsceneNum;
+            SaveByJSON();
+        }
         SceneManager.LoadScene(scene);
     }
 
@@ -33,6 +39,8 @@ public class GoToNewScene : MonoBehaviour
         PlayerData data = new PlayerData();
 
         data.sceneNumber = cutsceneNum;
+        Debug.Log(cutsceneNum);
+        Debug.Log(data.sceneNumber);
 
         return data;
     }
