@@ -28,9 +28,7 @@ public class BasicNoteObject : MonoBehaviour
 
 
     public float notePercentLengthOfScreen;
-    private float timeElapsedSinceLastInterval;
     private float distanceToMoveIn1Interval;
-    private float timeBeenTapped;
     private bool isHoldNote = false;
 
 
@@ -40,7 +38,7 @@ public class BasicNoteObject : MonoBehaviour
     private Image image;
 
     private NoteSpawningSystem nSS;
-    private HoldNoteObject holdNoteObject;
+    private HoldNoteObject hNO;
     private RectTransform rt;
 
 
@@ -50,9 +48,9 @@ public class BasicNoteObject : MonoBehaviour
         rt = GetComponent<RectTransform>();
 
         nSS = GameObject.Find("NoteSpawnManager").GetComponent<NoteSpawningSystem>();
-        holdNoteObject = GetComponent<HoldNoteObject>();
+        hNO = GetComponent<HoldNoteObject>();
 
-        if (holdNoteObject != null)
+        if (hNO != null)
         {
             isHoldNote = true;
         }
@@ -73,52 +71,90 @@ public class BasicNoteObject : MonoBehaviour
         }
 
         rt.sizeDelta = sizeDelta;
-        
-
 
         //NOTE - MOVEMENT
 
-
-        //DistanceToMoveIn1Interval = (CurrentHeight - ScreenHeight*ScreenHeightPercentForNoteToLandOnBeat)/TimeToOnBeatLocation
-        distanceToMoveIn1Interval = (rt.localPosition.y - ((nSS.screenHeightPercentForNoteToLandOnBeat * nSS.screenHeight) - (nSS.screenHeight / 2))) / nSS.timeToOnBeatLocation; //timeToOnBeatLocation is in units of time of size "IntervalLength"
-
-
-        //+ (nSS.screenHeight * notePercentLengthOfScreen/2))
-        //Something like this for note to get to the top of the line of time
-
-
-
-
-
-        //print(distanceToMoveIn1Interval);
+        SetDistanceToMoveIn1Interval();
 
         //Start Note Movement
         StartCoroutine(LerpMovement());
-        //print(rt.localPosition);
 
         //END OF "NOTE - MOVEMENT"
     }
 
+
     void Update()
     {
-        //NOTE - WINNING AND LOSING
-
-
-        //if HoldNoteObject script is attached and object being clicked, increase a TimeBeenTapped variable by deltaTime
-        //if TimeBeenTapped is greater than this objects HoldTime, [Destroy this object and give the player score] <- Seperate function?
-
-        //if HoldNoteObject script is attached and object not being clicked
-        //Set TimeBeenTapped to 0
-
-
-        //else if (HoldNoteObject script not attached and object being clicked), [Destroy this object and give the player score] <- Seperate function?
-
-
-        //if object has passed ScreenHeightForNoteHide, [Destroy this object and set the player's score to 0]
-
-
-        //END OF "NOTE - WINNING AND LOSING"
+        NoteDestruction();
     }
+
+
+    void SetDistanceToMoveIn1Interval()
+    {
+        //DistanceToMoveIn1Interval = Distance needed to move every interval to make it to the On Beat Line on time (Bottom Edge of Note)
+        if (isHoldNote)
+        {
+            distanceToMoveIn1Interval = ((rt.localPosition.y - ((nSS.screenHeightPercentForNoteToLandOnBeat * nSS.screenHeight) - (nSS.screenHeight / 2))) - (nSS.screenHeight * hNO.holdNoteLength * hNO.holdNoteLengthConstant / 2)) / nSS.timeToOnBeatLocation; //timeToOnBeatLocation is in units of time of size "IntervalLength"
+        }
+        else
+        {
+            distanceToMoveIn1Interval = ((rt.localPosition.y - ((nSS.screenHeightPercentForNoteToLandOnBeat * nSS.screenHeight) - (nSS.screenHeight / 2))) - (nSS.screenHeight * notePercentLengthOfScreen / 2)) / nSS.timeToOnBeatLocation; //timeToOnBeatLocation is in units of time of size "IntervalLength"
+        }
+
+    }
+
+
+    void NoteDestruction()
+    {
+        if (isHoldNote)
+        {
+            if (rt.localPosition.y <= -nSS.screenHeight / 2 - (nSS.screenHeight * hNO.holdNoteLength * hNO.holdNoteLengthConstant / 2))
+            {
+                nSS.playerCombo = 0;
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            if (rt.localPosition.y <= -nSS.screenHeight / 2 - (nSS.screenHeight * notePercentLengthOfScreen / 2))
+            {
+                nSS.playerCombo = 0;
+                Destroy(gameObject);
+            }
+        }
+    }
+
+
+    void OnMouseDown() //NOT WORKING
+    {
+        print("o");
+
+        if (isHoldNote)
+        {
+            hNO.timeBeenTapped += Time.deltaTime;
+
+            if (hNO.timeBeenTapped > hNO.holdNoteHoldTime)
+            {
+                nSS.playerCombo += 1;
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            nSS.playerCombo += 1;
+            Destroy(gameObject);
+        }
+    }
+
+
+    void OnMouseUp() //NOT WORKING
+    {
+        if (isHoldNote)
+        {
+            hNO.timeBeenTapped = 0;
+        }
+    }
+
 
     IEnumerator LerpMovement()
     {

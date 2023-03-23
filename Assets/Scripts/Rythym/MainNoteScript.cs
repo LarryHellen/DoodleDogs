@@ -35,7 +35,6 @@ public class MainNoteScript : MonoBehaviour
     public TextSetScript tss;
 
 
-
     void OnMouseDown()
     {
         BeingClicked = true;

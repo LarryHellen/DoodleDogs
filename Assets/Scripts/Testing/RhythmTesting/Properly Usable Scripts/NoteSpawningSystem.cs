@@ -40,7 +40,6 @@ public class NoteSpawningSystem : MonoBehaviour
     public GameObject BasicNotePrefab;
     public GameObject HoldNotePrefab;
 
-    public float screenHeightPercentForNoteHide;
     public float screenHeightPercentForNoteToLandOnBeat;
     public float screenHeightPercentForNoteShow;
 
@@ -48,6 +47,7 @@ public class NoteSpawningSystem : MonoBehaviour
 
     [Header("Automatic Variables")]
 
+    public int playerCombo = 0;
     public int columns;
     public float screenWidth;
     public float screenHeight;

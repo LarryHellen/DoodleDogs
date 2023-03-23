@@ -15,7 +15,8 @@ public class HoldNoteObject : MonoBehaviour
     public float holdNoteLengthConstant;
     public float holdNoteBaseTime;
     public float holdNoteTimeConstant;
-    private float holdNoteHoldTime;
+    public float timeBeenTapped = 0;
+    public float holdNoteHoldTime;
     private RectTransform rt;
 
     private NoteSpawningSystem nSS;
