@@ -15,6 +15,10 @@ public class DragScroll : MonoBehaviour
     public Vector3 startPoint = new Vector3(0, 0, 0);
     public int b = 0, c = 0;
     public  int cutsceneNum;
+
+    private bool chapter2Unlocked;
+    private bool chapter3Unlocked;
+    private bool chapter4Unlocked;
     // Start is called before the first frame update
     private void OnMouseDown()
     {
@@ -71,6 +75,9 @@ public class DragScroll : MonoBehaviour
         PlayerData data = new PlayerData();
 
         data.sceneNumber = cutsceneNum;
+        data.chapter2Unlocked = this.chapter2Unlocked;
+        data.chapter3Unlocked = this.chapter3Unlocked;
+        data.chapter4Unlocked = this.chapter4Unlocked;
         //data.lSC = this.lSC;
 
         return data;
@@ -80,6 +87,9 @@ public class DragScroll : MonoBehaviour
     {
 
         cutsceneNum = tempData.sceneNumber;
+        this.chapter2Unlocked = tempData.chapter2Unlocked;
+        this.chapter3Unlocked = tempData.chapter3Unlocked;
+        this.chapter4Unlocked = tempData.chapter4Unlocked;
         //lSC = tempData.lSC;
     }
 

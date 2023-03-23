@@ -9,7 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class PlayerData
 {
     public int sceneNumber;
-    public bool chapter2;
-    public bool chapter3;
-    public bool chapter4;
+    public bool chapter2Unlocked;
+    public bool chapter3Unlocked;
+    public bool chapter4Unlocked;
 }

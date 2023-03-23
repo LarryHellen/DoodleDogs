@@ -35,6 +35,10 @@ public class CutsceneManager : MonoBehaviour
     public GameObject seventhGameplayScene;
     public GameObject eighthGameplayScene;
 
+    private bool chapter2Unlocked;
+    private bool chapter3Unlocked;
+    private bool chapter4Unlocked;
+
     //public GameObject chapter2Enable;
     //public GameObject chapter3Enable;
 
@@ -160,15 +164,17 @@ public class CutsceneManager : MonoBehaviour
                 cutscenes.SetActive(false);
                 cutsceneNum = 3;
                 cutscenes = secondChapter;
+                chapter2Unlocked = true;
                 backButtonDisable.SetActive(true);
                 Setup();
             }
-            else if (cutsceneNum == 10)
+            else if (cutsceneNum == 5)
             {
-                SceneManager.LoadScene("Chapter2");
+                //SceneManager.LoadScene("Chapter2");
                 cutscenes.SetActive(false);
                 cutsceneNum = 6;
                 cutscenes = thirdChapter;
+                chapter3Unlocked = true;
                 Setup();
             }
             else if (cutsceneNum == 8)
@@ -176,7 +182,11 @@ public class CutsceneManager : MonoBehaviour
                 cutscenes.SetActive(false);
                 cutsceneNum = 9;
                 cutscenes = fourthChapter;
+                chapter4Unlocked = true;
                 Setup();
+            }
+            else if (cutsceneNum == 11){
+                SceneManager.LoadScene("Chapter2");
             }
             if (sceneNumber == 21 && firstChapter.activeSelf)
             {
@@ -326,6 +336,9 @@ public class CutsceneManager : MonoBehaviour
         PlayerData data = new PlayerData();
 
         data.sceneNumber = cutsceneNum;
+        data.chapter2Unlocked = this.chapter2Unlocked;
+        data.chapter3Unlocked = this.chapter3Unlocked;
+        data.chapter4Unlocked = this.chapter4Unlocked;
         //data.lSC = this.lSC;
 
         return data;
@@ -335,6 +348,9 @@ public class CutsceneManager : MonoBehaviour
     {
 
         cutsceneNum = tempData.sceneNumber;
+        this.chapter2Unlocked = tempData.chapter2Unlocked;
+        this.chapter3Unlocked = tempData.chapter3Unlocked;
+        this.chapter4Unlocked = tempData.chapter4Unlocked;
         //lSC = tempData.lSC;
     }
 

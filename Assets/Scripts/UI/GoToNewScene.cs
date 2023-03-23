@@ -14,6 +14,10 @@ public class GoToNewScene : MonoBehaviour
     public bool inCutscenes;
     public CutsceneManager cm;
 
+    private bool chapter2Unlocked;
+    private bool chapter3Unlocked;
+    private bool chapter4Unlocked;
+
     public void GoToScene()
     {
         if(!Directory.Exists(Path.GetDirectoryName(Application.persistentDataPath+"/Saves/"))){
@@ -39,16 +43,20 @@ public class GoToNewScene : MonoBehaviour
         PlayerData data = new PlayerData();
 
         data.sceneNumber = cutsceneNum;
-        Debug.Log(cutsceneNum);
-        Debug.Log(data.sceneNumber);
+        data.chapter2Unlocked = this.chapter2Unlocked;
+        data.chapter3Unlocked = this.chapter3Unlocked;
+        data.chapter4Unlocked = this.chapter4Unlocked;
+
 
         return data;
     }
 
     private void LoadFromPlayerData(PlayerData tempData)
     {
-
         cutsceneNum = tempData.sceneNumber;
+        this.chapter2Unlocked = tempData.chapter2Unlocked;
+        this.chapter3Unlocked = tempData.chapter3Unlocked;
+        this.chapter4Unlocked = tempData.chapter4Unlocked;
     }
 
     //This was originally private, I made it public so I could access it in other scripts. Was there a reason for making it private?
