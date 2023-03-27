@@ -4,10 +4,7 @@ using System.Collections;
 
 public class AudioDelay : MonoBehaviour
 {
-    //Init TimeToOnBeatLocation (Get from main spanwer script)
-    //Init AudioSource
-
-
+    [Header("Manual Variables")]
     public AudioSource audioSource;
     private NoteSpawningSystem noteSpawningSystem;
 
