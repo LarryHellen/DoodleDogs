@@ -5,43 +5,19 @@ using UnityEngine.Audio;
 
 public class NoteSpawningSystem : MonoBehaviour
 {
-    //Init ScreenWidth ("Screen.width") (Get from main spanwer script)
-    //Init ScreenHeight (Get from main spanwer script)
-
-
-    //Init NotePattern (list of lists of booleans)
-    //Init AudioArray (Array of AudioSources)
-
-
-    //Init BasicNotePrefab
-    //Init HoldNotePrefab
-
-
-    //Init Columns (Get from legnth of Audio Array)
-    //Init IntervalLength (Get from main spanwer script)
-    //Init HorizontalSpaceBetweenNotes (Get from main spanwer script)
-    //Init TimeElapsedSinceLastInterval
-    //Init ScreenHeightPercentForNoteHide (Get from main spanwer script)
-    //Init ScreenHeightPercentForNoteToLandOnBeat (Get from main spanwer script)
-    //Init ScreenHeightPercentForNoteShow (Get from main spanwer script)
-    //Init MaxHoldNoteLength
-    //Init TimeToOnBeatLocation (Get from main spanwer script, in intervals)
-
-
     [Header("Manual Variables")]
-
 
     public float intervalLength;
     public float horizontalSpaceBetweenNotes;
     private float timeElapsedSinceLastInterval;
     public int maxHoldNoteLength;
     public float timeToOnBeatLocation;
+    public float holdNoteHoldTimeTolerance;
     public GameObject OnBeatTestingLine;
     public GameObject BasicNotePrefab;
     public GameObject HoldNotePrefab;
 
     public float screenHeightPercentForNoteToLandOnBeat;
-    public float screenHeightPercentForNoteShow;
 
     [Space(25)]
 
@@ -61,6 +37,8 @@ public class NoteSpawningSystem : MonoBehaviour
 
     void Awake()
     {
+        //TouchSimulation.Enable(); //For testing touch input without exporting to a phone
+
         //Get all audio sources attached to the object that this script is attached to and put them in a list
         audioArray = GetComponents<AudioSource>();
 
@@ -90,5 +68,35 @@ public class NoteSpawningSystem : MonoBehaviour
                 //remember to increase the spawn height of a hold note by: (HoldNoteLength * (HoldNoteLengthConstant * ScreenHeight))/2
 
             //else spawn a normal note
+
+
+        //****Get minimum viable product with just normal note spawning
     }
 }
+/*
+    float bigSound = 0f;
+    float bigSoundBefore = 0f;
+
+    public float necessarySoundLoudness;
+
+    public float[] sounds = new float[128];
+
+    void Start()
+    {
+        
+    }
+
+    
+    void Update()
+    {
+        sound.GetSpectrumData(sounds, 0, FFTWindow.Rectangular);
+
+        bigSoundBefore = bigSound;
+        bigSound = sounds[0] * 100;
+
+        if (bigSound > necessarySoundLoudness && bigSoundBefore <= necessarySoundLoudness)
+        {
+            print("Beat Detected");
+        }
+    }
+*/

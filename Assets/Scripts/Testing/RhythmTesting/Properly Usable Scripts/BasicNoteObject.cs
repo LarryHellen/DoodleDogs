@@ -1,32 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class BasicNoteObject : MonoBehaviour
 {
-    //Init ScreenWidth ("Screen.width") (Get from main spanwer script)
-    //Init ScreenHeight (Get from main spanwer script)
-
-
-    //Init Columns (Get from main spanwer script) 
-    //Init NotePercentLengthOfScreen
-    //Init IntervalLength (Get from main spanwer script)
-    //Init HorizontalSpaceBetweenNotes (Get from main spanwer script)
-    //Init TimeElapsedSinceLastInterval
-    //Init ScreenHeightPercentForNoteHide (Get from main spanwer script)
-    //Init ScreenHeightPercentForNoteToLandOnBeat (Get from main spanwer script)
-    //Init TimeToOnBeatLocation (Get from main spanwer script)
-    //Init DistanceToMoveIn1Interval
-    //Init TimeBeenTapped
-
-
-    // OPACITY //
-    //Init ScreenHeightPercentForNoteShow (Get from main spanwer script)
-    //Init InitialOpacity
-    //Init EndOpacity
-    //Init SpriteRenderer
-
-
+    [Header("Manual Variables")]
     public float notePercentLengthOfScreen;
     private float distanceToMoveIn1Interval;
     private bool isHoldNote = false;
@@ -41,6 +21,11 @@ public class BasicNoteObject : MonoBehaviour
     private HoldNoteObject hNO;
     private RectTransform rt;
 
+    
+    // HOLD NOTE //
+    private float startTime, endTime;
+    private List<Coroutine> coroutines = new List<Coroutine>();
+    
 
     void Start()
     {
@@ -54,6 +39,7 @@ public class BasicNoteObject : MonoBehaviour
         {
             isHoldNote = true;
         }
+
 
         //Set all variables for proper size (change height size only if HoldNoteObject script not attached)
         //Remember to set proper widths
@@ -100,7 +86,6 @@ public class BasicNoteObject : MonoBehaviour
         {
             distanceToMoveIn1Interval = ((rt.localPosition.y - ((nSS.screenHeightPercentForNoteToLandOnBeat * nSS.screenHeight) - (nSS.screenHeight / 2))) - (nSS.screenHeight * notePercentLengthOfScreen / 2)) / nSS.timeToOnBeatLocation; //timeToOnBeatLocation is in units of time of size "IntervalLength"
         }
-
     }
 
 
@@ -125,19 +110,14 @@ public class BasicNoteObject : MonoBehaviour
     }
 
 
-    void OnMouseDown() //NOT WORKING
+    public void OnPointerDownOnNote()
     {
-        print("o");
+        print("Pointer Down On Note");
 
         if (isHoldNote)
         {
-            hNO.timeBeenTapped += Time.deltaTime;
-
-            if (hNO.timeBeenTapped > hNO.holdNoteHoldTime)
-            {
-                nSS.playerCombo += 1;
-                Destroy(gameObject);
-            }
+            startTime = Time.time;
+            coroutines.Add(StartCoroutine(HoldNoteHideOverTime()));
         }
         else
         {
@@ -147,12 +127,50 @@ public class BasicNoteObject : MonoBehaviour
     }
 
 
-    void OnMouseUp() //NOT WORKING
+    public void OnPointerUpOnNote()
     {
-        if (isHoldNote)
+        print("Pointer Up On Note");
+
+        if (isHoldNote) //Reset Note Opacity and Fading Coroutines + Check if Hold Note should be destroyed
         {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, initialOpacity);
+
+            foreach (Coroutine coroutine in coroutines){ StopCoroutine(coroutine); }
+            coroutines.Clear();
+
+            endTime = Time.time;
+
+            hNO.timeBeenTapped = endTime - startTime;
+
+            print("Time Been Tapped: " + hNO.timeBeenTapped);
+
+            if (hNO.timeBeenTapped > hNO.holdNoteHoldTime - nSS.holdNoteHoldTimeTolerance*hNO.holdNoteHoldTime) //If timeBeenTapped is within tolerance of holdNoteHoldTime (holdNoteHoldTimeTolerance is a percentage of the holdNoteHoldTime)
+            {
+                nSS.playerCombo += 1;
+                Destroy(gameObject);
+            }
+
             hNO.timeBeenTapped = 0;
         }
+    }
+
+
+    IEnumerator HoldNoteHideOverTime()
+    {
+        float timeElapsed = 0;
+        float lerpValue = 0;
+
+        while (timeElapsed < hNO.holdNoteHoldTime)
+        {
+            lerpValue = Mathf.Lerp(initialOpacity, endOpacity, timeElapsed / hNO.holdNoteHoldTime);
+            timeElapsed += Time.deltaTime;
+
+            image.color = new Color(image.color.r, image.color.g, image.color.b, lerpValue);
+
+            yield return null;
+        }
+
+        image.color = new Color(image.color.r, image.color.g, image.color.b, endOpacity);
     }
 
 
@@ -177,6 +195,5 @@ public class BasicNoteObject : MonoBehaviour
 
             rt.localPosition = new Vector3(rt.localPosition.x, endPos, rt.localPosition.z);
         }
-    }
-        
+    } 
 }

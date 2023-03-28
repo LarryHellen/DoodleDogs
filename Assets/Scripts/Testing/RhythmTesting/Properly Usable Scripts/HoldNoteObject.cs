@@ -3,18 +3,16 @@ using System.Collections;
 
 public class HoldNoteObject : MonoBehaviour
 {
-    //Init holdNoteLength
-    //Init HoldNoteLengthConstant (Should be a percent of screen height)
-    //Init HoldNoteBaseTime (1 Interval, Get from main spanwer script)
-    //Init HoldNoteTimeConstant (Usually will be 1, just in case you want to slow down or speed up hold times)
-    //Init HoldNoteHoldTime
-    //Init screenHeight; (Get from main spanwer script)
-
+    [Header("Manual Variables")]
 
     public int holdNoteLength;
     public float holdNoteLengthConstant;
-    public float holdNoteBaseTime;
     public float holdNoteTimeConstant;
+
+    [Space(25)]
+
+    [Header("Automatic Variables")]
+
     public float timeBeenTapped = 0;
     public float holdNoteHoldTime;
     private RectTransform rt;
