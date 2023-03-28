@@ -218,6 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsMenu: {fileID: 43042127}
+  gameRunning: 1
 --- !u!1 &84566286
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: LevelSelect
   reset: 0
-  cutsceneNum: 0
+  inCutscenes: 0
 --- !u!1 &302725717
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,7 +1185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: 
   reset: 0
-  cutsceneNum: 0
+  inCutscenes: 0
 --- !u!95 &1889763849
 Animator:
   serializedVersion: 4
@@ -1971,7 +1972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: MainMenu
   reset: 0
-  cutsceneNum: 0
+  inCutscenes: 0
 --- !u!224 &5375280637446567485
 RectTransform:
   m_ObjectHideFlags: 0

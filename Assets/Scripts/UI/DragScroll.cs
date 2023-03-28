@@ -55,11 +55,11 @@ public class DragScroll : MonoBehaviour
         print(cutsceneNum);
         //cutsceneNum = 0;
         LoadByJSON();
-        if (cutsceneNum > 2)
+        if (chapter2Unlocked)
         {
             c2d.SetActive(false);
         }
-        if (cutsceneNum > 5)
+        if (chapter3Unlocked)
         {
             c3d.SetActive(false);
         }

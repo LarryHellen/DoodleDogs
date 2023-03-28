@@ -12,7 +12,7 @@ public class GoToNewScene : MonoBehaviour
     public bool reset;
     private int cutsceneNum;
     public bool inCutscenes;
-    public CutsceneManager cm;
+    //public CutsceneManager cm;
 
     private bool chapter2Unlocked;
     private bool chapter3Unlocked;
@@ -29,9 +29,8 @@ public class GoToNewScene : MonoBehaviour
         if(reset){
             cutsceneNum = 0;
         }
-        if (inCutscenes)
+        if (inCutscenes || reset)
         {
-            this.cutsceneNum = cm.cutsceneNum;
             SaveByJSON();
         }
         SceneManager.LoadScene(scene);

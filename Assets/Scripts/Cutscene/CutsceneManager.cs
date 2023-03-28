@@ -243,6 +243,9 @@ public class CutsceneManager : MonoBehaviour
         else if (cutsceneNum > 5 && cutsceneNum < 9)
         {
             cutscenes = thirdChapter;
+        } else if(cutsceneNum > 8)
+        {
+            cutscenes = fourthChapter;
         }
 
         Setup();
