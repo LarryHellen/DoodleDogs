@@ -26,6 +26,7 @@ public class Board : MonoBehaviour
     public MoveCounter moveCounter;
     public CounterHolder counterHolder;
     public ActivateSettings actovateSettings;
+    public GoToNewScene GoToNewScene;
     public GameObject victoryScreen;
     public GameObject defeatScreen;
     public GameObject francois;
@@ -183,9 +184,10 @@ public class Board : MonoBehaviour
     public void winGame(){
         if(currentState != GameState.win && currentState != GameState.lose){
         currentState = GameState.win;
-        victoryScreen.SetActive(true);
+            //victoryScreen.SetActive(true);
+            GoToNewScene.GoToScene("Cutscenes");
         francois.SetActive(false);
-        Debug.Log("you won");
+        Debug.Log("you won " + counterHolder.counterArray);
         }
     }
 

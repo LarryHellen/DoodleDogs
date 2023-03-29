@@ -3933,7 +3933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: TileMatching
   reset: 0
-  cutsceneNum: 0
+  inCutscenes: 0
 --- !u!1 &1732393851
 GameObject:
   m_ObjectHideFlags: 0
@@ -4747,7 +4747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: Cutscenes
   reset: 0
-  cutsceneNum: 0
+  inCutscenes: 0
 --- !u!114 &1964637422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4909,6 +4909,7 @@ MonoBehaviour:
   moveCounter: {fileID: 1935627843}
   counterHolder: {fileID: 364654310}
   actovateSettings: {fileID: 983701000}
+  GoToNewScene: {fileID: 1964637421}
   victoryScreen: {fileID: 1079109437}
   defeatScreen: {fileID: 728101793}
   francois: {fileID: 718146748}

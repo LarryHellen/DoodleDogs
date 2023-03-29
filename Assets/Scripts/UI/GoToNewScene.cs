@@ -35,6 +35,26 @@ public class GoToNewScene : MonoBehaviour
         }
         SceneManager.LoadScene(scene);
     }
+    public void GoToScene(string s)
+    {
+        if (!Directory.Exists(Path.GetDirectoryName(Application.persistentDataPath + "/Saves/")))
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(Application.persistentDataPath + "/Saves/"));
+        }
+        if (File.Exists(Application.persistentDataPath + "/Saves/JSONData.text"))
+        {
+            LoadByJSON();
+        }
+        if (reset)
+        {
+            cutsceneNum = 0;
+        }
+        if (inCutscenes || reset)
+        {
+            SaveByJSON();
+        }
+        SceneManager.LoadScene(s);
+    }
 
 
     public PlayerData createPlayerDataObject()
