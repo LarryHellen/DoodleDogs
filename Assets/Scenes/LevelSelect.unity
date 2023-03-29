@@ -271,6 +271,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: Cutscenes
   reset: 1
+  chapter2: 0
+  chapter3: 0
+  chapter4: 0
+  inCutscenes: 0
 --- !u!1 &405500884
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,6 +740,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: Cutscenes
   reset: 0
+  chapter2: 0
+  chapter3: 0
+  chapter4: 0
+  inCutscenes: 0
 --- !u!1 &774242374
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,6 +850,7 @@ MonoBehaviour:
   startPoint: {x: 0, y: 0, z: 0}
   b: 100
   c: 4000
+  cutsceneNum: 0
 --- !u!61 &774242380
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1399,6 +1408,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: Cutscenes
   reset: 0
+  chapter2: 0
+  chapter3: 0
+  chapter4: 0
+  inCutscenes: 0
 --- !u!1 &1252013134 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5604740481062617916, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
@@ -2859,3 +2872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: MainMenu
   reset: 0
+  chapter2: 0
+  chapter3: 0
+  chapter4: 0
+  inCutscenes: 0
