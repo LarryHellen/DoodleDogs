@@ -13,9 +13,11 @@ public class NoteSpawningSystem : MonoBehaviour
     public int maxHoldNoteLength;
     public float timeToOnBeatLocation;
     public float holdNoteHoldTimeTolerance;
+    public Canvas canvas;
     public GameObject onBeatTestingLine;
     public GameObject tapNotePrefab;
     public GameObject holdNotePrefab;
+    
 
     public float screenHeightPercentForNoteToLandOnBeat;
 
@@ -39,7 +41,7 @@ public class NoteSpawningSystem : MonoBehaviour
     public float screenHeight;
 
 
-    private List<List<bool>> notePattern;
+    private List<List<bool>> notePattern = new List<List<bool>>();
     private AudioSource[] audioArray;
 
     private BasicNoteObject basicNoteObject;
@@ -56,7 +58,6 @@ public class NoteSpawningSystem : MonoBehaviour
         columns = audioArray.Length;
 
         //Set ScreenWidth and ScreenHeight to the World Space width and height
-        GameObject canvas = GameObject.Find("GameField");
         RectTransform canvasRt = canvas.GetComponent<RectTransform>();
         screenWidth = canvasRt.sizeDelta.x;
         screenHeight = canvasRt.sizeDelta.y;
@@ -95,11 +96,16 @@ public class NoteSpawningSystem : MonoBehaviour
             timeElapsedSinceLastInterval = 0;
 
 
-            notePattern.Add(BeatCheckList()); //Note Setting
+            //notePattern.Add(BeatCheckList()); //Note Setting
+
+
+            notePattern.Add(new List<bool>() { true, true, true, true }); // Overriding note setting for testing purposes
 
 
             if (currentInterval >= maxHoldNoteLength) //If enough wait-time has passed for hold notes to be generated
             {
+                print("Notes can currently spawn");
+
                 NoteSpawning();
             }
 
@@ -141,23 +147,27 @@ public class NoteSpawningSystem : MonoBehaviour
     {
         if (numOfTrues > 1) //Spawn Hold Note
         {
-            GameObject holdNote = Instantiate(holdNotePrefab, new Vector2(0f, 100f), Quaternion.identity); //SET PROPER SPAWNING POSITION BASED ON COLUMN
+            GameObject holdNote = Instantiate(holdNotePrefab, new Vector2(0f, 100f), Quaternion.identity, canvas.transform); //SET PROPER SPAWNING POSITION BASED ON COLUMN
             HoldNoteObject hNO = holdNote.GetComponent<HoldNoteObject>();
+            hNO.Start();
             RectTransform hNrt = holdNote.GetComponent<RectTransform>();
             hNO.holdNoteLength = numOfTrues;
-            hNO.SetLengthBasedAbilities(); //SET PROPER SPAWNING POSITION BASED ON COLUMN
+            hNO.SetLengthBasedAttributes(); //SET PROPER SPAWNING POSITION BASED ON COLUMN
 
-            float xPositionForNoteSpawn = (hNrt.sizeDelta.x * 2 * noteColumn + hNrt.sizeDelta.x) + horizontalSpaceBetweenNotes*noteColumn;
+            float xPositionForNoteSpawn = (hNrt.sizeDelta.x * 2 * noteColumn + hNrt.sizeDelta.x) + horizontalSpaceBetweenNotes * noteColumn;
             float yPositionForNoteSpawn = (screenHeight + hNrt.sizeDelta.y);
 
+            hNrt.localPosition = new Vector3(xPositionForNoteSpawn, yPositionForNoteSpawn);
         }
         else //Spawn Tap Note
         {
-            GameObject tapNote = Instantiate(tapNotePrefab, new Vector2(0f, 100f), Quaternion.identity);
+            GameObject tapNote = Instantiate(tapNotePrefab, new Vector2(0f, 100f), Quaternion.identity, canvas.transform);
             RectTransform tNrt = tapNote.GetComponent<RectTransform>();
 
             float xPositionForNoteSpawn = (tNrt.sizeDelta.x * 2 * noteColumn + tNrt.sizeDelta.x) + horizontalSpaceBetweenNotes * noteColumn;
             float yPositionForNoteSpawn = (screenHeight + tNrt.sizeDelta.y);
+
+            tNrt.localPosition = new Vector3(xPositionForNoteSpawn, yPositionForNoteSpawn);
         }
     }
 

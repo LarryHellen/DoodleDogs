@@ -20,7 +20,7 @@ public class HoldNoteObject : MonoBehaviour
     private NoteSpawningSystem nSS;
 
 
-    void Start()
+    public void Start()
     {
         //Getting the NoteSpawningSystem Script for its variables
         nSS = GameObject.Find("NoteSpawnManager").GetComponent<NoteSpawningSystem>();
@@ -30,11 +30,11 @@ public class HoldNoteObject : MonoBehaviour
     }
 
 
-    public void SetLengthBasedAbilities()
+    public void SetLengthBasedAttributes()
     {
-        var sizeDelta = rt.sizeDelta;
-        sizeDelta.y = holdNoteLength * holdNoteLengthConstant * nSS.screenHeight;
-        rt.sizeDelta = sizeDelta;
+        Vector2 theSizeDelta = rt.sizeDelta;
+        theSizeDelta.y = holdNoteLength * holdNoteLengthConstant * nSS.screenHeight;
+        rt.sizeDelta = theSizeDelta;
 
         //Set HoldNoteHoldTime to the proper number of seconds [HoldNoteHoldTime = (HoldNoteLengthSize*HoldNoteTimeConstant*IntervalLength)]
         holdNoteHoldTime = holdNoteLength * nSS.intervalLength * holdNoteTimeConstant;
