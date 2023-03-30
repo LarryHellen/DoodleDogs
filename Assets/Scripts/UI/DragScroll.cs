@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.UI;
 
 
 public class DragScroll : MonoBehaviour
@@ -10,7 +11,8 @@ public class DragScroll : MonoBehaviour
     //private CutsceneManager CutsceneManager;
     public GameObject background;
     public GameObject settingsMenu;
-    public GameObject c2d, c3d;//, c4d;
+    public GameObject c2e, c3e, c2d, c3d;//, c4d;
+    public Sprite c2image, c3image;
     public int p;
     public Vector3 startPoint = new Vector3(0, 0, 0);
     public int b = 0, c = 0;
@@ -58,10 +60,12 @@ public class DragScroll : MonoBehaviour
         if (chapter2Unlocked)
         {
             c2d.SetActive(false);
+            c2e.GetComponent<Image>().sprite = c2image;
         }
         if (chapter3Unlocked)
         {
             c3d.SetActive(false);
+            c3e.GetComponent<Image>().sprite = c3image;
         }
         if (Time.deltaTime > 1 || Time.deltaTime < 1.2)
         {

@@ -31,9 +31,13 @@ public class GoToNewScene : MonoBehaviour
         }
         else if (chapter2)
         {
-            cutsceneNum = 4;
+            cutsceneNum = 3;
         }
-        if (inCutscenes || reset)
+        else if (chapter3)
+        {
+            cutsceneNum = 6;
+        }
+        if (inCutscenes || reset || chapter2 || chapter3)
         {
             SaveByJSON();
         }
