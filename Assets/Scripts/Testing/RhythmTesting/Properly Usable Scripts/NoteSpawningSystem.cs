@@ -96,10 +96,10 @@ public class NoteSpawningSystem : MonoBehaviour
             timeElapsedSinceLastInterval = 0;
 
 
-            //notePattern.Add(BeatCheckList()); //Note Setting
+            notePattern.Add(BeatCheckList()); //Note Setting
 
 
-            notePattern.Add(new List<bool>() { true, true, true, true }); // Overriding note setting for testing purposes
+            //notePattern.Add(new List<bool>() { true, true, true, true }); // Overriding note setting for testing purposes
 
 
             if (currentInterval >= maxHoldNoteLength) //If enough wait-time has passed for hold notes to be generated
@@ -193,12 +193,15 @@ public class NoteSpawningSystem : MonoBehaviour
 
     bool BeatCheck(AudioSource sound)
     {
-        sound.GetSpectrumData(sounds, 0, FFTWindow.Rectangular);
+        sound.GetSpectrumData(sounds, 0, FFTWindow.Rectangular); //CHANGE NOTE CHECKING TO BE A LIST OF AVERAGES "NOTE POSSIBILTY" AT DIFF INTERVALS SO THAT CHECKS BEFORE AND AFTER NOTES STILL WORK
 
-        bigSoundBefore = bigSound;
+
+        //bigSoundBefore = bigSound;
         bigSound = sounds[0] * 100;
 
-        if (bigSound > necessarySoundLoudness && bigSoundBefore <= necessarySoundLoudness)
+        print(bigSound);
+
+        if (bigSound > necessarySoundLoudness) //&& bigSoundBefore <= necessarySoundLoudness)
         {
             print("Beat Detected");
             return true;
