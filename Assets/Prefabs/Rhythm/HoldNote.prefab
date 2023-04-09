@@ -31,7 +31,7 @@ RectTransform:
   m_GameObject: {fileID: 148510226254390612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,8 +55,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdNoteLength: 2
-  holdNoteLengthConstant: 0.25
-  holdNoteTimeConstant: 0
+  holdNoteLengthConstant: 0.1
+  holdNoteTimeConstant: 0.5
   timeBeenTapped: 0
   holdNoteHoldTime: 0
 --- !u!114 &7846122841841152006
@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notePercentLengthOfScreen: 0.25
-  initialOpacity: 0
+  initialOpacity: 1
   endOpacity: 0
 --- !u!222 &8999597745335800674
 CanvasRenderer:
@@ -151,13 +151,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 4
+  - eventID: 3
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 7846122841841152006}
           m_TargetAssemblyTypeName: BasicNoteObject, Assembly-CSharp
-          m_MethodName: OnPointerDownOnNote
+          m_MethodName: OnPointerUpOnNote
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -167,13 +167,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - eventID: 3
+  - eventID: 2
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 7846122841841152006}
           m_TargetAssemblyTypeName: BasicNoteObject, Assembly-CSharp
-          m_MethodName: OnPointerUpOnNote
+          m_MethodName: OnPointerDownOnNote
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

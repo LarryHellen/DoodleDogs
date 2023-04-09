@@ -154,8 +154,10 @@ public class NoteSpawningSystem : MonoBehaviour
             hNO.holdNoteLength = numOfTrues;
             hNO.SetLengthBasedAttributes(); //SET PROPER SPAWNING POSITION BASED ON COLUMN
 
-            float xPositionForNoteSpawn = (hNrt.sizeDelta.x * 2 * noteColumn + hNrt.sizeDelta.x) + horizontalSpaceBetweenNotes * noteColumn;
-            float yPositionForNoteSpawn = (screenHeight + hNrt.sizeDelta.y);
+            float xPositionForNoteSpawn = ((hNrt.sizeDelta.x * noteColumn + hNrt.sizeDelta.x/2) + ((screenWidth-columns*hNrt.sizeDelta.x)/(columns-1)) * noteColumn) - screenWidth/2;
+            //If u want bigger notes (smaller gaps) find a good way to do it I can't think of one rn
+
+            float yPositionForNoteSpawn = (screenHeight/2 + hNrt.sizeDelta.y);
 
             hNrt.localPosition = new Vector3(xPositionForNoteSpawn, yPositionForNoteSpawn);
         }
@@ -164,8 +166,10 @@ public class NoteSpawningSystem : MonoBehaviour
             GameObject tapNote = Instantiate(tapNotePrefab, new Vector2(0f, 100f), Quaternion.identity, canvas.transform);
             RectTransform tNrt = tapNote.GetComponent<RectTransform>();
 
-            float xPositionForNoteSpawn = (tNrt.sizeDelta.x * 2 * noteColumn + tNrt.sizeDelta.x) + horizontalSpaceBetweenNotes * noteColumn;
-            float yPositionForNoteSpawn = (screenHeight + tNrt.sizeDelta.y);
+            float xPositionForNoteSpawn = ((tNrt.sizeDelta.x * noteColumn + tNrt.sizeDelta.x / 2) + ((screenWidth - columns * tNrt.sizeDelta.x) / (columns - 1)) * noteColumn) - screenWidth / 2;
+            //If u want bigger notes (smaller gaps) find a good way to do it I can't think of one rn
+
+            float yPositionForNoteSpawn = (screenHeight/2 + tNrt.sizeDelta.y);
 
             tNrt.localPosition = new Vector3(xPositionForNoteSpawn, yPositionForNoteSpawn);
         }

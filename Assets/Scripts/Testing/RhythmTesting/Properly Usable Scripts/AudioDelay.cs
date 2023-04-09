@@ -16,7 +16,7 @@ public class AudioDelay : MonoBehaviour
         nSS = GameObject.Find("NoteSpawnManager").GetComponent<NoteSpawningSystem>();
 
 
-        timeToDelay = (nSS.timeToOnBeatLocation + nSS.maxHoldNoteLength) * nSS.intervalLength;
+        timeToDelay = (nSS.timeToOnBeatLocation + nSS.maxHoldNoteLength) * nSS.intervalLength + nSS.intervalLength;
 
 
         //Delay the start of the audible audio by the time it takes for a note to scroll into position and the max hold note length
