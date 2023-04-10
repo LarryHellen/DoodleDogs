@@ -24,7 +24,7 @@ public class NoteSpawningSystem : MonoBehaviour
     [Header("BeatCheck Variables")]
 
     float bigSound = 0f;
-    float bigSoundBefore = 0f;
+    //float bigSoundBefore = 0f;
 
     public float necessarySoundLoudness;
 
@@ -152,10 +152,10 @@ public class NoteSpawningSystem : MonoBehaviour
             hNO.Start();
             RectTransform hNrt = holdNote.GetComponent<RectTransform>();
             hNO.holdNoteLength = numOfTrues;
-            hNO.SetLengthBasedAttributes(); //SET PROPER SPAWNING POSITION BASED ON COLUMN
+            hNO.SetLengthBasedAttributes();
 
             float xPositionForNoteSpawn = ((hNrt.sizeDelta.x * noteColumn + hNrt.sizeDelta.x/2) + ((screenWidth-columns*hNrt.sizeDelta.x)/(columns-1)) * noteColumn) - screenWidth/2;
-            //If u want bigger notes (smaller gaps) find a good way to do it I can't think of one rn
+            //THIS OFFSET DOES NOT WORK, FIND THE PROPER EQUATION
 
             float yPositionForNoteSpawn = (screenHeight/2 + hNrt.sizeDelta.y);
 
@@ -167,7 +167,7 @@ public class NoteSpawningSystem : MonoBehaviour
             RectTransform tNrt = tapNote.GetComponent<RectTransform>();
 
             float xPositionForNoteSpawn = ((tNrt.sizeDelta.x * noteColumn + tNrt.sizeDelta.x / 2) + ((screenWidth - columns * tNrt.sizeDelta.x) / (columns - 1)) * noteColumn) - screenWidth / 2;
-            //If u want bigger notes (smaller gaps) find a good way to do it I can't think of one rn
+            //THIS OFFSET DOES NOT WORK, FIND THE PROPER EQUATION
 
             float yPositionForNoteSpawn = (screenHeight/2 + tNrt.sizeDelta.y);
 
