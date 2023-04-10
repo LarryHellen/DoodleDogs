@@ -12,4 +12,5 @@ public class PlayerData
     public bool chapter2Unlocked;
     public bool chapter3Unlocked;
     public bool chapter4Unlocked;
+    public bool chapter5Unlocked;
 }

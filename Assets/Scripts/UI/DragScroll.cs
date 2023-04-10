@@ -11,8 +11,8 @@ public class DragScroll : MonoBehaviour
     //private CutsceneManager CutsceneManager;
     public GameObject background;
     public GameObject settingsMenu;
-    public GameObject c2e, c3e, c2d, c3d;//, c4d;
-    public Sprite c2image, c3image;
+    public GameObject c2e, c3e, c2d, c3d, c4e, c4d, c5e, c5d;
+    public Sprite c2image, c3image, c4image, c5image;
     public int p;
     public Vector3 startPoint = new Vector3(0, 0, 0);
     public int b = 0, c = 0;
@@ -21,6 +21,7 @@ public class DragScroll : MonoBehaviour
     private bool chapter2Unlocked;
     private bool chapter3Unlocked;
     private bool chapter4Unlocked;
+    private bool chapter5Unlocked;
     // Start is called before the first frame update
     private void OnMouseDown()
     {
@@ -67,6 +68,16 @@ public class DragScroll : MonoBehaviour
             c3d.SetActive(false);
             c3e.GetComponent<Image>().sprite = c3image;
         }
+        if (chapter4Unlocked)
+        {
+            c4d.SetActive(false);
+            c4e.GetComponent<Image>().sprite = c4image;
+        }
+        if (chapter5Unlocked)
+        {
+            c5d.SetActive(false);
+            c5e.GetComponent<Image>().sprite = c5image;
+        }
         if (Time.deltaTime > 1 || Time.deltaTime < 1.2)
         {
             print(cutsceneNum);
@@ -82,6 +93,7 @@ public class DragScroll : MonoBehaviour
         data.chapter2Unlocked = this.chapter2Unlocked;
         data.chapter3Unlocked = this.chapter3Unlocked;
         data.chapter4Unlocked = this.chapter4Unlocked;
+        data.chapter5Unlocked = this.chapter5Unlocked;
         //data.lSC = this.lSC;
 
         return data;
@@ -94,6 +106,7 @@ public class DragScroll : MonoBehaviour
         this.chapter2Unlocked = tempData.chapter2Unlocked;
         this.chapter3Unlocked = tempData.chapter3Unlocked;
         this.chapter4Unlocked = tempData.chapter4Unlocked;
+        this.chapter5Unlocked = tempData.chapter5Unlocked;
         //lSC = tempData.lSC;
     }
 
