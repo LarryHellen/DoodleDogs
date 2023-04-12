@@ -7,6 +7,7 @@ public class NoteSpawningSystem : MonoBehaviour
 {
     [Header("Manual Variables")]
 
+    public bool holdNotes;
     public float intervalLength;
     public float horizontalSpaceBetweenNotes;
     private float timeElapsedSinceLastInterval;
@@ -54,8 +55,14 @@ public class NoteSpawningSystem : MonoBehaviour
         //Get all audio sources attached to the object that this script is attached to and put them in a list
         audioArray = GetComponents<AudioSource>();
 
+
+        //List<AudioSource> activeAudioArray = new List<AudioSource>();
+        //foreach (AudioSource audioSource in audioArray) { if (audioSource.gameObject.activeInHierarchy) { activeAudioArray.Add(audioSource); } }
+
         //Set column number according to the number of audio sources
         columns = audioArray.Length;
+
+        print(columns);
 
         //Set ScreenWidth and ScreenHeight to the World Space width and height
         RectTransform canvasRt = canvas.GetComponent<RectTransform>();
@@ -119,29 +126,42 @@ public class NoteSpawningSystem : MonoBehaviour
 
     void NoteSpawning()
     {
-        for (int i = 0; i < columns; i++)
+        if (holdNotes)
         {
-            if (notePattern[currentInterval - maxHoldNoteLength][i])
+            for (int i = 0; i < columns; i++)
             {
-                int repeatedTrues = 1;
-
-                for (int j = 1; j < maxHoldNoteLength; j++)
+                if (notePattern[currentInterval - maxHoldNoteLength][i])
                 {
-                    if (notePattern[currentInterval - maxHoldNoteLength + j][i])
-                    {
-                        repeatedTrues++;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
+                    int repeatedTrues = 1;
 
-                NoteDeterminingLogic(repeatedTrues, i);
+                    for (int j = 1; j < maxHoldNoteLength; j++)
+                    {
+                        if (notePattern[currentInterval - maxHoldNoteLength + j][i])
+                        {
+                            repeatedTrues++;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+
+                    NoteDeterminingLogic(repeatedTrues, i);
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < columns; i++)
+            {
+                if (notePattern[currentInterval - maxHoldNoteLength][i])
+                {
+                    NoteDeterminingLogic(1, i);
+                }
             }
         }
     }
-
+    
 
     void NoteDeterminingLogic(int numOfTrues, int noteColumn)
     {
@@ -158,6 +178,7 @@ public class NoteSpawningSystem : MonoBehaviour
             //THIS OFFSET DOES NOT WORK, FIND THE PROPER EQUATION
 
             float yPositionForNoteSpawn = (screenHeight/2 + hNrt.sizeDelta.y);
+            //FIX THIS AS WELL
 
             hNrt.localPosition = new Vector3(xPositionForNoteSpawn, yPositionForNoteSpawn);
         }
@@ -166,10 +187,20 @@ public class NoteSpawningSystem : MonoBehaviour
             GameObject tapNote = Instantiate(tapNotePrefab, new Vector2(0f, 100f), Quaternion.identity, canvas.transform);
             RectTransform tNrt = tapNote.GetComponent<RectTransform>();
 
-            float xPositionForNoteSpawn = ((tNrt.sizeDelta.x * noteColumn + tNrt.sizeDelta.x / 2) + ((screenWidth - columns * tNrt.sizeDelta.x) / (columns - 1)) * noteColumn) - screenWidth / 2;
+
+            print(screenWidth);
+            print(tNrt.sizeDelta.x);
+          
+            float xPositionForNoteSpawn = tNrt.sizeDelta.x - screenWidth/2;
+
+            print(xPositionForNoteSpawn);
+
+
+            //((tNrt.sizeDelta.x * noteColumn + tNrt.sizeDelta.x / 2) + ((screenWidth - columns * tNrt.sizeDelta.x) / (columns - 1)) * noteColumn) - screenWidth / 2;
             //THIS OFFSET DOES NOT WORK, FIND THE PROPER EQUATION
 
             float yPositionForNoteSpawn = (screenHeight/2 + tNrt.sizeDelta.y);
+            //FIX THIS AS WELL
 
             tNrt.localPosition = new Vector3(xPositionForNoteSpawn, yPositionForNoteSpawn);
         }
