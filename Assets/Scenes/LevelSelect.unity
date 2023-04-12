@@ -1081,11 +1081,14 @@ MonoBehaviour:
   c3e: {fileID: 666973379}
   c2d: {fileID: 663081180}
   c3d: {fileID: 1591595734}
+  c4e: {fileID: 10615687}
   c4d: {fileID: 1523271055}
+  c5e: {fileID: 1841236114}
   c5d: {fileID: 1458148440}
   c2image: {fileID: 21300000, guid: 290a8473a502642d48235cbac354b20e, type: 3}
   c3image: {fileID: 21300000, guid: 8f3bee87be3694ebca65e441510ce502, type: 3}
   c4image: {fileID: 21300000, guid: 6ac8532d16cc34092a4f33e8dda18b78, type: 3}
+  c5image: {fileID: 0}
   p: 0
   startPoint: {x: 0, y: 0, z: 0}
   b: -300
@@ -2043,7 +2046,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -900}
+  m_AnchoredPosition: {x: 0, y: -2900}
   m_SizeDelta: {x: 0, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1458148442
@@ -2119,7 +2122,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 100}
+  m_AnchoredPosition: {x: 0, y: -1900}
   m_SizeDelta: {x: 0, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1523271057

@@ -78,6 +78,10 @@ public class CutsceneManager : MonoBehaviour
     public void buttonForwardYes()
     {
         Handheld.Vibrate();
+        if ((sceneNumber == 30 && thirdChapter.activeSelf))
+        {
+            backButtonDisable.SetActive(true);
+        }
         sceneNumber++;
         if ((sceneNumber == 22 && firstChapter.activeSelf))
         {
@@ -101,7 +105,7 @@ public class CutsceneManager : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!settingsMenu.activeSelf && !cutscene1Num7.activeSelf && !cutscene1End.activeSelf && !cutscene1End2.activeSelf && !c2r.activeSelf && !(secondChapter.activeSelf && sceneNumber == 4) && !(secondChapter.activeSelf && (sceneNumber == 8 || sceneNumber == 9 || sceneNumber == 10)))
+        if (!settingsMenu.activeSelf && !cutscene1Num7.activeSelf && !cutscene1End.activeSelf && !cutscene1End2.activeSelf && !c2r.activeSelf && !(secondChapter.activeSelf && sceneNumber == 4) && !(secondChapter.activeSelf && (sceneNumber == 8 || sceneNumber == 9 || sceneNumber == 10)) && !(thirdChapter.activeSelf && (sceneNumber == 29 || sceneNumber == 30)) )
         {
             Handheld.Vibrate();
             sceneNumber++;
@@ -220,6 +224,10 @@ public class CutsceneManager : MonoBehaviour
             if (sceneNumber == 10 && secondChapter.activeSelf)
             {
                 backButtonDisable.SetActive(true);
+            }
+            if (sceneNumber == 28 && thirdChapter.activeSelf)
+            {
+                backButtonDisable.SetActive(false);
             }
 
         }
