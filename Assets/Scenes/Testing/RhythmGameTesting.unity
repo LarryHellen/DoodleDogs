@@ -897,7 +897,7 @@ MonoBehaviour:
   intervalLength: 1
   horizontalSpaceBetweenNotes: 100
   maxHoldNoteLength: 2
-  timeToOnBeatLocation: 2
+  timeToOnBeatLocation: 100
   holdNoteHoldTimeTolerance: 0.1
   canvas: {fileID: 1538211768}
   onBeatTestingLine: {fileID: 814004056}

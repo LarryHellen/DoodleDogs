@@ -50,14 +50,8 @@ public class NoteSpawningSystem : MonoBehaviour
 
     void Awake()
     {
-        //TouchSimulation.Enable(); //For testing touch input without exporting to a phone
-
-        //Get all audio sources attached to the object that this script is attached to and put them in a list
+ 
         audioArray = GetComponents<AudioSource>();
-
-
-        //List<AudioSource> activeAudioArray = new List<AudioSource>();
-        //foreach (AudioSource audioSource in audioArray) { if (audioSource.gameObject.activeInHierarchy) { activeAudioArray.Add(audioSource); } }
 
         //Set column number according to the number of audio sources
         columns = audioArray.Length;
@@ -80,18 +74,6 @@ public class NoteSpawningSystem : MonoBehaviour
 
     void Update()
     {
-        //Every interval, check if a beat is occuring on every audio (with a seperate function) and if one is, have that section of the list return True
-        //Every interval, check if True is present at the position interval-MaxHoldNoteLength and, if so, step through MaxHoldNoteLength Intervals in the NotePattern breaking if one is not True and return the number of Trues present
-        //Every interval,
-        //if the number of Trues present is greater than 1, 
-        //spawn a hold note with the proper length
-        //remember to increase the spawn height of a hold note by: (HoldNoteLength * (HoldNoteLengthConstant * ScreenHeight))/2
-
-        //else spawn a normal note
-
-
-        //****Get minimum viable product with just normal note spawning
-
         NoteSpawningAndSetting();
     }
 
@@ -167,42 +149,47 @@ public class NoteSpawningSystem : MonoBehaviour
     {
         if (numOfTrues > 1) //Spawn Hold Note
         {
-            GameObject holdNote = Instantiate(holdNotePrefab, new Vector2(0f, 100f), Quaternion.identity, canvas.transform); //SET PROPER SPAWNING POSITION BASED ON COLUMN
+            GameObject holdNote = Instantiate(holdNotePrefab, new Vector2(0f, 100f), Quaternion.identity, canvas.transform);
             HoldNoteObject hNO = holdNote.GetComponent<HoldNoteObject>();
             hNO.Start();
-            RectTransform hNrt = holdNote.GetComponent<RectTransform>();
             hNO.holdNoteLength = numOfTrues;
             hNO.SetLengthBasedAttributes();
 
-            float xPositionForNoteSpawn = ((hNrt.sizeDelta.x * noteColumn + hNrt.sizeDelta.x/2) + ((screenWidth-columns*hNrt.sizeDelta.x)/(columns-1)) * noteColumn) - screenWidth/2;
-            //THIS OFFSET DOES NOT WORK, FIND THE PROPER EQUATION
 
-            float yPositionForNoteSpawn = (screenHeight/2 + hNrt.sizeDelta.y);
-            //FIX THIS AS WELL
+            float xPositionForNoteSpawn = 1;
 
-            hNrt.localPosition = new Vector3(xPositionForNoteSpawn, yPositionForNoteSpawn);
+            float yPositionForNoteSpawn = 1;
+
+            RectTransform hNrt = holdNote.GetComponent<RectTransform>();
+            //hNrt.anchoredPosition = new Vector2(xPositionForNoteSpawn, yPositionForNoteSpawn);
         }
         else //Spawn Tap Note
         {
             GameObject tapNote = Instantiate(tapNotePrefab, new Vector2(0f, 100f), Quaternion.identity, canvas.transform);
+            BasicNoteObject bNO = tapNote.GetComponent<BasicNoteObject>();
+            bNO.Start();
+            Vector2 noteSize = bNO.SetAndReturnSize();
+            
+
+
+            print("NOTE SPAWN STUFF");
+
+            float xPositionForNoteSpawn = screenWidth/2;
+
+            float yPositionForNoteSpawn = screenHeight;
+
+
+            print("noteSizeX : " + noteSize.x);
+            print("noteSizeY : " + noteSize.y);
+
+            print(xPositionForNoteSpawn + " - " + yPositionForNoteSpawn);
+
+            print("----------");
+
+
+
             RectTransform tNrt = tapNote.GetComponent<RectTransform>();
-
-
-            print(screenWidth);
-            print(tNrt.sizeDelta.x);
-          
-            float xPositionForNoteSpawn = tNrt.sizeDelta.x - screenWidth/2;
-
-            print(xPositionForNoteSpawn);
-
-
-            //((tNrt.sizeDelta.x * noteColumn + tNrt.sizeDelta.x / 2) + ((screenWidth - columns * tNrt.sizeDelta.x) / (columns - 1)) * noteColumn) - screenWidth / 2;
-            //THIS OFFSET DOES NOT WORK, FIND THE PROPER EQUATION
-
-            float yPositionForNoteSpawn = (screenHeight/2 + tNrt.sizeDelta.y);
-            //FIX THIS AS WELL
-
-            tNrt.localPosition = new Vector3(xPositionForNoteSpawn, yPositionForNoteSpawn);
+            tNrt.anchoredPosition = new Vector2(xPositionForNoteSpawn, yPositionForNoteSpawn);
         }
     }
 
@@ -222,7 +209,7 @@ public class NoteSpawningSystem : MonoBehaviour
     }
 
 
-    bool BeatCheck(AudioSource sound)
+    bool BeatCheck(AudioSource sound) //Gonna need to become a coroutine at somepoint
     {
         sound.GetSpectrumData(sounds, 0, FFTWindow.Rectangular); //CHANGE NOTE CHECKING TO BE A LIST OF AVERAGES "NOTE POSSIBILTY" AT DIFF INTERVALS SO THAT CHECKS BEFORE AND AFTER NOTES STILL WORK
 
@@ -230,11 +217,11 @@ public class NoteSpawningSystem : MonoBehaviour
         //bigSoundBefore = bigSound;
         bigSound = sounds[0] * 100;
 
-        print(bigSound);
+        //print(bigSound);
 
         if (bigSound > necessarySoundLoudness) //&& bigSoundBefore <= necessarySoundLoudness)
         {
-            print("Beat Detected");
+            //print("Beat Detected");
             return true;
         }
         else
@@ -243,6 +230,11 @@ public class NoteSpawningSystem : MonoBehaviour
         }
     }
 }
+
+
+
+
+
 /*
     float bigSound = 0f;
     float bigSoundBefore = 0f;

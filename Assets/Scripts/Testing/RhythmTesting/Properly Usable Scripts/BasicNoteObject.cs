@@ -27,7 +27,7 @@ public class BasicNoteObject : MonoBehaviour
     private List<Coroutine> coroutines = new List<Coroutine>();
     
 
-    void Start()
+    public void Start()
     {
         image = GetComponent<Image>();
         rt = GetComponent<RectTransform>();
@@ -39,24 +39,6 @@ public class BasicNoteObject : MonoBehaviour
         {
             isHoldNote = true;
         }
-
-
-        //Set all variables for proper size (change height size only if HoldNoteObject script not attached)
-        //Remember to set proper widths
-
-
-        //Width Setting
-        var sizeDelta = rt.sizeDelta;
-        sizeDelta.x = (nSS.screenWidth - (nSS.horizontalSpaceBetweenNotes * (nSS.columns - 1))) / nSS.columns;
-
-
-        //Height Setting
-        if (!isHoldNote)
-        {
-            sizeDelta.y = nSS.screenHeight * notePercentLengthOfScreen;
-        }
-
-        rt.sizeDelta = sizeDelta;
 
         //NOTE - MOVEMENT
 
@@ -72,6 +54,24 @@ public class BasicNoteObject : MonoBehaviour
     void Update()
     {
         NoteDestruction();
+    }
+
+
+    public Vector2 SetAndReturnSize()
+    {
+        var sizeDelta = rt.sizeDelta;
+        sizeDelta.x = (nSS.screenWidth - (nSS.horizontalSpaceBetweenNotes * (nSS.columns - 1))) / nSS.columns;
+
+
+        //Height Setting
+        if (!isHoldNote)
+        {
+            sizeDelta.y = nSS.screenHeight * notePercentLengthOfScreen;
+        }
+
+        rt.sizeDelta = sizeDelta;
+
+        return rt.sizeDelta;
     }
 
 
