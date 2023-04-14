@@ -33,6 +33,8 @@ public class Board : MonoBehaviour
     public int coCount;
     public int startingMoves;
     public float blockChance;
+    private int blocksInPlay;
+    public int maxBlocks;
     public bool advanced;
     public bool tutorialEnabled;
     public TutorialSystem tutorialSystem;
@@ -273,8 +275,10 @@ public class Board : MonoBehaviour
                 if(dots[dotToUse].tag == "Block Dot"){
                     float prob = Random.Range(1,100);
                     prob /= 100;
-                    if (prob >= blockChance || advanced == false){
+                    if (prob >= blockChance || advanced == false || blocksInPlay == maxBlocks){
                         retry = true;
+                    } else{
+                        blocksInPlay++;
                     }
                 }
             } while(retry == true);
