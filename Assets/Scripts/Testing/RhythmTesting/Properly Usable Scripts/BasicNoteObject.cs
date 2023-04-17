@@ -42,12 +42,14 @@ public class BasicNoteObject : MonoBehaviour
 
         //NOTE - MOVEMENT
 
-        SetDistanceToMoveIn1Interval();
+        //SetDistanceToMoveIn1Interval();
 
         //Start Note Movement
-        StartCoroutine(LerpMovement());
+        //StartCoroutine(LerpMovement());
 
         //END OF "NOTE - MOVEMENT"
+
+        StartCoroutine(ContinousMovement());
     }
 
 
@@ -74,6 +76,40 @@ public class BasicNoteObject : MonoBehaviour
         return rt.sizeDelta;
     }
 
+
+
+    IEnumerator ContinousMovement()
+    {
+        yield return null;
+        float distanceToMove = rt.anchoredPosition.y - ((nSS.screenHeightPercentForNoteToLandOnBeat * nSS.screenHeight) - (nSS.screenHeight / 2));
+
+        while (true)
+        {
+            float startPos = rt.anchoredPosition.y;
+            float endPos = rt.anchoredPosition.y - distanceToMove;
+            float timeElapsed = 0;
+            float lerpValue = 0;
+
+            while (timeElapsed < nSS.timeToOnBeatLocation)
+            {
+                lerpValue = Mathf.Lerp(startPos, endPos, timeElapsed / nSS.timeToOnBeatLocation);
+                timeElapsed += Time.deltaTime;
+
+                rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, lerpValue);
+            }
+
+            rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, endPos);
+        }
+    }
+
+
+
+
+
+
+
+
+    //OLD CODE BELOW HERE
 
     void SetDistanceToMoveIn1Interval()
     {

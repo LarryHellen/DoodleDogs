@@ -870,6 +870,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1761516743}
   - component: {fileID: 1761516737}
+  - component: {fileID: 1761516745}
   - component: {fileID: 1761516742}
   - component: {fileID: 1761516741}
   - component: {fileID: 1761516740}
@@ -888,20 +889,22 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1761516736}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc7efa41599ac4c998fc3f9623f08240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnDelay: 1
+  timeToOnBeatLocation: 1
+  noteCooldown: 10
+  tapNotePrefab: {fileID: 3782615371269532384, guid: 0e118e6266a3245b281f3acfe2c7b1ea, type: 3}
   holdNotes: 0
   intervalLength: 1
   horizontalSpaceBetweenNotes: 100
   maxHoldNoteLength: 2
-  timeToOnBeatLocation: 100
   holdNoteHoldTimeTolerance: 0.1
   canvas: {fileID: 1538211768}
   onBeatTestingLine: {fileID: 814004056}
-  tapNotePrefab: {fileID: 3782615371269532384, guid: 0e118e6266a3245b281f3acfe2c7b1ea, type: 3}
   holdNotePrefab: {fileID: 148510226254390612, guid: 8b173a2e4750148668a046b116363c9b, type: 3}
   screenHeightPercentForNoteToLandOnBeat: 0.1
   necessarySoundLoudness: 0
@@ -1046,7 +1049,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1761516736}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7023724159498798986, guid: a9511ece2599848bf828138b88ab4946, type: 2}
   m_audioClip: {fileID: 8300000, guid: 3f193791c117442bb921fc1aa28d7d7f, type: 3}
@@ -1142,7 +1145,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1761516736}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7023724159498798986, guid: a9511ece2599848bf828138b88ab4946, type: 2}
   m_audioClip: {fileID: 8300000, guid: 23a198f8e12024b4f80d359d4e221704, type: 3}
@@ -1349,7 +1352,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1761516736}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7023724159498798986, guid: a9511ece2599848bf828138b88ab4946, type: 2}
   m_audioClip: {fileID: 8300000, guid: 8694b2572bb7b4b85b79ebc17e8d44ec, type: 3}
@@ -1438,3 +1441,156 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1761516745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761516736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5fece46635b148c7b2202a3a73f4c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnDelay: 0
+  timeToOnBeatLocation: 0
+  noteCooldown: 0
+  tapNotePrefab: {fileID: 0}
+  canvas: {fileID: 0}
+  onBeatTestingLine: {fileID: 0}
+  screenHeightPercentForNoteToLandOnBeat: 0
+  necessarySoundLoudness: 0
+  sounds:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  playerCombo: 0
+  columns: 0
+  screenWidth: 0
+  screenHeight: 0
