@@ -8,6 +8,7 @@ public class TicTacToeRunner : MonoBehaviour
 {
     public GameObject tile;
     public ActivateSettings activateSettings;
+    public GoToNewScene goToNewScene;
 
     public GameObject VictoryScreen, DefeatScreen, TieScreen, lostScene;
 
@@ -73,7 +74,9 @@ public class TicTacToeRunner : MonoBehaviour
     void OnWin()
     {
         FindObjectOfType<AudioManager>().Play("Scratch");
-        VictoryScreen.SetActive(true);
+        //VictoryScreen.SetActive(true);
+        goToNewScene.GoToScene("Cutscenes");
+        
     }
 
     void OnLose()

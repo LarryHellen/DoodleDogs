@@ -581,6 +581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tile: {fileID: 4052168045919117037, guid: 73c86b2a75d554a9ababac18e5438eaa, type: 3}
   activateSettings: {fileID: 336779926}
+  goToNewScene: {fileID: 378894570783615634}
   VictoryScreen: {fileID: 1271644154}
   DefeatScreen: {fileID: 1962922123}
   TieScreen: {fileID: 1794357979}
@@ -2533,6 +2534,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: Cutscenes
   reset: 0
+  chapter2: 0
+  chapter3: 0
+  chapter4: 0
+  inCutscenes: 0
 --- !u!114 &1758147755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3183,6 +3188,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: MainMenu
   reset: 0
+  chapter2: 0
+  chapter3: 0
+  chapter4: 0
+  inCutscenes: 0
 --- !u!114 &378894570783615634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3197,6 +3206,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: MainMenu
   reset: 0
+  chapter2: 0
+  chapter3: 0
+  chapter4: 0
+  inCutscenes: 0
 --- !u!1 &437015289257398291
 GameObject:
   m_ObjectHideFlags: 0
