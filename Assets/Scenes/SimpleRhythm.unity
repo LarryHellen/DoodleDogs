@@ -945,7 +945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cfeb287ffe7d824fa5e71343d7ee641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songLength: 10
+  songLength: 44
   onBeatHeight: 0.2
   timeToOnBeatHeight: 0.75
   noteCooldown: 0.75
