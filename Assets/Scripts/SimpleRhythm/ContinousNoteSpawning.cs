@@ -8,9 +8,11 @@ public class ContinousNoteSpawning : MonoBehaviour
 {
     [Header("Manual Variables")]
     public float songLength;
+    public float progressBarLength;
     public float onBeatHeight;
     public float timeToOnBeatHeight;
     public float noteCooldown;
+    public float missesAvaible;
     public float spaceBetweenNotes; //YET TO BE IMPLEMENTED
     public bool invicibility = false;
     
@@ -85,7 +87,7 @@ public class ContinousNoteSpawning : MonoBehaviour
     {
         ContinousSpawning();
         timeElapsed += Time.deltaTime;
-        elapsedTimeText.SetText("Time Elapsed: " + timeElapsed.ToString("F2"));
+        elapsedTimeText.SetText("Time Elapsed: " + timeElapsed);
 
 
         if (timeElapsed >= songLength) //Win Condition
@@ -162,10 +164,14 @@ public class ContinousNoteSpawning : MonoBehaviour
     {
         if (!invicibility)
         {
-            Time.timeScale = 0;
-            cAudioDelay.PauseAudio();
-            loseScreen.SetActive(true);
-            print("You lose!");
+            missesAvaible--;
+            if (missesAvaible <= -1)
+            {
+                Time.timeScale = 0;
+                cAudioDelay.PauseAudio();
+                loseScreen.SetActive(true);
+                print("You lose!");
+            }
         }
     }
 
@@ -184,10 +190,10 @@ public class ContinousNoteSpawning : MonoBehaviour
         RectTransform prt = progressBar.GetComponent<RectTransform>();
 
         float elapsedTime = 0;
-        while (elapsedTime < songLength)
+        while (elapsedTime < progressBarLength)
         {
             elapsedTime += Time.deltaTime;
-            prt.sizeDelta = new Vector2(Mathf.Lerp(0, bgScreenWidth, elapsedTime/songLength), prt.sizeDelta.y);
+            prt.sizeDelta = new Vector2(Mathf.Lerp(0, bgScreenWidth, elapsedTime/ progressBarLength), prt.sizeDelta.y);
             yield return null;
         }
 

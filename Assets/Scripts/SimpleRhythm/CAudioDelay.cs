@@ -5,24 +5,31 @@ using System.Collections;
 public class CAudioDelay : MonoBehaviour
 {
     [Header("Manual Variables")]
-    public AudioSource audioSource;
+    public AudioSource[] audioSources;
     private ContinousNoteSpawning nSS;
     private float timeToDelay = 0;
 
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         nSS = GameObject.Find("GameManager").GetComponent<ContinousNoteSpawning>();
 
         timeToDelay = nSS.timeToOnBeatHeight;
 
-        audioSource.PlayDelayed(timeToDelay);
+        foreach (AudioSource audioSource in audioSources)
+        {
+            audioSource.PlayDelayed(timeToDelay);
+        }
+
+        
     }
 
 
     public void PauseAudio()
     {
-        audioSource.Pause();
+        foreach (AudioSource audioSource in audioSources)
+        {
+            audioSource.Pause();
+        }
     }
 }
