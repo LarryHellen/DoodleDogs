@@ -205,7 +205,7 @@ public class CutsceneManager : MonoBehaviour
             {
                 backButtonDisable.SetActive(true);
             }
-            if (sceneNumber == 32 && firstChapter.activeSelf)
+            if (sceneNumber == 30 && firstChapter.activeSelf)
             {
                 backButtonDisable.SetActive(false);
             }
@@ -213,7 +213,7 @@ public class CutsceneManager : MonoBehaviour
             {
                 backButtonDisable.SetActive(false);
             }
-            if (sceneNumber == 28 && secondChapter.activeSelf)
+            if (sceneNumber == 25 && secondChapter.activeSelf)
             {
                 backButtonDisable.SetActive(false);
             }
@@ -228,6 +228,10 @@ public class CutsceneManager : MonoBehaviour
             if (sceneNumber == 28 && thirdChapter.activeSelf)
             {
                 backButtonDisable.SetActive(false);
+            }
+            if (sceneNumber == 2 && thirdChapter.activeSelf)
+            {
+                backButtonDisable.SetActive(true);
             }
 
         }

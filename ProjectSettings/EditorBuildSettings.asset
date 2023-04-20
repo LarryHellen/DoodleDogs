@@ -32,5 +32,8 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/SimpleRhythm.unity
+    guid: c08416856ebb75c468c250744870a6a9
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c8e66a3bf3f274609b8b6196ff218934, type: 2}
