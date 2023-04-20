@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ContinousNoteSpawning : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class ContinousNoteSpawning : MonoBehaviour
     public GameObject notePrefab;
     public GameObject winScreen;
     public GameObject loseScreen;
-    public GameObject progressBar;
+    public Slider progressBar;
 
     [Space(25)]
     
@@ -43,12 +44,12 @@ public class ContinousNoteSpawning : MonoBehaviour
     public int columns;
     public float screenWidth;
     public float screenHeight;
-    private AudioSource[] audioArray;
+    public AudioSource[] audioArray;
     private float timeElapsed = 0;
     private CAudioDelay cAudioDelay;
 
+
     void Awake(){
-        audioArray = GetComponents<AudioSource>();
         columns = audioArray.Length;
         print(columns);
 
@@ -79,7 +80,7 @@ public class ContinousNoteSpawning : MonoBehaviour
         winScreen.SetActive(false);
         loseScreen.SetActive(false);
 
-        StartCoroutine(ProgressBar());
+        StartCoroutine(ProgressBarSlider());
     }
 
     
@@ -105,7 +106,6 @@ public class ContinousNoteSpawning : MonoBehaviour
             {
                 if (BeatCheck(audioArray[column]))
                 {
-
                     GameObject newNote = Instantiate(notePrefab, new Vector3(0, screenHeight, 0), notePrefab.transform.rotation, canvas.transform);
 
                     CBasicNoteObject noteScript = newNote.GetComponent<CBasicNoteObject>();
@@ -176,27 +176,23 @@ public class ContinousNoteSpawning : MonoBehaviour
     }
 
 
-    public void ReloadScene()
+    IEnumerator ProgressBarSlider()
     {
-        SceneManager.LoadScene("SimpleRhythm");
-    }
-
-
-    IEnumerator ProgressBar()
-    {
-        RectTransform backgroundCanvasRt = backgroundCanvas.GetComponent<RectTransform>();
-        float bgScreenWidth = backgroundCanvasRt.sizeDelta.x;
-
-        RectTransform prt = progressBar.GetComponent<RectTransform>();
-
         float elapsedTime = 0;
+        float progress = 0;
+
         while (elapsedTime < progressBarLength)
         {
             elapsedTime += Time.deltaTime;
-            prt.sizeDelta = new Vector2(Mathf.Lerp(0, bgScreenWidth, elapsedTime/ progressBarLength), prt.sizeDelta.y);
+            progress = Mathf.Lerp(0, 1, elapsedTime / progressBarLength);
+            progressBar.value = progress;
             yield return null;
         }
+    }
 
-        prt.sizeDelta = new Vector2(bgScreenWidth, prt.sizeDelta.y);
+
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene("SimpleRhythm");
     }
 }
