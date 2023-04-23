@@ -36,7 +36,7 @@ public class CBasicNoteObject : MonoBehaviour
     {
         var sizeDelta = rt.sizeDelta;
 
-        sizeDelta.x = (nSS.screenWidth - (nSS.spaceBetweenNotes * (nSS.columns - 1))) / nSS.columns;
+        sizeDelta.x = nSS.screenWidth / nSS.columns;
 
         sizeDelta.y = nSS.screenHeight * noteHeight;
         

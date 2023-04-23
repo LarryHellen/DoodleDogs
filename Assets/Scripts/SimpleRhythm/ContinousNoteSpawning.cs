@@ -8,15 +8,16 @@ using UnityEngine.UI;
 public class ContinousNoteSpawning : MonoBehaviour
 {
     [Header("Manual Variables")]
+    public bool testing;
     public float songLength;
     public float progressBarLength;
     public float onBeatHeight;
     public float timeToOnBeatHeight;
     public float noteCooldown;
     public float missesAvaible;
-    public float spaceBetweenNotes; //YET TO BE IMPLEMENTED
     public bool invicibility = false;
-    
+    public int audioChoice;
+    public GameObject[] audioObjects;
     public Dictionary<int, float> columnCooldowns = new Dictionary<int, float>();
     public Canvas canvas;
     public Canvas backgroundCanvas;
@@ -44,12 +45,15 @@ public class ContinousNoteSpawning : MonoBehaviour
     public int columns;
     public float screenWidth;
     public float screenHeight;
-    public AudioSource[] audioArray;
     private float timeElapsed = 0;
     private CAudioDelay cAudioDelay;
+    public AudioSource[] audioArray;
 
 
-    void Awake(){
+    void Awake()
+    {
+        audioArray = audioObjects[audioChoice].GetComponents<AudioSource>();
+
         columns = audioArray.Length;
         print(columns);
 
@@ -64,9 +68,19 @@ public class ContinousNoteSpawning : MonoBehaviour
 
         cAudioDelay = GameObject.Find("AudioPlayer").GetComponent<CAudioDelay>();
 
+        //SET THE PROPER SETTINGS FOR THE LEVEL RIGHT HERE
+        if (!testing)
+        {
+            if (audioChoice == 0)
+            {
+                Audio1Settings();
+            }
+            else if (audioChoice == 1)
+            {
+                Audio2Settings();
+            }
+        }
 
-        //print("screenWidth: " + screenWidth);
-        //print("screenHeight: " + screenHeight);
     }
 
 
@@ -194,5 +208,27 @@ public class ContinousNoteSpawning : MonoBehaviour
     public void ReloadScene()
     {
         SceneManager.LoadScene("SimpleRhythm");
+    }
+
+
+    public void Audio1Settings(){
+        songLength = 50;
+        progressBarLength = 43;
+        onBeatHeight = 0.2f;
+        timeToOnBeatHeight = 0.75f;
+        noteCooldown = 0.5f;
+        missesAvaible = 3;
+        invicibility = false;
+    }
+
+
+    public void Audio2Settings(){
+        songLength = 42;
+        progressBarLength = 40;
+        onBeatHeight = 0.2f;
+        timeToOnBeatHeight = 0.6f;
+        noteCooldown = 0.4f;
+        missesAvaible = 3;
+        invicibility = false;
     }
 }
