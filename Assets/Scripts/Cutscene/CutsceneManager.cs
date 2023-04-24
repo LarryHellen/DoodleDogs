@@ -18,6 +18,7 @@ public class CutsceneManager : MonoBehaviour
     public GameObject secondChapter;
     public GameObject thirdChapter;
     public GameObject fourthChapter;
+    public GameObject fifthChapter;
     public string tileMatching;
     public string ticTacToe;
     public string ticTacToe2;
@@ -34,10 +35,12 @@ public class CutsceneManager : MonoBehaviour
     public GameObject sixthGameplayScene;
     public GameObject seventhGameplayScene;
     public GameObject eighthGameplayScene;
+    public GameObject ninthGameplayScene;
 
     private bool chapter2Unlocked;
     private bool chapter3Unlocked;
     private bool chapter4Unlocked;
+    private bool chapter5Unlocked;
 
     //public GameObject chapter2Enable;
     //public GameObject chapter3Enable;
@@ -150,13 +153,17 @@ public class CutsceneManager : MonoBehaviour
             else if (sceneNumber == cutsceneList.IndexOf(seventhGameplayScene) + 1 && cutscenes == fourthChapter)
             {
                 cutsceneNum = 10;
-                sceneLoader(rythym);
+                sceneLoader(tileMatching);
 
-                //Debug.Log("got here rythym");
             }
             else if (sceneNumber == cutsceneList.IndexOf(eighthGameplayScene) + 1 && cutscenes == fourthChapter)
             {
                 cutsceneNum = 11;
+                sceneLoader(ticTacToe);
+            }
+            else if (sceneNumber == cutsceneList.IndexOf(ninthGameplayScene) + 1 && cutscenes == fourthChapter)
+            {
+                cutsceneNum = 12;
                 sceneLoader(rythym);
             }
             else if (sceneNumber < cutscenes.transform.childCount)
@@ -189,8 +196,12 @@ public class CutsceneManager : MonoBehaviour
                 chapter4Unlocked = true;
                 Setup();
             }
-            else if (cutsceneNum == 11){
-                SceneManager.LoadScene("Chapter2");
+            else if (cutsceneNum == 12){
+                cutscenes.SetActive(false);
+                cutsceneNum = 13;
+                cutscenes = fifthChapter;
+                chapter5Unlocked = true;
+                Setup();
             }
             if (sceneNumber == 21 && firstChapter.activeSelf)
             {
@@ -255,9 +266,12 @@ public class CutsceneManager : MonoBehaviour
         else if (cutsceneNum > 5 && cutsceneNum < 9)
         {
             cutscenes = thirdChapter;
-        } else if(cutsceneNum > 8)
+        } else if(cutsceneNum > 8 && cutsceneNum < 13)
         {
             cutscenes = fourthChapter;
+        } else if(cutsceneNum > 12)
+        {
+            cutscenes = fifthChapter;
         }
 
         Setup();
@@ -309,6 +323,9 @@ public class CutsceneManager : MonoBehaviour
         else if (cutsceneNum == 11)
         {
             start = cutsceneList.IndexOf(eighthGameplayScene) + 1;
+        } else if (cutsceneNum == 12)
+        {
+            start = cutsceneList.IndexOf(ninthGameplayScene) + 1;
         }
 
         for (int i = 0; i < cutscenes.transform.childCount; i++)
@@ -354,6 +371,8 @@ public class CutsceneManager : MonoBehaviour
         data.chapter2Unlocked = this.chapter2Unlocked;
         data.chapter3Unlocked = this.chapter3Unlocked;
         data.chapter4Unlocked = this.chapter4Unlocked;
+        data.chapter5Unlocked = this.chapter5Unlocked;
+        
         //data.lSC = this.lSC;
 
         return data;
@@ -366,6 +385,7 @@ public class CutsceneManager : MonoBehaviour
         this.chapter2Unlocked = tempData.chapter2Unlocked;
         this.chapter3Unlocked = tempData.chapter3Unlocked;
         this.chapter4Unlocked = tempData.chapter4Unlocked;
+        this.chapter5Unlocked = tempData.chapter5Unlocked;
         //lSC = tempData.lSC;
     }
 
