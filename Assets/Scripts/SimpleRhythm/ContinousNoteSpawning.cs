@@ -48,7 +48,7 @@ public class ContinousNoteSpawning : MonoBehaviour
     private float timeElapsed = 0;
     private CAudioDelay cAudioDelay;
     public AudioSource[] audioArray;
-
+    
 
     void Awake()
     {
@@ -230,5 +230,22 @@ public class ContinousNoteSpawning : MonoBehaviour
         noteCooldown = 0.4f;
         missesAvaible = 3;
         invicibility = false;
+    }
+
+
+    public void OnPointerDownOnCanvas()
+    {
+        //print("Pointer Down On Canvas");
+        MissAnimation();
+    }
+
+
+    void MissAnimation()
+    {
+        //Input.mousePosition
+
+        //Get mouse position
+        //Instanstiate a big red x game object at mouse position
+        //Add 1 to total missesAvailable
     }
 }
