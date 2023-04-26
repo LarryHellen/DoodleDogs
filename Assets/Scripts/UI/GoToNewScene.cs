@@ -9,7 +9,7 @@ using System.IO;
 public class GoToNewScene : MonoBehaviour
 {
     public string scene = "";
-    public bool reset, chapter2, chapter3, chapter4;
+    public bool reset, chapter2, chapter3, chapter4, chapter5;
     private int cutsceneNum;
     public bool inCutscenes;
     //public CutsceneManager cm;
@@ -37,7 +37,16 @@ public class GoToNewScene : MonoBehaviour
         {
             cutsceneNum = 6;
         }
-        if (inCutscenes || reset || chapter2 || chapter3)
+        else if (chapter4)
+        {
+            print("m");
+            cutsceneNum = 9;
+        }
+        else if (chapter5)
+        {
+            cutsceneNum = 12;
+        }
+        if (inCutscenes || reset || chapter2 || chapter3 || chapter4 || chapter5)
         {
             SaveByJSON();
         }
