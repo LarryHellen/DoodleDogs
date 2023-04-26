@@ -37,7 +37,7 @@ public class Board : MonoBehaviour
     public int maxBlocks;
     public bool advanced;
     public bool tutorialEnabled;
-    public TutorialSystem tutorialSystem;
+    public TileMatchingTriggers tutorialSystem;
 
     
 
@@ -60,6 +60,7 @@ public class Board : MonoBehaviour
         if(IsDeadlocked()){
             ShuffleBoard();
         }
+        tutorialSystem.Setup();
     }
 
     private bool MatchesAt(int column, int row, GameObject piece){
@@ -120,6 +121,11 @@ public class Board : MonoBehaviour
                 allDots[column,row] = null;
             }
         }
+    }
+
+    public void SetMatched(){
+        tutorialSystem.clearedMatch = true;
+        tutorialSystem.Next();
     }
 
     public void DestroyMatches(){
@@ -324,6 +330,43 @@ public class Board : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public int[] FindSet(){
+        int[] matchSet = new int[6];
+        for(int i = 0; i < width; i++)
+        {
+            for(int j = 0; j < height; j++)
+            {
+                if(allDots[i,j]!=null)
+                {
+                    if(i < width-1)
+                    {
+                        if(SwitchAndCheck(i,j,Vector2.right))
+                        {
+                            matchSet[0] = i;
+                            matchSet[1] = j;
+                            matchSet[2] = i+1;
+                            matchSet[3] = j;
+                            matchSet[4] = i+2;
+                            matchSet[5] = j;
+                        }
+                    }
+                    if(j < height-1){
+                        if(SwitchAndCheck(i,j,Vector2.up))
+                        {
+                            matchSet[0] = i;
+                            matchSet[1] = j;
+                            matchSet[2] = i;
+                            matchSet[3] = j+1;
+                            matchSet[4] = i;
+                            matchSet[5] = j+2;
+                        }
+                    }
+                }
+            }
+        }
+        return matchSet;
     }
 
     private bool SwitchAndCheck(int column, int row, Vector2 direction){

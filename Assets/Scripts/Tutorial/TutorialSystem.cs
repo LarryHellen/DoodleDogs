@@ -4,37 +4,36 @@ using UnityEngine;
 
 public class TutorialSystem : MonoBehaviour
 {
-    public GameObject currentTutorials;
-    private Board board;
-    public string sceneType;
     public List<GameObject> allScenes;
-    private int currentIndex;
+    protected int currentIndex;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        if(sceneType == "board"){
-            board = FindObjectOfType<Board>();
-        }
-        allScenes = new List<GameObject>();
-        foreach(Transform child in currentTutorials.transform){
-            allScenes.Add(child.gameObject);
-            child.gameObject.SetActive(false);
-        }
-        allScenes[0].SetActive(true);
+
     }
 
-    public void nextTutorial(){
+    public void Setup(){
+        
+    }
+
+    public void NextTutorial(){
         allScenes[currentIndex].SetActive(false);
         currentIndex++;
         if(currentIndex == allScenes.Count){
-            if(sceneType == "board"){
-                board.tutorialEnabled = false;
-            }
+            EndTutorial();
         } else{
             allScenes[currentIndex].SetActive(true);
         }
+    }
+
+    public void Next(){
+
+    }
+
+    public void EndTutorial(){
+
     }
 
     // Update is called once per frame

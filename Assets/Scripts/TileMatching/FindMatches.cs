@@ -30,6 +30,9 @@ public class FindMatches : MonoBehaviour
                         GameObject rightDot = board.allDots[i+1,j];
                         if(leftDot != null && rightDot != null){
                             if(leftDot.tag == currentDot.tag && rightDot.tag == currentDot.tag){
+                                if(board.tutorialEnabled == true){
+                                    board.SetMatched();
+                                }
                                 if(!currentMatches.Contains(leftDot)){
                                     matchDot(leftDot);
                                 }
@@ -50,6 +53,9 @@ public class FindMatches : MonoBehaviour
                         GameObject upDot = board.allDots[i,j+1];
                         if(downDot != null && upDot != null){
                             if(downDot.tag == currentDot.tag && upDot.tag == currentDot.tag){
+                                if(board.tutorialEnabled == true){
+                                    board.SetMatched();
+                                }
                                 if(!currentMatches.Contains(downDot)){
                                     matchDot(downDot);
                                 }

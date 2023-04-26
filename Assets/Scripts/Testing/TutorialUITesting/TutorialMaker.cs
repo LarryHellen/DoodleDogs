@@ -62,31 +62,34 @@ public class TutorialMaker : MonoBehaviour
 
 
         //Bottom Panel
-        float height = ((canvasHeight / 2 + rt.localPosition[1]) - (rt.sizeDelta[1]/2)) / 2 ;
+        float height = ((canvasHeight / 2 + rt.anchoredPosition[1]) - (rt.sizeDelta[1]/2)) / 2 ;
 
         NegativeSpacePanels.Add(CreatePanel(canvasWidth/2, height, canvasWidth, height*2, Color.white, 0.5f));
 
 
         //Top Panel
-        height = ((canvasHeight - ((canvasHeight / 2 + rt.localPosition[1]) + (rt.sizeDelta[1] / 2))) / 2) + (canvasHeight / 2 + rt.localPosition[1]) + (rt.sizeDelta[1] / 2);
+        height = ((canvasHeight - ((canvasHeight / 2 + rt.anchoredPosition[1]) + (rt.sizeDelta[1] / 2))) / 2) + (canvasHeight / 2 + rt.anchoredPosition[1]) + (rt.sizeDelta[1] / 2);
 
-        NegativeSpacePanels.Add(CreatePanel(canvasWidth / 2, height, canvasWidth, (canvasHeight - ((canvasHeight / 2 + rt.localPosition[1]) + (rt.sizeDelta[1] / 2))), Color.white, 0.5f));
+        NegativeSpacePanels.Add(CreatePanel(canvasWidth / 2, height, canvasWidth, (canvasHeight - ((canvasHeight / 2 + rt.anchoredPosition[1]) + (rt.sizeDelta[1] / 2))), Color.white, 0.5f));
 
 
 
 
         //Left Panel
-        float width = ((rt.localPosition[0] + canvasWidth / 2) - (rt.sizeDelta[0]/2)) / 2;
+        float width = ((rt.anchoredPosition[0] + canvasWidth / 2) - (rt.sizeDelta[0]/2)) / 2;
 
         NegativeSpacePanels.Add(CreatePanel(width, rt.position[1], width*2, rt.sizeDelta[1], Color.white, 0.5f));
 
 
         //Right Panel
-        width = ((rt.localPosition[0] + canvasWidth / 2) + rt.sizeDelta[0]/2) + ((canvasWidth - ((rt.localPosition[0] + canvasWidth / 2) + rt.sizeDelta[0] / 2))/2);
+        width = ((rt.anchoredPosition[0] + canvasWidth / 2) + rt.sizeDelta[0]/2) + ((canvasWidth - ((rt.anchoredPosition[0] + canvasWidth / 2) + rt.sizeDelta[0] / 2))/2);
 
 
-        NegativeSpacePanels.Add(CreatePanel(width, rt.position[1], canvasWidth - ((rt.localPosition[0] + canvasWidth / 2) + (rt.sizeDelta[0] / 2)), rt.sizeDelta[1], Color.white, 0.5f));
+        NegativeSpacePanels.Add(CreatePanel(width, rt.position[1], canvasWidth - ((rt.anchoredPosition[0] + canvasWidth / 2) + (rt.sizeDelta[0] / 2)), rt.sizeDelta[1], Color.white, 0.5f));
 
+        foreach(GameObject panel in NegativeSpacePanels){
+            panel.transform.localScale = new Vector3(1,1,1);
+        }
 
         return NegativeSpacePanels;
     }
@@ -111,7 +114,7 @@ public class TutorialMaker : MonoBehaviour
 
         RectTransform panelRectTransform = panel.GetComponent<RectTransform>(); //Getting the RectTransform of the panel
 
-        panelRectTransform.localPosition = new Vector2(xPos - canvasWidth/2, yPos - canvasHeight/2); //Setting the position of the panel (this is based off the center of the panel)
+        panelRectTransform.anchoredPosition = new Vector2(xPos - canvasWidth/2, yPos - canvasHeight/2); //Setting the position of the panel (this is based off the center of the panel)
         panelRectTransform.sizeDelta = new Vector2(xSize, ySize); //Setting the size of the panel (this is relative to the size of the canvas, xSize = 100 is 100 units larger than the canvas on the x-axis)
 
 

@@ -22,6 +22,7 @@ public class Dot : MonoBehaviour
     private Vector2 tempPosition;
     public float swipeAngle = 0;
     public float swipeResist;
+    public bool isTutorial;
 
     // Start is called before the first frame update
     void Start()
