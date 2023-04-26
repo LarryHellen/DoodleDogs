@@ -78,7 +78,7 @@ public class DragScroll : MonoBehaviour
             c5d.SetActive(false);
             c5e.GetComponent<Image>().sprite = c5image;
         }
-        if (Time.deltaTime > 1 || Time.deltaTime < 1.2)
+        if (Time.deltaTime > 1 && Time.deltaTime < 1.2)
         {
             print(cutsceneNum);
         }

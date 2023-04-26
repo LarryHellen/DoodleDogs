@@ -76,6 +76,7 @@ public class CutsceneManager : MonoBehaviour
         //FindObjectOfType<AudioManager>().Play("FlipPage");
         cutsceneList[sceneNumber + 1].SetActive(false);
         cutsceneList[sceneNumber].SetActive(true);
+        print("f");
     }
 
     public void buttonForwardYes()
@@ -196,7 +197,7 @@ public class CutsceneManager : MonoBehaviour
                 chapter4Unlocked = true;
                 Setup();
             }
-            else if (cutsceneNum == 12){
+            else if (cutsceneNum == 11){
                 cutscenes.SetActive(false);
                 cutsceneNum = 13;
                 cutscenes = fifthChapter;
@@ -335,6 +336,7 @@ public class CutsceneManager : MonoBehaviour
 
         sceneNumber = start;
         cutsceneList[start].SetActive(true);
+        backButtonDisable.SetActive(true);
     }
 
     public void backButton()
@@ -357,6 +359,11 @@ public class CutsceneManager : MonoBehaviour
                 ChangeSceneBack();
             }
             else if (sceneNumber - 1 != cutsceneList.IndexOf(seventhGameplayScene) && sceneNumber - 1 != cutsceneList.IndexOf(eighthGameplayScene) && cutscenes == fourthChapter)
+            {
+                sceneNumber--;
+                ChangeSceneBack();
+            }
+            else if (sceneNumber - 1 != cutsceneList.IndexOf(eighthGameplayScene) && sceneNumber - 1 != cutsceneList.IndexOf(ninthGameplayScene) && cutscenes == fifthChapter)
             {
                 sceneNumber--;
                 ChangeSceneBack();

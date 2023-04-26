@@ -178,8 +178,8 @@ MonoBehaviour:
   scene: Cutscenes
   reset: 0
   chapter2: 0
-  chapter3: 1
-  chapter4: 0
+  chapter3: 0
+  chapter4: 1
   inCutscenes: 0
 --- !u!114 &10615690
 MonoBehaviour:
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 10615687}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -1088,7 +1088,7 @@ MonoBehaviour:
   c2image: {fileID: 21300000, guid: 290a8473a502642d48235cbac354b20e, type: 3}
   c3image: {fileID: 21300000, guid: 8f3bee87be3694ebca65e441510ce502, type: 3}
   c4image: {fileID: 21300000, guid: 6ac8532d16cc34092a4f33e8dda18b78, type: 3}
-  c5image: {fileID: 0}
+  c5image: {fileID: 21300000, guid: c0e0cfd53ef5047d9b9933bcf20a3fe5, type: 3}
   p: 0
   startPoint: {x: 0, y: 0, z: 0}
   b: -300
@@ -2268,7 +2268,7 @@ RectTransform:
   m_GameObject: {fileID: 1841236114}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.34, y: 1.7866669, z: 1.34}
+  m_LocalScale: {x: 1.34, y: 1.34, z: 1.34}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 774242375}
@@ -2304,7 +2304,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1841236114}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -2373,7 +2373,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6bf5eed84d8b643b982c8a23e27aecee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5b79a538b2a0b4d0781d77717f141d46, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
