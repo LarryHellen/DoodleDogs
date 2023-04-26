@@ -1342,7 +1342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cfeb287ffe7d824fa5e71343d7ee641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testing: 1
+  testing: 0
   songLength: 42
   progressBarLength: 40
   onBeatHeight: 0.2

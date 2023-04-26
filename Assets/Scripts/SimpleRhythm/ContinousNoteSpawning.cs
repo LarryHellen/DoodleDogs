@@ -26,6 +26,7 @@ public class ContinousNoteSpawning : MonoBehaviour
     public GameObject notePrefab;
     public GameObject winScreen;
     public GameObject loseScreen;
+    public GameObject bigRedX;
     public Slider progressBar;
 
     [Space(25)]
@@ -218,7 +219,6 @@ public class ContinousNoteSpawning : MonoBehaviour
         timeToOnBeatHeight = 0.75f;
         noteCooldown = 0.5f;
         missesAvaible = 3;
-        invicibility = false;
     }
 
 
@@ -229,13 +229,12 @@ public class ContinousNoteSpawning : MonoBehaviour
         timeToOnBeatHeight = 0.6f;
         noteCooldown = 0.4f;
         missesAvaible = 3;
-        invicibility = false;
     }
 
 
     public void OnPointerDownOnCanvas()
     {
-        //print("Pointer Down On Canvas");
+        print("Pointer Down On Canvas");
         MissAnimation();
     }
 
@@ -245,6 +244,12 @@ public class ContinousNoteSpawning : MonoBehaviour
         //Input.mousePosition
 
         //Get mouse position
+
+        /*
+        Instantiate(bigRedX);
+        missesAvaible--;
+        */
+        
         //Instanstiate a big red x game object at mouse position
         //Add 1 to total missesAvailable
     }
