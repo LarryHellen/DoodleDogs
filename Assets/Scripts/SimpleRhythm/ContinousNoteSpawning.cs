@@ -251,6 +251,6 @@ public class ContinousNoteSpawning : MonoBehaviour
         */
         
         //Instanstiate a big red x game object at mouse position
-        //Add 1 to total missesAvailable
+        //Subtract 1 from total missesAvailable
     }
 }

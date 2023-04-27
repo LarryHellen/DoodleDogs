@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
 
-public class TutorialMaker : MonoBehaviour
+public class OrigTutorialMaker : MonoBehaviour
 {
 
     public GameObject[] panelList;
@@ -46,55 +46,61 @@ public class TutorialMaker : MonoBehaviour
         List<GameObject> NegativeSpacePanels = new List<GameObject>();
 
 
+
         RectTransform rt = panelList[panelIndex].GetComponent<RectTransform>();
+        //Create a Vector2 containing the normalized x and y coordinates of the parent panel
 
 
 
-        Vector2 bottomPanelPosition = new Vector2(canvasWidth / 2, rt.anchoredPosition.y - rt.sizeDelta.y/2 - (rt.anchoredPosition.y - rt.sizeDelta.y / 2) / 2);
-        Vector2 bottomPanelSize = new Vector2(canvasWidth, rt.anchoredPosition.y - rt.sizeDelta.y/2);
 
-        NegativeSpacePanels.Add(CreatePanel(bottomPanelPosition, bottomPanelSize, Color.white, 0.9f));
+        //Algorithm to find and create all panels in negative space
 
 
 
-        Vector2 topPanelPosition = new Vector2(canvasWidth / 2, canvasHeight - (canvasHeight - rt.anchoredPosition.y + rt.sizeDelta.y / 2)/2 + rt.sizeDelta.y/2);
-        Vector2 topPanelSize = new Vector2(canvasWidth, canvasHeight - (rt.anchoredPosition.y + rt.sizeDelta.y / 2));
-
-        NegativeSpacePanels.Add(CreatePanel(topPanelPosition, topPanelSize, Color.white, 0.9f));
+        //3 step plan to fill in the negative space of the important panel with other panels
 
 
 
-        RectTransform topRt = NegativeSpacePanels[1].GetComponent<RectTransform>();
-        RectTransform bottomRt = NegativeSpacePanels[0].GetComponent<RectTransform>();
-        
+        //Bottom Panel
+        float height = ((canvasHeight / 2 + rt.anchoredPosition[1]) - (rt.sizeDelta[1]/2)) / 2 ;
+
+        NegativeSpacePanels.Add(CreatePanel(canvasWidth/2, height, canvasWidth, height*2, Color.white, 0.5f));
+
+
+        //Top Panel
+        height = ((canvasHeight - ((canvasHeight / 2 + rt.anchoredPosition[1]) + (rt.sizeDelta[1] / 2))) / 2) + (canvasHeight / 2 + rt.anchoredPosition[1]) + (rt.sizeDelta[1] / 2);
+
+        NegativeSpacePanels.Add(CreatePanel(canvasWidth / 2, height, canvasWidth, (canvasHeight - ((canvasHeight / 2 + rt.anchoredPosition[1]) + (rt.sizeDelta[1] / 2))), Color.white, 0.5f));
 
 
 
-        Vector2 rightPanelPosition = new Vector2(0, 0); //NEEDS TO BE SET
-        Vector2 rightPanelSize = new Vector2(canvasWidth - (rt.anchoredPosition.x + rt.sizeDelta.x/2), (topRt.anchoredPosition.y - topRt.sizeDelta.y/2) - (bottomRt.anchoredPosition.y + bottomRt.sizeDelta.y/2));
 
-        NegativeSpacePanels.Add(CreatePanel(rightPanelPosition, rightPanelSize, Color.white, 0.9f));
+        //Left Panel
+        float width = ((rt.anchoredPosition[0] + canvasWidth / 2) - (rt.sizeDelta[0]/2)) / 2;
 
-
-
-        Vector2 leftPanelPosition = new Vector2(0, 0); //NEEDS TO BE SET
-        Vector2 leftPanelSize = new Vector2(rt.anchoredPosition.x - rt.sizeDelta.x / 2, (topRt.anchoredPosition.y - topRt.sizeDelta.y / 2) - (bottomRt.anchoredPosition.y + bottomRt.sizeDelta.y / 2));
-
-        NegativeSpacePanels.Add(CreatePanel(leftPanelPosition, leftPanelSize, Color.white, 0.9f));
+        NegativeSpacePanels.Add(CreatePanel(width, rt.position[1], width*2, rt.sizeDelta[1], Color.white, 0.5f));
 
 
+        //Right Panel
+        width = ((rt.anchoredPosition[0] + canvasWidth / 2) + rt.sizeDelta[0]/2) + ((canvasWidth - ((rt.anchoredPosition[0] + canvasWidth / 2) + rt.sizeDelta[0] / 2))/2);
 
-        foreach (GameObject panel in NegativeSpacePanels)
-        {
-            panel.transform.localScale = new Vector3(1, 1, 1);
+
+        NegativeSpacePanels.Add(CreatePanel(width, rt.position[1], canvasWidth - ((rt.anchoredPosition[0] + canvasWidth / 2) + (rt.sizeDelta[0] / 2)), rt.sizeDelta[1], Color.white, 0.5f));
+
+        foreach(GameObject panel in NegativeSpacePanels){
+            panel.transform.localScale = new Vector3(1,1,1);
         }
 
         return NegativeSpacePanels;
     }
 
 
-    GameObject CreatePanel(Vector2 position, Vector2 size, Color color, float opacity)
+    GameObject CreatePanel(float xPos, float yPos, float xSize, float ySize, Color color, float opacity)
     {
+        //Required parameters
+        //x-pos, y-pos, size-x, size-y, color, opacity
+
+
         GameObject panel = Instantiate(defaultPanel, new Vector2(0, 0), Quaternion.identity); //Creating new panel GameObject
         panel.transform.SetParent(canvas.transform, true);
 
@@ -108,8 +114,11 @@ public class TutorialMaker : MonoBehaviour
 
         RectTransform panelRectTransform = panel.GetComponent<RectTransform>(); //Getting the RectTransform of the panel
 
-        panelRectTransform.anchoredPosition = position; //Setting the position of the panel (this is based off the center of the panel)
-        panelRectTransform.sizeDelta = size; //Setting the size of the panel (this is relative to the size of the canvas, xSize = 100 is 100 units larger than the canvas on the x-axis)
+        panelRectTransform.anchoredPosition = new Vector2(xPos - canvasWidth/2, yPos - canvasHeight/2); //Setting the position of the panel (this is based off the center of the panel)
+        panelRectTransform.sizeDelta = new Vector2(xSize, ySize); //Setting the size of the panel (this is relative to the size of the canvas, xSize = 100 is 100 units larger than the canvas on the x-axis)
+
+
+        //SET ALL 4 MARGINS OF THE PANEL TO 4 CERTAIN AMOUNTS
 
         return panel;
     }
