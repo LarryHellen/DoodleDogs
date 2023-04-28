@@ -17,6 +17,7 @@ public class GoToNewScene : MonoBehaviour
     private bool chapter2Unlocked;
     private bool chapter3Unlocked;
     private bool chapter4Unlocked;
+    private bool chapter5Unlocked;
 
     public void GoToScene()
     {
@@ -82,6 +83,7 @@ public class GoToNewScene : MonoBehaviour
         data.chapter2Unlocked = this.chapter2Unlocked;
         data.chapter3Unlocked = this.chapter3Unlocked;
         data.chapter4Unlocked = this.chapter4Unlocked;
+        data.chapter5Unlocked = this.chapter5Unlocked;
 
 
         return data;
@@ -93,6 +95,7 @@ public class GoToNewScene : MonoBehaviour
         this.chapter2Unlocked = tempData.chapter2Unlocked;
         this.chapter3Unlocked = tempData.chapter3Unlocked;
         this.chapter4Unlocked = tempData.chapter4Unlocked;
+        this.chapter5Unlocked = tempData.chapter5Unlocked;
     }
 
     //This was originally private, I made it public so I could access it in other scripts. Was there a reason for making it private?

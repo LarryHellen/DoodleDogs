@@ -344,6 +344,7 @@ MonoBehaviour:
   chapter2: 0
   chapter3: 0
   chapter4: 0
+  chapter5: 0
   inCutscenes: 0
 --- !u!1 &302725717
 GameObject:
@@ -1186,11 +1187,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907106ef9b66341eda65b6655431e866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: 
+  scene: Credits
   reset: 0
   chapter2: 0
   chapter3: 0
   chapter4: 0
+  chapter5: 0
   inCutscenes: 0
 --- !u!95 &1889763849
 Animator:
@@ -1990,6 +1992,7 @@ MonoBehaviour:
   chapter2: 0
   chapter3: 0
   chapter4: 0
+  chapter5: 0
   inCutscenes: 0
 --- !u!224 &5375280637446567485
 RectTransform:
