@@ -81,7 +81,7 @@ public class CutsceneManager : MonoBehaviour
 
     public void buttonForwardYes()
     {
-        Handheld.Vibrate();
+        Vibration.VibratePop();
         if ((sceneNumber == 30 && thirdChapter.activeSelf))
         {
             backButtonDisable.SetActive(true);
@@ -111,9 +111,9 @@ public class CutsceneManager : MonoBehaviour
     {
         if (!settingsMenu.activeSelf && !cutscene1Num7.activeSelf && !cutscene1End.activeSelf && !cutscene1End2.activeSelf && !c2r.activeSelf && !(secondChapter.activeSelf && sceneNumber == 4) && !(secondChapter.activeSelf && (sceneNumber == 8 || sceneNumber == 9 || sceneNumber == 10)) && !(thirdChapter.activeSelf && (sceneNumber == 29 || sceneNumber == 30)) )
         {
-            Handheld.Vibrate();
+            
             sceneNumber++;
-
+            Vibration.VibratePop();
             if (sceneNumber == cutsceneList.IndexOf(firstGameplayScene) + 1 && cutscenes == firstChapter)
             {
                 cutsceneNum = 1;
@@ -252,6 +252,7 @@ public class CutsceneManager : MonoBehaviour
 
     void Start()
     {
+        Vibration.Init();
         Time.timeScale = 1;
         //cutsceneNum = 0;
         LoadByJSON();
