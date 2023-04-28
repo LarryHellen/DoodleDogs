@@ -4,19 +4,35 @@ using UnityEngine;
 
 public class CRedXAnimation : MonoBehaviour
 {
-    //private Rigidbody rb;
+    private Rigidbody rb;
+    private RectTransform rt;
+    [SerializeField] float minPowerValue;
+    [SerializeField] float maxPowerValue;
+    private ContinousNoteSpawning nSS;
 
 
     void Start()
     {
-        //Add rigidbody to this object, make it just a red x image
-        //On start, add a random upwards force to the gameObject within a range
-        //After the gameObject reaches under the canvas, delete the gameObject 
+        rb = GetComponent<Rigidbody>();
+        rt = GetComponent<RectTransform>();
+        nSS = GameObject.Find("GameManager").GetComponent<ContinousNoteSpawning>();
+
+
+        rb.AddForce(new Vector3(0, Random.Range(minPowerValue, maxPowerValue), 0), ForceMode.Impulse);
     }
 
 
     void Update()
     {
-        
+        XDestruction();
+    }
+
+
+    void XDestruction()
+    {
+        if (rt.anchoredPosition.y <= -nSS.screenHeight / 2 - (nSS.screenHeight * rt.sizeDelta.y / 2))
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -15,18 +15,19 @@ public class ContinousNoteSpawning : MonoBehaviour
     public float timeToOnBeatHeight;
     public float noteCooldown;
     public float missesAvaible;
+    public float slowDownPeriod;
     public bool invicibility = false;
     public int audioChoice;
     public GameObject[] audioObjects;
     public Dictionary<int, float> columnCooldowns = new Dictionary<int, float>();
-    public Canvas canvas;
+    public Canvas noteCanvas;
     public Canvas backgroundCanvas;
     public GameObject onBeatTestingLine;
     public TextMeshProUGUI elapsedTimeText;
     public GameObject notePrefab;
     public GameObject winScreen;
     public GameObject loseScreen;
-    public GameObject bigRedX;
+    public GameObject bigRedXPrefab;
     public Slider progressBar;
 
     [Space(25)]
@@ -62,7 +63,7 @@ public class ContinousNoteSpawning : MonoBehaviour
         for (int i = 0; i < columns; i++) {columnCooldowns.Add(i, 0);}
 
 
-        RectTransform canvasRt = canvas.GetComponent<RectTransform>();
+        RectTransform canvasRt = noteCanvas.GetComponent<RectTransform>();
         screenWidth = canvasRt.sizeDelta.x;
         screenHeight = canvasRt.sizeDelta.y;
 
@@ -87,6 +88,7 @@ public class ContinousNoteSpawning : MonoBehaviour
 
     void Start()
     {
+        Physics.gravity = new Vector3(0f, -2000f, 0f);
         Time.timeScale = 1;
 
         RectTransform lrt = onBeatTestingLine.GetComponent<RectTransform>();
@@ -121,7 +123,7 @@ public class ContinousNoteSpawning : MonoBehaviour
             {
                 if (BeatCheck(audioArray[column]))
                 {
-                    GameObject newNote = Instantiate(notePrefab, new Vector3(0, screenHeight, 0), notePrefab.transform.rotation, canvas.transform);
+                    GameObject newNote = Instantiate(notePrefab, new Vector3(0, screenHeight, 0), notePrefab.transform.rotation, noteCanvas.transform);
 
                     CBasicNoteObject noteScript = newNote.GetComponent<CBasicNoteObject>();
                     noteScript.Start();
@@ -182,12 +184,29 @@ public class ContinousNoteSpawning : MonoBehaviour
             missesAvaible--;
             if (missesAvaible <= -1)
             {
-                Time.timeScale = 0;
+                StartCoroutine(TimeSlowGradient());
                 cAudioDelay.PauseAudio();
                 loseScreen.SetActive(true);
                 print("You lose!");
             }
         }
+    }
+
+
+    IEnumerator TimeSlowGradient()
+    {
+        float elapsedTime = 0;
+        float progress = 0;
+
+        while (elapsedTime < slowDownPeriod)
+        {
+            elapsedTime += Time.deltaTime;
+            progress = Mathf.Lerp(1, 0, elapsedTime / slowDownPeriod);
+            Time.timeScale = progress;
+            yield return null;
+        }
+
+        Time.timeScale = 0;
     }
 
 
@@ -241,16 +260,9 @@ public class ContinousNoteSpawning : MonoBehaviour
 
     void MissAnimation()
     {
-        //Input.mousePosition
+        Vector3 mousePosition = Input.mousePosition;
 
-        //Get mouse position
-
-        /*
-        Instantiate(bigRedX);
-        missesAvaible--;
-        */
-        
-        //Instanstiate a big red x game object at mouse position
-        //Subtract 1 from total missesAvailable
+        GameObject bigRedx = Instantiate(bigRedXPrefab, mousePosition, bigRedXPrefab.transform.rotation, backgroundCanvas.transform);
+        OnLose();
     }
 }

@@ -648,6 +648,7 @@ MonoBehaviour:
   chapter2: 0
   chapter3: 0
   chapter4: 0
+  chapter5: 0
   inCutscenes: 0
 --- !u!114 &255023299
 MonoBehaviour:
@@ -1349,18 +1350,20 @@ MonoBehaviour:
   timeToOnBeatHeight: 0.6
   noteCooldown: 0.4
   missesAvaible: 3
-  invicibility: 1
+  slowDownPeriod: 0.25
+  invicibility: 0
   audioChoice: 0
   audioObjects:
   - {fileID: 1960566901}
   - {fileID: 65430281}
-  canvas: {fileID: 1665117477}
+  noteCanvas: {fileID: 1665117477}
   backgroundCanvas: {fileID: 1504785713}
   onBeatTestingLine: {fileID: 922888842}
   elapsedTimeText: {fileID: 776767067}
   notePrefab: {fileID: 382165961605631961, guid: 6fe67509565322d40a32f04edfd09e8a, type: 3}
   winScreen: {fileID: 304287899}
   loseScreen: {fileID: 495906322}
+  bigRedXPrefab: {fileID: 6247912367244834622, guid: 80ed0223dba36445eb5988ee8dc99798, type: 3}
   progressBar: {fileID: 1570177828}
   necessarySoundLoudness: 0.5
   columns: 0
