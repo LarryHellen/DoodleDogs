@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
 
-public class TutorialMaker : MonoBehaviour
+public class PanelEditor : MonoBehaviour
 {
 
     public GameObject[] panelList;
@@ -14,6 +14,7 @@ public class TutorialMaker : MonoBehaviour
     private float canvasHeight;
     private float canvasWidth;
     public GameObject defaultPanel;
+    public float panelOpacity;
 
 
     void Start()
@@ -28,7 +29,7 @@ public class TutorialMaker : MonoBehaviour
         canvasWidth = canvas.GetComponent<RectTransform>().rect.width; //Get the width of the canvas
 
 
-        allCurrentPanels = HighlightPanelNegativeSpace();
+        allCurrentPanels = HighlightPanelNegativeSpace(panelOpacity);
     }
 
 
@@ -41,7 +42,7 @@ public class TutorialMaker : MonoBehaviour
     }
 
 
-    List<GameObject> HighlightPanelNegativeSpace() //Using a panelIndex, create panels in all spaces around the panel at the panelIndex in the panelList
+    List<GameObject> HighlightPanelNegativeSpace(float allPanelsOpacity) //Using a panelIndex, create panels in all spaces around the panel at the panelIndex in the panelList
     {
         List<GameObject> NegativeSpacePanels = new List<GameObject>();
 
@@ -53,14 +54,14 @@ public class TutorialMaker : MonoBehaviour
         Vector2 bottomPanelPosition = new Vector2(canvasWidth / 2, rt.anchoredPosition.y - rt.sizeDelta.y/2 - (rt.anchoredPosition.y - rt.sizeDelta.y / 2) / 2);
         Vector2 bottomPanelSize = new Vector2(canvasWidth, rt.anchoredPosition.y - rt.sizeDelta.y/2);
 
-        NegativeSpacePanels.Add(CreatePanel(bottomPanelPosition, bottomPanelSize, Color.white, 0.9f));
+        NegativeSpacePanels.Add(CreatePanel(bottomPanelPosition, bottomPanelSize, Color.white, allPanelsOpacity));
 
 
 
         Vector2 topPanelPosition = new Vector2(canvasWidth / 2, canvasHeight - (canvasHeight - rt.anchoredPosition.y + rt.sizeDelta.y / 2)/2 + rt.sizeDelta.y/2);
         Vector2 topPanelSize = new Vector2(canvasWidth, canvasHeight - (rt.anchoredPosition.y + rt.sizeDelta.y / 2));
 
-        NegativeSpacePanels.Add(CreatePanel(topPanelPosition, topPanelSize, Color.white, 0.9f));
+        NegativeSpacePanels.Add(CreatePanel(topPanelPosition, topPanelSize, Color.white, allPanelsOpacity));
 
 
 
@@ -70,17 +71,19 @@ public class TutorialMaker : MonoBehaviour
 
 
 
-        Vector2 rightPanelPosition = new Vector2(0, 0); //NEEDS TO BE SET
+        
         Vector2 rightPanelSize = new Vector2(canvasWidth - (rt.anchoredPosition.x + rt.sizeDelta.x/2), (topRt.anchoredPosition.y - topRt.sizeDelta.y/2) - (bottomRt.anchoredPosition.y + bottomRt.sizeDelta.y/2));
+        Vector2 rightPanelPosition = new Vector2(canvasWidth - rightPanelSize.x/2, rt.anchoredPosition.y);
 
-        NegativeSpacePanels.Add(CreatePanel(rightPanelPosition, rightPanelSize, Color.white, 0.9f));
+        NegativeSpacePanels.Add(CreatePanel(rightPanelPosition, rightPanelSize, Color.white, allPanelsOpacity));
 
 
 
-        Vector2 leftPanelPosition = new Vector2(0, 0); //NEEDS TO BE SET
+        
         Vector2 leftPanelSize = new Vector2(rt.anchoredPosition.x - rt.sizeDelta.x / 2, (topRt.anchoredPosition.y - topRt.sizeDelta.y / 2) - (bottomRt.anchoredPosition.y + bottomRt.sizeDelta.y / 2));
+        Vector2 leftPanelPosition = new Vector2(leftPanelSize.x/2, rt.anchoredPosition.y);
 
-        NegativeSpacePanels.Add(CreatePanel(leftPanelPosition, leftPanelSize, Color.white, 0.9f));
+        NegativeSpacePanels.Add(CreatePanel(leftPanelPosition, leftPanelSize, Color.white, allPanelsOpacity));
 
 
 
@@ -119,7 +122,7 @@ public class TutorialMaker : MonoBehaviour
     {
         panelIndex++;
         ClearList(allCurrentPanels);
-        allCurrentPanels = HighlightPanelNegativeSpace();
+        allCurrentPanels = HighlightPanelNegativeSpace(panelOpacity);
     }
 
 

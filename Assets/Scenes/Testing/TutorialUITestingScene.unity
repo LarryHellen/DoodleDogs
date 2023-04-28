@@ -241,13 +241,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1012612838}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edef67e40a41a4f5f83224bc9f4631b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3cbd99952d6c24e388f921bc76972bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   panelList: []
   panelIndex: 0
   canvas: {fileID: 2055956139}
   defaultPanel: {fileID: 602404389985645341, guid: 64a04101a9c3d474b9b1af71b2f3152a, type: 3}
+  panelOpacity: 1
 --- !u!1 &1289979679
 GameObject:
   m_ObjectHideFlags: 0
