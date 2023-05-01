@@ -8,20 +8,12 @@ public class TileMatchingTriggers : TutorialSystem
     public bool clearedMatch;
     public int[] setMatch;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void Setup(){
         allScenes[0].SetActive(true);
+        if(board.advanced == true){
+            advanced = true;
+        }
     }
 
     public void Next(){
@@ -31,6 +23,10 @@ public class TileMatchingTriggers : TutorialSystem
         } else if (currentIndex == 1 && clearedMatch){
             NextTutorial();
         } else if (currentIndex == 2){
+            NextTutorial();
+        } else if (currentIndex == 3){
+            NextTutorial();
+        } else if (currentIndex == 4){
             NextTutorial();
         }
     }

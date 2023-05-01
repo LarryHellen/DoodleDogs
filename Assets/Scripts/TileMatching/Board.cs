@@ -125,7 +125,6 @@ public class Board : MonoBehaviour
 
     public void SetMatched(){
         tutorialSystem.clearedMatch = true;
-        tutorialSystem.Next();
     }
 
     public void DestroyMatches(){
@@ -350,6 +349,7 @@ public class Board : MonoBehaviour
                             matchSet[3] = j;
                             matchSet[4] = i+2;
                             matchSet[5] = j;
+                            return matchSet;
                         }
                     }
                     if(j < height-1){
@@ -361,6 +361,7 @@ public class Board : MonoBehaviour
                             matchSet[3] = j+1;
                             matchSet[4] = i;
                             matchSet[5] = j+2;
+                            return matchSet;
                         }
                     }
                 }

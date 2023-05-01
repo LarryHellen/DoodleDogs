@@ -45,6 +45,10 @@ public class IfIveBeenClicked : MonoBehaviour
                     HasChanged = false;
                     FindObjectOfType<AudioManager>().Play("PlaceBall");
                     //Debug.Log(tttr.turnCounter);
+                    if(tttr.tutorialEnabled == true){
+                        tttr.tutorialObject.placed = true;
+                        tttr.tutorialObject.Next();
+                    }
                     StartCoroutine(pauseGame(.5f));
 
                 }

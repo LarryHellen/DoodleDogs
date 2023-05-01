@@ -25,6 +25,8 @@ public class TicTacToeRunner : MonoBehaviour
 
     public bool simple;
     public bool advanced;
+    public bool tutorialEnabled;
+    public TicTacToeTriggers tutorialObject;
 
     private List<List<int>> rP = new List<List<int>>()
     {
