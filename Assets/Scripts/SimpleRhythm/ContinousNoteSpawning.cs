@@ -14,7 +14,7 @@ public class ContinousNoteSpawning : MonoBehaviour
     public float onBeatHeight;
     public float timeToOnBeatHeight;
     public float noteCooldown;
-    public float missesAvaible;
+    public int missesAvaible;
     public float slowDownPeriod;
     public bool invicibility = false;
     public int audioChoice;
@@ -22,6 +22,7 @@ public class ContinousNoteSpawning : MonoBehaviour
     public Dictionary<int, float> columnCooldowns = new Dictionary<int, float>();
     public Canvas noteCanvas;
     public Canvas backgroundCanvas;
+    public Canvas loseWinCanvas;
     public GameObject onBeatTestingLine;
     public TextMeshProUGUI elapsedTimeText;
     public GameObject notePrefab;
@@ -50,6 +51,7 @@ public class ContinousNoteSpawning : MonoBehaviour
     private float timeElapsed = 0;
     private CAudioDelay cAudioDelay;
     public AudioSource[] audioArray;
+    private CLivesCounter cLivesCounter;
     
 
     void Awake()
@@ -57,7 +59,7 @@ public class ContinousNoteSpawning : MonoBehaviour
         audioArray = audioObjects[audioChoice].GetComponents<AudioSource>();
 
         columns = audioArray.Length;
-        print(columns);
+        //print(columns);
 
 
         for (int i = 0; i < columns; i++) {columnCooldowns.Add(i, 0);}
@@ -69,6 +71,8 @@ public class ContinousNoteSpawning : MonoBehaviour
 
 
         cAudioDelay = GameObject.Find("AudioPlayer").GetComponent<CAudioDelay>();
+        cLivesCounter = GameObject.Find("Lives").GetComponent<CLivesCounter>();
+
 
         //SET THE PROPER SETTINGS FOR THE LEVEL RIGHT HERE
         if (!testing)
@@ -181,7 +185,13 @@ public class ContinousNoteSpawning : MonoBehaviour
     {
         if (!invicibility)
         {
+
+
+            cLivesCounter.RemoveLifeFromDisplay();
+
             missesAvaible--;
+
+
             if (missesAvaible <= -1)
             {
                 StartCoroutine(TimeSlowGradient());
