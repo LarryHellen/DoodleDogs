@@ -12,9 +12,5 @@ public class LoseScreen : MonoBehaviour
             slide1.SetActive(false);
             slide2.SetActive(true);
         }
-        else if (slide2.activeSelf)
-        {
-            slide2.SetActive(false);
-        }
     }
 }
