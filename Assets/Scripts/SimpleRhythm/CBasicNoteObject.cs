@@ -9,6 +9,7 @@ public class CBasicNoteObject : MonoBehaviour
     [Header("Manual Variables")]
     
     public float noteHeight;
+    public float heightRemovalConst = 0;
     private ContinousNoteSpawning nSS;
     private RectTransform rt;
 
@@ -81,7 +82,7 @@ public class CBasicNoteObject : MonoBehaviour
 
     void NoteDestruction()
     {
-        if (rt.anchoredPosition.y <= -nSS.screenHeight / 2 - (nSS.screenHeight * noteHeight / 2))
+        if (rt.anchoredPosition.y <= -nSS.screenHeight / 2 - (nSS.screenHeight * noteHeight / 2) - heightRemovalConst)
         {
             Destroy(gameObject);
             nSS.OnLose();
