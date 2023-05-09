@@ -35,7 +35,6 @@ public class ContinousNoteSpawning : MonoBehaviour
     
 
     [Header("BeatCheck Variables")]
-
     private float bigSound = 0f;
     private float bigSoundBefore = 0f;
     public float necessarySoundLoudness;

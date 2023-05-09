@@ -7,7 +7,6 @@ using System.Collections.Generic;
 public class CBasicNoteObject : MonoBehaviour
 {
     [Header("Manual Variables")]
-    
     public float noteHeight;
     public float heightRemovalConst = 0;
     private ContinousNoteSpawning nSS;
