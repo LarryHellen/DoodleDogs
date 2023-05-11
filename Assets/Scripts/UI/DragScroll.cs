@@ -22,12 +22,13 @@ public class DragScroll : MonoBehaviour
     private bool chapter3Unlocked;
     private bool chapter4Unlocked;
     private bool chapter5Unlocked;
+
     // Start is called before the first frame update
     private void OnMouseDown()
     {
         if (!settingsMenu.activeSelf)
         {
-            startPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
+            startPoint = Input.mousePosition;
             Debug.Log("e");
         }
     }
@@ -42,7 +43,7 @@ public class DragScroll : MonoBehaviour
         if (startPoint != new Vector3(0, 0, 0))
         {
             background.transform.position += new Vector3(0, (Input.mousePosition.y - startPoint.y)/2, 0);
-            startPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
+            startPoint = Input.mousePosition;
         }
         if (background.transform.position.y < b)
         {
@@ -52,6 +53,7 @@ public class DragScroll : MonoBehaviour
         {
             background.transform.position = new Vector3(background.transform.position.x, c, background.transform.position.z);
         }
+        
     }
     void Start()
     {

@@ -76,7 +76,7 @@ public class CutsceneManager : MonoBehaviour
         //FindObjectOfType<AudioManager>().Play("FlipPage");
         cutsceneList[sceneNumber + 1].SetActive(false);
         cutsceneList[sceneNumber].SetActive(true);
-        print("f");
+        //print("f");
     }
 
     public void buttonForwardYes()
@@ -95,7 +95,7 @@ public class CutsceneManager : MonoBehaviour
         {
             CutsceneManager.FindObjectOfType<PolygonCollider2D>().enabled = true;
         }
-        if ((sceneNumber == 4  && firstChapter.activeSelf))
+        if ((sceneNumber == 4 && firstChapter.activeSelf))
         {
             backButtonDisable.SetActive(true);
         }
@@ -103,13 +103,51 @@ public class CutsceneManager : MonoBehaviour
         {
             backButtonDisable.SetActive(true);
         }
-        ChangeScene();
-
+        if (cutsceneList.Count == sceneNumber) {
+            if (cutsceneNum == 2)
+            {
+                cutscenes.SetActive(false);
+                cutsceneNum = 3;
+                cutscenes = secondChapter;
+                chapter2Unlocked = true;
+                backButtonDisable.SetActive(true);
+                Setup();
+            }
+            else if (cutsceneNum == 5)
+            {
+                //SceneManager.LoadScene("Chapter2");
+                cutscenes.SetActive(false);
+                cutsceneNum = 6;
+                cutscenes = thirdChapter;
+                chapter3Unlocked = true;
+                Setup();
+            }
+            else if (cutsceneNum == 8)
+            {
+                cutscenes.SetActive(false);
+                cutsceneNum = 9;
+                cutscenes = fourthChapter;
+                chapter4Unlocked = true;
+                Setup();
+            }
+            else if (cutsceneNum == 12)
+            {
+                cutscenes.SetActive(false);
+                cutsceneNum = 13;
+                cutscenes = fifthChapter;
+                chapter5Unlocked = true;
+                Setup();
+            }
+        }
+        else
+        {
+            ChangeScene();
+        }
     }
 
     private void OnMouseDown()
     {
-        if (!settingsMenu.activeSelf && !cutscene1Num7.activeSelf && !cutscene1End.activeSelf && !cutscene1End2.activeSelf && !c2r.activeSelf && !(secondChapter.activeSelf && sceneNumber == 4) && !(secondChapter.activeSelf && (sceneNumber == 8 || sceneNumber == 9 || sceneNumber == 10)) && !(thirdChapter.activeSelf && (sceneNumber == 29 || sceneNumber == 30)) )
+        if (!settingsMenu.activeSelf && !cutscene1Num7.activeSelf && !cutscene1End.activeSelf && !cutscene1End2.activeSelf && !c2r.activeSelf && !(secondChapter.activeSelf && sceneNumber == 4) && !(secondChapter.activeSelf && (sceneNumber == 8 || sceneNumber == 9 || sceneNumber == 10)) && !(thirdChapter.activeSelf && (sceneNumber == 29 || sceneNumber == 30)) && !(fourthChapter.activeSelf && sceneNumber > 24))
         {
             
             sceneNumber++;
@@ -197,7 +235,7 @@ public class CutsceneManager : MonoBehaviour
                 chapter4Unlocked = true;
                 Setup();
             }
-            else if (cutsceneNum == 11){
+            else if (cutsceneNum == 12){
                 cutscenes.SetActive(false);
                 cutsceneNum = 13;
                 cutscenes = fifthChapter;
