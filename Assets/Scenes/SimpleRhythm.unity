@@ -5654,6 +5654,7 @@ GameObject:
   - component: {fileID: 284707716}
   - component: {fileID: 284707715}
   - component: {fileID: 284707714}
+  - component: {fileID: 284707717}
   m_Layer: 5
   m_Name: RetryButton (1)
   m_TagString: Untagged
@@ -5725,9 +5726,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1000890297}
-        m_TargetAssemblyTypeName: ContinousNoteSpawning, Assembly-CSharp
-        m_MethodName: ReloadScene
+      - m_Target: {fileID: 284707717}
+        m_TargetAssemblyTypeName: GoToNewScene, Assembly-CSharp
+        m_MethodName: GoToScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5775,6 +5776,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284707712}
   m_CullTransparentMesh: 1
+--- !u!114 &284707717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284707712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 907106ef9b66341eda65b6655431e866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene: MainMenu
+  reset: 0
+  chapter2: 0
+  chapter3: 0
+  chapter4: 0
+  chapter5: 0
+  inCutscenes: 0
 --- !u!1 &304287899
 GameObject:
   m_ObjectHideFlags: 0

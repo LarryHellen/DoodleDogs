@@ -242,7 +242,7 @@ public class CutsceneManager : MonoBehaviour
                 chapter5Unlocked = true;
                 Setup();
             }
-            if (sceneNumber == 21 && firstChapter.activeSelf)
+            if (sceneNumber == 24 && firstChapter.activeSelf)
             {
                 backButtonDisable.SetActive(false);
             }
