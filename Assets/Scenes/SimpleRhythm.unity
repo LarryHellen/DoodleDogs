@@ -6538,7 +6538,7 @@ MonoBehaviour:
   progressBarLength: 40
   onBeatHeight: 0.2
   timeToOnBeatHeight: 0.6
-  noteCooldown: 0.4
+  noteCooldown: 1
   missesAvaible: 3
   slowDownPeriod: 0.25
   invicibility: 0

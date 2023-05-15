@@ -245,7 +245,7 @@ public class ContinousNoteSpawning : MonoBehaviour
         progressBarLength = 43;
         onBeatHeight = 0.2f;
         timeToOnBeatHeight = 0.75f;
-        noteCooldown = 0.5f;
+        noteCooldown = 1f; //was 0.5f
         missesAvaible = 3;
     }
 
