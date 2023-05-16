@@ -1673,6 +1673,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TutorialDefaultPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 602404389985645341, guid: 64a04101a9c3d474b9b1af71b2f3152a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 602404389985645342, guid: 64a04101a9c3d474b9b1af71b2f3152a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2111,7 +2115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &519769725
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6513,7 +6517,7 @@ MonoBehaviour:
   startingMoves: 10
   blockChance: 1
   maxBlocks: 6
-  advanced: 1
+  advanced: 0
   tutorialEnabled: 0
   tutorialSystem: {fileID: 64361037}
 --- !u!1 &1975783576
