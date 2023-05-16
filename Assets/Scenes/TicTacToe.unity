@@ -941,7 +941,7 @@ MonoBehaviour:
   started: 0
   simple: 1
   advanced: 0
-  tutorialEnabled: 1
+  tutorialEnabled: 0
   tutorialObject: {fileID: 1675976661}
   twoPlayer: 0
   turnCounter: 0
@@ -4227,7 +4227,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1675976660
 RectTransform:
   m_ObjectHideFlags: 0
