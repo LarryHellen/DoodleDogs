@@ -2308,7 +2308,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Be careful. You have liminted number of turns
+  m_text: Be careful. You have limited number of turns
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0d7ec3c7caae94f3188888c757b7177e, type: 2}
   m_sharedMaterial: {fileID: 2455041645146826469, guid: 0d7ec3c7caae94f3188888c757b7177e, type: 2}
@@ -7019,7 +7019,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.1454103, y: 3.422732}
+  m_AnchoredPosition: {x: 159.45, y: -193.56}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1975783578
