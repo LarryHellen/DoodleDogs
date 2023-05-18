@@ -409,6 +409,8 @@ public class CutsceneManager : MonoBehaviour
             }
         }
     }
+
+
     public PlayerData createPlayerDataObject()
     {
         PlayerData data = new PlayerData();
