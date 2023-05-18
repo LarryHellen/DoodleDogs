@@ -91,7 +91,7 @@ public class TicTacToeRunner : MonoBehaviour
     void OnTie()
     {
         FindObjectOfType<AudioManager>().Play("DefeatScreen");
-        TieScreen.SetActive(true);
+        DefeatScreen.SetActive(true);
     }
 
 
