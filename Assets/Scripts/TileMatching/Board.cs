@@ -51,6 +51,10 @@ public class Board : MonoBehaviour
 
     
     private void SetUp(){
+        if(advanced == false){
+            startingMoves = 12;
+            moveCounter.Reset();
+        }
         allDots = new GameObject[width,height];
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){
