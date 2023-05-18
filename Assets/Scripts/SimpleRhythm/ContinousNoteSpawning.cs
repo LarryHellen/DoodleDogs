@@ -185,11 +185,9 @@ public class ContinousNoteSpawning : MonoBehaviour
         if (!invicibility)
         {
 
-
             cLivesCounter.RemoveLifeFromDisplay();
 
             missesAvaible--;
-
 
             if (missesAvaible <= -1)
             {

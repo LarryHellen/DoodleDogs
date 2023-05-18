@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TicTacToe.unity
     guid: ac0a883e2757a4eb2b7c3c038ed52c1d
   - enabled: 1
-    path: Assets/Scenes/RythymDemo.unity
+    path: Assets/Scenes/Legacy/RythymDemo.unity
     guid: ad2fb26b4f7bd4dfca3a0ac310ff4332
   - enabled: 1
     path: Assets/Scenes/LevelSelect.unity
