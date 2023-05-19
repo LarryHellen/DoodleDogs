@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelSelect.unity
     guid: dac0831a0c07c4fc6ac2012b428af5e3
+  - enabled: 1
+    path: Assets/Scenes/RefactoredLevelSelect.unity
+    guid: 5a11b4c7da5e65e4182b861ec10c878f
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
@@ -38,5 +41,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 99c96ef4871a84cdf96c65c40d7ef4d1
+  - enabled: 1
+    path: Assets/Scenes/RefactoredCutscenes.unity
+    guid: 9d714ecf3b775f14ebea50285bb1ef26
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c8e66a3bf3f274609b8b6196ff218934, type: 2}

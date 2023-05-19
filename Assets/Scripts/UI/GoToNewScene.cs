@@ -21,6 +21,7 @@ public class GoToNewScene : MonoBehaviour
 
     public void GoToScene()
     {
+        /*
         if(!Directory.Exists(Path.GetDirectoryName(Application.persistentDataPath+"/Saves/"))){
             Directory.CreateDirectory(Path.GetDirectoryName(Application.persistentDataPath+"/Saves/"));
         }
@@ -51,10 +52,12 @@ public class GoToNewScene : MonoBehaviour
         {
             SaveByJSON();
         }
+        */
         SceneManager.LoadScene(scene);
     }
     public void GoToScene(string s)
     {
+        /*
         if (!Directory.Exists(Path.GetDirectoryName(Application.persistentDataPath + "/Saves/")))
         {
             Directory.CreateDirectory(Path.GetDirectoryName(Application.persistentDataPath + "/Saves/"));
@@ -71,6 +74,7 @@ public class GoToNewScene : MonoBehaviour
         {
             SaveByJSON();
         }
+        */
         SceneManager.LoadScene(s);
     }
 

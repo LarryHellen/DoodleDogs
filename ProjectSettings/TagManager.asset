@@ -20,6 +20,10 @@ TagManager:
   - Butter Dot
   - Block Dot
   - Tutorial Panel
+  - Game
+  - SpecialForwards
+  - NoBackwards
+  - SpecialForwardsANDNoBackwards
   layers:
   - Default
   - TransparentFX
