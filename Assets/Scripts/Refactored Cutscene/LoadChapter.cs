@@ -10,6 +10,7 @@ public class LoadChapter : MonoBehaviour
     {
         //Set json data for specific chapter
         jsonDataManipulation.currentChapter = selectedChapter;
+        jsonDataManipulation.currentCutscene = -1;
         jsonDataManipulation.SaveByJSON();
         SceneManager.LoadScene("RefactoredCutscenes");
     }

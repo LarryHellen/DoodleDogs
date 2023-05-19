@@ -29,6 +29,7 @@ public class CutsceneSystem : MonoBehaviour
         currentChapter = jsonDataManipulation.currentChapter - 1;
         chaptersUnlocked = jsonDataManipulation.chaptersUnlocked;
 
+
         BackButton = GameObject.Find("BackButton");
         ForwardButton = GameObject.Find("ForwardButton");
 
@@ -42,9 +43,12 @@ public class CutsceneSystem : MonoBehaviour
             chapters.Add(chapter);
         }
 
-        NextChapter();
+        print(currentChapter);
+        print(jsonDataManipulation.currentCutscene);
 
-        print("currentChapter: " + currentChapter);
+        chapters[currentChapter + 1].currentCutscene = jsonDataManipulation.currentCutscene;
+
+        NextChapter();
     }
 
 

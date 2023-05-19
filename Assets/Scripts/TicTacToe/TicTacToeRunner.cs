@@ -827,17 +827,24 @@ public class TicTacToeRunner : MonoBehaviour
         return null;
     }
 
-     
-    
 
 
 
+
+    private JsonDataManipulation jsonDataManipulation = new JsonDataManipulation();
+    private List<List<bool>> tutorials;
 
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1;
-        LoadByJSON();
+        //LoadByJSON();
+
+
+
+        RegisterTutorial(); //JSON STUFF
+
+
 
         print("started");
 
@@ -1075,6 +1082,35 @@ public class TicTacToeRunner : MonoBehaviour
         runGame = true;
     }
 
+
+    private void RegisterTutorial()
+    {
+        jsonDataManipulation.LoadByJSON();
+        tutorials = jsonDataManipulation.tutorials;
+
+        print(tutorials[0][0] + " - " + tutorials[0][1]);
+        print(tutorials[1][0] + " - " + tutorials[1][1]);
+        print(tutorials[2][0] + " - " + tutorials[2][1]);
+        print(tutorials[3][0] + " - " + tutorials[3][1]);
+
+        if (tutorials[1][0] == false && tutorials[1][1] == false)
+        {
+            tutorials[1][0] = true;
+        }
+        else if (tutorials[1][0] == true && tutorials[1][1] == false)
+        {
+            advanced = true;
+            tutorials[1][1] = true;
+        }
+        else if (tutorials[1][0] == true && tutorials[1][1] == true)
+        {
+            advanced = true;
+        }
+        jsonDataManipulation.tutorials = tutorials;
+        jsonDataManipulation.SaveByJSON();
+    }
+
+    /*
     private void LoadFromPlayerData(PlayerData tempData)
     {
         int cutsceneNum = tempData.sceneNumber;
@@ -1110,5 +1146,5 @@ public class TicTacToeRunner : MonoBehaviour
             Debug.Log("NOT FOUND FILE");
         }
     }
-
+    */
 }
