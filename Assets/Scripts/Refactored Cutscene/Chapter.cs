@@ -7,6 +7,7 @@ public class Chapter
 {
     public List<GameObject> cutscenes = new List<GameObject>();
     public int currentCutscene = -1;
+    private JsonDataManipulation jsonDataManipulation = new JsonDataManipulation();
 
 
     public void SetCutsceneList(GameObject chapterGameObject)
@@ -35,7 +36,12 @@ public class Chapter
         }
         else if (cutscenes[currentCutscene].CompareTag("Game"))
         {
+            jsonDataManipulation.currentCutscene = currentCutscene;
+            jsonDataManipulation.currentChapter = CutsceneSystem.instance.currentChapter;
+            jsonDataManipulation.SaveByJSON();
+
             SceneManager.LoadScene(cutscenes[currentCutscene].name);
+
             return;
         }
         

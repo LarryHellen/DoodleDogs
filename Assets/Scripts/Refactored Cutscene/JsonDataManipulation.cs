@@ -6,6 +6,8 @@ public class JsonDataManipulation
 {
     public int currentChapter;
     public List<bool> chaptersUnlocked;
+    public int currentCutscene;
+    public List<List<bool>> tutorials = new List<List<bool>>();
 
 
     private PlayerDataRefactored CreatePlayerDataRefactoredObject()
@@ -14,6 +16,8 @@ public class JsonDataManipulation
 
         data.currentChapter = currentChapter;
         data.chaptersUnlocked = chaptersUnlocked;
+        data.currentCutscene = currentCutscene;
+        data.tutorials = tutorials;
 
         return data;
     }
@@ -22,10 +26,18 @@ public class JsonDataManipulation
     {
         currentChapter = tempData.currentChapter;
         chaptersUnlocked = tempData.chaptersUnlocked;
+        currentCutscene = tempData.currentCutscene;
+        tutorials = tempData.tutorials;
 
         if (tempData.chaptersUnlocked.Count == 0)
         {
             for (int i = 0; i < 5; i++) {chaptersUnlocked.Add(false);}
+        }
+
+
+        if (tempData.tutorials.Count == 0)
+        {
+            for (int i = 0; i < 5; i++) { tutorials.Add(new List<bool>() { false, false }); }
         }
     }
 
