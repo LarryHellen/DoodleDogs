@@ -7,7 +7,7 @@ public class JsonDataManipulation
     public int currentChapter;
     public List<bool> chaptersUnlocked;
     public int currentCutscene;
-    public List<List<bool>> tutorials = new List<List<bool>>();
+    public List<List<bool>> tutorials;
 
 
     private PlayerDataRefactored CreatePlayerDataRefactoredObject()
@@ -29,16 +29,20 @@ public class JsonDataManipulation
         currentCutscene = tempData.currentCutscene;
         tutorials = tempData.tutorials;
 
-        if (tempData.chaptersUnlocked.Count == 0)
+        /*
+        if (tempData.chaptersUnlocked == null)
         {
+            chaptersUnlocked = new List<bool>();
             for (int i = 0; i < 5; i++) {chaptersUnlocked.Add(false);}
         }
 
 
-        if (tempData.tutorials.Count == 0)
+        if (tempData.tutorials == null)
         {
+            tutorials = new List<List<bool>>();
             for (int i = 0; i < 5; i++) { tutorials.Add(new List<bool>() { false, false }); }
         }
+        */
     }
 
 
@@ -81,5 +85,17 @@ public class JsonDataManipulation
         {
             Debug.Log("NOT FOUND FILE");
         }
+    }
+
+
+    public void LoadDefaultValuesFromPlayerDataRefactored()
+    {
+        chaptersUnlocked = new List<bool>();
+        for (int i = 0; i < 5; i++) { chaptersUnlocked.Add(false); }
+        
+
+        tutorials = new List<List<bool>>();
+        for (int i = 0; i < 5; i++) { tutorials.Add(new List<bool>() { false, false }); }
+        
     }
 }

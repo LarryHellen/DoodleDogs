@@ -75,7 +75,7 @@ public class CutsceneSystem : MonoBehaviour
 
         if (currentChapter < 0) {return;}
 
-        chapters[currentChapter].currentCutscene = chapters[currentChapter].cutscenes.Count - 1;
+        chapters[currentChapter].currentCutscene = chapters[currentChapter].cutscenes.Count;
         
         StepBackward();
         if (currentChapter != chapterGameObjects.Count-1) {chapterGameObjects[currentChapter + 1].SetActive(false);}

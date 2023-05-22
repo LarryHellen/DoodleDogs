@@ -57,8 +57,14 @@ public class DragScrollRefactored : MonoBehaviour
 
     void Start()
     {
-        jsonDataManipulation.LoadByJSON();
+        jsonDataManipulation.LoadDefaultValuesFromPlayerDataRefactored();
         chaptersUnlocked = jsonDataManipulation.chaptersUnlocked;
+
+        print(chaptersUnlocked[0]);
+        print(chaptersUnlocked[1]);
+        print(chaptersUnlocked[2]);
+        print(chaptersUnlocked[3]);
+        print(chaptersUnlocked[4]);
 
         if (chaptersUnlocked[1])
         {
@@ -80,5 +86,7 @@ public class DragScrollRefactored : MonoBehaviour
             c5d.SetActive(false);
             c5e.GetComponent<Image>().sprite = c5image;
         }
+
+        jsonDataManipulation.SaveByJSON();
     }
 }

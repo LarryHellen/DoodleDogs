@@ -1088,10 +1088,7 @@ public class TicTacToeRunner : MonoBehaviour
         jsonDataManipulation.LoadByJSON();
         tutorials = jsonDataManipulation.tutorials;
 
-        print(tutorials[0][0] + " - " + tutorials[0][1]);
-        print(tutorials[1][0] + " - " + tutorials[1][1]);
-        print(tutorials[2][0] + " - " + tutorials[2][1]);
-        print(tutorials[3][0] + " - " + tutorials[3][1]);
+
 
         if (tutorials[1][0] == false && tutorials[1][1] == false)
         {
@@ -1106,6 +1103,12 @@ public class TicTacToeRunner : MonoBehaviour
         {
             advanced = true;
         }
+
+        print(tutorials[0][0] + " - " + tutorials[0][1]);
+        print(tutorials[1][0] + " - " + tutorials[1][1]);
+        print(tutorials[2][0] + " - " + tutorials[2][1]);
+        print(tutorials[3][0] + " - " + tutorials[3][1]);
+
         jsonDataManipulation.tutorials = tutorials;
         jsonDataManipulation.SaveByJSON();
     }
