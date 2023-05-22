@@ -1102,8 +1102,8 @@ MonoBehaviour:
   c5image: {fileID: 21300000, guid: c0e0cfd53ef5047d9b9933bcf20a3fe5, type: 3}
   p: 900
   startPoint: {x: 0, y: 0, z: 0}
-  b: -500
-  c: 4000
+  b: -400
+  c: 5000
 --- !u!1 &814301420
 GameObject:
   m_ObjectHideFlags: 0
@@ -2776,6 +2776,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsMenu: {fileID: 4021315120305003838}
   gameRunning: 1
+  closed: {fileID: 0}
+  open: {fileID: 0}
 --- !u!222 &4021315120305003811
 CanvasRenderer:
   m_ObjectHideFlags: 0

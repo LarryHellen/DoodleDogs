@@ -7,7 +7,6 @@ public class ActivateSettings : MonoBehaviour
     public GameObject settingsMenu;
     public bool gameRunning = true;
 
-    public GameObject closed;
     public GameObject open;
     private bool state = false;
 
@@ -34,14 +33,14 @@ public class ActivateSettings : MonoBehaviour
         if (state == false)
         {
             gameRunning = false;
-            open.SetActive(true);
+            settingsMenu.SetActive(true);
             Time.timeScale = 0;
             state = true;
         }
         else
         {
             gameRunning = true;
-            open.SetActive(false);
+            settingsMenu.SetActive(false);
             Time.timeScale = 1;
             state = false;
         }
