@@ -14,8 +14,20 @@ public class LoadChapter : MonoBehaviour
 
         //ITS BREAKING HERE BC UR NOT WORKING OFF A LOAD BY JSON VERSION OF THE CLASS
         jsonDataManipulation.LoadByJSON();
-        print(jsonDataManipulation.chaptersUnlocked[0]);
+
+        int lastChapter = jsonDataManipulation.currentChapter;
         jsonDataManipulation.currentChapter = selectedChapter;
+
+        if (lastChapter == selectedChapter)
+        {
+            print("Current cutscene: " + jsonDataManipulation.currentCutscene);
+            print("Current chapter: " + jsonDataManipulation.currentChapter);
+            print("Selected chapter: " + selectedChapter);
+            SceneManager.LoadScene("RefactoredCutscenes");
+            jsonDataManipulation.SaveByJSON();
+            return;
+        }
+        
         jsonDataManipulation.currentCutscene = -1;
         jsonDataManipulation.SaveByJSON();
         SceneManager.LoadScene("RefactoredCutscenes");

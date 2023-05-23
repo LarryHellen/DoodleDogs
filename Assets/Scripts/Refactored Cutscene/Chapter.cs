@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Chapter
 {
     public List<GameObject> cutscenes = new List<GameObject>();
-    public int currentCutscene = -1;
+    public int currentCutscene;
     private JsonDataManipulation jsonDataManipulation = new JsonDataManipulation();
 
 
@@ -36,6 +36,7 @@ public class Chapter
         }
         else if (cutscenes[currentCutscene].CompareTag("Game"))
         {
+            jsonDataManipulation.LoadByJSON();
             jsonDataManipulation.currentCutscene = currentCutscene;
             jsonDataManipulation.currentChapter = CutsceneSystem.instance.currentChapter;
             jsonDataManipulation.SaveByJSON();

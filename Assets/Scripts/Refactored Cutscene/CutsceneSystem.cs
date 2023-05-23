@@ -66,6 +66,7 @@ public class CutsceneSystem : MonoBehaviour
 
         chaptersUnlocked[currentChapter] = true;
 
+        jsonDataManipulation.LoadByJSON();
         jsonDataManipulation.currentChapter = currentChapter;
         jsonDataManipulation.chaptersUnlocked = chaptersUnlocked;
         jsonDataManipulation.SaveByJSON();
@@ -83,17 +84,29 @@ public class CutsceneSystem : MonoBehaviour
         StepBackward();
         if (currentChapter != chapterGameObjects.Count-1) {chapterGameObjects[currentChapter + 1].SetActive(false);}
         chapterGameObjects[currentChapter].SetActive(true);
+
+        jsonDataManipulation.LoadByJSON();
+        jsonDataManipulation.currentChapter = currentChapter;
+        jsonDataManipulation.SaveByJSON();
     }
 
 
     public void StepForward()
     {
         chapters[currentChapter].StepForward();
+        
+        jsonDataManipulation.LoadByJSON();
+        jsonDataManipulation.currentCutscene = chapters[currentChapter].currentCutscene-1;
+        jsonDataManipulation.SaveByJSON();
     }
 
 
     public void StepBackward()
     {
         chapters[currentChapter].StepBackward();
+
+        jsonDataManipulation.LoadByJSON();
+        jsonDataManipulation.currentCutscene = chapters[currentChapter].currentCutscene-1;
+        jsonDataManipulation.SaveByJSON();
     }
 }
