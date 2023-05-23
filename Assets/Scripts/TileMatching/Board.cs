@@ -100,7 +100,7 @@ public class Board : MonoBehaviour
         else if (tutorials[2 * jsonDataManipulation.currentChapter] == true && tutorials[2 * jsonDataManipulation.currentChapter + 1] == false)
         {
             tutorials[2 * jsonDataManipulation.currentChapter + 1] = true;
-            advanced = false; //true
+            advanced = true; //true
             tutorialEnabled = true;
             print("Setting advanced mode");
         }
@@ -108,7 +108,7 @@ public class Board : MonoBehaviour
         {
             tutorials[2 * jsonDataManipulation.currentChapter + 1] = false;
             advanced = false;
-            tutorialEnabled = true; //false
+            tutorialEnabled = false; //false
             print("Setting basic mode");
         }
 
