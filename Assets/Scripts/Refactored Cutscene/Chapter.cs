@@ -79,10 +79,12 @@ public class Chapter
         if (cutscenes[currentCutscene].CompareTag("SpecialForwards"))
         {
             CutsceneSystem.instance.ForwardButton.SetActive(false);
+            CutsceneSystem.instance.BackButton.SetActive(true);
         }
         else if (cutscenes[currentCutscene].CompareTag("NoBackwards"))
         {
             CutsceneSystem.instance.BackButton.SetActive(false);
+            CutsceneSystem.instance.ForwardButton.SetActive(true);
         }
         else if (cutscenes[currentCutscene].CompareTag("SpecialForwardsANDNoBackwards"))
         {

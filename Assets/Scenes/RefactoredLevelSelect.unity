@@ -386,7 +386,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 68ddd323f8ab24acc9aabbffff2761b8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6ff583ccd1e224072ab943feed194063, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1102,8 +1102,8 @@ MonoBehaviour:
   c5image: {fileID: 21300000, guid: c0e0cfd53ef5047d9b9933bcf20a3fe5, type: 3}
   p: 900
   startPoint: {x: 0, y: 0, z: 0}
-  b: -400
-  c: 5000
+  b: -500
+  c: 5500
 --- !u!1 &814301420
 GameObject:
   m_ObjectHideFlags: 0
@@ -1369,6 +1369,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5604740480557697557, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SettingsClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604740480557697559, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5604740481062617891, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1379,7 +1387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5604740481062617891, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5604740481062617891, guid: 6db8d5e53f7ea46879841708ce4de425, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1688,7 +1696,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1370247943}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -1741,7 +1749,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1252013138}
         m_TargetAssemblyTypeName: ActivateSettings, Assembly-CSharp
-        m_MethodName: OpenSettings
+        m_MethodName: SettingsClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1979,9 +1987,9 @@ RectTransform:
   m_Children:
   - {fileID: 774242375}
   - {fileID: 934237641}
-  - {fileID: 1266957626}
   - {fileID: 1252013135}
   - {fileID: 4021315120305003809}
+  - {fileID: 1266957626}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2755,7 +2763,7 @@ RectTransform:
   - {fileID: 4794191950718949700}
   - {fileID: 971123601431826161}
   m_Father: {fileID: 1370247943}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2776,7 +2784,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsMenu: {fileID: 4021315120305003838}
   gameRunning: 1
-  closed: {fileID: 0}
   open: {fileID: 0}
 --- !u!222 &4021315120305003811
 CanvasRenderer:
