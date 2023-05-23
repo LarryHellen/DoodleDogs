@@ -19,7 +19,7 @@ public class TileMatchingTriggers : TutorialSystem
     public void Next(){
         if(currentIndex == 0){
             NextTutorial();
-            CreateMatch();
+            //CreateMatch();
         } else if (currentIndex == 1 && clearedMatch){
             NextTutorial();
         } else if (currentIndex == 2){

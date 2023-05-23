@@ -22,6 +22,7 @@ public class Board : MonoBehaviour
     public GameObject tilePrefab;
     public GameObject[] dots;
     public GameObject[,] allDots;
+    public GameObject placeholderDots;
     public FindMatches findMatches;
     public MoveCounter moveCounter;
     public CounterHolder counterHolder;
@@ -58,15 +59,22 @@ public class Board : MonoBehaviour
             moveCounter.Reset();
         }
         allDots = new GameObject[width,height];
-        for(int i = 0; i < width; i++){
-            for(int j = 0; j < height; j++){
-                SpawnDot(j,i,true);
+        if(tutorialEnabled == true && advanced == false){
+            print("got here");
+            SetPresetLayout();
+        } else{
+            for(int i = 0; i < width; i++){
+                for(int j = 0; j < height; j++){
+                    SpawnDot(j,i,true);
+                }
             }
         }
         if(IsDeadlocked()){
             ShuffleBoard();
         }
-        tutorialSystem.Setup();
+        if(tutorialEnabled == true){
+            tutorialSystem.Setup();
+        }
     }
 
     private JsonDataManipulation jsonDataManipulation = new JsonDataManipulation();
@@ -86,18 +94,21 @@ public class Board : MonoBehaviour
         {
             tutorials[2 * jsonDataManipulation.currentChapter] = true;
             advanced = false;
+            tutorialEnabled = true;
             print("Setting basic mode");
         }
         else if (tutorials[2 * jsonDataManipulation.currentChapter] == true && tutorials[2 * jsonDataManipulation.currentChapter + 1] == false)
         {
             tutorials[2 * jsonDataManipulation.currentChapter + 1] = true;
-            advanced = true;
+            advanced = false; //true
+            tutorialEnabled = true;
             print("Setting advanced mode");
         }
         else if (tutorials[2 * jsonDataManipulation.currentChapter] == true && tutorials[2 * jsonDataManipulation.currentChapter + 1] == true)
         {
             tutorials[2 * jsonDataManipulation.currentChapter + 1] = false;
             advanced = false;
+            tutorialEnabled = true; //false
             print("Setting basic mode");
         }
 
@@ -413,6 +424,17 @@ public class Board : MonoBehaviour
         return matchSet;
     }
 
+    public int[] GetSet(){
+        int[] matchSet = new int[6];
+        matchSet[0] = 4;
+        matchSet[1] = 3;
+        matchSet[2] = 4;
+        matchSet[3] = 4;
+        matchSet[4] = 5;
+        matchSet[5] = 2;
+        return matchSet;
+    }
+
     private bool SwitchAndCheck(int column, int row, Vector2 direction){
         if(allDots[column,row].tag == "Block Dot"){
             return false;
@@ -477,6 +499,17 @@ public class Board : MonoBehaviour
         }
         if(IsDeadlocked() || CheckForMatches()){
             ShuffleBoard();
+        }
+    }
+
+    public void SetPresetLayout(){
+        int count = 0;
+        placeholderDots.SetActive(true);
+        for(int i = 0; i < width; i++){
+            for(int j = 0; j < height; j++){
+                allDots[i,j] = placeholderDots.transform.GetChild(count).gameObject;
+                count++;
+            }
         }
     }
 
