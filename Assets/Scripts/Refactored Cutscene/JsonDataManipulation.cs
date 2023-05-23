@@ -28,21 +28,6 @@ public class JsonDataManipulation
         chaptersUnlocked = tempData.chaptersUnlocked;
         currentCutscene = tempData.currentCutscene;
         tutorials = tempData.tutorials;
-
-        /*
-        if (tempData.chaptersUnlocked == null)
-        {
-            chaptersUnlocked = new List<bool>();
-            for (int i = 0; i < 5; i++) {chaptersUnlocked.Add(false);}
-        }
-
-
-        if (tempData.tutorials == null)
-        {
-            tutorials = new List<List<bool>>();
-            for (int i = 0; i < 5; i++) { tutorials.Add(new List<bool>() { false, false }); }
-        }
-        */
     }
 
 

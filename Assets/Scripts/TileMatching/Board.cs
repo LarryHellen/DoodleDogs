@@ -39,8 +39,7 @@ public class Board : MonoBehaviour
     public bool tutorialEnabled;
     public TileMatchingTriggers tutorialSystem;
 
-    private JsonDataManipulation jsonDataManipulation = new JsonDataManipulation();
-    private List<List<bool>> tutorials;
+
 
 
     // Start is called before the first frame update
@@ -70,15 +69,18 @@ public class Board : MonoBehaviour
         tutorialSystem.Setup();
     }
 
+    private JsonDataManipulation jsonDataManipulation = new JsonDataManipulation();
+    private List<List<bool>> tutorials;
+
     private void RegisterTutorial()
     {
         jsonDataManipulation.LoadByJSON();
         tutorials = jsonDataManipulation.tutorials;
 
-        print(tutorials[0][0] + " - " + tutorials[0][1]);
-        print(tutorials[1][0] + " - " + tutorials[1][1]);
-        print(tutorials[2][0] + " - " + tutorials[2][1]);
-        print(tutorials[3][0] + " - " + tutorials[3][1]);
+        print(jsonDataManipulation.tutorials[0][0] + " - " + jsonDataManipulation.tutorials[0][1]);
+        print(jsonDataManipulation.tutorials[1][0] + " - " + jsonDataManipulation.tutorials[1][1]);
+        print(jsonDataManipulation.tutorials[2][0] + " - " + jsonDataManipulation.tutorials[2][1]);
+        print(jsonDataManipulation.tutorials[3][0] + " - " + jsonDataManipulation.tutorials[3][1]);
 
         if (tutorials[0][0] == false && tutorials[0][1] == false)
         {

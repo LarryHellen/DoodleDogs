@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Chapter
 {
     public List<GameObject> cutscenes = new List<GameObject>();
-    public int currentCutscene;
+    public int currentCutscene = -1;
     private JsonDataManipulation jsonDataManipulation = new JsonDataManipulation();
 
 

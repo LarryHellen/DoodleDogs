@@ -25,8 +25,6 @@ public class CutsceneSystem : MonoBehaviour
         }
 
 
-        print("YOOOOOOOOOOOOO");
-
 
         jsonDataManipulation.LoadByJSON();
         currentChapter = jsonDataManipulation.currentChapter - 1;
@@ -45,9 +43,6 @@ public class CutsceneSystem : MonoBehaviour
 
             chapters.Add(chapter);
         }
-
-        print(currentChapter);
-        print(jsonDataManipulation.currentCutscene);
 
         chapters[currentChapter + 1].currentCutscene = jsonDataManipulation.currentCutscene;
 
@@ -94,10 +89,13 @@ public class CutsceneSystem : MonoBehaviour
     public void StepForward()
     {
         chapters[currentChapter].StepForward();
-        
-        jsonDataManipulation.LoadByJSON();
-        jsonDataManipulation.currentCutscene = chapters[currentChapter].currentCutscene-1;
-        jsonDataManipulation.SaveByJSON();
+
+        if (!chapters[currentChapter].cutscenes[chapters[currentChapter].currentCutscene].CompareTag("Game"))
+        {
+            jsonDataManipulation.LoadByJSON();
+            jsonDataManipulation.currentCutscene = chapters[currentChapter].currentCutscene;
+            jsonDataManipulation.SaveByJSON();
+        }
     }
 
 
@@ -106,7 +104,7 @@ public class CutsceneSystem : MonoBehaviour
         chapters[currentChapter].StepBackward();
 
         jsonDataManipulation.LoadByJSON();
-        jsonDataManipulation.currentCutscene = chapters[currentChapter].currentCutscene-1;
+        jsonDataManipulation.currentCutscene = chapters[currentChapter].currentCutscene;
         jsonDataManipulation.SaveByJSON();
     }
 }
