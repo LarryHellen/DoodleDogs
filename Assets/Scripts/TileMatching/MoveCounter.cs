@@ -7,15 +7,15 @@ using UnityEngine.UI;
 
 public class MoveCounter : MonoBehaviour
 {
-    private Board board;
+    public Board board;
     public int currentMoves;
-    private TextMeshProUGUI textField;
+    public TextMeshProUGUI textField;
     bool tryingToEndGame;
 
 
     void Start(){
-        board = FindObjectOfType<Board>();
-        textField = gameObject.GetComponent<TextMeshProUGUI>();
+        //board = FindObjectOfType<Board>();
+        //textField = gameObject.GetComponent<TextMeshProUGUI>();
         currentMoves = board.startingMoves;
         UpdateText();
     }

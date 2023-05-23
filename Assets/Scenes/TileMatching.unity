@@ -272,7 +272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &64361036
 RectTransform:
   m_ObjectHideFlags: 0
@@ -782,7 +782,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &194510474
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6793,7 +6793,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91bab865a1144ed3b532e06d9f11bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  board: {fileID: 1966315921}
   currentMoves: 0
+  textField: {fileID: 1935627844}
 --- !u!114 &1935627844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7359,7 +7361,7 @@ MonoBehaviour:
   blockChance: 1
   maxBlocks: 6
   advanced: 0
-  tutorialEnabled: 0
+  tutorialEnabled: 1
   tutorialSystem: {fileID: 64361037}
 --- !u!1 &1975783576
 GameObject:
