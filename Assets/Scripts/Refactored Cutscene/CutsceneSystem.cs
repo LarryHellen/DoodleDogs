@@ -14,7 +14,7 @@ public class CutsceneSystem : MonoBehaviour
     private List<Chapter> chapters = new List<Chapter>();
     [HideInInspector] public int currentChapter = -1;
 
-    private List<bool> chaptersUnlocked = new List<bool>();
+    private List<bool> chaptersUnlocked;
 
 
     void Start()
@@ -23,6 +23,9 @@ public class CutsceneSystem : MonoBehaviour
         {
             instance = this;
         }
+
+
+        print("YOOOOOOOOOOOOO");
 
 
         jsonDataManipulation.LoadByJSON();

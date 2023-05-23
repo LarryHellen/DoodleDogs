@@ -4,10 +4,10 @@ using System.IO;
 
 public class JsonDataManipulation
 {
-    public int currentChapter;
-    public List<bool> chaptersUnlocked;
-    public int currentCutscene;
-    public List<List<bool>> tutorials;
+    [SerializeField] public int currentChapter;
+    [SerializeField] public List<bool> chaptersUnlocked;
+    [SerializeField] public int currentCutscene;
+    [SerializeField] public List<List<bool>> tutorials;
 
 
     private PlayerDataRefactored CreatePlayerDataRefactoredObject()

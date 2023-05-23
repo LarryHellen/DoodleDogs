@@ -57,6 +57,7 @@ public class DragScrollRefactored : MonoBehaviour
 
     void Start()
     {
+        jsonDataManipulation.LoadByJSON();
         jsonDataManipulation.LoadDefaultValuesFromPlayerDataRefactored();
         chaptersUnlocked = jsonDataManipulation.chaptersUnlocked;
 
