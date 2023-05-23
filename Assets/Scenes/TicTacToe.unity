@@ -5652,7 +5652,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1588246502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9667,7 +9667,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsMenu: {fileID: 27888824}
   gameRunning: 1
-  closed: {fileID: 0}
   open: {fileID: 0}
 --- !u!1 &5604740480857456979
 GameObject:
@@ -9786,7 +9785,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsMenu: {fileID: 5604740481653923659}
   gameRunning: 1
-  closed: {fileID: 0}
   open: {fileID: 0}
 --- !u!1 &5604740482088457824
 GameObject:

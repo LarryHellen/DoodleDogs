@@ -29,6 +29,7 @@ public class CutsceneSystem : MonoBehaviour
         jsonDataManipulation.LoadByJSON();
         currentChapter = jsonDataManipulation.currentChapter - 1;
         chaptersUnlocked = jsonDataManipulation.chaptersUnlocked;
+        jsonDataManipulation.SaveByJSON();
 
 
         BackButton = GameObject.Find("BackButton");

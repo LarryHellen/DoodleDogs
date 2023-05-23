@@ -59,12 +59,12 @@ public class DragScrollRefactored : MonoBehaviour
     {
         jsonDataManipulation.LoadByJSON();
 
-        if (jsonDataManipulation.chaptersUnlocked.Count == 0)
+        if (jsonDataManipulation.chaptersUnlocked.Count == 0 || jsonDataManipulation.tutorials.Count == 0)
         {
             print("Defaulted");
             jsonDataManipulation.LoadDefaultValuesFromPlayerDataRefactored();
         }
-        
+
         chaptersUnlocked = jsonDataManipulation.chaptersUnlocked;
 
         print("Current cutscene: " + jsonDataManipulation.currentCutscene);

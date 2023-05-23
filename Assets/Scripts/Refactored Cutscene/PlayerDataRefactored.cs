@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class PlayerDataRefactored
 {
     [SerializeField] public int currentChapter = -1;
-    [SerializeField] public List<bool> chaptersUnlocked; //= new List<bool>();
+    [SerializeField] public List<bool> chaptersUnlocked;
 
     [SerializeField] public int currentCutscene;
-    [SerializeField] public List<List<bool>> tutorials; //= new List<List<bool>>();
+    [SerializeField] public List<bool> tutorials;
 }

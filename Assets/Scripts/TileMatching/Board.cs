@@ -70,36 +70,37 @@ public class Board : MonoBehaviour
     }
 
     private JsonDataManipulation jsonDataManipulation = new JsonDataManipulation();
-    private List<List<bool>> tutorials;
+    private List<bool> tutorials;
 
     private void RegisterTutorial()
     {
         jsonDataManipulation.LoadByJSON();
         tutorials = jsonDataManipulation.tutorials;
 
-        print(jsonDataManipulation.tutorials[0][0] + " - " + jsonDataManipulation.tutorials[0][1]);
-        print(jsonDataManipulation.tutorials[1][0] + " - " + jsonDataManipulation.tutorials[1][1]);
-        print(jsonDataManipulation.tutorials[2][0] + " - " + jsonDataManipulation.tutorials[2][1]);
-        print(jsonDataManipulation.tutorials[3][0] + " - " + jsonDataManipulation.tutorials[3][1]);
 
-        if (tutorials[0][0] == false && tutorials[0][1] == false)
+        print(jsonDataManipulation.currentChapter);
+        print(tutorials.Count);
+
+
+        if (tutorials[2*jsonDataManipulation.currentChapter] == false && tutorials[2 * jsonDataManipulation.currentChapter + 1] == false)
         {
-            tutorials[0][0] = true;
+            tutorials[2 * jsonDataManipulation.currentChapter] = true;
+            advanced = false;
+            print("Setting basic mode");
         }
-        else if (tutorials[0][0] == true && tutorials[0][1] == false)
+        else if (tutorials[2 * jsonDataManipulation.currentChapter] == true && tutorials[2 * jsonDataManipulation.currentChapter + 1] == false)
         {
-            tutorials[0][1] = true;
+            tutorials[2 * jsonDataManipulation.currentChapter + 1] = true;
             advanced = true;
+            print("Setting advanced mode");
         }
-        else if (tutorials[0][0] == true && tutorials[0][1] == true)
+        else if (tutorials[2 * jsonDataManipulation.currentChapter] == true && tutorials[2 * jsonDataManipulation.currentChapter + 1] == true)
         {
-            advanced = true;
+            tutorials[2 * jsonDataManipulation.currentChapter + 1] = false;
+            advanced = false;
+            print("Setting basic mode");
         }
 
-        /*print(tutorials[0][0] + " - " + tutorials[0][1]);
-        print(tutorials[1][0] + " - " + tutorials[1][1]);
-        print(tutorials[2][0] + " - " + tutorials[2][1]);
-        print(tutorials[3][0] + " - " + tutorials[3][1]);*/
 
         jsonDataManipulation.tutorials = tutorials;
         jsonDataManipulation.SaveByJSON();

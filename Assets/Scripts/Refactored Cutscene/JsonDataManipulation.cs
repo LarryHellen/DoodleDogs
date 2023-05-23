@@ -7,7 +7,7 @@ public class JsonDataManipulation
     [SerializeField] public int currentChapter;
     [SerializeField] public List<bool> chaptersUnlocked;
     [SerializeField] public int currentCutscene;
-    [SerializeField] public List<List<bool>> tutorials;
+    [SerializeField] public List<bool> tutorials;
 
 
     private PlayerDataRefactored CreatePlayerDataRefactoredObject()
@@ -79,8 +79,9 @@ public class JsonDataManipulation
         for (int i = 0; i < 5; i++) { chaptersUnlocked.Add(false); }
         
 
-        tutorials = new List<List<bool>>();
-        for (int i = 0; i < 5; i++) { tutorials.Add(new List<bool>() { false, false }); }
+        tutorials = new List<bool>();
+        for (int i = 0; i < 10; i++) { tutorials.Add(false); }
+
         
     }
 }
