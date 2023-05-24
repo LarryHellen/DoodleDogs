@@ -44,5 +44,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RefactoredCutscenes.unity
     guid: 9d714ecf3b775f14ebea50285bb1ef26
+  - enabled: 1
+    path: Assets/Scenes/CreditsRedo.unity
+    guid: ce2b436e8643eeb43b2c4feb2ca44793
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c8e66a3bf3f274609b8b6196ff218934, type: 2}
