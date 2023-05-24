@@ -246,7 +246,7 @@ public class Board : MonoBehaviour
         if(currentState != GameState.win && currentState != GameState.lose){
         currentState = GameState.win;
             //victoryScreen.SetActive(true);
-            GoToNewScene.GoToScene("Cutscenes");
+            GoToNewScene.GoToScene("RefactoredCutscenes");
         francois.SetActive(false);
         Debug.Log("you won " + counterHolder.counterArray);
         }
