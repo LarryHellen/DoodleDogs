@@ -20,7 +20,7 @@ public class DragScrollRefactored : MonoBehaviour
 
     private List<bool> chaptersUnlocked;
 
-    
+    /*
     private void OnMouseDown()
     {
         if (!settingsMenu.activeSelf)
@@ -53,6 +53,7 @@ public class DragScrollRefactored : MonoBehaviour
             background.transform.position = new Vector3(background.transform.position.x, c, background.transform.position.z);
         }
     }
+    */
 
 
     void Start()

@@ -62,6 +62,7 @@ public class CutsceneSystem : MonoBehaviour
 
         chaptersUnlocked[currentChapter] = true;
 
+
         jsonDataManipulation.LoadByJSON();
         jsonDataManipulation.currentChapter = currentChapter;
         jsonDataManipulation.chaptersUnlocked = chaptersUnlocked;

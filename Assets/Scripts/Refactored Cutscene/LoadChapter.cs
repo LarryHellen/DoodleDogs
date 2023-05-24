@@ -27,6 +27,11 @@ public class LoadChapter : MonoBehaviour
             return;
         }
         
+        print("Last Chapter: " + lastChapter);
+        print("Current cutscene: " + jsonDataManipulation.currentCutscene);
+        print("Current chapter: " + jsonDataManipulation.currentChapter);
+        print("Selected chapter: " + selectedChapter);
+
         jsonDataManipulation.currentCutscene = -1;
         jsonDataManipulation.SaveByJSON();
         SceneManager.LoadScene("RefactoredCutscenes");
