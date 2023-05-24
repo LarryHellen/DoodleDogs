@@ -30,7 +30,7 @@ public class CreditsRedo : MonoBehaviour
     {
         for (int i = 0; i < creditsText.Count; i++)
         {
-            creditsTextRt[i].anchoredPosition = new Vector2(creditsTextStartPos[i].x, creditsTextStartPos[i].y + slideBar.value * 1450);
+            creditsTextRt[i].anchoredPosition = new Vector2(creditsTextStartPos[i].x, creditsTextStartPos[i].y + slideBar.value * 1150);
         }
     }
 }
