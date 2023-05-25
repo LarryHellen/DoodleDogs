@@ -72,11 +72,11 @@ public class Board : MonoBehaviour
         if(IsDeadlocked()){
             ShuffleBoard();
         }
-        /*
+        
         if(tutorialEnabled == true){
             tutorialSystem.Setup();
         }
-        */
+        
     }
 
 
@@ -85,7 +85,9 @@ public class Board : MonoBehaviour
         GameObject tutorialHandler = GameObject.Find("TutorialHandler");
         TutorialHandler tutorialHandlerScript = tutorialHandler.GetComponent<TutorialHandler>();
 
-        advanced = tutorialHandlerScript.RegisterAdvanced();
+        List<bool> bools = tutorialHandlerScript.RegisterAdvanced();
+        advanced = bools[0];
+        tutorialEnabled = bools[1];
     }
 
 

@@ -8,6 +8,7 @@ public class TutorialHandler : MonoBehaviour
     public GameObject basicTutorial;
     public GameObject advancedTutorial;
     public bool advanced;
+    private bool tutorialEnabled;
     private Tutorial tutorial;
 
     private JsonDataManipulation jsonDataManipulation = new JsonDataManipulation();
@@ -50,7 +51,7 @@ public class TutorialHandler : MonoBehaviour
     }
 
 
-    public bool RegisterAdvanced()
+    public List<bool> RegisterAdvanced()
     {
         jsonDataManipulation.LoadByJSON();
         tutorials = jsonDataManipulation.tutorials;
@@ -76,6 +77,7 @@ public class TutorialHandler : MonoBehaviour
             if (tutorialsDone[2 * jsonDataManipulation.currentChapter + 1] == false)
             {
                 //tutorial = new Tutorial(basicTutorial, advancedTutorial, advanced);
+                tutorialEnabled = true;
             }
             else {
                 Time.timeScale = 1;
@@ -86,6 +88,7 @@ public class TutorialHandler : MonoBehaviour
             if (tutorialsDone[2 * jsonDataManipulation.currentChapter] == false)
             {
                 //tutorial = new Tutorial(basicTutorial, advancedTutorial, advanced);
+                tutorialEnabled = true;
             }
             else {
                 Time.timeScale = 1;
@@ -98,6 +101,6 @@ public class TutorialHandler : MonoBehaviour
         jsonDataManipulation.SaveByJSON();
 
 
-        return advanced;
+        return new List<bool>() { advanced, tutorialEnabled };
     }
 }
