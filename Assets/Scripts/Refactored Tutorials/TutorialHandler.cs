@@ -75,7 +75,7 @@ public class TutorialHandler : MonoBehaviour
         {
             if (tutorialsDone[2 * jsonDataManipulation.currentChapter + 1] == false)
             {
-                tutorial = new Tutorial(basicTutorial, advancedTutorial, advanced);
+                //tutorial = new Tutorial(basicTutorial, advancedTutorial, advanced);
             }
             else {
                 Time.timeScale = 1;
@@ -85,7 +85,7 @@ public class TutorialHandler : MonoBehaviour
         {
             if (tutorialsDone[2 * jsonDataManipulation.currentChapter] == false)
             {
-                tutorial = new Tutorial(basicTutorial, advancedTutorial, advanced);
+                //tutorial = new Tutorial(basicTutorial, advancedTutorial, advanced);
             }
             else {
                 Time.timeScale = 1;
