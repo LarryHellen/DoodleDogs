@@ -5,6 +5,8 @@ using UnityEngine;
 public class CRhythmTriggers : TutorialSystem
 {
     public ContinousNoteSpawning cns;
+    public bool noteTapped;
+    public GameObject tutorialNote;
 
     public void Setup(){
         allScenes[0].SetActive(true);
@@ -16,9 +18,10 @@ public class CRhythmTriggers : TutorialSystem
     public void Next(){
         if(currentIndex == 0){
             NextTutorial();
-        } else if (currentIndex == 1){
+            tutorialNote.SetActive(true);
+        } else if (currentIndex == 1 && noteTapped == true){
             NextTutorial();
-        } else if (currentIndex == 2 /*tap note*/){
+        } else if (currentIndex == 2){
             NextTutorial();
         } else if (currentIndex == 3){
             NextTutorial();

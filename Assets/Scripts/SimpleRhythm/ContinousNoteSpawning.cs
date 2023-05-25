@@ -32,6 +32,7 @@ public class ContinousNoteSpawning : MonoBehaviour
     public Slider progressBar;
     public bool advanced;
     public bool tutorialEnabled;
+    public CRhythmTriggers rt;
 
     [Space(25)]
     

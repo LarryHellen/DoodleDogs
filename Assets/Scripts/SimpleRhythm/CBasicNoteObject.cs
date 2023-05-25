@@ -11,6 +11,7 @@ public class CBasicNoteObject : MonoBehaviour
     public float heightRemovalConst = 0;
     private ContinousNoteSpawning nSS;
     private RectTransform rt;
+    public bool isTutorial;
 
 
     public void Start()
@@ -92,6 +93,9 @@ public class CBasicNoteObject : MonoBehaviour
     public void OnPointerDownOnNote()
     {
         //print("Pointer Down On Note");
+        if(isTutorial){
+                nSS.rt.noteTapped = true;
+        }
         Destroy(gameObject);
     }
 
