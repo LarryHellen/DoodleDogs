@@ -45,7 +45,18 @@ public class TileMatchingTriggers : TutorialSystem
         //create panels around set match here
     }
 
-    public void EndTutorial(){
-        board.tutorialEnabled = false;
+    public void Update()
+    {
+        if(shouldEnd == true)
+        {
+            EndTutorial();
+        }
     }
+
+    public void EndTutorial(){
+        print("got here 3");
+        board.tutorialEnabled = false;
+        board.ResetGame();
+        shouldEnd = false;
+        }
 }

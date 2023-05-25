@@ -8,6 +8,9 @@ public class TutorialSystem : MonoBehaviour
     protected int currentIndex;
     protected bool advanced;
     public int normalLastIndex;
+    public int testingCurrentIndex;
+    public bool testingAdvanced;
+    public bool shouldEnd;
 
 
     // Start is called before the first frame update
@@ -23,7 +26,7 @@ public class TutorialSystem : MonoBehaviour
     public void NextTutorial(){
         allScenes[currentIndex].SetActive(false);
         currentIndex++;
-        if(currentIndex == normalLastIndex && advanced == false){
+        if(currentIndex == normalLastIndex + 1 && advanced == false){
             print("got here 1");
             EndTutorial();
         } else if(currentIndex == allScenes.Count && advanced == true){
@@ -36,16 +39,17 @@ public class TutorialSystem : MonoBehaviour
     }
 
     public void Next(){
-
+        print("got here 5");
     }
 
     public void EndTutorial(){
-
+        shouldEnd = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        testingCurrentIndex = currentIndex;
+        testingAdvanced = advanced;
     }
 }

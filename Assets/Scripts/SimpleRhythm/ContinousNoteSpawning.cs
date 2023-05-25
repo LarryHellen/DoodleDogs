@@ -31,6 +31,7 @@ public class ContinousNoteSpawning : MonoBehaviour
     public GameObject bigRedXPrefab;
     public Slider progressBar;
     public bool advanced;
+    public bool tutorialEnabled;
 
     [Space(25)]
     
@@ -223,7 +224,9 @@ public class ContinousNoteSpawning : MonoBehaviour
         GameObject tutorialHandler = GameObject.Find("TutorialHandler");
         TutorialHandler tutorialHandlerScript = tutorialHandler.GetComponent<TutorialHandler>();
 
-        advanced = tutorialHandlerScript.RegisterAdvanced();
+        List<bool> bools = tutorialHandlerScript.RegisterAdvanced();
+        advanced = bools[0];
+        tutorialEnabled = bools[1];
     }
 
 
