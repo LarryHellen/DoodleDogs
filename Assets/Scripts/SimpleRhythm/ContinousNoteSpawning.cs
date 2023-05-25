@@ -98,6 +98,10 @@ public class ContinousNoteSpawning : MonoBehaviour
             }
         }
 
+        if(tutorialEnabled == true){
+            Time.timeScale = 0.0f;
+        }
+
     }
 
 
@@ -110,6 +114,8 @@ public class ContinousNoteSpawning : MonoBehaviour
 
         winScreen.SetActive(false);
         loseScreen.SetActive(false);
+
+        
 
         StartCoroutine(ProgressBarSlider());
     }
