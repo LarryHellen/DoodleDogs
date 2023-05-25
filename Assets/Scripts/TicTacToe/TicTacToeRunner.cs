@@ -77,7 +77,8 @@ public class TicTacToeRunner : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().Play("Scratch");
         //VictoryScreen.SetActive(true);
-        goToNewScene.GoToScene("Cutscenes");
+        RegisterTutorial();
+        goToNewScene.GoToScene("RefactoredCutscenes");
         
     }
 
@@ -841,7 +842,7 @@ public class TicTacToeRunner : MonoBehaviour
 
 
 
-        RegisterTutorial(); //JSON STUFF
+        RegisterAdvanced(); //JSON Stuff
 
 
 
@@ -1082,41 +1083,21 @@ public class TicTacToeRunner : MonoBehaviour
     }
 
 
-    private JsonDataManipulation jsonDataManipulation = new JsonDataManipulation();
-    private List<bool> tutorials;
+    private void RegisterAdvanced()
+    {
+        GameObject tutorialHandler = GameObject.Find("TutorialHandler");
+        TutorialHandler tutorialHandlerScript = tutorialHandler.GetComponent<TutorialHandler>();
+
+        advanced = tutorialHandlerScript.RegisterAdvanced();
+    }
+
 
     private void RegisterTutorial()
     {
-        jsonDataManipulation.LoadByJSON();
-        tutorials = jsonDataManipulation.tutorials;
+        GameObject tutorialHandler = GameObject.Find("TutorialHandler");
+        TutorialHandler tutorialHandlerScript = tutorialHandler.GetComponent<TutorialHandler>();
 
-
-        print(jsonDataManipulation.currentChapter);
-        print(tutorials.Count);
-
-
-        if (tutorials[2 * jsonDataManipulation.currentChapter] == false && tutorials[2 * jsonDataManipulation.currentChapter + 1] == false)
-        {
-            tutorials[2 * jsonDataManipulation.currentChapter] = true;
-            advanced = false;
-            //print("Setting basic mode");
-        }
-        else if (tutorials[2 * jsonDataManipulation.currentChapter] == true && tutorials[2 * jsonDataManipulation.currentChapter + 1] == false)
-        {
-            tutorials[2 * jsonDataManipulation.currentChapter + 1] = true;
-            advanced = true;
-            //print("Setting advanced mode");
-        }
-        else if (tutorials[2 * jsonDataManipulation.currentChapter] == true && tutorials[2 * jsonDataManipulation.currentChapter + 1] == true)
-        {
-            tutorials[2 * jsonDataManipulation.currentChapter + 1] = false;
-            advanced = false;
-            //print("Setting basic mode");
-        }
-
-
-        jsonDataManipulation.tutorials = tutorials;
-        jsonDataManipulation.SaveByJSON();
+        tutorialHandlerScript.RegisterTutorial();
     }
 
     /*

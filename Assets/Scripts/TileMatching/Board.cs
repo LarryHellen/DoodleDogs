@@ -48,7 +48,7 @@ public class Board : MonoBehaviour
     {
         Time.timeScale = 1;
         //LoadByJSON();
-        RegisterTutorial();
+        RegisterAdvanced();
         SetUp();
     }
 
@@ -72,50 +72,31 @@ public class Board : MonoBehaviour
         if(IsDeadlocked()){
             ShuffleBoard();
         }
+        /*
         if(tutorialEnabled == true){
             tutorialSystem.Setup();
         }
+        */
     }
 
-    private JsonDataManipulation jsonDataManipulation = new JsonDataManipulation();
-    private List<bool> tutorials;
+
+    private void RegisterAdvanced()
+    {
+        GameObject tutorialHandler = GameObject.Find("TutorialHandler");
+        TutorialHandler tutorialHandlerScript = tutorialHandler.GetComponent<TutorialHandler>();
+
+        advanced = tutorialHandlerScript.RegisterAdvanced();
+    }
+
 
     private void RegisterTutorial()
     {
-        jsonDataManipulation.LoadByJSON();
-        tutorials = jsonDataManipulation.tutorials;
+        GameObject tutorialHandler = GameObject.Find("TutorialHandler");
+        TutorialHandler tutorialHandlerScript = tutorialHandler.GetComponent<TutorialHandler>();
 
-
-        print(jsonDataManipulation.currentChapter);
-        print(tutorials.Count);
-
-
-        if (tutorials[2*jsonDataManipulation.currentChapter] == false && tutorials[2 * jsonDataManipulation.currentChapter + 1] == false)
-        {
-            tutorials[2 * jsonDataManipulation.currentChapter] = true;
-            advanced = false;
-            tutorialEnabled = true;
-            print("Setting basic mode");
-        }
-        else if (tutorials[2 * jsonDataManipulation.currentChapter] == true && tutorials[2 * jsonDataManipulation.currentChapter + 1] == false)
-        {
-            tutorials[2 * jsonDataManipulation.currentChapter + 1] = true;
-            advanced = true; //true
-            tutorialEnabled = true;
-            print("Setting advanced mode");
-        }
-        else if (tutorials[2 * jsonDataManipulation.currentChapter] == true && tutorials[2 * jsonDataManipulation.currentChapter + 1] == true)
-        {
-            tutorials[2 * jsonDataManipulation.currentChapter + 1] = false;
-            advanced = false;
-            tutorialEnabled = false; //false
-            print("Setting basic mode");
-        }
-
-
-        jsonDataManipulation.tutorials = tutorials;
-        jsonDataManipulation.SaveByJSON();
+        tutorialHandlerScript.RegisterTutorial();
     }
+
 
     private bool MatchesAt(int column, int row, GameObject piece){
         if(column > 1 && row > 1){
@@ -245,7 +226,7 @@ public class Board : MonoBehaviour
     public void winGame(){
         if(currentState != GameState.win && currentState != GameState.lose){
         currentState = GameState.win;
-            //victoryScreen.SetActive(true);
+            RegisterTutorial();
             GoToNewScene.GoToScene("RefactoredCutscenes");
         francois.SetActive(false);
         Debug.Log("you won " + counterHolder.counterArray);

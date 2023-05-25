@@ -8,6 +8,7 @@ public class JsonDataManipulation
     [SerializeField] public List<bool> chaptersUnlocked;
     [SerializeField] public int currentCutscene;
     [SerializeField] public List<bool> tutorials;
+    [SerializeField] public List<bool> tutorialsDone;
 
 
     private PlayerDataRefactored CreatePlayerDataRefactoredObject()
@@ -18,6 +19,7 @@ public class JsonDataManipulation
         data.chaptersUnlocked = chaptersUnlocked;
         data.currentCutscene = currentCutscene;
         data.tutorials = tutorials;
+        data.tutorialsDone = tutorialsDone;
 
         return data;
     }
@@ -28,6 +30,7 @@ public class JsonDataManipulation
         chaptersUnlocked = tempData.chaptersUnlocked;
         currentCutscene = tempData.currentCutscene;
         tutorials = tempData.tutorials;
+        tutorialsDone = tempData.tutorialsDone;
     }
 
 
@@ -77,11 +80,11 @@ public class JsonDataManipulation
     {
         chaptersUnlocked = new List<bool>();
         for (int i = 0; i < 5; i++) { chaptersUnlocked.Add(false); }
-        
 
         tutorials = new List<bool>();
         for (int i = 0; i < 10; i++) { tutorials.Add(false); }
 
-        
+        tutorialsDone = new List<bool>();
+        for (int i = 0; i < 10; i++) { tutorialsDone.Add(false); }
     }
 }

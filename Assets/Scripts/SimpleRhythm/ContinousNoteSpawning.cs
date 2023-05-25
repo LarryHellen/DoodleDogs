@@ -30,6 +30,7 @@ public class ContinousNoteSpawning : MonoBehaviour
     public GameObject loseScreen;
     public GameObject bigRedXPrefab;
     public Slider progressBar;
+    private bool advanced;
 
     [Space(25)]
     
@@ -60,7 +61,6 @@ public class ContinousNoteSpawning : MonoBehaviour
         columns = audioArray.Length;
         //print(columns);
 
-
         for (int i = 0; i < columns; i++) {columnCooldowns.Add(i, 0);}
 
 
@@ -71,6 +71,17 @@ public class ContinousNoteSpawning : MonoBehaviour
 
         cAudioDelay = GameObject.Find("AudioPlayer").GetComponent<CAudioDelay>();
         cLivesCounter = GameObject.Find("Lives").GetComponent<CLivesCounter>();
+
+        RegisterAdvanced(); //JSON Stuff
+
+        if (advanced)
+        {
+            audioChoice = 1;
+        }
+        else 
+        { 
+            audioChoice = 0;
+        }
 
 
         //SET THE PROPER SETTINGS FOR THE LEVEL RIGHT HERE
@@ -92,7 +103,6 @@ public class ContinousNoteSpawning : MonoBehaviour
     void Start()
     {
         Physics.gravity = new Vector3(0f, -2000f, 0f);
-        Time.timeScale = 1;
 
         RectTransform lrt = onBeatTestingLine.GetComponent<RectTransform>();
         lrt.anchoredPosition = new Vector2(lrt.anchoredPosition.x, (onBeatHeight * screenHeight) - (screenHeight / 2));
@@ -106,9 +116,15 @@ public class ContinousNoteSpawning : MonoBehaviour
     
     void Update()
     {
-        ContinousSpawning();
+        
         timeElapsed += Time.deltaTime;
         elapsedTimeText.SetText("Time Elapsed: " + timeElapsed);
+
+
+        if (timeElapsed > 0.000001f)
+        {
+            ContinousSpawning();
+        }
 
 
         if (timeElapsed >= songLength) //Win Condition
@@ -175,8 +191,10 @@ public class ContinousNoteSpawning : MonoBehaviour
     {
         Time.timeScale = 0;
         cAudioDelay.PauseAudio();
-        winScreen.SetActive(true);
+        //winScreen.SetActive(true);
+        RegisterTutorial();
         print("You win!");
+        SceneManager.LoadScene("RefactoredCutscenes");
     }
 
 
@@ -197,6 +215,24 @@ public class ContinousNoteSpawning : MonoBehaviour
                 print("You lose!");
             }
         }
+    }
+
+
+    private void RegisterAdvanced()
+    {
+        GameObject tutorialHandler = GameObject.Find("TutorialHandler");
+        TutorialHandler tutorialHandlerScript = tutorialHandler.GetComponent<TutorialHandler>();
+
+        advanced = tutorialHandlerScript.RegisterAdvanced();
+    }
+
+
+    private void RegisterTutorial()
+    {
+        GameObject tutorialHandler = GameObject.Find("TutorialHandler");
+        TutorialHandler tutorialHandlerScript = tutorialHandler.GetComponent<TutorialHandler>();
+
+        tutorialHandlerScript.RegisterTutorial();
     }
 
 

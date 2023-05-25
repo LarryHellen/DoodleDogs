@@ -6,7 +6,7 @@ public class PlayerDataRefactored
 {
     [SerializeField] public int currentChapter;
     [SerializeField] public List<bool> chaptersUnlocked;
-
     [SerializeField] public int currentCutscene;
     [SerializeField] public List<bool> tutorials;
+    [SerializeField] public List<bool> tutorialsDone;
 }
