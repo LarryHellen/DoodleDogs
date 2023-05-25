@@ -30,7 +30,7 @@ public class ContinousNoteSpawning : MonoBehaviour
     public GameObject loseScreen;
     public GameObject bigRedXPrefab;
     public Slider progressBar;
-    private bool advanced;
+    public bool advanced;
 
     [Space(25)]
     
