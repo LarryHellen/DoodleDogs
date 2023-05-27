@@ -41,11 +41,8 @@ public class CAudioDelay : MonoBehaviour
 
     IEnumerator DelayAudio()
     {
-        float timePassed = 0;
-
-        while (timeToDelay > timePassed)
+        while (CRhythmTriggers.pauseGame)
         {
-            timePassed += Time.deltaTime;
             yield return null;
         }
 

@@ -7,12 +7,19 @@ public class CRhythmTriggers : TutorialSystem
     public ContinousNoteSpawning cns;
     public bool noteTapped;
     public GameObject tutorialNote;
+    public static bool pauseGame;
 
     public void Setup(){
         allScenes[0].SetActive(true);
         if(cns.advanced == true){
             advanced = true;
         }
+        
+    }
+
+    void Awake()
+    {
+        pauseGame = true;
     }
 
     public void Next(){
@@ -46,5 +53,6 @@ public class CRhythmTriggers : TutorialSystem
     public void EndTutorial(){
         Time.timeScale = 1.0f;
         shouldEnd = false;
+        pauseGame = false;
     }
 }

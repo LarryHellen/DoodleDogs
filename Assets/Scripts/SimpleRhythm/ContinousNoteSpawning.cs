@@ -58,14 +58,6 @@ public class ContinousNoteSpawning : MonoBehaviour
 
     void Awake()
     {
-        audioArray = audioObjects[audioChoice].GetComponents<AudioSource>();
-
-        columns = audioArray.Length;
-        //print(columns);
-
-        for (int i = 0; i < columns; i++) {columnCooldowns.Add(i, 0);}
-
-
         RectTransform canvasRt = noteCanvas.GetComponent<RectTransform>();
         screenWidth = canvasRt.sizeDelta.x;
         screenHeight = canvasRt.sizeDelta.y;
@@ -84,6 +76,14 @@ public class ContinousNoteSpawning : MonoBehaviour
         { 
             audioChoice = 0;
         }
+
+
+        audioArray = audioObjects[audioChoice].GetComponents<AudioSource>();
+
+        columns = audioArray.Length;
+        //print(columns);
+
+        for (int i = 0; i < columns; i++) {columnCooldowns.Add(i, 0);}
 
 
         //SET THE PROPER SETTINGS FOR THE LEVEL RIGHT HERE
@@ -117,20 +117,15 @@ public class ContinousNoteSpawning : MonoBehaviour
         loseScreen.SetActive(false);
 
         
-
         StartCoroutine(ProgressBarSlider());
     }
 
     
     void Update()
     {
-        
-        timeElapsed += Time.deltaTime;
-        elapsedTimeText.SetText("Time Elapsed: " + timeElapsed);
-
-
-        if (timeElapsed > 0.000001f)
+        if (!CRhythmTriggers.pauseGame)
         {
+            //print("This");
             ContinousSpawning();
         }
 
@@ -139,6 +134,9 @@ public class ContinousNoteSpawning : MonoBehaviour
         {
             OnWin();
         }
+
+        timeElapsed += Time.deltaTime;
+        elapsedTimeText.SetText("Time Elapsed: " + timeElapsed);
     }
 
 
