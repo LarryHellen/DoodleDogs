@@ -20,7 +20,15 @@ public class TutorialSystem : MonoBehaviour
     }
 
     public void Setup(){
-        allScenes[0].SetActive(true);
+        if (advanced == false)
+        {
+            allScenes[0].SetActive(true);
+        }
+        else
+        {
+            allScenes[normalLastIndex + 1].SetActive(true);
+            currentIndex = normalLastIndex + 1;
+        }
     }
 
     public void NextTutorial(){
@@ -49,7 +57,7 @@ public class TutorialSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        testingCurrentIndex = currentIndex;
-        testingAdvanced = advanced;
+        //testingCurrentIndex = currentIndex;
+        //testingAdvanced = advanced;
     }
 }
