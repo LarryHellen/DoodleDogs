@@ -9,13 +9,7 @@ public class CRhythmTriggers : TutorialSystem
     public GameObject tutorialNote;
     public static bool pauseGame;
 
-    public void Setup(){
-        allScenes[0].SetActive(true);
-        if(cns.advanced == true){
-            advanced = true;
-        }
-        
-    }
+
 
     void Awake()
     {

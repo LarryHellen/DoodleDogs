@@ -9,13 +9,6 @@ public class TileMatchingTriggers : TutorialSystem
     public int[] setMatch;
 
 
-    public void Setup(){
-        allScenes[0].SetActive(true);
-        if(board.advanced == true){
-            advanced = true;
-        }
-    }
-
     public void Next(){
         if(currentIndex == 0){
             NextTutorial();

@@ -8,12 +8,7 @@ public class TicTacToeTriggers : TutorialSystem
     public TicTacToeRunner tttr;
     public bool placed;
 
-    public void Setup(){
-        allScenes[0].SetActive(true);
-        if(tttr.advanced == true){
-            advanced = true;
-        }
-    }
+  
 
     public void Next(){
         if(currentIndex == 0){
