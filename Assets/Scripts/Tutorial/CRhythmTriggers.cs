@@ -33,6 +33,23 @@ public class CRhythmTriggers : TutorialSystem
         }
     }
 
+    public void Setup()
+    {
+        if (cns.advanced)
+        {
+            advanced = true;
+        }
+        if (advanced == false)
+        {
+            allScenes[0].SetActive(true);
+        }
+        else
+        {
+            allScenes[normalLastIndex + 1].SetActive(true);
+            currentIndex = normalLastIndex + 1;
+        }
+    }
+
 
 
     // Update is called once per frame

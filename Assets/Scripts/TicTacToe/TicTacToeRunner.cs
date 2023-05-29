@@ -894,6 +894,9 @@ public class TicTacToeRunner : MonoBehaviour
             board.Add(row);
         }
 
+        Time.timeScale = 1f;
+        tutorialObject.Setup();
+
         started = true;
     }
 

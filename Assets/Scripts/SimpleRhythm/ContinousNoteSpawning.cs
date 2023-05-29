@@ -101,6 +101,7 @@ public class ContinousNoteSpawning : MonoBehaviour
 
         if(tutorialEnabled == true){
             Time.timeScale = 0.0f;
+            rt.Setup();
         }
 
     }

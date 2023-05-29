@@ -353,9 +353,15 @@ MonoBehaviour:
   row: 2
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 1.63
   targetY: 5.06
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -470,9 +476,15 @@ MonoBehaviour:
   row: 0
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 4.57
   targetY: 3.1
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -669,6 +681,7 @@ MonoBehaviour:
   board: {fileID: 1966315921}
   clearedMatch: 0
   setMatch: 
+  testingScale: 0
 --- !u!1 &72010087
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,9 +739,15 @@ MonoBehaviour:
   row: 2
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 5.55
   targetY: 5.06
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 1
@@ -1052,9 +1071,15 @@ MonoBehaviour:
   row: 3
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 4.57
   targetY: 6.04
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 1
@@ -1406,9 +1431,15 @@ MonoBehaviour:
   row: 4
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 0.65
   targetY: 7.02
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -1878,9 +1909,15 @@ MonoBehaviour:
   row: 3
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 0.65
   targetY: 6.04
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -1995,9 +2032,15 @@ MonoBehaviour:
   row: 5
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 4.57
   targetY: 8
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -2559,9 +2602,15 @@ MonoBehaviour:
   row: 3
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 1.63
   targetY: 6.04
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -2634,7 +2683,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &289737490
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3784,9 +3833,15 @@ MonoBehaviour:
   row: 3
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 5.55
   targetY: 6.04
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -3901,9 +3956,15 @@ MonoBehaviour:
   row: 1
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 5.55
   targetY: 4.08
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -4094,9 +4155,15 @@ MonoBehaviour:
   row: 1
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 0.65
   targetY: 4.08
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -4346,9 +4413,15 @@ MonoBehaviour:
   row: 1
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 4.57
   targetY: 4.08
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -4463,9 +4536,15 @@ MonoBehaviour:
   row: 4
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 3.5900002
   targetY: 7.02
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -4759,9 +4838,15 @@ MonoBehaviour:
   row: 0
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 2.6100001
   targetY: 3.1
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -4854,7 +4939,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -223.7, y: -352.09}
+  m_AnchoredPosition: {x: -223.70001, y: -352.09}
   m_SizeDelta: {x: 253.6, y: 214.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &654285160
@@ -4952,9 +5037,15 @@ MonoBehaviour:
   row: 4
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 2.6100001
   targetY: 7.02
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -6122,9 +6213,15 @@ MonoBehaviour:
   row: 0
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 5.55
   targetY: 3.1
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -6375,9 +6472,15 @@ MonoBehaviour:
   row: 0
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 1.63
   targetY: 3.1
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -6644,9 +6747,15 @@ MonoBehaviour:
   row: 5
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 0.65
   targetY: 8
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -6761,9 +6870,15 @@ MonoBehaviour:
   row: 4
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 5.55
   targetY: 7.02
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -6878,9 +6993,15 @@ MonoBehaviour:
   row: 5
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 2.6100001
   targetY: 8
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -7454,9 +7575,15 @@ MonoBehaviour:
   row: 1
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 1.63
   targetY: 4.08
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -8181,9 +8308,15 @@ MonoBehaviour:
   row: 2
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 4.57
   targetY: 5.06
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -8846,9 +8979,15 @@ MonoBehaviour:
   row: 2
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 2.6100001
   targetY: 5.06
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -9390,9 +9529,15 @@ MonoBehaviour:
   row: 5
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 1.63
   targetY: 8
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -9734,9 +9879,15 @@ MonoBehaviour:
   row: 5
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 5.55
   targetY: 8
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -9851,9 +10002,15 @@ MonoBehaviour:
   row: 5
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 3.5900002
   targetY: 8
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -9968,9 +10125,15 @@ MonoBehaviour:
   row: 4
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 4.57
   targetY: 7.02
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 1
@@ -10085,9 +10248,15 @@ MonoBehaviour:
   row: 0
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 3.5900002
   targetY: 3.1
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -10669,9 +10838,15 @@ MonoBehaviour:
   row: 0
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 0.65
   targetY: 3.1
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -11134,9 +11309,15 @@ MonoBehaviour:
   row: 4
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 1.63
   targetY: 7.02
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -11251,9 +11432,15 @@ MonoBehaviour:
   row: 2
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 0.65
   targetY: 5.06
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -11498,9 +11685,15 @@ MonoBehaviour:
   row: 3
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 2.6100001
   targetY: 6.04
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -11691,9 +11884,15 @@ MonoBehaviour:
   row: 2
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 3.5900002
   targetY: 5.06
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -12771,9 +12970,15 @@ MonoBehaviour:
   row: 1
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 2.6100001
   targetY: 4.08
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -12888,9 +13093,15 @@ MonoBehaviour:
   row: 3
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 3.5900002
   targetY: 6.04
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0
@@ -13446,9 +13657,15 @@ MonoBehaviour:
   row: 1
   previousColumn: 0
   previousRow: 0
+  board: {fileID: 0}
   targetX: 3.5900002
   targetY: 4.08
   isMatched: 0
+  findMatches: {fileID: 0}
+  moveCounter: {fileID: 0}
+  otherDot: {fileID: 0}
+  finalTouchPosition: {x: 0, y: 0}
+  tempPosition: {x: 0, y: 0}
   swipeAngle: 0
   swipeResist: 1
   isTutorial: 0

@@ -27,6 +27,23 @@ public class TicTacToeTriggers : TutorialSystem
         }
     }
 
+    public void Setup()
+    {
+        if (tttr.advanced)
+        {
+            advanced = true;
+        }
+        if (advanced == false)
+        {
+            allScenes[0].SetActive(true);
+        }
+        else
+        {
+            allScenes[normalLastIndex + 1].SetActive(true);
+            currentIndex = normalLastIndex + 1;
+        }
+    }
+
 
     public void EndTutorial(){
         tttr.tutorialEnabled = false;

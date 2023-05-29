@@ -13,23 +13,7 @@ public class TutorialSystem : MonoBehaviour
     public bool shouldEnd;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Setup();
-    }
-
-    public void Setup(){
-        if (advanced == false)
-        {
-            allScenes[0].SetActive(true);
-        }
-        else
-        {
-            allScenes[normalLastIndex + 1].SetActive(true);
-            currentIndex = normalLastIndex + 1;
-        }
-    }
+    
 
     public void NextTutorial(){
         allScenes[currentIndex].SetActive(false);
@@ -57,7 +41,7 @@ public class TutorialSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //testingCurrentIndex = currentIndex;
-        //testingAdvanced = advanced;
+        testingCurrentIndex = currentIndex;
+        testingAdvanced = advanced;
     }
 }

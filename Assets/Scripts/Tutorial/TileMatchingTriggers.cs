@@ -7,6 +7,7 @@ public class TileMatchingTriggers : TutorialSystem
     public Board board;
     public bool clearedMatch;
     public int[] setMatch;
+    public float testingScale;
 
 
     public void Next(){
@@ -21,6 +22,23 @@ public class TileMatchingTriggers : TutorialSystem
             NextTutorial();
         } else if (currentIndex == 4){
             NextTutorial();
+        }
+    }
+
+    public void Setup()
+    {
+        if (board.advanced)
+        {
+            advanced = true;
+        }
+        if (advanced == false)
+        {
+            allScenes[0].SetActive(true);
+        }
+        else
+        {
+            allScenes[normalLastIndex + 1].SetActive(true);
+            currentIndex = normalLastIndex + 1;
         }
     }
 
@@ -44,6 +62,7 @@ public class TileMatchingTriggers : TutorialSystem
         {
             EndTutorial();
         }
+        testingScale = Time.timeScale;
     }
 
     public void EndTutorial(){

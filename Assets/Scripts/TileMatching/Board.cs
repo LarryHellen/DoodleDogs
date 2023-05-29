@@ -49,6 +49,7 @@ public class Board : MonoBehaviour
         Time.timeScale = 1;
         //LoadByJSON();
         RegisterAdvanced();
+        Time.timeScale = 1f;
         SetUp();
     }
 
