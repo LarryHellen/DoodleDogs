@@ -83,6 +83,10 @@ public class TutorialHandler : MonoBehaviour
                     tutorialEnabled = true;
                     Time.timeScale = 0;
                 }
+                else
+                {
+                    Time.timeScale = 1;
+                }
             }
             else {
                 Time.timeScale = 1;
@@ -98,6 +102,10 @@ public class TutorialHandler : MonoBehaviour
                     print("Activated tutorial");
                     tutorialEnabled = true;
                     Time.timeScale = 0;
+                }
+                else
+                {
+                    Time.timeScale = 1;
                 }
             }
             else {

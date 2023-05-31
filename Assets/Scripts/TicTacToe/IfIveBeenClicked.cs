@@ -31,10 +31,41 @@ public class IfIveBeenClicked : MonoBehaviour
     private TileTransform myTileTransform;
     public bool usingTileTransform;
 
+    public bool tutorialClickable;
+
     void OnMouseDown()
     {
         
-        if (tttr.runGame && ActivateSettings.gameRunning && tttr.started == true)
+        if (tttr.runGame && ActivateSettings.gameRunning && tttr.started == true && tttr.tutorialEnabled == false)
+        {
+            if (type == 0)
+            {
+                if (tttr.turnCounter % 2 == 0)
+                {
+                    type = 1;
+                    tttr.turnCounter++;
+                    HasChanged = false;
+                    FindObjectOfType<AudioManager>().Play("PlaceBall");
+                    //Debug.Log(tttr.turnCounter);
+                    if(tttr.tutorialEnabled == true){
+                        tttr.tutorialObject.placed = true;
+                        tttr.tutorialObject.Next();
+                    }
+                    StartCoroutine(pauseGame(.5f));
+
+                }
+                else if (tttr.turnCounter % 2 == 1 && tttr.twoPlayer == true)
+                {
+                    type = 2;
+                    tttr.turnCounter++;
+                    tttr.currentlyRotating = true;
+                    HasChanged = false;
+                    //Debug.Log(tttr.turnCounter);
+                }
+            }
+        }
+
+        if (tttr.tutorialEnabled == true && tutorialClickable == true)
         {
             if (type == 0)
             {

@@ -13,6 +13,7 @@ public class TicTacToeTriggers : TutorialSystem
     public void Next(){
         if(currentIndex == 0){
             NextTutorial();
+            tttr.board[1][1].GetComponent<IfIveBeenClicked>().tutorialClickable = true;
         } else if(currentIndex == 1 && placed == true){
             NextTutorial();
             Time.timeScale = 1;
@@ -20,10 +21,12 @@ public class TicTacToeTriggers : TutorialSystem
             NextTutorial();
         } else if(currentIndex == 3){
             NextTutorial();
+            tttr.tutorialEnabled = false;
         } else if(currentIndex == 4){
             NextTutorial();
         } else if(currentIndex == 5){
             NextTutorial();
+            tttr.tutorialEnabled = false;
         }
     }
 

@@ -28,7 +28,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - BeforeUI
   - Water
   - UI
   - PostProcessing
@@ -58,7 +58,7 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: 
+  - name: BeforeUI
     uniqueID: 2240465943
     locked: 0
   - name: Default
