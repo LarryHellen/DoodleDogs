@@ -31,6 +31,7 @@ public class TileMatchingTriggers : TutorialSystem
         {
             advanced = true;
         }
+        ResetScenes();
         if (advanced == false)
         {
             allScenes[0].SetActive(true);

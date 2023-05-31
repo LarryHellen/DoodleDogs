@@ -30,6 +30,15 @@ public class TutorialSystem : MonoBehaviour
         }
     }
 
+    public void ResetScenes()
+    {
+        foreach(GameObject scene in allScenes)
+        {
+            scene.SetActive(false);
+        }
+        currentIndex = 0;
+    }
+
     public void Next(){
         print("got here 5");
     }

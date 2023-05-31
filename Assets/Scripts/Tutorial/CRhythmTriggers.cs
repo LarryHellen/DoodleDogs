@@ -39,6 +39,7 @@ public class CRhythmTriggers : TutorialSystem
         {
             advanced = true;
         }
+        ResetScenes();
         if (advanced == false)
         {
             allScenes[0].SetActive(true);

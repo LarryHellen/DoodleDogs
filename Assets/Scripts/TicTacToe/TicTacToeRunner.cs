@@ -305,6 +305,7 @@ public class TicTacToeRunner : MonoBehaviour
         DefeatScreen.SetActive(false);
         TieScreen.SetActive(false);
         lostScene.SetActive(true);
+        tutorialObject.Setup();
 
         turnCounter = 0;
 
