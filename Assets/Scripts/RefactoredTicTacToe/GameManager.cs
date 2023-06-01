@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class GameManager : MonoBehaviour 
 {
@@ -19,10 +20,16 @@ public class GameManager : MonoBehaviour
     public bool placingEnabled = true;
     public List<GameObject> boardPositions;
     [HideInInspector] public List<Tile> tiles = new List<Tile>();
-    
+
+
+    [Header("GameObjects")]
+    public GameObject LoseScreen;
+
 
     void Start()
     {
+        RegisterAdvanced();
+
         InstantiateAndPositionTiles();
     }
 
@@ -51,7 +58,8 @@ public class GameManager : MonoBehaviour
             int selectedIndex = TwistAI();
             tiles[selectedIndex].SetSprite(turnCounter);
             turnCounter++; //Account for the AI's turn
-            
+
+
             //Rotate the board
             RotateBoard();
 
@@ -65,6 +73,7 @@ public class GameManager : MonoBehaviour
             int selectedIndex = NormalAI();
             tiles[selectedIndex].SetSprite(turnCounter);
             turnCounter++; //Account for the AI's turn
+
 
             //Check for win or lose
             CheckForWinOrLose();
@@ -112,8 +121,89 @@ public class GameManager : MonoBehaviour
         List<int> integerBoard = GetIntegerListFromTileList(tiles); //Remember to set end selected tile to the proper one, accounting for the fact the "tiles" list isn't top-down, left-right
 
         //DO AI Alpha Beta search, Recursion will probably be used, Check Ben Dms for more info
+        int aiTurnCounter = turnCounter;
+        List<int> indexRatings = NormalAIFindBestMove(integerBoard, aiTurnCounter);
+        Debug.Log("Index Ratings: ");
+        PrintIntegerList(indexRatings);
+        List<int> bestMoveIndexes = GetBestMovesFromIndexRatings(indexRatings);
 
-        return 0;
+        int selectedIndex = bestMoveIndexes[Random.Range(0, bestMoveIndexes.Count)];
+
+        return selectedIndex;
+    }
+
+
+    List<int> GetBestMovesFromIndexRatings(List<int> indexRatings)
+    {
+        List<int> bestMoveIndexes = new List<int>();
+
+        for (int i = 0; i < indexRatings.Count; i++)
+        {
+            if (indexRatings[i] == indexRatings.Max())
+            {
+                bestMoveIndexes.Add(i);
+            }
+        }
+
+        return bestMoveIndexes;
+    }
+
+
+    List<int> NormalAIFindBestMove(List<int> integerBoard, int aiTurnCounter) //Only checks the first position avaible each time, needs to be fixed
+    {
+        List<int> indexRatings = new List<int>(new int[9]);
+        //for (int i = 0; i < indexRatings.Count; i++) { indexRatings[i] = 5; }
+
+
+        for (int i = 0; i < integerBoard.Count; i++)
+        {
+            if (integerBoard[i] == -1)
+            {
+                List<int> newIntegerBoard = integerBoard;
+                newIntegerBoard[i] = aiTurnCounter % 2;
+
+                PrintIntegerList(GetTopToBottomLeftToRightIntegerListFromIntegerList(newIntegerBoard));
+
+                bool? result = CheckBoard(newIntegerBoard); //null means no one wins, true means player wins, false means AI wins
+                if (result != null)
+                {
+                    if ((bool)result)
+                    {
+                        indexRatings[i] = -1;
+                        return indexRatings;
+                    }
+                    else
+                    {
+                        indexRatings[i] = 1;
+                        return indexRatings;
+                    }
+                }
+                else
+                {
+                    if (!newIntegerBoard.Contains(-1))
+                    {
+                        indexRatings[i] = 0;
+                        return indexRatings;
+                    }
+                }
+
+                List<int> recursiveIndexRatings = NormalAIFindBestMove(newIntegerBoard, aiTurnCounter+1);
+                if (recursiveIndexRatings.Contains(-1))
+                {
+                    indexRatings[i] = -1;
+                }
+                else if (recursiveIndexRatings.Contains(0))
+                {
+                    indexRatings[i] = 0;
+                }
+                else if (recursiveIndexRatings.Contains(1))
+                {
+                    indexRatings[i] = 1;
+                }
+            }
+        }
+
+        return indexRatings;
     }
 
 
@@ -219,12 +309,19 @@ public class GameManager : MonoBehaviour
     void Win()
     {
         Debug.Log("Win");
+
+
+        RegisterTutorial();
+
+
+        SceneManager.LoadScene("RefactoredCutscenes");
     }
 
 
     void Lose()
     {  
         Debug.Log("Lose");
+        LoseScreen.SetActive(true);
     }
 
 
@@ -343,5 +440,25 @@ public class GameManager : MonoBehaviour
         Tile centerTile = tiles[4];
         tiles = new List<Tile>(outsideRing);
         tiles.Insert(4, centerTile);
+    }
+
+
+    private void RegisterAdvanced()
+    {
+        GameObject tutorialHandler = GameObject.Find("TutorialHandler");
+        TutorialHandler tutorialHandlerScript = tutorialHandler.GetComponent<TutorialHandler>();
+
+        List<bool> bools = tutorialHandlerScript.RegisterAdvanced();
+        advanced = bools[0];
+        //tutorialEnabled = bools[1]; What was this used for?
+    }
+
+
+    private void RegisterTutorial()
+    {
+        GameObject tutorialHandler = GameObject.Find("TutorialHandler");
+        TutorialHandler tutorialHandlerScript = tutorialHandler.GetComponent<TutorialHandler>();
+
+        tutorialHandlerScript.RegisterTutorial();
     }
 }

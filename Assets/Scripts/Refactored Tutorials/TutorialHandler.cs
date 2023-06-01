@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class TutorialHandler : MonoBehaviour 
 {
+    [HideInInspector]
     public GameObject basicTutorial;
+    [HideInInspector]
     public GameObject advancedTutorial;
     public bool advanced;
     private bool tutorialEnabled;

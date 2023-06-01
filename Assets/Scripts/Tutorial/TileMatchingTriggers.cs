@@ -68,8 +68,8 @@ public class TileMatchingTriggers : TutorialSystem
 
     public void EndTutorial(){
         print("got here 3");
-        board.tutorialEnabled = false;
+        board.tutorialEnabled = false;  
         board.ResetGame();
         shouldEnd = false;
-    }
+        }
 }
