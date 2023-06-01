@@ -3496,7 +3496,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220, y: -872}
+  m_AnchoredPosition: {x: 220, y: -1250}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &644768313
@@ -4233,7 +4233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 848780291}
   m_Layer: 5
-  m_Name: Tutorial1 After (3)
+  m_Name: Tutorial1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9076,7 +9076,7 @@ MonoBehaviour:
   - {fileID: 848780290}
   - {fileID: 1044598942}
   - {fileID: 325434023}
-  normalLastIndex: 3
+  normalLastIndex: 4
   testingCurrentIndex: 0
   testingAdvanced: 0
   shouldEnd: 0
@@ -9118,7 +9118,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220, y: -872}
+  m_AnchoredPosition: {x: 220, y: -1250}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1691636796
