@@ -7504,7 +7504,7 @@ GameObject:
   m_Component:
   - component: {fileID: 616499870}
   m_Layer: 5
-  m_Name: TicTacToe
+  m_Name: RefactoredTicTacToe
   m_TagString: Game
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13083,7 +13083,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1059633721}
   m_Layer: 5
-  m_Name: TicTacToe
+  m_Name: RefactoredTicTacToe
   m_TagString: Game
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24916,7 +24916,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1972081396}
   m_Layer: 5
-  m_Name: TicTacToe
+  m_Name: RefactoredTicTacToe
   m_TagString: Game
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

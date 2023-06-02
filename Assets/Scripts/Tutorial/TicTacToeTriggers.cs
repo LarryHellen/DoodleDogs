@@ -5,7 +5,7 @@ using UnityEngine;
 public class TicTacToeTriggers : TutorialSystem
 {
 
-    public TicTacToeRunner tttr;
+    public GameManager tttr;
     public bool placed;
 
   
@@ -13,8 +13,8 @@ public class TicTacToeTriggers : TutorialSystem
     public void Next(){
         if(currentIndex == 0){
             NextTutorial();
-            tttr.board[1][1].GetComponent<IfIveBeenClicked>().tutorialClickable = true;
-        } else if(currentIndex == 1 && placed == true){
+            //tttr.board[1][1].GetComponent<IfIveBeenClicked>().tutorialClickable = true;
+        } else if(currentIndex == 1 /*&& placed == true*/){
             NextTutorial();
             Time.timeScale = 1;
         } else if(currentIndex == 2){

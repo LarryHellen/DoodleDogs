@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     public float waitToThinkTime;
     public bool placingEnabled = true;
     public List<GameObject> boardPositions;
+    public TicTacToeTriggers tutorialObject;
+    public bool tutorialEnabled;
     [HideInInspector] public List<Tile> tiles = new List<Tile>();
 
 
@@ -36,6 +38,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1; //Fix for the above problem
 
         InstantiateAndPositionTiles();
+        if (tutorialEnabled)
+        {
+            tutorialObject.Setup();
+        }
     }
 
 
@@ -572,7 +578,7 @@ public class GameManager : MonoBehaviour
 
         List<bool> bools = tutorialHandlerScript.RegisterAdvanced();
         advanced = bools[0];
-        //tutorialEnabled = bools[1]; What was this used for?
+        tutorialEnabled = bools[1];
     }
 
 
