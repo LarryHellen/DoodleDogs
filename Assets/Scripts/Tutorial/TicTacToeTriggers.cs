@@ -7,6 +7,7 @@ public class TicTacToeTriggers : TutorialSystem
 
     public GameManager tttr;
     public bool placed;
+    public bool forceThrough;
 
   
 
@@ -14,7 +15,7 @@ public class TicTacToeTriggers : TutorialSystem
         if(currentIndex == 0){
             NextTutorial();
             //tttr.board[1][1].GetComponent<IfIveBeenClicked>().tutorialClickable = true;
-        } else if(currentIndex == 1 /*&& placed == true*/){
+        } else if(currentIndex == 1 && (GetIntegerListFromTileList(tiles)[4] == 0 || forceThrough){
             NextTutorial();
             Time.timeScale = 1;
         } else if(currentIndex == 2){
