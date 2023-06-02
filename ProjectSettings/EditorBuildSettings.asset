@@ -15,19 +15,19 @@ EditorBuildSettings:
     path: Assets/Scenes/TileMatching.unity
     guid: 797b13cec168140e98df588bc387d540
   - enabled: 1
-    path: Assets/Scenes/Cutscenes.unity
+    path: Assets/Scenes/Legacy/Cutscenes.unity
     guid: aa6abf8d978cc42d39048fb099d2dab7
   - enabled: 1
-    path: Assets/Scenes/Chapter2.unity
+    path: Assets/Scenes/Legacy/Chapter2.unity
     guid: 5601409440b6b4d0c92632f07f2ee958
   - enabled: 1
-    path: Assets/Scenes/TicTacToe.unity
+    path: Assets/Scenes/Legacy/TicTacToe.unity
     guid: ac0a883e2757a4eb2b7c3c038ed52c1d
   - enabled: 1
     path: Assets/Scenes/Legacy/RythymDemo.unity
     guid: ad2fb26b4f7bd4dfca3a0ac310ff4332
   - enabled: 1
-    path: Assets/Scenes/LevelSelect.unity
+    path: Assets/Scenes/Legacy/LevelSelect.unity
     guid: dac0831a0c07c4fc6ac2012b428af5e3
   - enabled: 1
     path: Assets/Scenes/RefactoredLevelSelect.unity
@@ -39,7 +39,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SimpleRhythm.unity
     guid: c08416856ebb75c468c250744870a6a9
   - enabled: 1
-    path: Assets/Scenes/Credits.unity
+    path: Assets/Scenes/Legacy/Credits.unity
     guid: 99c96ef4871a84cdf96c65c40d7ef4d1
   - enabled: 1
     path: Assets/Scenes/CreditsRedo.unity
