@@ -15,7 +15,7 @@ public class TicTacToeTriggers : TutorialSystem
         if(currentIndex == 0){
             NextTutorial();
             //tttr.board[1][1].GetComponent<IfIveBeenClicked>().tutorialClickable = true;
-        } else if(currentIndex == 1 && (GetIntegerListFromTileList(tiles)[4] == 0 || forceThrough){
+        } else if(currentIndex == 1 && tttr.GetIntegerListFromTileList(tttr.tiles)[4] == 0 || forceThrough){
             NextTutorial();
             Time.timeScale = 1;
         } else if(currentIndex == 2){

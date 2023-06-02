@@ -312,7 +312,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    List<int> GetIntegerListFromTileList(List<Tile> tiles)
+    public List<int> GetIntegerListFromTileList(List<Tile> tiles)
     {
         List<int> integerBoard = new List<int>();
 
