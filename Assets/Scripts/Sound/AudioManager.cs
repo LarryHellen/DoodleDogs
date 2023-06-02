@@ -9,8 +9,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] Slider volumeSliderMusic;
     [SerializeField] Slider volumeSliderSFX;
 
-    void Start(){
-        
+    void Start()
+    {
+        //Nothing?
     }
 
     private void Awake()
@@ -24,10 +25,6 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
 
         }
-
-        
-
-        //Play("AfghanMusicBackground");
     }
 
     public void Play (string name)

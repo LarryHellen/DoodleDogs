@@ -50,5 +50,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CreditsRedo.unity
     guid: ce2b436e8643eeb43b2c4feb2ca44793
+  - enabled: 1
+    path: Assets/Scenes/RefactoredTicTacToe.unity
+    guid: 00dd61cc2322ac04f9cbf2c2d3be5b39
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c8e66a3bf3f274609b8b6196ff218934, type: 2}

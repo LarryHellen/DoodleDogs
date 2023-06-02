@@ -23,7 +23,7 @@ public class Tile
 
     public void SetSprite(int turnCounter)
     {
-        Debug.Log("SetSprite");
+        //Debug.Log("SetSprite");
         type = turnCounter % 2;
         image.sprite = tileSprites[type];
         image.color = new Color(image.color.r, image.color.g, image.color.b, 255);

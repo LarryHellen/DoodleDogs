@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
     [Header("Game Settings")]
     public int turnCounter = 0;
     public bool advanced;
+    [Range(0, 10)]
+    public int RandomMoveChance;
+    public float waitTimeBeforeEnd;
+    public float waitToThinkTime;
     public bool placingEnabled = true;
     public List<GameObject> boardPositions;
     [HideInInspector] public List<Tile> tiles = new List<Tile>();
@@ -28,7 +32,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        RegisterAdvanced();
+        RegisterAdvanced(); //Sets timeScale to 0 for some reason
+        Time.timeScale = 1; //Fix for the above problem
 
         InstantiateAndPositionTiles();
     }
@@ -47,21 +52,18 @@ public class GameManager : MonoBehaviour
 
     public void CompleteTurn()
     {
-        Debug.Log("CompleteTurn");
+        //Debug.Log("CompleteTurn");
         placingEnabled = false;
-
        
         turnCounter++; //Account for the player's turn
         
         if (advanced)
         {
-            int selectedIndex = TwistAI();
-            tiles[selectedIndex].SetSprite(turnCounter);
-            turnCounter++; //Account for the AI's turn
-
+            Debug.Log("Advanced");
+            AIMove();
 
             //Rotate the board
-            RotateBoard();
+            StartCoroutine(WaitThenRotate());
 
             //Check for win or lose
             StartCoroutine(WaitUntilLerpOverToCheckForWinOrLose()); //The coroutine waits until placingEnabled gets set to true in the LerpTile coroutine to check for win or lose to ensure that all tiles have moved before the game ends
@@ -70,59 +72,67 @@ public class GameManager : MonoBehaviour
         }
         else 
         {
-            int selectedIndex = NormalAI();
-            tiles[selectedIndex].SetSprite(turnCounter);
-            turnCounter++; //Account for the AI's turn
-
+            Debug.Log("Not Advanced");
+            AIMove();
 
             //Check for win or lose
-            CheckForWinOrLose();
-
-            placingEnabled = true;
+            CheckForWinOrLose(); 
+            placingEnabled = true; // Resume gameplay
         }
     }
 
 
     void CheckForWinOrLose()
     {
-        Debug.Log("CheckForWinOrLose");
+        //Debug.Log("CheckForWinOrLose");
 
         bool? result = CheckBoard(GetIntegerListFromTileList(tiles)); //null means no one wins, true means player wins, false means AI wins
         if(result != null)
         {
             if ((bool) result)
             {
-                Win();
+                StartCoroutine(WaitThenWin());
             }
             else
             {
-                Lose();
+                StartCoroutine(WaitThenLose());
             }
+        }
+        else 
+        {
+            if (!GetIntegerListFromTileList(tiles).Contains(-1))
+            {
+                StartCoroutine(WaitThenLose());
+            }
+        }            
+    }
+
+    void AIMove()
+    {
+        if (turnCounter < 8)
+        {
+            int selectedIndex;
+            if (Random.Range(1, RandomMoveChance+1) == 1)
+            {
+                selectedIndex = FindRandomMove();
+            }
+            else
+            {
+                selectedIndex = AISelectMove();
+            }
+            tiles[selectedIndex].SetSprite(turnCounter);
+            FindObjectOfType<AudioManager>().Play("PlaceSock");
+            turnCounter++; //Account for the AI's turn
         }
     }
 
-
-    int TwistAI()
+    int AISelectMove()
     {
-        Debug.Log("TwistAI");
-
-        List<int> integerBoard = GetIntegerListFromTileList(tiles); //Remember to set end selected tile to the proper one, accounting for the fact the "tiles" list isn't top-down, left-right
-
-        //DO AI Alpha Beta search which includes rotating the board, Recursion will probably be used, Check Ben Dms for more info
-
-        return 0;
-    }
-
-
-    int NormalAI()
-    {
-        Debug.Log("NormalAI");
-
-        List<int> integerBoard = GetIntegerListFromTileList(tiles); //Remember to set end selected tile to the proper one, accounting for the fact the "tiles" list isn't top-down, left-right
-
-        //DO AI Alpha Beta search, Recursion will probably be used, Check Ben Dms for more info
+        Debug.Log("AISelectMove");
+        List<int> integerBoard = GetIntegerListFromTileList(tiles);
+        
         int aiTurnCounter = turnCounter;
-        List<int> indexRatings = NormalAIFindBestMove(integerBoard, aiTurnCounter);
+        List<int> indexRatings = RepairBestMoves(AIFindBestMove(integerBoard, aiTurnCounter, true));
         Debug.Log("Index Ratings: ");
         PrintIntegerList(indexRatings);
         List<int> bestMoveIndexes = GetBestMovesFromIndexRatings(indexRatings);
@@ -149,32 +159,71 @@ public class GameManager : MonoBehaviour
     }
 
 
-    List<int> NormalAIFindBestMove(List<int> integerBoard, int aiTurnCounter) //Only checks the first position avaible each time, needs to be fixed
+    List<int> RepairBestMoves(List<int> indexRatings)
+    {
+        List<int> newIndexRatings = new List<int>(indexRatings);
+        List<int> board = GetIntegerListFromTileList(tiles);
+
+        for (int i = 0; i < board.Count; i++)
+        {
+            if (board[i] != -1)
+            {
+                newIndexRatings[i] = int.MinValue;
+            }
+        }
+
+        return newIndexRatings;
+    }
+
+
+    int FindRandomMove()
+    {
+        Debug.Log("FindRandomMove");
+        List<int> board = GetIntegerListFromTileList(tiles);
+        List<int> possibleMoves = new List<int>();
+
+        for (int i = 0; i < board.Count; i++)
+        {
+            if (board[i] == -1)
+            {
+                possibleMoves.Add(i);
+            }
+        }
+
+        int selectedIndex = possibleMoves[Random.Range(0, possibleMoves.Count)];
+
+        return selectedIndex;
+    }
+
+
+    List<int> AIFindBestMove(List<int> integerBoard, int aiTurnCounter, bool topLevel=false) //Only checks the first position avaible each time, needs to be fixed
     {
         List<int> indexRatings = new List<int>(new int[9]);
-        //for (int i = 0; i < indexRatings.Count; i++) { indexRatings[i] = 5; }
 
 
         for (int i = 0; i < integerBoard.Count; i++)
         {
             if (integerBoard[i] == -1)
             {
-                List<int> newIntegerBoard = integerBoard;
+                List<int> newIntegerBoard = new List<int>(integerBoard);
                 newIntegerBoard[i] = aiTurnCounter % 2;
 
-                PrintIntegerList(GetTopToBottomLeftToRightIntegerListFromIntegerList(newIntegerBoard));
+                if (aiTurnCounter % 2 == 0 && advanced)
+                {
+                    newIntegerBoard = RotateBoard(newIntegerBoard);
+                }
 
                 bool? result = CheckBoard(newIntegerBoard); //null means no one wins, true means player wins, false means AI wins
                 if (result != null)
                 {
                     if ((bool)result)
                     {
-                        indexRatings[i] = -1;
+                        indexRatings[i] = -3;
                         return indexRatings;
                     }
                     else
                     {
-                        indexRatings[i] = 1;
+                        indexRatings[i] = 4;
                         return indexRatings;
                     }
                 }
@@ -182,23 +231,23 @@ public class GameManager : MonoBehaviour
                 {
                     if (!newIntegerBoard.Contains(-1))
                     {
-                        indexRatings[i] = 0;
+                        indexRatings[i] = -2;
                         return indexRatings;
                     }
                 }
 
-                List<int> recursiveIndexRatings = NormalAIFindBestMove(newIntegerBoard, aiTurnCounter+1);
-                if (recursiveIndexRatings.Contains(-1))
+                List<int> recursiveIndexRatings = AIFindBestMove(newIntegerBoard, aiTurnCounter+1);
+
+                for (int j = 0; j < recursiveIndexRatings.Count; j++)
                 {
-                    indexRatings[i] = -1;
+                    indexRatings[i] += recursiveIndexRatings[j];
                 }
-                else if (recursiveIndexRatings.Contains(0))
+            }
+            else
+            {
+                if (topLevel)
                 {
-                    indexRatings[i] = 0;
-                }
-                else if (recursiveIndexRatings.Contains(1))
-                {
-                    indexRatings[i] = 1;
+                    indexRatings[i] = int.MinValue;
                 }
             }
         }
@@ -209,7 +258,7 @@ public class GameManager : MonoBehaviour
 
     bool? CheckBoard(List<int> integerBoard) //null means no one wins, true means player wins, false means AI wins
     {
-        Debug.Log("CheckBoard");
+        //Debug.Log("CheckBoard");
 
         integerBoard = GetTopToBottomLeftToRightIntegerListFromIntegerList(integerBoard);
 
@@ -238,17 +287,21 @@ public class GameManager : MonoBehaviour
         {
             if (wins[i].Count == 1 && wins[i].Contains(1))
             {
-                Debug.Log("AI wins");
+                //Debug.Log("AI wins");
                 return false;
             }
-            else if (wins[i].Count == 1 && wins[i].Contains(0))
+        }
+
+        for (int i = 0; i < wins.Count; i++)
+        {
+            if (wins[i].Count == 1 && wins[i].Contains(0))
             {
-                Debug.Log("Player wins");
+                //Debug.Log("Player wins");
                 return true;
             }
         }
 
-        Debug.Log("No one wins");
+        //Debug.Log("No one wins");
         return null;
     }
 
@@ -309,11 +362,8 @@ public class GameManager : MonoBehaviour
     void Win()
     {
         Debug.Log("Win");
-
-
+        FindObjectOfType<AudioManager>().Play("Scratch");
         RegisterTutorial();
-
-
         SceneManager.LoadScene("RefactoredCutscenes");
     }
 
@@ -321,7 +371,29 @@ public class GameManager : MonoBehaviour
     void Lose()
     {  
         Debug.Log("Lose");
+        FindObjectOfType<AudioManager>().Play("DefeatScreen");
         LoseScreen.SetActive(true);
+    }
+
+
+    IEnumerator WaitThenLose()
+    {
+        yield return new WaitForSeconds(waitTimeBeforeEnd);
+        Lose();
+    }
+
+
+    IEnumerator WaitThenWin()
+    {
+        yield return new WaitForSeconds(waitTimeBeforeEnd);
+        Win();
+    }
+
+
+    IEnumerator WaitThenRotate()
+    {
+        yield return new WaitForSeconds(waitToThinkTime);
+        RotateBoard();
     }
 
 
@@ -333,7 +405,7 @@ public class GameManager : MonoBehaviour
 
     void RotateBoard()
     {
-        Debug.Log("RotateBoard");
+        //Debug.Log("RotateBoard");
 
         List<Tile> outsideRing = GetOutsideRing(tiles);
 
@@ -342,6 +414,19 @@ public class GameManager : MonoBehaviour
         TransformOutsideRing(outsideRing);
 
         UpdateTilesList(outsideRing);
+    }
+
+    List<int> RotateBoard(List<int> integerBoard)
+    {
+        //Debug.Log("INT - RotateBoard");
+        
+        List<int> outsideRing = GetOutsideRing(integerBoard);
+
+        outsideRing = RotateOutsideRing(outsideRing);
+
+        integerBoard = UpdateTilesList(outsideRing, integerBoard);
+        
+        return integerBoard;
     }
 
 
@@ -373,7 +458,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    List<GameObject> GetOutsideRing(List<GameObject> boardPositions) //Make an overload of this for lists of ints - Cai (Note to Self)
+    List<GameObject> GetOutsideRing(List<GameObject> boardPositions)
     {
         List<GameObject> outsideRing = new List<GameObject>();
         outsideRing.AddRange(boardPositions.GetRange(0, 4)); //Gets indexes 0, 1, 2, 3
@@ -383,10 +468,37 @@ public class GameManager : MonoBehaviour
     }
 
 
-    List<Tile> RotateOutsideRing(List<Tile> rotatedOutsideRing) //Make an overload of this for lists of ints - Cai (Note to Self)
+    List<Tile> RotateOutsideRing(List<Tile> rotatedOutsideRing) 
     {
         Tile tempTile = rotatedOutsideRing[0];
         Tile otherTempTile;
+
+        for (int i = 1; i < rotatedOutsideRing.Count; i++)
+        {
+            otherTempTile = rotatedOutsideRing[i];
+            rotatedOutsideRing[i] = tempTile;
+            tempTile = otherTempTile;
+        }
+        rotatedOutsideRing[0] = tempTile;
+
+        return rotatedOutsideRing;
+    }
+
+
+    List<int> GetOutsideRing(List<int> boardPositions) 
+    {
+        List<int> outsideRing = new List<int>();
+        outsideRing.AddRange(boardPositions.GetRange(0, 4)); //Gets indexes 0, 1, 2, 3
+        outsideRing.AddRange(boardPositions.GetRange(5, 4)); //Gets indexes 5, 6, 7, 8
+
+        return outsideRing;
+    }
+
+
+    List<int> RotateOutsideRing(List<int> rotatedOutsideRing) 
+    {
+        int tempTile = rotatedOutsideRing[0];
+        int otherTempTile;
 
         for (int i = 1; i < rotatedOutsideRing.Count; i++)
         {
@@ -440,6 +552,16 @@ public class GameManager : MonoBehaviour
         Tile centerTile = tiles[4];
         tiles = new List<Tile>(outsideRing);
         tiles.Insert(4, centerTile);
+    }
+
+
+    List<int> UpdateTilesList(List<int> outsideRing, List<int> integerBoard)
+    {
+        int centerTile = integerBoard[4];
+        integerBoard = new List<int>(outsideRing);
+        integerBoard.Insert(4, centerTile);
+
+        return integerBoard;
     }
 
 

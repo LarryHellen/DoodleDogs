@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ActivateSettings : MonoBehaviour
 {
@@ -28,12 +29,16 @@ public class ActivateSettings : MonoBehaviour
     }
     */
 
+
     public void SettingsClicked()
     {
+        
+
         if (state == false)
         {
             gameRunning = false;
             settingsMenu.SetActive(true);
+            open.SetActive(false);
             Time.timeScale = 0;
             state = true;
         }
@@ -41,8 +46,27 @@ public class ActivateSettings : MonoBehaviour
         {
             gameRunning = true;
             settingsMenu.SetActive(false);
+            open.SetActive(true);
             Time.timeScale = 1;
             state = false;
         }
-    }
+
+        //Audio Stuff (Only works specifically in Tic Tac Toe)
+        try
+        {
+            BackgroundAudioHandler backgroundAudioHandler = FindObjectOfType<BackgroundAudioHandler>();
+            if (state == true)
+            {
+                backgroundAudioHandler.PauseAudio();
+            }
+            else
+            {
+                backgroundAudioHandler.UnPauseAudio();
+            }
+        }
+        catch
+        {
+            //Nothing lol
+        }
+    }   
 }
