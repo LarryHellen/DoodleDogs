@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
         {
             tutorialObject.Setup();
         }
+
+        FindObjectOfType<AudioManager>().Play("GoldenDoodleMusicBackground");
     }
 
 

@@ -71,5 +71,5 @@ public class TileMatchingTriggers : TutorialSystem
         board.tutorialEnabled = false;  
         board.ResetGame();
         shouldEnd = false;
-        }
+    }
 }

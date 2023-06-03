@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class SoundManagerSFX : MonoBehaviour
 {
-    public AudioSource AudioSource;
-    [SerializeField] Slider volumeSliderMusic;
+    [HideInInspector] public AudioSource AudioSource;
+    public Slider volumeSliderMusic;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +19,11 @@ public class SoundManagerSFX : MonoBehaviour
         {
             LoadMusic();
         }
+    }
 
+    void Update()
+    {
+        Save();
     }
 
     public void ChangeVolume()
@@ -32,9 +37,8 @@ public class SoundManagerSFX : MonoBehaviour
         volumeSliderMusic.value = PlayerPrefs.GetFloat("Volume (SFX)");
     }
 
-    private void Save()
+    public void Save()
     {
         PlayerPrefs.SetFloat("Volume (SFX)", volumeSliderMusic.value);
     }
-
 }

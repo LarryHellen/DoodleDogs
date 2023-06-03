@@ -58,6 +58,8 @@ public class ContinousNoteSpawning : MonoBehaviour
 
     void Awake()
     {
+        FindObjectOfType<AudioManager>().Play("PauseSong");
+
         RectTransform canvasRt = noteCanvas.GetComponent<RectTransform>();
         screenWidth = canvasRt.sizeDelta.x;
         screenHeight = canvasRt.sizeDelta.y;
@@ -99,11 +101,16 @@ public class ContinousNoteSpawning : MonoBehaviour
             }
         }
 
-        if(tutorialEnabled == true){
+        if(tutorialEnabled == true)
+        {
             Time.timeScale = 0.0f;
             rt.Setup();
         }
-
+        else
+        {
+            Time.timeScale = 1.0f;
+            CRhythmTriggers.pauseGame = false;
+        }
     }
 
 

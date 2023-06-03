@@ -32,12 +32,14 @@ public class BackgroundAudioHandler : MonoBehaviour
 
     public void PauseAudio()
     {
-        this.GetComponent<AudioSource>().Pause();
+        //Commenting this out to make this game's music act like the rest of the games'
+        //this.GetComponent<AudioSource>().Pause();
     }
 
 
     public void UnPauseAudio()
     {
-        this.GetComponent<AudioSource>().UnPause();
+        //Commenting this out to make this game's music act like the rest of the games'
+        //this.GetComponent<AudioSource>().UnPause();
     }
 }

@@ -33,6 +33,9 @@ public class Chapter
         else if (currentCutscene >= cutscenes.Count && CutsceneSystem.instance.currentChapter == CutsceneSystem.instance.chapterGameObjects.Count - 1)
         {
             currentCutscene--;
+            cutscenes[currentCutscene].SetActive(true);
+            ButtonHideCheck();
+            return;
         }
         else if (cutscenes[currentCutscene].CompareTag("Game"))
         {
@@ -42,12 +45,12 @@ public class Chapter
             jsonDataManipulation.SaveByJSON();
 
             SceneManager.LoadScene(cutscenes[currentCutscene].name);
-
             return;
         }
         
         ButtonHideCheck();
 
+        CutsceneSystem.instance.PlayFlipPageSound();
         cutscenes[currentCutscene].SetActive(true);
     }
 
@@ -66,10 +69,14 @@ public class Chapter
         else if (currentCutscene < 0 && CutsceneSystem.instance.currentChapter == 0)
         {
             currentCutscene++;
+            cutscenes[currentCutscene].SetActive(true);
+            ButtonHideCheck();
+            return;
         }
 
         ButtonHideCheck();
 
+        CutsceneSystem.instance.PlayFlipPageSound();
         cutscenes[currentCutscene].SetActive(true);
     }
 

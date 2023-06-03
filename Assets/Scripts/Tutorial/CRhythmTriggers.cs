@@ -10,7 +10,6 @@ public class CRhythmTriggers : TutorialSystem
     public static bool pauseGame;
 
 
-
     void Awake()
     {
         pauseGame = true;
@@ -50,8 +49,6 @@ public class CRhythmTriggers : TutorialSystem
             currentIndex = normalLastIndex + 1;
         }
     }
-
-
 
     // Update is called once per frame
     void Update()

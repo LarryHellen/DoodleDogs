@@ -39,7 +39,7 @@ public class CAudioDelay : MonoBehaviour
     }
 
 
-    IEnumerator DelayAudio()
+    IEnumerator DelayAudio()  //TO DO - MAKE THE RHYTHM AUDIO USE THE AUDIO MANAGER SO THAT THE VOLUME SLIDERS WORK FOR IT - Cai
     {
         while (CRhythmTriggers.pauseGame)
         {

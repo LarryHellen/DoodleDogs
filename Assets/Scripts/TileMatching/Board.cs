@@ -26,7 +26,7 @@ public class Board : MonoBehaviour
     public FindMatches findMatches;
     public MoveCounter moveCounter;
     public CounterHolder counterHolder;
-    public ActivateSettings actovateSettings;
+    public ActivateSettings activateSettings;
     public GoToNewScene GoToNewScene;
     public GameObject victoryScreen;
     public GameObject defeatScreen;
@@ -46,10 +46,9 @@ public class Board : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 1;
         //LoadByJSON();
         RegisterAdvanced();
-        Time.timeScale = 1f;
+        Time.timeScale = 1;
         SetUp();
     }
 
@@ -495,6 +494,9 @@ public class Board : MonoBehaviour
                 count++;
             }
         }
+
+        Time.timeScale = 1;
+        activateSettings.gameRunning = true;
     }
 
     private void LoadFromPlayerData(PlayerData tempData)

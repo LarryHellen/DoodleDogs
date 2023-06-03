@@ -16,6 +16,8 @@ public class CutsceneSystem : MonoBehaviour
 
     private List<bool> chaptersUnlocked;
 
+    [SerializeField] Sound[] eachChaptersBackgroundMusic;
+
 
     void Start()
     {
@@ -23,8 +25,6 @@ public class CutsceneSystem : MonoBehaviour
         {
             instance = this;
         }
-
-
 
         jsonDataManipulation.LoadByJSON();
         currentChapter = jsonDataManipulation.currentChapter - 1;
@@ -59,9 +59,10 @@ public class CutsceneSystem : MonoBehaviour
         if (currentChapter != 0) {chapterGameObjects[currentChapter - 1].SetActive(false);}
         chapterGameObjects[currentChapter].SetActive(true);
 
-
         chaptersUnlocked[currentChapter] = true;
 
+        //Put Music Playing Here
+        FindObjectOfType<AudioManager>().Play(eachChaptersBackgroundMusic[currentChapter].name);
 
         jsonDataManipulation.LoadByJSON();
         jsonDataManipulation.currentChapter = currentChapter;
@@ -81,6 +82,9 @@ public class CutsceneSystem : MonoBehaviour
         StepBackward();
         if (currentChapter != chapterGameObjects.Count-1) {chapterGameObjects[currentChapter + 1].SetActive(false);}
         chapterGameObjects[currentChapter].SetActive(true);
+
+        //Put Music Playing Here
+        FindObjectOfType<AudioManager>().Play(eachChaptersBackgroundMusic[currentChapter].name);
 
         jsonDataManipulation.LoadByJSON();
         jsonDataManipulation.currentChapter = currentChapter;
@@ -108,5 +112,11 @@ public class CutsceneSystem : MonoBehaviour
         jsonDataManipulation.LoadByJSON();
         jsonDataManipulation.currentCutscene = chapters[currentChapter].currentCutscene;
         jsonDataManipulation.SaveByJSON();
+    }
+
+
+    public void PlayFlipPageSound()
+    {
+        FindObjectOfType<AudioManager>().Play("FlipPage");
     }
 }

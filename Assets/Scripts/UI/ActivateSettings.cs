@@ -7,9 +7,9 @@ public class ActivateSettings : MonoBehaviour
 {
     public GameObject settingsMenu;
     public bool gameRunning = true;
-
     public GameObject open;
     private bool state = false;
+
 
     /*
     public void OpenSettings()
@@ -32,8 +32,6 @@ public class ActivateSettings : MonoBehaviour
 
     public void SettingsClicked()
     {
-        
-
         if (state == false)
         {
             gameRunning = false;

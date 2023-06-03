@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 84566288}
   - component: {fileID: 84566287}
   - component: {fileID: 84566291}
+  - component: {fileID: 84566292}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -250,6 +251,18 @@ MonoBehaviour:
   chapter4: 0
   chapter5: 0
   inCutscenes: 0
+--- !u!114 &84566292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84566286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30f0072775578a54b8038c50d7874b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &343961555
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,6 +637,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 974917731}
   m_CullTransparentMesh: 1
+--- !u!1 &982497539 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5476431888060274811, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
+  m_PrefabInstance: {fileID: 5476431888282315863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1095339595 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1404098932095308868, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
@@ -642,6 +660,7 @@ GameObject:
   - component: {fileID: 1197963071}
   - component: {fileID: 1197963070}
   - component: {fileID: 1197963073}
+  - component: {fileID: 1197963074}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -783,6 +802,166 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1197963074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197963068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e88a350ecca4e64196469dc56b2c6e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1728750359
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1728750363}
+  - component: {fileID: 1728750362}
+  m_Layer: 0
+  m_Name: MultiSceneAudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1728750362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728750359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9c3a6ff684794ffba5a2df023d58402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Deny
+    isSong: 0
+    clip: {fileID: 8300000, guid: 3f7800b5cb87046f185a4d815acb8986, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: TileSpawn
+    isSong: 0
+    clip: {fileID: 8300000, guid: f983bab573bf34806b48713f738ef477, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: MatchSuccess
+    isSong: 0
+    clip: {fileID: 8300000, guid: 3c9ce71abd4794b24a1667a5d2c9c051, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Scratch
+    isSong: 0
+    clip: {fileID: 8300000, guid: 404cf0e69f91249f5b8acd3e5ee8b5fd, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: PlaceBall
+    isSong: 0
+    clip: {fileID: 8300000, guid: aabf226ff51bc4b0e99a8b1f54a10beb, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: PlaceSock
+    isSong: 0
+    clip: {fileID: 8300000, guid: fe3b4e0fe9511488b8cdc735296baa38, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: DefeatScreen
+    isSong: 0
+    clip: {fileID: 8300000, guid: ea56df3036dc84b838d95ebe0b79a7ae, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: FlipPage
+    isSong: 0
+    clip: {fileID: 8300000, guid: 32bb120a2e80e4639afc43a00cc527f9, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: MainMenuMusicBackground
+    isSong: 1
+    clip: {fileID: 8300000, guid: 4547e89eadda63f4890829a587c1a739, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: TileMatchingMusicBackground
+    isSong: 1
+    clip: {fileID: 8300000, guid: 65fca0bd276aa1c46917fca0bf148985, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: AfghanMusicBackground
+    isSong: 1
+    clip: {fileID: 8300000, guid: 783d7625d7d0d4a90a327ef899896dad, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: GoldenDoodleMusicBackground
+    isSong: 1
+    clip: {fileID: 8300000, guid: b626cc508c9894627a64571229b9d19b, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: RufusMusicBackground
+    isSong: 1
+    clip: {fileID: 8300000, guid: a0959c90d712a4a4383eb124b715f476, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: ButtonSFX
+    isSong: 0
+    clip: {fileID: 8300000, guid: c648024bb46516d4e84743f7fd38cbb9, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: DoorBellRing
+    isSong: 0
+    clip: {fileID: 8300000, guid: e5a4d981fb64d5241a9726f27f721a15, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: PauseSong
+    isSong: 1
+    clip: {fileID: 8300000, guid: e86469fb761e7e34f953b94b3129aa54, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  volumeSliderMusic: {fileID: 0}
+  volumeSliderSFX: {fileID: 0}
+--- !u!224 &1728750363
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728750359}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1889763843
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,6 +976,7 @@ GameObject:
   - component: {fileID: 1889763845}
   - component: {fileID: 1889763848}
   - component: {fileID: 1889763849}
+  - component: {fileID: 1889763850}
   m_Layer: 5
   m_Name: CreditsButton
   m_TagString: Untagged
@@ -957,6 +1137,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1889763850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889763843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e88a350ecca4e64196469dc56b2c6e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1895169005
 GameObject:
   m_ObjectHideFlags: 0
@@ -1087,7 +1279,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2013402499
 MonoBehaviour:
@@ -1409,6 +1601,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingsMenuObject
       objectReference: {fileID: 0}
+    - target: {fileID: 5476431888060274808, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476431888060274808, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476431888060274808, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 982497539}
+    - target: {fileID: 5476431888060274808, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476431888060274808, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ActivateSettings, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5476431888060274810, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.8000002
@@ -1434,8 +1646,15 @@ PrefabInstance:
       value: 793.27496
       objectReference: {fileID: 0}
     - target: {fileID: 5476431888196937856, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476431888196937856, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 84566291}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4449592177650575806, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
+    - {fileID: 6478156766897345672, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
+    - {fileID: 7531818426501041736, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
