@@ -124,7 +124,10 @@ public class Dot : MonoBehaviour
         { 
             if (board.currentState == GameState.move)
             {
-                firstTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                if (!board.tutorialEnabled || isTutorial)
+                {
+                    firstTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                }
             }
             
         }
@@ -135,8 +138,11 @@ public class Dot : MonoBehaviour
         {
             if (board.currentState == GameState.move)
             {
-                finalTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                CalculateAngle();
+                if (!board.tutorialEnabled || isTutorial)
+                {
+                    finalTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    CalculateAngle();
+                }
             }
         }
     }
