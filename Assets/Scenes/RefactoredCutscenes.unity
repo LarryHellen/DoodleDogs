@@ -182,7 +182,6 @@ MonoBehaviour:
   star4: {fileID: 1141626477}
   star5: {fileID: 846499624}
   slide: {fileID: 1920114}
-  goForward: {fileID: 0}
 --- !u!114 &1920114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9399,27 +9398,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1404098932095308868, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1404098932095308868, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1404098932095308868, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1404098932095308868, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1404098932095308868, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: -0.60077
       objectReference: {fileID: 0}
     - target: {fileID: 1404098932095308868, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: -1.0653
       objectReference: {fileID: 0}
     - target: {fileID: 1404098932095308868, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9451,7 +9450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1404098932095308868, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -0.00073242
       objectReference: {fileID: 0}
     - target: {fileID: 1404098932095308868, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -9535,19 +9534,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5476431888058215035, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -460.86356
+      value: -819.8635
       objectReference: {fileID: 0}
     - target: {fileID: 5476431888058215035, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -781.01953
+      value: -1597.0194
       objectReference: {fileID: 0}
     - target: {fileID: 5476431888060274810, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 337
+      value: -22
       objectReference: {fileID: 0}
     - target: {fileID: 5476431888060274810, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 794
+      value: -22
       objectReference: {fileID: 0}
     - target: {fileID: 5476431888060274811, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_IsActive
@@ -13730,7 +13729,6 @@ MonoBehaviour:
   star4: {fileID: 111427022}
   star5: {fileID: 1877195369}
   slide: {fileID: 1111495478}
-  goForward: {fileID: 0}
 --- !u!114 &1111495478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22607,7 +22605,6 @@ MonoBehaviour:
   star4: {fileID: 746320743}
   star5: {fileID: 1563386201}
   slide: {fileID: 1831161647}
-  goForward: {fileID: 0}
 --- !u!114 &1831161647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24335,7 +24332,6 @@ MonoBehaviour:
   star4: {fileID: 689047816}
   star5: {fileID: 1415882659}
   slide: {fileID: 1970182291}
-  goForward: {fileID: 809445960}
 --- !u!114 &1970182291
 MonoBehaviour:
   m_ObjectHideFlags: 0
