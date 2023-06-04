@@ -49,7 +49,7 @@ public class Chapter
         }
         
         ButtonHideCheck();
-
+        Vibration.VibratePop();
         CutsceneSystem.instance.PlayFlipPageSound();
         cutscenes[currentCutscene].SetActive(true);
     }
@@ -75,7 +75,7 @@ public class Chapter
         }
 
         ButtonHideCheck();
-
+        Vibration.VibratePop();
         CutsceneSystem.instance.PlayFlipPageSound();
         cutscenes[currentCutscene].SetActive(true);
     }

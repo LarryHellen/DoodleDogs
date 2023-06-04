@@ -87,5 +87,7 @@ public class JsonDataManipulation
 
         tutorialsDone = new List<bool>();
         for (int i = 0; i < 10; i++) { tutorialsDone.Add(false); }
+
+        currentCutscene = 0;
     }
 }
