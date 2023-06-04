@@ -68,8 +68,12 @@ public class TileMatchingTriggers : TutorialSystem
 
     public void EndTutorial(){
         print("got here 3");
-        board.tutorialEnabled = false;  
-        board.ResetGame();
+        board.tutorialEnabled = false;
+        if (!advanced)
+        {
+            board.ResetGame();
+        }
         shouldEnd = false;
+        Time.timeScale = 1f;
     }
 }
