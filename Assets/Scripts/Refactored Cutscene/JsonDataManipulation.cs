@@ -89,5 +89,7 @@ public class JsonDataManipulation
         for (int i = 0; i < 10; i++) { tutorialsDone.Add(false); }
 
         currentCutscene = 0;
+
+        Time.timeScale = 1;
     }
 }
