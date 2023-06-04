@@ -73,22 +73,22 @@ public class DragScrollRefactored : MonoBehaviour
 
         if (chaptersUnlocked[1])
         {
-            c2d.SetActive(false);
+            c2e.GetComponent<Button>().interactable = true;
             c2e.GetComponent<Image>().sprite = c2image;
         }
         if (chaptersUnlocked[2])
         {
-            c3d.SetActive(false);
+            c3e.GetComponent<Button>().interactable = true;
             c3e.GetComponent<Image>().sprite = c3image;
         }
         if (chaptersUnlocked[3])
         {
-            c4d.SetActive(false);
+            c4e.GetComponent<Button>().interactable = true;
             c4e.GetComponent<Image>().sprite = c4image;
         }
         if (chaptersUnlocked[4])
         {
-            c5d.SetActive(false);
+            c5e.GetComponent<Button>().interactable = true;
             c5e.GetComponent<Image>().sprite = c5image;
         }
 
