@@ -3175,6 +3175,7 @@ GameObject:
   - component: {fileID: 1082523858}
   - component: {fileID: 1082523857}
   - component: {fileID: 1082523856}
+  - component: {fileID: 1082523859}
   m_Layer: 5
   m_Name: RetryButton
   m_TagString: Untagged
@@ -3296,6 +3297,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1082523854}
   m_CullTransparentMesh: 1
+--- !u!114 &1082523859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082523854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e88a350ecca4e64196469dc56b2c6e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1089018131
 GameObject:
   m_ObjectHideFlags: 0
