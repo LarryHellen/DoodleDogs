@@ -41,7 +41,12 @@ public class Board : MonoBehaviour
     public TileMatchingTriggers tutorialSystem;
 
 
-
+    public void TSR()
+    {
+        print("previous time scale: " + Time.timeScale);
+        Time.timeScale = 1f;
+        print("new time scale: " + Time.timeScale);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -72,8 +77,9 @@ public class Board : MonoBehaviour
         if(IsDeadlocked()){
             ShuffleBoard();
         }
-        
-        if(tutorialEnabled == true){
+        activateSettings.gameRunning = true;
+
+        if (tutorialEnabled == true){
             tutorialSystem.Setup();
         }
         
@@ -496,7 +502,7 @@ public class Board : MonoBehaviour
         }
 
         Time.timeScale = 1;
-        activateSettings.gameRunning = true;
+        //activateSettings.gameRunning = true;
     }
 
     private void LoadFromPlayerData(PlayerData tempData)
