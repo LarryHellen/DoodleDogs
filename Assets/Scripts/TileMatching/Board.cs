@@ -41,6 +41,13 @@ public class Board : MonoBehaviour
     public TileMatchingTriggers tutorialSystem;
     public GameObject alternateLoseScreen;
 
+    public GameObject[] test1;
+    public GameObject[] test2;
+    public GameObject[] test3;
+    public GameObject[] test4;
+    public GameObject[] test5;
+    public GameObject[] test6;
+
 
     public void TSR()
     {
@@ -52,10 +59,45 @@ public class Board : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        test1 = new GameObject[6];
+        test2 = new GameObject[6];
+        test3 = new GameObject[6];
+        test4 = new GameObject[6];
+        test5 = new GameObject[6];
+        test6 = new GameObject[6];
+
         //LoadByJSON();
         RegisterAdvanced();
         Time.timeScale = 1;
         SetUp();
+    }
+
+    void Update()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            test1[i] = allDots[0, i];
+        }
+        for (int i = 0; i < 6; i++)
+        {
+            test2[i] = allDots[1, i];
+        }
+        for (int i = 0; i < 6; i++)
+        {
+            test3[i] = allDots[2, i];
+        }
+        for (int i = 0; i < 6; i++)
+        {
+            test4[i] = allDots[3, i];
+        }
+        for (int i = 0; i < 6; i++)
+        {
+            test5[i] = allDots[4, i];
+        }
+        for (int i = 0; i < 6; i++)
+        {
+            test6[i] = allDots[5, i];
+        }
     }
 
     

@@ -1724,7 +1724,7 @@ MonoBehaviour:
   shouldEnd: 0
   tttr: {fileID: 663524434}
   placed: 0
-  forceThrough: 1
+  forceThrough: 0
 --- !u!1 &538294204 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 64469592468367937, guid: dca7054c28f526a429031fd092b601cd, type: 3}
