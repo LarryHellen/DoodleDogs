@@ -2955,7 +2955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907106ef9b66341eda65b6655431e866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: Main Menu
+  scene: MainMenu
   reset: 0
   chapter2: 0
   chapter3: 0
@@ -5636,7 +5636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907106ef9b66341eda65b6655431e866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: Main Menu
+  scene: MainMenu
   reset: 0
   chapter2: 0
   chapter3: 0
