@@ -33,7 +33,8 @@ public class ContinousNoteSpawning : MonoBehaviour
     public bool advanced;
     public bool tutorialEnabled;
     public CRhythmTriggers rt;
-
+    public GameObject alternateLoseScreen;
+    
     [Space(25)]
     
 
@@ -54,7 +55,7 @@ public class ContinousNoteSpawning : MonoBehaviour
     private CAudioDelay cAudioDelay;
     public AudioSource[] audioArray;
     private CLivesCounter cLivesCounter;
-    
+
 
     void Awake()
     {
@@ -216,7 +217,6 @@ public class ContinousNoteSpawning : MonoBehaviour
     {
         if (!invicibility)
         {
-
             cLivesCounter.RemoveLifeFromDisplay();
 
             missesAvaible--;
@@ -225,7 +225,7 @@ public class ContinousNoteSpawning : MonoBehaviour
             {
                 StartCoroutine(TimeSlowGradient());
                 cAudioDelay.PauseAudio();
-                loseScreen.SetActive(true);
+                if (CheckForAlternateLoseScreen()) {alternateLoseScreen.SetActive(true);} else {loseScreen.SetActive(true);}
                 print("You lose!");
             }
         }
@@ -323,5 +323,19 @@ public class ContinousNoteSpawning : MonoBehaviour
 
         GameObject bigRedx = Instantiate(bigRedXPrefab, mousePosition, bigRedXPrefab.transform.rotation, backgroundCanvas.transform);
         OnLose();
+    }
+
+
+    public bool CheckForAlternateLoseScreen()
+    {
+        JsonDataManipulation jsonDataManipulation = new JsonDataManipulation();
+        jsonDataManipulation.LoadByJSON();
+
+        if (jsonDataManipulation.currentChapter == 3)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
