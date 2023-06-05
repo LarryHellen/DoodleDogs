@@ -29,7 +29,8 @@ public class GameManager : MonoBehaviour
 
 
     [Header("GameObjects")]
-    public GameObject LoseScreen;
+    public GameObject loseScreen;
+    public GameObject alternateLoseScreen;
 
 
     void Start()
@@ -380,7 +381,7 @@ public class GameManager : MonoBehaviour
     {  
         Debug.Log("Lose");
         FindObjectOfType<AudioManager>().Play("DefeatScreen");
-        LoseScreen.SetActive(true);
+        if (CheckForAlternateLoseScreen()) {alternateLoseScreen.SetActive(true);} else {loseScreen.SetActive(true);}
     }
 
 
@@ -590,5 +591,19 @@ public class GameManager : MonoBehaviour
         TutorialHandler tutorialHandlerScript = tutorialHandler.GetComponent<TutorialHandler>();
 
         tutorialHandlerScript.RegisterTutorial();
+    }
+
+
+    public bool CheckForAlternateLoseScreen()
+    {
+        JsonDataManipulation jsonDataManipulation = new JsonDataManipulation();
+        jsonDataManipulation.LoadByJSON();
+
+        if (jsonDataManipulation.currentChapter == 3)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
