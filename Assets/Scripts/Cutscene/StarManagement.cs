@@ -11,7 +11,7 @@ public class StarManagement : MonoBehaviour
     public Image star4;
     public Image star5;
     public Slider slide;
-    //public GameObject goForward;
+    public GameObject goForward;
 
     public void SliderValueChanged()
     {
@@ -48,6 +48,6 @@ public class StarManagement : MonoBehaviour
         {
             star5.GetComponent<Image>().color = new Color32(128, 128, 128, 255);
         }
-        //goForward.SetActive(true);
+        goForward.SetActive(true);
     }
 }
