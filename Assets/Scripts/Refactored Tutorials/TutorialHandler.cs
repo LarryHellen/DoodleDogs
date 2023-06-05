@@ -79,7 +79,7 @@ public class TutorialHandler : MonoBehaviour
             if (tutorialsDone[2 * jsonDataManipulation.currentChapter + 1] == false)
             {
                 //tutorial = new Tutorial(basicTutorial, advancedTutorial, advanced);
-                if (jsonDataManipulation.currentChapter != 4)
+                if (jsonDataManipulation.currentChapter != 3)
                 {
                     print("Activated tutorial");
                     tutorialEnabled = true;
@@ -99,7 +99,7 @@ public class TutorialHandler : MonoBehaviour
             if (tutorialsDone[2 * jsonDataManipulation.currentChapter] == false)
             {
                 //tutorial = new Tutorial(basicTutorial, advancedTutorial, advanced);
-                if (jsonDataManipulation.currentChapter != 4)
+                if (jsonDataManipulation.currentChapter != 3)
                 {
                     print("Activated tutorial");
                     tutorialEnabled = true;

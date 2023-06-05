@@ -39,6 +39,7 @@ public class Board : MonoBehaviour
     public bool advanced;
     public bool tutorialEnabled;
     public TileMatchingTriggers tutorialSystem;
+    public GameObject alternateLoseScreen;
 
 
     public void TSR()
@@ -244,7 +245,7 @@ public class Board : MonoBehaviour
     private void loseGame(){
         if(currentState != GameState.win && currentState != GameState.lose){
         currentState = GameState.lose;
-        defeatScreen.SetActive(true);
+        if (CheckForAlternateLoseScreen()) {alternateLoseScreen.SetActive(true);} else {defeatScreen.SetActive(true);}
         francois.SetActive(false);
         Debug.Log("you lose");
         }
@@ -539,5 +540,19 @@ public class Board : MonoBehaviour
         {
             Debug.Log("NOT FOUND FILE");
         }
+    }
+
+
+    public bool CheckForAlternateLoseScreen()
+    {
+        JsonDataManipulation jsonDataManipulation = new JsonDataManipulation();
+        jsonDataManipulation.LoadByJSON();
+
+        if (jsonDataManipulation.currentChapter == 3)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
