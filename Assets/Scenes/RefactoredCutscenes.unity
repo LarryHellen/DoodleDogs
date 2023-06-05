@@ -182,6 +182,7 @@ MonoBehaviour:
   star4: {fileID: 1141626477}
   star5: {fileID: 846499624}
   slide: {fileID: 1920114}
+  goForward: {fileID: 672539842}
 --- !u!114 &1920114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6282,6 +6283,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4427008911741231722, guid: 3b4664601ed780f479dbabded2395e96, type: 3}
   m_PrefabInstance: {fileID: 526028785}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &526028787 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4427008911741231733, guid: 3b4664601ed780f479dbabded2395e96, type: 3}
+  m_PrefabInstance: {fileID: 526028785}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &537175137
 GameObject:
   m_ObjectHideFlags: 0
@@ -7866,6 +7872,11 @@ PrefabInstance:
 --- !u!224 &672539841 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4427008911741231722, guid: 3b4664601ed780f479dbabded2395e96, type: 3}
+  m_PrefabInstance: {fileID: 672539840}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &672539842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4427008911741231733, guid: 3b4664601ed780f479dbabded2395e96, type: 3}
   m_PrefabInstance: {fileID: 672539840}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &674167693
@@ -13753,6 +13764,7 @@ MonoBehaviour:
   star4: {fileID: 111427022}
   star5: {fileID: 1877195369}
   slide: {fileID: 1111495478}
+  goForward: {fileID: 526028787}
 --- !u!114 &1111495478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15725,6 +15737,11 @@ PrefabInstance:
 --- !u!224 &1256060455 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4427008911741231722, guid: 3b4664601ed780f479dbabded2395e96, type: 3}
+  m_PrefabInstance: {fileID: 1256060454}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1256060456 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4427008911741231733, guid: 3b4664601ed780f479dbabded2395e96, type: 3}
   m_PrefabInstance: {fileID: 1256060454}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1257762699
@@ -22629,6 +22646,7 @@ MonoBehaviour:
   star4: {fileID: 746320743}
   star5: {fileID: 1563386201}
   slide: {fileID: 1831161647}
+  goForward: {fileID: 1256060456}
 --- !u!114 &1831161647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24356,6 +24374,7 @@ MonoBehaviour:
   star4: {fileID: 689047816}
   star5: {fileID: 1415882659}
   slide: {fileID: 1970182291}
+  goForward: {fileID: 0}
 --- !u!114 &1970182291
 MonoBehaviour:
   m_ObjectHideFlags: 0
