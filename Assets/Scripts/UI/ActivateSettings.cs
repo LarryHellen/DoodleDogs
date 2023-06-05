@@ -36,7 +36,7 @@ public class ActivateSettings : MonoBehaviour
         {
             gameRunning = false;
             settingsMenu.SetActive(true);
-            open.SetActive(false);
+            //open.SetActive(false);
             Time.timeScale = 0;
             state = true;
         }
@@ -44,7 +44,7 @@ public class ActivateSettings : MonoBehaviour
         {
             gameRunning = true;
             settingsMenu.SetActive(false);
-            open.SetActive(true);
+            //open.SetActive(true);
             Time.timeScale = 1;
             state = false;
         }
