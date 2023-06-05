@@ -5,14 +5,14 @@ using UnityEngine;
 public class FindMatches : MonoBehaviour
 {
 
-    private Board board;
+    public Board board;
     public List<GameObject> currentMatches = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
         FindObjectOfType<AudioManager>().Play("TileMatchingMusicBackground");
-        board = FindObjectOfType<Board>();
+        //board = FindObjectOfType<Board>();
     }
 
     public void FindAllMatches(){

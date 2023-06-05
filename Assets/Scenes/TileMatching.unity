@@ -9625,6 +9625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80e0d7583fec548aba8342a6d312419b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  board: {fileID: 1966315921}
   currentMatches: []
 --- !u!1 &1463796298
 GameObject:
