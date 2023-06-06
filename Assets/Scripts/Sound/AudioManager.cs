@@ -8,8 +8,8 @@ using UnityEngine.SceneManagement;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
-    [SerializeField] Slider volumeSliderMusic;
-    [SerializeField] Slider volumeSliderSFX;
+    public Slider volumeSliderMusic;
+    public Slider volumeSliderSFX;
 
     private SoundManagerMusic soundManagerMusic;
     private SoundManagerSFX soundManagerSFX;
@@ -43,8 +43,11 @@ public class AudioManager : MonoBehaviour
     {
         foreach (Sound s in sounds)
         {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
+            if (s.source == null)
+            {
+                s.source = gameObject.AddComponent<AudioSource>();
+                s.source.clip = s.clip;
+            }
 
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
@@ -75,11 +78,17 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void Stop(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        s.source.Stop();
+    }
+
     private void Update()
     {
         for (int i = 0; i < sounds.Length; i++)
         {
-            if (sounds[i].isSong)
+            if (sounds[i].isSong || sounds[i].isRhythmSong)
             {
                 sounds[i].source.volume = volumeSliderMusic.value;
 
@@ -99,7 +108,15 @@ public class AudioManager : MonoBehaviour
     private void SetSliders()
     {
         GetSliders getSliders = FindObjectOfType<GetSliders>();
-        volumeSliderMusic = getSliders.volumeSliderMusic;
-        volumeSliderSFX = getSliders.volumeSliderSFX;
+        try
+        {
+            volumeSliderMusic = getSliders.volumeSliderMusic;
+            volumeSliderSFX = getSliders.volumeSliderSFX;
+        }
+        catch 
+        {
+            print("Sliders not set BUT, if this is in the rhythm game then they will be when they need to be");
+            print("Actually they should be when they need to be most of the time in other scenes too");
+        }
     }
 }

@@ -206,6 +206,7 @@ public class ContinousNoteSpawning : MonoBehaviour
     {
         Time.timeScale = 0;
         cAudioDelay.PauseAudio();
+        StopMusic();
         //winScreen.SetActive(true);
         RegisterTutorial();
         print("You win!");
@@ -225,6 +226,7 @@ public class ContinousNoteSpawning : MonoBehaviour
             {
                 StartCoroutine(TimeSlowGradient());
                 cAudioDelay.PauseAudio();
+                StopMusic();
                 if (CheckForAlternateLoseScreen()) {alternateLoseScreen.SetActive(true);} else {loseScreen.SetActive(true);}
                 print("You lose!");
             }
@@ -337,5 +339,29 @@ public class ContinousNoteSpawning : MonoBehaviour
         }
 
         return false;
+    }
+
+
+    private void StopMusic()
+    {
+        //Pause Music
+        if (audioChoice == 0)
+        {
+            //All tracks to be audibly played
+            FindObjectOfType<AudioManager>().Stop("rbTrack1");
+            FindObjectOfType<AudioManager>().Stop("rbTrack2");
+            FindObjectOfType<AudioManager>().Stop("rbTrack3");
+            FindObjectOfType<AudioManager>().Stop("rbTrack4");
+            FindObjectOfType<AudioManager>().Stop("rbTrackMain");
+        }
+        else if (audioChoice == 1)
+        {
+            //All tracks to be audibly played
+            FindObjectOfType<AudioManager>().Stop("raTrack1");
+            FindObjectOfType<AudioManager>().Stop("raTrack2");
+            FindObjectOfType<AudioManager>().Stop("raTrack3");
+            FindObjectOfType<AudioManager>().Stop("raTrack4");
+            FindObjectOfType<AudioManager>().Stop("raTrackMain");
+        }
     }
 }

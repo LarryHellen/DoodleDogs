@@ -14,28 +14,17 @@ public class CAudioDelay : MonoBehaviour
     [Header("Automatic Variables")]
     public AudioSource[] audioArray;
     private ContinousNoteSpawning nSS;
-    private float timeToDelay = .0000001f;
 
 
     void Start()
     {
         nSS = GameObject.Find("GameManager").GetComponent<ContinousNoteSpawning>();
-        timeToDelay = nSS.timeToOnBeatHeight;
 
         audioChoice = nSS.audioChoice;
 
         audioArray = audioObjects[audioChoice].GetComponents<AudioSource>();
 
         StartCoroutine(DelayAudio());
-    }
-
-
-    public void PauseAudio()
-    {
-        foreach (AudioSource audioSource in audioArray)
-        {
-            audioSource.Pause();
-        }
     }
 
 
@@ -49,6 +38,15 @@ public class CAudioDelay : MonoBehaviour
         foreach (AudioSource audioSource in audioArray)
         {
             audioSource.Play();
+        }
+    }
+
+    
+    public void PauseAudio()
+    {
+        foreach (AudioSource audioSource in audioArray)
+        {
+            audioSource.Pause();
         }
     }
 }
