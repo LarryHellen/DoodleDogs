@@ -11,6 +11,7 @@ public class GetSliders : MonoBehaviour
 
     private AudioManager audioManager;
 
+
     private void OnEnable() //This script is just so that in the rare case that the usual getting of sliders doesn't work, that there is this
     {
         audioManager = FindObjectsOfType<AudioManager>()[0];
