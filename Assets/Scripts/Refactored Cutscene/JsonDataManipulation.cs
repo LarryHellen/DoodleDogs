@@ -79,8 +79,8 @@ public class JsonDataManipulation
     public void LoadDefaultValuesFromPlayerDataRefactored()
     {
         chaptersUnlocked = new List<bool>();
-        //for (int i = 0; i < 5; i++) { chaptersUnlocked.Add(false); } //Actual line that should be used in the game
-        for (int i = 0; i < 5; i++) { chaptersUnlocked.Add(true); } //For testing purposes
+        for (int i = 0; i < 5; i++) { chaptersUnlocked.Add(false); } //Actual line that should be used in the game
+        //for (int i = 0; i < 5; i++) { chaptersUnlocked.Add(true); } //For testing purposes
 
         tutorials = new List<bool>();
         for (int i = 0; i < 10; i++) { tutorials.Add(false); }
