@@ -77,6 +77,7 @@ public class TutorialHandler : MonoBehaviour
             advanced = false;
         }
 
+
         if (advanced)
         {
             if (tutorialsDone[2 * jsonDataManipulation.currentChapter + 1] == false)
