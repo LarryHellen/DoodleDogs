@@ -373,7 +373,6 @@ public class GameManager : MonoBehaviour
     void Win()
     {
         Debug.Log("Win");
-        gameStoppingScreen.SetActive(true);
         FindObjectOfType<AudioManager>().Play("Scratch");
         RegisterTutorial();
         SceneManager.LoadScene("RefactoredCutscenes");
@@ -397,6 +396,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WaitThenWin()
     {
+        gameStoppingScreen.SetActive(true);
         yield return new WaitForSeconds(waitTimeBeforeEnd);
         Win();
     }
