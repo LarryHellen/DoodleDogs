@@ -60,7 +60,11 @@ public class TutorialHandler : MonoBehaviour
         tutorialsDone = jsonDataManipulation.tutorialsDone;
 
 
-        if (tutorials[2*jsonDataManipulation.currentChapter] == false && tutorials[2 * jsonDataManipulation.currentChapter + 1] == false)
+        if (jsonDataManipulation.currentChapter == 3)
+        {
+            advanced = true;
+        }
+        else if (tutorials[2*jsonDataManipulation.currentChapter] == false && tutorials[2 * jsonDataManipulation.currentChapter + 1] == false)
         {
             advanced = false;
         }
@@ -72,7 +76,6 @@ public class TutorialHandler : MonoBehaviour
         {
             advanced = false;
         }
-
 
         if (advanced)
         {
