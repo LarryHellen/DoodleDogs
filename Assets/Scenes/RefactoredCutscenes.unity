@@ -5869,7 +5869,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &503064936
 Transform:
   m_ObjectHideFlags: 0
@@ -6279,7 +6279,7 @@ PrefabInstance:
       objectReference: {fileID: 483977143}
     - target: {fileID: 4427008911741231735, guid: 3b4664601ed780f479dbabded2395e96, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StepForward
+      value: NextChapter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b4664601ed780f479dbabded2395e96, type: 3}
@@ -7870,7 +7870,7 @@ PrefabInstance:
       objectReference: {fileID: 483977143}
     - target: {fileID: 4427008911741231735, guid: 3b4664601ed780f479dbabded2395e96, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StepForward
+      value: NextChapter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b4664601ed780f479dbabded2395e96, type: 3}
@@ -15751,7 +15751,7 @@ PrefabInstance:
       objectReference: {fileID: 483977143}
     - target: {fileID: 4427008911741231735, guid: 3b4664601ed780f479dbabded2395e96, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StepForward
+      value: NextChapter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b4664601ed780f479dbabded2395e96, type: 3}
