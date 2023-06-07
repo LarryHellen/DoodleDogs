@@ -389,6 +389,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WaitThenLose()
     {
+        gameStoppingScreen.SetActive(true);
         yield return new WaitForSeconds(waitTimeBeforeEnd);
         Lose();
     }
