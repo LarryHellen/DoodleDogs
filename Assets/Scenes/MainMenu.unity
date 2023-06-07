@@ -2155,6 +2155,13 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 351462198}
+  - name: NoteMiss
+    isSong: 0
+    isRhythmSong: 0
+    clip: {fileID: 8300000, guid: 99820e3942f454c07acf2068475276de, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
   volumeSliderMusic: {fileID: 0}
   volumeSliderSFX: {fileID: 0}
 --- !u!224 &1728750363

@@ -219,8 +219,8 @@ public class ContinousNoteSpawning : MonoBehaviour
         if (!invicibility)
         {
             cLivesCounter.RemoveLifeFromDisplay();
-
             missesAvaible--;
+            FindObjectOfType<AudioManager>().Play("NoteMiss");
 
             if (missesAvaible <= -1)
             {
