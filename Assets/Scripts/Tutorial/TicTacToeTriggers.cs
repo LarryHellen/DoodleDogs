@@ -9,23 +9,25 @@ public class TicTacToeTriggers : TutorialSystem
     public bool placed;
     public bool forceThrough;
 
-  
 
-    public void Next(){
-        if(currentIndex == 0){
+
+    public void Next() {
+        if (currentIndex == 0) {
             NextTutorial();
             //tttr.board[1][1].GetComponent<IfIveBeenClicked>().tutorialClickable = true;
-        } else if(currentIndex == 1 && tttr.GetIntegerListFromTileList(tttr.tiles)[4] == 0 || forceThrough){
+        } else if (currentIndex == 1 && tttr.GetIntegerListFromTileList(tttr.tiles)[4] == 0 || forceThrough) {
             NextTutorial();
             Time.timeScale = 1;
-        } else if(currentIndex == 2){
+        } else if (currentIndex == 2) {
             NextTutorial();
-        } else if(currentIndex == 3){
+        } else if (currentIndex == 3) {
             NextTutorial();
             tttr.tutorialEnabled = false;
-        } else if(currentIndex == 4){
+        } else if (currentIndex == 4) {
             NextTutorial();
-        } else if(currentIndex == 5){
+        } else if (currentIndex == 5) {
+            NextTutorial();
+        } else if(currentIndex == 6) {
             NextTutorial();
             tttr.tutorialEnabled = false;
         }

@@ -26,6 +26,7 @@ public class Detector : MonoBehaviour
 
     IEnumerator WaitToThink()
     {
+        gM.placingEnabled = false;
         yield return new WaitForSeconds(gM.waitToThinkTime);
         gM.CompleteTurn();
     }

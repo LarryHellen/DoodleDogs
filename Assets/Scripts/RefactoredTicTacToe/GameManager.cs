@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public TicTacToeTriggers tutorialObject;
     public bool tutorialEnabled;
     [HideInInspector] public List<Tile> tiles = new List<Tile>();
+    private bool lerpOver;
 
 
     [Header("GameObjects")]
@@ -62,7 +63,6 @@ public class GameManager : MonoBehaviour
     public void CompleteTurn()
     {
         //Debug.Log("CompleteTurn");
-        placingEnabled = false;
        
         turnCounter++; //Account for the player's turn
         
@@ -75,9 +75,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(WaitThenRotate());
 
             //Check for win or lose
-            StartCoroutine(WaitUntilLerpOverToCheckForWinOrLose()); //The coroutine waits until placingEnabled gets set to true in the LerpTile coroutine to check for win or lose to ensure that all tiles have moved before the game ends
-
-            //if advanced, placingEnabled gets set to true in the LerpTile coroutine to ensure that all tiles have been moved before gameplay resumes
+            StartCoroutine(WaitUntilLerpOverToCheckForWinOrLose()); 
         }
         else 
         {
@@ -86,7 +84,6 @@ public class GameManager : MonoBehaviour
 
             //Check for win or lose
             CheckForWinOrLose(); 
-            placingEnabled = true; // Resume gameplay
         }
     }
 
@@ -113,7 +110,9 @@ public class GameManager : MonoBehaviour
             {
                 StartCoroutine(WaitThenLose());
             }
-        }            
+        }
+
+        placingEnabled = true;
     }
 
     void AIMove()
@@ -133,6 +132,8 @@ public class GameManager : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("PlaceSock");
             turnCounter++; //Account for the AI's turn
         }
+
+        print("AIMove");
     }
 
     int AISelectMove()
@@ -423,7 +424,10 @@ public class GameManager : MonoBehaviour
         TransformOutsideRing(outsideRing);
 
         UpdateTilesList(outsideRing);
+
+        lerpOver = true;
     }
+
 
     List<int> RotateBoard(List<int> integerBoard)
     {
@@ -544,14 +548,14 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        placingEnabled = true; // Resume gameplay because all tiles have been moved. P.S. I know this happens 8 times lol
         tile.tileGameObject.transform.position = targetPosition;
     }
 
 
     IEnumerator WaitUntilLerpOverToCheckForWinOrLose()
     {
-        yield return new WaitUntil(() => placingEnabled == true);
+        yield return new WaitUntil(() => lerpOver == true);
+        lerpOver = false;
         CheckForWinOrLose();
     }
 

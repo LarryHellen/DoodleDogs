@@ -2880,8 +2880,8 @@ MonoBehaviour:
   - {fileID: 970996839}
   tutorialObject: {fileID: 534344908}
   tutorialEnabled: 0
-  loseScreen: {fileID: 0}
-  alternateLoseScreen: {fileID: 0}
+  loseScreen: {fileID: 1876389400}
+  alternateLoseScreen: {fileID: 1980478483}
 --- !u!4 &663524435
 Transform:
   m_ObjectHideFlags: 0
