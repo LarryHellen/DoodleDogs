@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     [Header("GameObjects")]
     public GameObject loseScreen;
     public GameObject alternateLoseScreen;
+    public GameObject gameStoppingScreen;
 
 
     void Start()
@@ -372,6 +373,7 @@ public class GameManager : MonoBehaviour
     void Win()
     {
         Debug.Log("Win");
+        gameStoppingScreen.SetActive(true);
         FindObjectOfType<AudioManager>().Play("Scratch");
         RegisterTutorial();
         SceneManager.LoadScene("RefactoredCutscenes");
