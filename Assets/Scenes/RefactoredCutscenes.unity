@@ -5669,30 +5669,35 @@ MonoBehaviour:
   eachChaptersBackgroundMusic:
   - name: AfghanMusicBackground
     isSong: 1
+    isRhythmSong: 0
     clip: {fileID: 8300000, guid: 783d7625d7d0d4a90a327ef899896dad, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: GoldenDoodleMusicBackground
     isSong: 1
+    isRhythmSong: 0
     clip: {fileID: 8300000, guid: b626cc508c9894627a64571229b9d19b, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: RufusMusicBackground
     isSong: 1
+    isRhythmSong: 0
     clip: {fileID: 8300000, guid: a0959c90d712a4a4383eb124b715f476, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: MainMenuMusicBackground
     isSong: 1
+    isRhythmSong: 0
     clip: {fileID: 8300000, guid: 4547e89eadda63f4890829a587c1a739, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: MainMenuMusicBackground
     isSong: 1
+    isRhythmSong: 0
     clip: {fileID: 8300000, guid: 4547e89eadda63f4890829a587c1a739, type: 3}
     volume: 1
     pitch: 1
@@ -9528,16 +9533,24 @@ PrefabInstance:
       value: SettingsMenuObject
       objectReference: {fileID: 0}
     - target: {fileID: 5476431888058215035, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 345
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476431888058215035, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 345
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476431888058215035, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5476431888058215035, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5476431888058215035, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5476431888058215035, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9545,11 +9558,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5476431888058215035, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -819.8635
+      value: -817.8635
       objectReference: {fileID: 0}
     - target: {fileID: 5476431888058215035, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1597.0194
+      value: -1595.0197
       objectReference: {fileID: 0}
     - target: {fileID: 5476431888058215036, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_IsActive
