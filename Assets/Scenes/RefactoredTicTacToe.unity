@@ -1003,7 +1003,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Tap a part of the grid to make a sock appear.
+  m_text: 'Tap a part of the grid to make a ball appear.
 
 '
   m_isRightToLeft: 0
