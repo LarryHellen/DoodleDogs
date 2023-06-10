@@ -13312,7 +13312,7 @@ MonoBehaviour:
   coCount: 0
   startingMoves: 10
   blockChance: 1
-  maxBlocks: 7
+  maxBlocks: 6
   advanced: 0
   tutorialEnabled: 0
   tutorialSystem: {fileID: 64361037}
