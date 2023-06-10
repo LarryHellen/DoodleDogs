@@ -12343,7 +12343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1404098932095308868, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.3307495
+      value: 0.33081055
       objectReference: {fileID: 0}
     - target: {fileID: 1404098932095308868, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -12359,7 +12359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5476431886994664192, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -2.136444
+      value: -2.1364746
       objectReference: {fileID: 0}
     - target: {fileID: 5476431886994664192, guid: 1d26fc9e394e94d03ab3d6509f219af4, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -13312,11 +13312,17 @@ MonoBehaviour:
   coCount: 0
   startingMoves: 10
   blockChance: 1
-  maxBlocks: 6
+  maxBlocks: 7
   advanced: 0
   tutorialEnabled: 0
   tutorialSystem: {fileID: 64361037}
   alternateLoseScreen: {fileID: 553220314}
+  test1: []
+  test2: []
+  test3: []
+  test4: []
+  test5: []
+  test6: []
 --- !u!1 &1975783576
 GameObject:
   m_ObjectHideFlags: 0
