@@ -2162,6 +2162,48 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+  - name: PoodleBark
+    isSong: 0
+    isRhythmSong: 0
+    clip: {fileID: 8300000, guid: 53621e2ba2ad0a44a86ad8b0e84ec741, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: VictoryMini
+    isSong: 0
+    isRhythmSong: 0
+    clip: {fileID: 8300000, guid: 942c87e747dabb040a3dd816160a175f, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: SquirrelCrash
+    isSong: 0
+    isRhythmSong: 0
+    clip: {fileID: 8300000, guid: 782e048d3f4434e4da1471907fc06fcb, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: EvilSquirrelLaugh
+    isSong: 0
+    isRhythmSong: 0
+    clip: {fileID: 8300000, guid: 4e926a03c1a7e6a45991c000754f23a7, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: poodleGrowl
+    isSong: 0
+    isRhythmSong: 0
+    clip: {fileID: 8300000, guid: 09e721b0d5dcad54a97aec2ce00e59e5, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: chomp
+    isSong: 0
+    isRhythmSong: 0
+    clip: {fileID: 8300000, guid: 12298715a5795e740b7fdfebd9a2ee7d, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
   volumeSliderMusic: {fileID: 0}
   volumeSliderSFX: {fileID: 0}
 --- !u!224 &1728750363

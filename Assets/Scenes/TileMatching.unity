@@ -4128,6 +4128,7 @@ GameObject:
   - component: {fileID: 553220315}
   - component: {fileID: 553220318}
   - component: {fileID: 553220316}
+  - component: {fileID: 553220319}
   m_Layer: 5
   m_Name: Chapter4DefeatScreen
   m_TagString: Untagged
@@ -4179,6 +4180,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553220314}
   m_CullTransparentMesh: 1
+--- !u!114 &553220319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553220314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: poodleGrowl
 --- !u!1 &557780609
 GameObject:
   m_ObjectHideFlags: 0
@@ -5368,6 +5382,7 @@ GameObject:
   - component: {fileID: 728101796}
   - component: {fileID: 728101795}
   - component: {fileID: 728101797}
+  - component: {fileID: 728101798}
   m_Layer: 5
   m_Name: DefeatScreen
   m_TagString: Untagged
@@ -5450,6 +5465,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateName: lose
+--- !u!114 &728101798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728101793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: poodleGrowl
 --- !u!1 &764717961
 GameObject:
   m_ObjectHideFlags: 0
@@ -7892,6 +7920,7 @@ GameObject:
   - component: {fileID: 1079109440}
   - component: {fileID: 1079109439}
   - component: {fileID: 1079109441}
+  - component: {fileID: 1079109442}
   m_Layer: 5
   m_Name: VictoryScreen
   m_TagString: Untagged
@@ -7973,6 +8002,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateName: win
+--- !u!114 &1079109442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079109437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: VictoryMini
 --- !u!1 &1092928883
 GameObject:
   m_ObjectHideFlags: 0
