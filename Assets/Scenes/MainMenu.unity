@@ -2204,6 +2204,34 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+  - name: email
+    isSong: 0
+    isRhythmSong: 0
+    clip: {fileID: 8300000, guid: 2eb63157f2cf7c246bb368b5263533bf, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: goldenBark
+    isSong: 0
+    isRhythmSong: 0
+    clip: {fileID: 8300000, guid: 57be37c13ec6ef74dbd1bbe89bbdb16a, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: dogWhine
+    isSong: 0
+    isRhythmSong: 0
+    clip: {fileID: 8300000, guid: cc12c4fad14b0dc40a4422dd6d5e8fb5, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: squirrelLaugh
+    isSong: 0
+    isRhythmSong: 0
+    clip: {fileID: 8300000, guid: b875d731fd9c3c847888e04f8923d51d, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
   volumeSliderMusic: {fileID: 0}
   volumeSliderSFX: {fileID: 0}
 --- !u!224 &1728750363
