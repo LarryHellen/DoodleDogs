@@ -255,6 +255,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2287099}
+  - component: {fileID: 2287100}
   m_Layer: 5
   m_Name: Cutscene 1 (8)
   m_TagString: Untagged
@@ -283,6 +284,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.2, y: 0.5}
+--- !u!114 &2287100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2287098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: squirrelLaugh
 --- !u!1 &8718698
 GameObject:
   m_ObjectHideFlags: 0
@@ -1254,6 +1268,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 118176694}
+  - component: {fileID: 118176695}
   m_Layer: 5
   m_Name: Cutscene 1 (19)
   m_TagString: NoBackwards
@@ -1282,6 +1297,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.2, y: 0.5}
+--- !u!114 &118176695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118176693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: VictoryMini
 --- !u!1 &120553287
 GameObject:
   m_ObjectHideFlags: 0
@@ -2599,6 +2627,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 254919639}
+  - component: {fileID: 254919640}
   m_Layer: 5
   m_Name: Cutscene 1 (3)
   m_TagString: Untagged
@@ -2628,6 +2657,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &254919640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254919638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: komondorBark
 --- !u!1 &257471337
 GameObject:
   m_ObjectHideFlags: 0
@@ -6372,6 +6414,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 537175138}
+  - component: {fileID: 537175139}
   m_Layer: 5
   m_Name: Cutscene 1 (3)
   m_TagString: Untagged
@@ -6400,6 +6443,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.2, y: 0.5}
+--- !u!114 &537175139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537175137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: goldenDoodle
 --- !u!1 &542762892
 GameObject:
   m_ObjectHideFlags: 0
@@ -6485,6 +6541,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 547764831}
+  - component: {fileID: 547764832}
   m_Layer: 5
   m_Name: Cutscene 1 (11)
   m_TagString: Untagged
@@ -6513,6 +6570,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &547764832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547764830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: goldenBark
 --- !u!1 &549614791
 GameObject:
   m_ObjectHideFlags: 0
@@ -6887,6 +6957,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 561609840}
+  - component: {fileID: 561609841}
   m_Layer: 5
   m_Name: Cutscene 1 (5)
   m_TagString: Untagged
@@ -6915,6 +6986,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &561609841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561609839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: komondorBark
 --- !u!1 &575441631
 GameObject:
   m_ObjectHideFlags: 0
@@ -7638,7 +7722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &636401418
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9252,6 +9336,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 779784799}
+  - component: {fileID: 779784800}
   m_Layer: 5
   m_Name: before second gameplay
   m_TagString: NoBackwards
@@ -9280,6 +9365,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &779784800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779784798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: VictoryMini
 --- !u!1 &781014435
 GameObject:
   m_ObjectHideFlags: 0
@@ -10504,6 +10602,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 843561066}
+  - component: {fileID: 843561067}
   m_Layer: 5
   m_Name: win first round
   m_TagString: NoBackwards
@@ -10532,6 +10631,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &843561067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843561065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: komondorSnore
 --- !u!1 &846499623
 GameObject:
   m_ObjectHideFlags: 0
@@ -10820,6 +10932,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 852830172}
+  - component: {fileID: 852830173}
   m_Layer: 5
   m_Name: Cutscene 1 (18)
   m_TagString: NoBackwards
@@ -10848,6 +10961,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.2, y: 0.5}
+--- !u!114 &852830173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852830171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: VictoryMini
 --- !u!1 &857507334
 GameObject:
   m_ObjectHideFlags: 0
@@ -11083,6 +11209,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 874144554}
+  - component: {fileID: 874144555}
   m_Layer: 5
   m_Name: Cutscene 1 (15)
   m_TagString: Untagged
@@ -11111,6 +11238,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.2, y: 0.5}
+--- !u!114 &874144555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874144553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: EvilSquirrelLaugh
 --- !u!1 &882415177
 GameObject:
   m_ObjectHideFlags: 0
@@ -11226,6 +11366,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 885065361}
+  - component: {fileID: 885065362}
   m_Layer: 5
   m_Name: Cutscene 1 (8)
   m_TagString: Untagged
@@ -11254,6 +11395,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &885065362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885065360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: email
 --- !u!1 &888982860
 GameObject:
   m_ObjectHideFlags: 0
@@ -11727,6 +11881,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 928051770}
+  - component: {fileID: 928051771}
   m_Layer: 5
   m_Name: Cutscene 1 (17)
   m_TagString: Untagged
@@ -11755,6 +11910,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.2, y: 0.5}
+--- !u!114 &928051771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928051769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: EvilSquirrelLaugh
 --- !u!1 &930538633
 GameObject:
   m_ObjectHideFlags: 0
@@ -12309,6 +12477,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 973431853}
+  - component: {fileID: 973431854}
   m_Layer: 5
   m_Name: Cutscene 1 (4)
   m_TagString: Untagged
@@ -12337,6 +12506,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.2, y: 0.5}
+--- !u!114 &973431854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973431852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: komondorSnore
 --- !u!1 &978402264
 GameObject:
   m_ObjectHideFlags: 0
@@ -13679,7 +13861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1096183720
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14719,6 +14901,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1172578073}
+  - component: {fileID: 1172578074}
   m_Layer: 5
   m_Name: Cutscene 1 (9)
   m_TagString: Untagged
@@ -14747,6 +14930,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.2, y: 0.5}
+--- !u!114 &1172578074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172578072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: email
 --- !u!1 &1177107119
 GameObject:
   m_ObjectHideFlags: 0
@@ -15383,6 +15579,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1238482289}
+  - component: {fileID: 1238482290}
   m_Layer: 5
   m_Name: Cutscene 1 (9)
   m_TagString: Untagged
@@ -15411,6 +15608,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.2, y: 0.5}
+--- !u!114 &1238482290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238482288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: EvilSquirrelLaugh
 --- !u!1 &1238688313
 GameObject:
   m_ObjectHideFlags: 0
@@ -15420,6 +15630,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1238688314}
+  - component: {fileID: 1238688317}
+  - component: {fileID: 1238688316}
+  - component: {fileID: 1238688315}
   m_Layer: 5
   m_Name: Cutscene 1 (20)
   m_TagString: Untagged
@@ -15448,6 +15661,45 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.2, y: 0.5}
+--- !u!114 &1238688315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238688313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: poodleBark
+--- !u!114 &1238688316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238688313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: komondorBark
+--- !u!114 &1238688317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238688313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: goldenBark
 --- !u!1 &1249738815
 GameObject:
   m_ObjectHideFlags: 0
@@ -15457,6 +15709,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1249738816}
+  - component: {fileID: 1249738817}
   m_Layer: 5
   m_Name: Cutscene 1 (7)
   m_TagString: Untagged
@@ -15485,6 +15738,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1249738817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249738815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: komondorBark
 --- !u!1 &1249806363
 GameObject:
   m_ObjectHideFlags: 0
@@ -16128,6 +16394,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1283265098}
+  - component: {fileID: 1283265099}
   m_Layer: 5
   m_Name: Cutscene 1 (22)
   m_TagString: Untagged
@@ -16156,6 +16423,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.2, y: 0.5}
+--- !u!114 &1283265099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283265097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: email
 --- !u!1 &1291823311
 GameObject:
   m_ObjectHideFlags: 0
@@ -16460,6 +16740,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1304163914}
+  - component: {fileID: 1304163915}
   m_Layer: 5
   m_Name: Cutscene 1 (14)
   m_TagString: Untagged
@@ -16488,6 +16769,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.2, y: 0.5}
+--- !u!114 &1304163915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304163913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: SquirrelLaugh
 --- !u!1 &1305459962
 GameObject:
   m_ObjectHideFlags: 0
@@ -17607,6 +17901,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1398225825}
+  - component: {fileID: 1398225826}
   m_Layer: 5
   m_Name: win second round
   m_TagString: NoBackwards
@@ -17635,6 +17930,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1398225826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398225824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: VictoryMini
 --- !u!1 &1401591277
 GameObject:
   m_ObjectHideFlags: 0
@@ -19549,6 +19857,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1570987768}
+  - component: {fileID: 1570987769}
   m_Layer: 5
   m_Name: Cutscene 1 (16)
   m_TagString: Untagged
@@ -19577,6 +19886,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1570987769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570987767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: squirrelLaugh
 --- !u!1 &1572443329
 GameObject:
   m_ObjectHideFlags: 0
@@ -19931,7 +20253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1615757347
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23763,6 +24085,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1915378837}
+  - component: {fileID: 1915378838}
   m_Layer: 5
   m_Name: Cutscene 1 (2)
   m_TagString: Untagged
@@ -23791,6 +24114,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.2, y: 0.5}
+--- !u!114 &1915378838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915378836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: email
 --- !u!1 &1919156419
 GameObject:
   m_ObjectHideFlags: 0
@@ -23876,6 +24212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1926627290}
+  - component: {fileID: 1926627291}
   m_Layer: 5
   m_Name: Cutscene 1 (13)
   m_TagString: Untagged
@@ -23904,6 +24241,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1926627291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926627289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: komondorSnore
 --- !u!1 &1929140449
 GameObject:
   m_ObjectHideFlags: 0
@@ -26188,6 +26538,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2085192985}
+  - component: {fileID: 2085192986}
   m_Layer: 5
   m_Name: Cutscene 1 (13)
   m_TagString: Untagged
@@ -26216,6 +26567,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.2, y: 0.5}
+--- !u!114 &2085192986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085192984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: SquirrelLaugh
 --- !u!1 &2086697996
 GameObject:
   m_ObjectHideFlags: 0
@@ -26527,6 +26891,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2122063703}
+  - component: {fileID: 2122063704}
   m_Layer: 5
   m_Name: Cutscene 1 (16)
   m_TagString: NoBackwards
@@ -26555,6 +26920,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.2, y: 0.5}
+--- !u!114 &2122063704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122063702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: VictoryMini
 --- !u!1 &2127254999
 GameObject:
   m_ObjectHideFlags: 0
@@ -26773,6 +27151,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2146283172}
+  - component: {fileID: 2146283173}
   m_Layer: 5
   m_Name: Cutscene 1 (5)
   m_TagString: Untagged
@@ -26801,6 +27180,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.2, y: 0.5}
+--- !u!114 &2146283173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146283171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd137477176208448959d2514475570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: PoodleBark
 --- !u!1001 &1149182815570261588
 PrefabInstance:
   m_ObjectHideFlags: 0

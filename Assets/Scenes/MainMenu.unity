@@ -2214,7 +2214,7 @@ MonoBehaviour:
   - name: goldenBark
     isSong: 0
     isRhythmSong: 0
-    clip: {fileID: 8300000, guid: 57be37c13ec6ef74dbd1bbe89bbdb16a, type: 3}
+    clip: {fileID: 8300000, guid: 1228a74d6c8e0b04281cd153c6893be1, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
@@ -2229,6 +2229,20 @@ MonoBehaviour:
     isSong: 0
     isRhythmSong: 0
     clip: {fileID: 8300000, guid: b875d731fd9c3c847888e04f8923d51d, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: komondorSnore
+    isSong: 0
+    isRhythmSong: 0
+    clip: {fileID: 8300000, guid: 6ba87de5bbacb1449b8b87cf93785612, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: komondorBark
+    isSong: 0
+    isRhythmSong: 0
+    clip: {fileID: 8300000, guid: 94a3514f30239ed42bd4b5d5a820e060, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
