@@ -2159,7 +2159,7 @@ MonoBehaviour:
     isSong: 0
     isRhythmSong: 0
     clip: {fileID: 8300000, guid: 99820e3942f454c07acf2068475276de, type: 3}
-    volume: 1
+    volume: 0.75
     pitch: 1
     source: {fileID: 0}
   - name: PoodleBark
@@ -2173,7 +2173,7 @@ MonoBehaviour:
     isSong: 0
     isRhythmSong: 0
     clip: {fileID: 8300000, guid: 942c87e747dabb040a3dd816160a175f, type: 3}
-    volume: 1
+    volume: 0.75
     pitch: 1
     source: {fileID: 0}
   - name: SquirrelCrash
@@ -2187,7 +2187,7 @@ MonoBehaviour:
     isSong: 0
     isRhythmSong: 0
     clip: {fileID: 8300000, guid: 4e926a03c1a7e6a45991c000754f23a7, type: 3}
-    volume: 1
+    volume: 0.75
     pitch: 1
     source: {fileID: 0}
   - name: poodleGrowl
@@ -2208,7 +2208,7 @@ MonoBehaviour:
     isSong: 0
     isRhythmSong: 0
     clip: {fileID: 8300000, guid: 2eb63157f2cf7c246bb368b5263533bf, type: 3}
-    volume: 1
+    volume: 0.75
     pitch: 1
     source: {fileID: 0}
   - name: goldenBark
