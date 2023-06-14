@@ -306,8 +306,8 @@ public class ContinousNoteSpawning : MonoBehaviour
         songLength = 42;
         progressBarLength = 40;
         onBeatHeight = 0.2f;
-        timeToOnBeatHeight = 0.6f;
-        noteCooldown = 0.4f;
+        timeToOnBeatHeight = 0.7f;
+        noteCooldown = 0.5f;
         missesAvaible = 3;
     }
 
