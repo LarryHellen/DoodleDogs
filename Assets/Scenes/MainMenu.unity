@@ -2166,7 +2166,7 @@ MonoBehaviour:
     isSong: 0
     isRhythmSong: 0
     clip: {fileID: 8300000, guid: 53621e2ba2ad0a44a86ad8b0e84ec741, type: 3}
-    volume: 1
+    volume: 0.75
     pitch: 1
     source: {fileID: 0}
   - name: VictoryMini
