@@ -140,7 +140,7 @@ public class Board : MonoBehaviour
         }
         allDots = new GameObject[width,height];
         if(tutorialEnabled == true && advanced == false){
-            print("got here");
+            placeholderDots.SetActive(true);
             SetPresetLayout();
         } else{
             for(int i = 0; i < width; i++){
