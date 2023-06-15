@@ -90,12 +90,12 @@ public class AudioManager : MonoBehaviour
         {
             if (sounds[i].isSong || sounds[i].isRhythmSong)
             {
-                sounds[i].source.volume = volumeSliderMusic.value;
+                sounds[i].source.volume = sounds[i].volume * volumeSliderMusic.value;
 
             }
             else
             {
-                sounds[i].source.volume = volumeSliderSFX.value;
+                sounds[i].source.volume = sounds[i].volume * volumeSliderSFX.value;
             }
         }
     }
