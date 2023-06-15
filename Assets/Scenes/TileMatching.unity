@@ -13335,6 +13335,14 @@ MonoBehaviour:
   ySpawn: 3.1
   xDistance: 0.98
   yDistance: 0.98
+  xSpawnLarge: 0.65
+  ySpawnLarge: 3.1
+  xDistanceLarge: 0.98
+  yDistanceLarge: 0.98
+  xSpawnSmall: 0.23
+  ySpawnSmall: 2.8
+  xDistanceSmall: 1.16
+  yDistanceSmall: 1.16
   tilePrefab: {fileID: 7959817331513740722, guid: 6c329e1d3fae74f5ab2b6b712d7c9a05, type: 3}
   dots:
   - {fileID: 5480677582367570236, guid: b1f74930f185a4381a2ab013dc9b9e4e, type: 3}

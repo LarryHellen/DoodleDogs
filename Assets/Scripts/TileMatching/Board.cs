@@ -15,10 +15,22 @@ public class Board : MonoBehaviour
     public GameState currentState = GameState.move;
     public int width;
     public int height;
+    [HideInInspector]
     public float xSpawn;
+    [HideInInspector]
     public float ySpawn;
+    [HideInInspector]
     public float xDistance;
+    [HideInInspector]
     public float yDistance;
+    public float xSpawnLarge;
+    public float ySpawnLarge;
+    public float xDistanceLarge;
+    public float yDistanceLarge;
+    public float xSpawnSmall;
+    public float ySpawnSmall;
+    public float xDistanceSmall;
+    public float yDistanceSmall;
     public GameObject tilePrefab;
     public GameObject[] dots;
     public GameObject[,] allDots;
@@ -49,11 +61,30 @@ public class Board : MonoBehaviour
     public GameObject[] test6;
 
 
+
     public void TSR()
     {
         print("previous time scale: " + Time.timeScale);
         Time.timeScale = 1f;
         print("new time scale: " + Time.timeScale);
+    }
+
+    public void SetResolution()
+    {
+        if((1f * Screen.height) / (1f * Screen.width) > 2)
+        {
+            xSpawn = xSpawnLarge; //0.65f;
+            ySpawn = ySpawnLarge; // 3.1f;
+            xDistance = xDistanceLarge;// .98f;
+            yDistance = yDistanceLarge; //.98f;
+        }
+        else
+        {
+            xSpawn = xSpawnSmall; // 0.23f;
+            ySpawn = ySpawnSmall; // 2.8f;
+            xDistance = xDistanceSmall; // 1.16f;
+            yDistance = yDistanceSmall; // 1.16f;
+        }
     }
 
     // Start is called before the first frame update
@@ -66,6 +97,7 @@ public class Board : MonoBehaviour
         test5 = new GameObject[6];
         test6 = new GameObject[6];
 
+        SetResolution();
         //LoadByJSON();
         RegisterAdvanced();
         Time.timeScale = 1;
